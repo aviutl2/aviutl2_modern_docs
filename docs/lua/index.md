@@ -27,7 +27,7 @@
 
 ```lua
 --track@vx:X速度,-10,10,0
-obj.ox = obj.ox + vx \* obj.time
+obj.ox = obj.ox + vx * obj.time
 ```
 
 ### チェックボックス項目を定義
