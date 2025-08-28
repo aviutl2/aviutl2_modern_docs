@@ -1,6 +1,4 @@
-task default: %i[clean prepare download]
-
-docs_root = "#{__dir__}/../docs"
+task default: %i[clean prepare download update]
 
 task :clean do
   rm_rf "tmp/aviutl2"
@@ -42,6 +40,8 @@ task :download do
   sh "unzip -o #{filename} -d tmp/aviutl2"
   puts "Unzipped app to tmp/aviutl2"
 
+  File.write("./tmp/aviutl2_version.txt", app_zip_name.sub(".zip", ""))
+
   files = Dir.children("tmp/aviutl2").to_set
 
   unless files.superset?(expected_files)
@@ -53,8 +53,7 @@ task :download do
   puts "Previous version: #{prev_version}"
   puts "Downloading previous version for comparison..."
   prev_filename = "tmp/aviutl2_prev.zip"
-  prev_app_url =
-    "https://spring-fragrance.mints.ne.jp/aviutl/#{prev_version}"
+  prev_app_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{prev_version}"
   File.open(prev_filename, "wb") do |file|
     URI.open(prev_app_url, "User-Agent" => USER_AGENT) do |content|
       IO.copy_stream(content, file)
@@ -62,6 +61,21 @@ task :download do
   end
   puts "Downloaded previous version to #{prev_filename}"
 
+  File.write("./tmp/aviutl2_prev_version.txt", prev_version.sub(".zip", ""))
+
   sh "unzip -o #{prev_filename} -d tmp/aviutl2_prev"
   puts "Unzipped previous version to tmp/aviutl2_prev"
+end
+
+task :update do
+  latest = File.read("./latest.txt").strip
+  current = File.read("./tmp/aviutl2_version.txt").strip
+
+  if latest == current
+    puts "No new version detected. Current version: #{current}"
+    next
+  end
+
+  puts "New version detected! Updating from #{latest} to #{current}"
+  sh "gemini -yp 'Follow scripts/prompt.md' -m gemini-2.5-pro", chdir: ".."
 end
