@@ -10,6 +10,9 @@ export default defineConfig({
   markdown: {
     breaks: true,
   },
+  vite: {
+    base: "/aviutl2_docs_mirror/",
+  },
   themeConfig: {
     nav: [{ text: "ホーム", link: "/" }],
 
