@@ -26,10 +26,11 @@ task :download do
   url = "https://spring-fragrance.mints.ne.jp/aviutl/"
   puts "Fetching download page from #{url}"
   page_content = URI.open(url, "User-Agent" => USER_AGENT).read
-  app_link = page_content.match(%r{<a href="(aviutl2[a-z0-9]+\.zip)">\1</a>}i)
-  raise "Could not find download link on the page." unless app_link
+  app_match = page_content.match(%r{<a href="(aviutl2[a-z0-9]+\.zip)">\1</a>}i)
+  raise "Could not find download link on the page." unless app_match
+  app_zip_name = app_match[1]
   filename = "tmp/aviutl2.zip"
-  app_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{app_link[1]}"
+  app_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{app_zip_name}"
   puts "Downloading app from #{app_url}"
   File.open(filename, "wb") do |file|
     URI.open(app_url, "User-Agent" => USER_AGENT) do |content|
@@ -47,132 +48,20 @@ task :download do
     missing = expected_files - files
     raise "Missing expected files: #{missing.to_a.join(", ")}"
   end
-end
 
-markdown_transformations = {
-  /<[^>]+?>/ => "`\\0`",
-  /○(.+)/ => "- \\1",
-  /「([a-zA-Z0-9.:\\]+)」/ => "`\\1`",
-  " : " => "：",
-  /(?<![a-zA-Z0-9])\(/ => "（",
-  /（([^)）]+)\)/ => "（\\1）",
-  "->" => "→",
-  "Ctrl" => "<kbd>Ctrl</kbd>",
-  "Shift" => "<kbd>Shift</kbd>",
-  "Alt" => "<kbd>Alt</kbd>",
-  "Space" => "<kbd>Space</kbd>",
-  "lua.txt" => "[Lua API](./lua.md)",
-}
-
-task :convert_aviutl2 do
-  base = File.read("tmp/aviutl2/aviutl2.txt")
-
-  sections = base.split_with_header(/－ (.+) －/)
-
-  index_content = []
-  usage_content = []
-  changelog_content = []
-  sections.each do |title, raw_content|
-    if title.nil?
-      unless (match = raw_content.match(/-+\n\s+(.+?)\s*\n-+\n/m))
-        raise "Could not find main section title"
-      end
-      index_content << "# #{match[1].squeeze(" ")}"
-    elsif title == "簡易説明"
-      usage_content << "# 簡易説明"
-      raw_content
-        .split_with_header(/○(.+)/)
-        .each do |title2, raw_content2|
-          usage_content << "## #{title2.squeeze(" ")}" if title2
-          raw_content2
-            .dup
-            .dedent
-            .split_with_header(/◇(.+)/)
-            .each do |title3, raw_content3|
-              usage_content << "### #{title3.squeeze(" ")}" if title3
-              content = raw_content3.dup.dedent
-              content = apply_transformations(content, markdown_transformations)
-              usage_content << content.gsub(/^○(.+)$/, "- \\1  ").gsub(
-                /。$/,
-                "。  "
-              )
-            end
-        end
-    elsif title == "更新履歴"
-      changelog_content << "# 更新履歴"
-      raw_content
-        .dedent
-        .split_with_header(/(\[[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\] .+)/)
-        .reject { |t, _| t.nil? }
-        .sort_by do |title2, _|
-          parsed =
-            title2.match(/\[([0-9]{4})\/([0-9]{1,2})\/([0-9]{1,2})\] ver .+/)
-          [-parsed[1].to_i, -parsed[2].to_i, -parsed[3].to_i]
-        end
-        .each do |title2, raw_content2|
-          next unless title2
-          parsed =
-            title2.match(/\[([0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2})\] ver (.+)/)
-          changelog_content << "## #{parsed[2]} <Badge text='#{parsed[1]}' />"
-          content = raw_content2.dup.dedent.strip
-          content = apply_transformations(content, markdown_transformations)
-          changelog_content << content.gsub(/^/, "- ")
-        end
-    else
-      index_content << "## #{title.squeeze(" ")}"
-
-      content = raw_content.dup.dedent
-      content = apply_transformations(content, markdown_transformations)
-      index_content << content
+  prev_version = app_zip_name.sub(/[0-9]+(?=\.zip)/) { |m| m.to_i - 1 }
+  puts "Previous version: #{prev_version}"
+  puts "Downloading previous version for comparison..."
+  prev_filename = "tmp/aviutl2_prev.zip"
+  prev_app_url =
+    "https://spring-fragrance.mints.ne.jp/aviutl/#{prev_version}"
+  File.open(prev_filename, "wb") do |file|
+    URI.open(prev_app_url, "User-Agent" => USER_AGENT) do |content|
+      IO.copy_stream(content, file)
     end
   end
+  puts "Downloaded previous version to #{prev_filename}"
 
-  write_and_format("#{docs_root}/index.md", index_content.join("\n\n"))
-  write_and_format("#{docs_root}/usage.md", usage_content.join("\n\n"))
-  write_and_format("#{docs_root}/changelog.md", changelog_content.join("\n\n"))
-end
-
-class String
-  def dedent
-    lines = self.lines.map(&:chomp)
-    min_indent = lines.reject(&:empty?).map { |line| line[/^\s*/].size }.min
-    lines.map { |line| line[min_indent..-1] }.join("\n")
-  end
-
-  def split_with_header(pattern)
-    lines = self.lines.map(&:chomp)
-    result = []
-    current_header = nil
-    current_content = []
-
-    lines.each do |line|
-      if (match = line.match(pattern))
-        result << [current_header, current_content.join("\n").dedent]
-        current_header = match[1]
-        current_content = []
-      else
-        current_content << line
-      end
-    end
-
-    unless current_content.empty?
-      result << [current_header, current_content.join("\n").dedent]
-    end
-
-    result
-  end
-end
-
-def write_and_format(file_path, content)
-  raise "Content is empty, not writing to #{file_path}" if content.empty?
-  File.write(file_path, content)
-  sh "../node_modules/.bin/prettier --write #{file_path}"
-  puts "Wrote and formatted #{file_path}"
-end
-
-def apply_transformations(content, transformations)
-  transformations.each do |pattern, replacement|
-    content.gsub!(pattern, replacement)
-  end
-  content
+  sh "unzip -o #{prev_filename} -d tmp/aviutl2_prev"
+  puts "Unzipped previous version to tmp/aviutl2_prev"
 end

@@ -307,7 +307,7 @@ WindowのMediaFoundationが対応している音声ファイルを読み込む�
 `<?[スクリプト]?>`
 `<?=[スクリプトの関数mes()の引数]?>`
 例：`<?obj.rz=obj.time*360?>` `<?=string.format("%02d:%02d",obj.time/60,obj.time%60)?>`
-※スクリプトの仕様については[Lua API](./lua.md)を参照してください
+※スクリプトの仕様については[Luaスクリプト](./lua)を参照してください
 
 ## 図形
 

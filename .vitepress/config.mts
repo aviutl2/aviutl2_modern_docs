@@ -22,6 +22,16 @@ export default defineConfig({
           { text: "更新履歴", link: "/changelog" },
         ],
       },
+      {
+        text: "lua.txt",
+        base: "/lua/",
+        items: [
+          { text: "Luaスクリプト", link: "/" },
+          { text: "使用例", link: "/examples" },
+          { text: "更新履歴", link: "/changelog" },
+          { text: "バイナリについて", link: "/binaries" },
+        ],
+      },
       { text: "このサイトについて", link: "/about" },
     ],
 
@@ -35,7 +45,6 @@ export default defineConfig({
     externalLinkIcon: true,
     skipToContentLabel: "内容にジャンプ",
     langMenuLabel: "言語",
-    outlineTitle: "このページの内容",
     lastUpdatedText: "最終更新",
     sidebarMenuLabel: "メニュー",
     notFound: {
@@ -48,6 +57,10 @@ export default defineConfig({
     darkModeSwitchLabel: "外観",
     darkModeSwitchTitle: "ダークモードに切り替え",
     returnToTopLabel: "上までスクロール",
+    outline: {
+      label: "このページの内容",
+      level: [2, 3],
+    },
 
     docFooter: {
       prev: "前へ",
