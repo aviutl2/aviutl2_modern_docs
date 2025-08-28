@@ -9,7 +9,7 @@
 
 書き換えガイド：
 - キーは`<kbd>Ctrl</kbd>`のように`<kbd>`タグで囲む
-- 「C:\ProgramData\aviutl2」のようにパスを示す場合は`` `C:\ProgramData\aviutl2` ``のように`` ` ``で囲む
+- `「C:\ProgramData\aviutl2」`のように、鍵括弧でパスやファイル名を示している部分合は`` `C:\ProgramData\aviutl2` ``のようにインラインコードにする
 - Lua部分など、半角である必要のある部分以外は全角括弧を使う
 
 --- 以下、追記部分 ---
