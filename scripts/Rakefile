@@ -77,5 +77,5 @@ task :update do
   end
 
   puts "New version detected! Updating from #{latest} to #{current}"
-  sh "./node_modules/.bin/gemini -yp 'Follow scripts/prompt.md' -m gemini-2.5-pro", chdir: ".."
+  sh "./node_modules/.bin/gemini -yp 'Follow scripts/prompt.md' -m gemini-2.5-flash", chdir: "..", verbose: true
 end
