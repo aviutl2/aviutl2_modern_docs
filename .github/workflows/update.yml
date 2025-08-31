@@ -34,6 +34,7 @@ jobs:
 
       - name: Update
         run: |
+          bun i
           rake
 
       - name: Commit changes
