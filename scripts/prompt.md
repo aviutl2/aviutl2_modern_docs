@@ -13,10 +13,3 @@
 - Lua部分など、半角である必要のある部分以外は全角括弧を使う
 
 --- 以下、追記部分 ---
-
-### 更新手順
-
-1. `scripts/tmp/aviutl2/aviutl2.txt` と `scripts/tmp/aviutl2_prev/aviutl2.txt` を比較し、`docs/changelog.md` を更新する。
-2. `scripts/tmp/aviutl2/lua.txt` と `scripts/tmp/aviutl2_prev/lua.txt` を比較し、`docs/lua/changelog.md` および `docs/lua/index.md` を更新する。
-    - `docs/lua/index.md` の更新では、`obj.putpixel()`, `obj.copypixel()` の追加、`obj.pixeloption()` および `obj.setoption()` の変更を反映する。
-3. `scripts/tmp/aviutl2_version.txt` の内容を `scripts/latest.txt` にコピーする。
