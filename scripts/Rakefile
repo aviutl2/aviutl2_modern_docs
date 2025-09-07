@@ -1,4 +1,4 @@
-task default: %i[clean prepare download update]
+task default: %i[clean prepare download compare]
 
 task :clean do
   rm_rf "tmp/aviutl2"
@@ -67,7 +67,34 @@ task :download do
   puts "Unzipped previous version to tmp/aviutl2_prev"
 end
 
+task :compare do
+  current_version = File.read("./tmp/aviutl2_version.txt").strip
+  prev_version = File.read("./tmp/aviutl2_prev_version.txt").strip
+
+  puts "Comparing current version #{current_version} with previous version #{prev_version}"
+  %w[aviutl2.txt lua.txt].each do |filename|
+    current_file = File.join("tmp/aviutl2", filename)
+    prev_file = File.join("tmp/aviutl2_prev", filename)
+
+    unless File.exist?(current_file) && File.exist?(prev_file)
+      puts "One of the files does not exist: #{current_file} or #{prev_file}"
+      next
+    end
+
+    sh "diff -u #{prev_file} #{current_file} > tmp/#{filename}.diff" do |ok, res|
+      if ok
+        puts "No differences found in #{filename}."
+        rm_f "tmp/#{filename}.diff"
+      else
+        puts "Differences found in #{filename}, see tmp/#{filename}.diff"
+      end
+    end
+  end
+  puts "Comparison complete. Diff files are in the tmp directory."
+end
+
 task :update do
+  # 一瞬でレートリミットになるので一時的に無効化
   latest = File.read("./latest.txt").strip
   current = File.read("./tmp/aviutl2_version.txt").strip
 
@@ -77,5 +104,7 @@ task :update do
   end
 
   puts "New version detected! Updating from #{latest} to #{current}"
-  sh "./node_modules/.bin/gemini -yp 'Follow scripts/prompt.md' -m gemini-2.5-flash", chdir: "..", verbose: true
+  sh "./node_modules/.bin/gemini -yp 'Follow scripts/prompt.md' -m gemini-2.5-flash",
+     chdir: "..",
+     verbose: true
 end
