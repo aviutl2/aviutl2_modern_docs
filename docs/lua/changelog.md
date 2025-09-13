@@ -1,5 +1,14 @@
 # 更新履歴
 
+## 2.00 beta11 <Badge text='2025/9/13' />
+
+スクリプト制御、スクリプトファイルの種別で含めるライブラリを変更
+obj.copybuffer()でオブジェクトを更新した時に一部のobj変数の変更が破棄されるのを修正
+obj.layerの値を描画対象のオブジェクトのレイヤー番号となるように修正
+obj.drawpoly()の配列指定(座標+色+法線)が正しく描画出来ないのを修正
+obj.drawpoly()に頂点リストのテーブルで指定する方法を追加
+obj.getinfo("clock"),obj.getinfo("script_time")を追加
+
 ## 2.00 beta10 <Badge text='2025/9/7' />
 
 - obj.setanchor()で直接テーブル変数を指定した場合に落ちるのを修正
