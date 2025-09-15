@@ -21,26 +21,35 @@ USER_AGENT =
 task :download do
   require "open-uri"
 
-  url = "https://spring-fragrance.mints.ne.jp/aviutl/"
-  puts "Fetching download page from #{url}"
-  page_content = URI.open(url, "User-Agent" => USER_AGENT).read
-  app_match = page_content.match(%r{<a href="(aviutl2[a-z0-9]+\.zip)">\1</a>}i)
-  raise "Could not find download link on the page." unless app_match
-  app_zip_name = app_match[1]
-  filename = "tmp/aviutl2.zip"
-  app_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{app_zip_name}"
-  puts "Downloading app from #{app_url}"
-  File.open(filename, "wb") do |file|
-    URI.open(app_url, "User-Agent" => USER_AGENT) do |content|
-      IO.copy_stream(content, file)
-    end
+  index_url = "https://spring-fragrance.mints.ne.jp/aviutl/oldver.php"
+  puts "Fetching download page from #{index_url}"
+  page_content = URI.open(index_url, "User-Agent" => USER_AGENT).read
+  # <tr align=center><td><a href="aviutl2_sdk.zip">aviutl2_sdk.zip</a></td><td>version0.2_sdk</td></tr>
+  app_match =
+    page_content
+      .to_enum(
+        :scan,
+        %r{<a href="(?<filename>aviutl2[^"]+\.zip)">(?<app_zip_name>aviutl2[^<]+\.zip)</a>}
+      )
+      .map { Regexp.last_match }
+      .to_a
+  versions =
+    app_match
+      .map { _1[:app_zip_name] }
+      .reject { _1 == "aviutl2_sdk.zip" }
+      .sort_by { [_1.scan(/[0-9]+/).map(&:to_i), _1] }
+
+  latest_version = versions.last
+  puts "Latest version detected: #{latest_version}"
+
+  latest_filename = "./tmp/aviutl2.zip"
+  latest_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{latest_version}"
+  URI.open(latest_url, "User-Agent" => USER_AGENT) do |f|
+    IO.copy_stream(f, latest_filename)
   end
-  puts "Downloaded app to #{filename}"
-
-  sh "unzip -o #{filename} -d tmp/aviutl2"
+  sh "unzip -o #{latest_filename} -d tmp/aviutl2"
   puts "Unzipped app to tmp/aviutl2"
-
-  File.write("./tmp/aviutl2_version.txt", app_zip_name.sub(".zip", ""))
+  File.write("./tmp/aviutl2_version.txt", latest_version)
 
   files = Dir.children("tmp/aviutl2").to_set
 
@@ -49,22 +58,16 @@ task :download do
     raise "Missing expected files: #{missing.to_a.join(", ")}"
   end
 
-  prev_version = app_zip_name.sub(/[0-9]+(?=\.zip)/) { |m| m.to_i - 1 }
-  puts "Previous version: #{prev_version}"
-  puts "Downloading previous version for comparison..."
-  prev_filename = "tmp/aviutl2_prev.zip"
-  prev_app_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{prev_version}"
-  File.open(prev_filename, "wb") do |file|
-    URI.open(prev_app_url, "User-Agent" => USER_AGENT) do |content|
-      IO.copy_stream(content, file)
-    end
+  prev_version = versions[-2]
+  puts "Previous version detected: #{prev_version}"
+  prev_filename = "./tmp/aviutl2_prev.zip"
+  prev_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{prev_version}"
+  URI.open(prev_url, "User-Agent" => USER_AGENT) do |f|
+    IO.copy_stream(f, prev_filename)
   end
-  puts "Downloaded previous version to #{prev_filename}"
-
-  File.write("./tmp/aviutl2_prev_version.txt", prev_version.sub(".zip", ""))
-
   sh "unzip -o #{prev_filename} -d tmp/aviutl2_prev"
-  puts "Unzipped previous version to tmp/aviutl2_prev"
+  puts "Unzipped previous app to tmp/aviutl2_prev"
+  File.write("./tmp/aviutl2_prev_version.txt", prev_version)
 end
 
 task :compare do
