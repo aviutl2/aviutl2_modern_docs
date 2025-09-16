@@ -1,5 +1,5 @@
 import { defineConfig } from "vitepress";
-import { Parser, jaModel } from "budoux";
+import { jaModel, Parser } from "budoux";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -20,16 +20,23 @@ export default defineConfig({
         miniSearch: {
           options: {
             tokenize: (term) => {
-              let parser: Parser;
-              const patchedGlobal = globalThis as unknown as { __au2dm_budouxParser?: Parser };
-              if (patchedGlobal.__au2dm_budouxParser) {
-                parser = patchedGlobal.__au2dm_budouxParser;
-              } else {
-                parser = new Parser(jaModel);
-                patchedGlobal.__au2dm_budouxParser = parser;
+              const patchedGlobal = globalThis as unknown as {
+                __au2dm_budouxParser?: Parser;
+              };
+              if (!patchedGlobal.__au2dm_budouxParser) {
+                if (typeof process !== "undefined") {
+                  // Node環境（SSR）ではParserをここで初期化する
+                  patchedGlobal.__au2dm_budouxParser = new Parser(jaModel);
+                } else {
+                  throw new Error(
+                    "Unreachable: budoux parser is not initialized",
+                  );
+                }
               }
 
-              return parser.parse(term);
+              return term
+                .split(/[\s-、。.,・]+/)
+                .flatMap((t) => patchedGlobal.__au2dm_budouxParser!.parse(t));
             },
           },
         },
