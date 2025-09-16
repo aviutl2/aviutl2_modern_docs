@@ -1,4 +1,5 @@
 import { defineConfig } from "vitepress";
+import { Parser, jaModel } from "budoux";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -13,6 +14,48 @@ export default defineConfig({
   base: "/aviutl2_docs_mirror/",
   themeConfig: {
     nav: [{ text: "ホーム", link: "/" }],
+    search: {
+      provider: "local",
+      options: {
+        miniSearch: {
+          options: {
+            tokenize: (term) => {
+              let parser: Parser;
+              const patchedGlobal = globalThis as unknown as { __au2dm_budouxParser?: Parser };
+              if (patchedGlobal.__au2dm_budouxParser) {
+                parser = patchedGlobal.__au2dm_budouxParser;
+              } else {
+                parser = new Parser(jaModel);
+                patchedGlobal.__au2dm_budouxParser = parser;
+              }
+
+              return parser.parse(term);
+            },
+          },
+        },
+        locales: {
+          root: {
+            translations: {
+              button: {
+                buttonAriaLabel: "検索",
+                buttonText: "検索",
+              },
+              modal: {
+                backButtonTitle: "戻る",
+                displayDetails: "詳細を表示",
+                noResultsText: "何も見つかりませんでした",
+                resetButtonTitle: "リセット",
+                footer: {
+                  closeText: "で閉じる",
+                  navigateText: "で移動",
+                  selectText: "で選択",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
 
     sidebar: [
       {
