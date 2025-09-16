@@ -37,7 +37,12 @@ task :download do
     app_match
       .map { _1[:app_zip_name] }
       .reject { _1 == "aviutl2_sdk.zip" }
-      .sort_by { [_1.scan(/[0-9]+/).map(&:to_i), _1] }
+      .sort_by do |n|
+        [
+          n.split(/([0-9]+)/).map.with_index { |d, i| i % 2 == 0 ? d : d.to_i },
+          n
+        ]
+      end
 
   latest_version = versions.last
   puts "Latest version detected: #{latest_version}"
