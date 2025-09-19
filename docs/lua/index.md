@@ -628,6 +628,9 @@ if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 
 - 戻り値 ：0=カメラ制御対象外 / 0以外=カメラ制御対象
 
+> [!NOTE]
+> 実際には`true`/`false`で返されます。
+
 #### カメラのパラメータを取得する
 
 `obj.getoption("camera_param")`
