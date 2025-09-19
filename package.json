@@ -4,7 +4,13 @@
   },
   "devDependencies": {
     "@google/gemini-cli": "^0.2.2",
+    "@johnnymorganz/stylua-bin": "^2.2.0",
+    "@types/bun": "^1.2.22",
+    "@types/node": "^24.5.2",
+    "diff": "^8.0.2",
+    "mdast-util-from-markdown": "^2.0.2",
     "prettier": "^3.6.2",
+    "tempy": "^3.1.0",
     "typescript": "^5.9.2",
     "vitepress": "^2.0.0-alpha.12",
     "vue": "^3.5.20"
@@ -12,6 +18,11 @@
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
-    "preview": "vitepress preview"
-  }
+    "preview": "vitepress preview",
+    "lint": "bun ./scripts/format.ts --check",
+    "lint:fix": "bun ./scripts/format.ts --write"
+  },
+  "trustedDependencies": [
+    "@johnnymorganz/stylua-bin"
+  ]
 }

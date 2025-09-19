@@ -39,7 +39,7 @@ obj.ox = obj.ox + vx * obj.time
 
 ```lua
 --check@grav:重力,0
-if( grav ) then
+if grav then
 ```
 
 ### 色設定項目を定義
@@ -51,7 +51,7 @@ if( grav ) then
 
 ```lua
 --color@col:図形色,0xffffff
-obj.load("figure","四角形",col,100)
+obj.load("figure", "四角形", col, 100)
 ```
 
 ### ファイル選択項目を定義
@@ -62,7 +62,7 @@ obj.load("figure","四角形",col,100)
 
 ```lua
 --file@path:画像ファイル
-obj.load("image",path)
+obj.load("image", path)
 ```
 
 ### フォント設定項目を定義
@@ -71,7 +71,7 @@ obj.load("image",path)
 
 ```lua
 --font@font:フォント名,MS UI Gothic
-obj.setfont(font,50,deco,col1,col2)
+obj.setfont(font, 50, deco, col1, col2)
 ```
 
 ### 図形設定項目を定義
@@ -80,7 +80,7 @@ obj.setfont(font,50,deco,col1,col2)
 
 ```lua
 --figure@fig:先端図形,三角形
-obj.load("figure",fig,col,100)
+obj.load("figure", fig, col, 100)
 ```
 
 ### リスト選択項目を定義
@@ -89,7 +89,7 @@ obj.load("figure",fig,col,100)
 
 ```lua
 --select@deco:装飾タイプ,標準文字=0,影付き文字=1,影付き文字（薄）=2,縁取り文字=3,縁取り文字（細）=4,縁取り文字（太）=5,縁取り文字（角）=6
-obj.setfont(font,obj.track2,deco,col1,col2)
+obj.setfont(font, obj.track2, deco, col1, col2)
 ```
 
 ### 変数項目を定義
@@ -228,7 +228,7 @@ obj.mes("この文字が挿入されて表示されます")
 例：
 
 ```lua
-obj.effect("色調補正","明るさ",150,"色相",180)
+obj.effect("色調補正", "明るさ", 150, "色相", 180)
 ```
 
 ### obj.draw([ox,oy,oz,zoom,alpha,rx,ry,rz])
@@ -251,7 +251,7 @@ obj.effect("色調補正","明るさ",150,"色相",180)
 例：
 
 ```lua
-obj.draw(2,10,0)
+obj.draw(2, 10, 0)
 ```
 
 ### obj.drawpoly(x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3[,u0,v0,u1,v1,u2,v2,u3,v3,alpha])
@@ -273,7 +273,7 @@ obj.draw(2,10,0)
 例：
 
 ```lua
-obj.drawpoly(-50,-50,0, 50,-50,0, 50,50,0, -50,50,0, 0,0, obj.w,0, obj.w,obj.h, 0,obj.h)
+obj.drawpoly(-50, -50, 0, 50, -50, 0, 50, 50, 0, -50, 50, 0, 0, 0, obj.w, 0, obj.w, obj.h, 0, obj.h)
 ```
 
 ### obj.drawpoly({table}[,alpha])
@@ -293,8 +293,8 @@ obj.drawpoly()を複数回呼び出すより描画が速くなります。
 例：
 
 ```lua
-table.insert(vertex,{x0,y0,0,x1,y1,0,x2,y2,0,x3,y3,0,u0,v0,u1,v1,u2,v2,u3,v3})
-table.insert(vertex,{x0,y0,100,x1,y1,100,x2,y2,100,x3,y3,100,u0,v0,u1,v1,u2,v2,u3,v3})
+table.insert(vertex, { x0, y0, 0, x1, y1, 0, x2, y2, 0, x3, y3, 0, u0, v0, u1, v1, u2, v2, u3, v3 })
+table.insert(vertex, { x0, y0, 100, x1, y1, 100, x2, y2, 100, x3, y3, 100, u0, v0, u1, v1, u2, v2, u3, v3 })
 obj.drawpoly(vertex)
 ```
 
@@ -316,22 +316,22 @@ obj.drawpoly(vertex)
 例：
 
 ```lua
-vertex={}
-table.insert(vertex,{0, 0, 0, 0,0})
-table.insert(vertex,{100,0, 0, 1,0})
-table.insert(vertex,{100,100,0, 1,1})
-table.insert(vertex,{0, 100,0, 0,1})
+vertex = {}
+table.insert(vertex, { 0, 0, 0, 0, 0 })
+table.insert(vertex, { 100, 0, 0, 1, 0 })
+table.insert(vertex, { 100, 100, 0, 1, 1 })
+table.insert(vertex, { 0, 100, 0, 0, 1 })
 obj.drawpoly(vertex)
 ```
 
 ```lua
-vertex={}
-for z=100,1000,100 do
-    table.insert(vertex,{0, 0, z, 1,1,1,1})
-    table.insert(vertex,{100,0, z, 1,1,1,1})
-    table.insert(vertex,{100,100,z, 1,1,1,1})
+vertex = {}
+for z = 100, 1000, 100 do
+	table.insert(vertex, { 0, 0, z, 1, 1, 1, 1 })
+	table.insert(vertex, { 100, 0, z, 1, 1, 1, 1 })
+	table.insert(vertex, { 100, 100, z, 1, 1, 1, 1 })
 end
-obj.drawpoly(vertex,3)
+obj.drawpoly(vertex, 3)
 ```
 
 ### obj.load(\[type\],...)
@@ -352,7 +352,7 @@ typeを省略した場合は自動的に判別します。
 例：
 
 ```lua
-obj.load("movie","c:\\test.avi")
+obj.load("movie", "c:\\test.avi")
 ```
 
 #### 画像ファイル
@@ -365,7 +365,7 @@ obj.load("movie","c:\\test.avi")
 例：
 
 ```lua
-obj.load("image","c:\\test.bmp")
+obj.load("image", "c:\\test.bmp")
 ```
 
 #### テキスト
@@ -383,7 +383,7 @@ speed,timeを設定すると表示する文字数を変更出来ます。
 例：
 
 ```lua
-obj.load("text","この文字が画像として読み込まれます")
+obj.load("text", "この文字が画像として読み込まれます")
 ```
 
 #### 図形
@@ -400,7 +400,7 @@ obj.load("text","この文字が画像として読み込まれます")
 例：
 
 ```lua
-obj.load("figure","円",0xffffff,100,true)
+obj.load("figure", "円", 0xffffff, 100, true)
 ```
 
 #### フレームバッファ
@@ -462,7 +462,7 @@ obj.load()のテキストで使うフォントを指定します。
 例：
 
 ```lua
-obj.rand(10,20)
+obj.rand(10, 20)
 ```
 
 ### obj.setoption(name,value)
@@ -567,7 +567,7 @@ setoption()で変更しなくてもスクリプト終了後には自動的に
 例：
 
 ```lua
-cam = obj.getoption("camera_param");
+cam = obj.getoption("camera_param")
 ```
 
 #### サンプラーモード
@@ -611,7 +611,7 @@ obj.draw(),obj.drawpoly()描画時のサンプラーを変更します
 例：
 
 ```lua
-if obj.getoption("script_name") == obj.getoption("script_name",-1) then
+if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 ```
 
 #### GUIの表示状態を調べる
@@ -639,7 +639,7 @@ if obj.getoption("script_name") == obj.getoption("script_name",-1) then
 例：
 
 ```lua
-cam = obj.getoption("camera_param");
+cam = obj.getoption("camera_param")
 ```
 
 #### 個別オブジェクトが有効かを調べる
@@ -701,8 +701,8 @@ cam = obj.getoption("camera_param");
 例：
 
 ```lua
-obj.setanchor("pos",3)
-n = obj.setanchor("track",0,"line")
+obj.setanchor("pos", 3)
+n = obj.setanchor("track", 0, "line")
 ```
 
 ### obj.getpixel(x,y[,type])
@@ -808,9 +808,9 @@ obj.pixeloption("get",xxx)を処理することで能動的にキャッシュを
 例：
 
 ```lua
-n = obj.getaudio(buf,"audiobuffer","spectrum",32)
-n,rate = obj.getaudio(buf,"c:\\test.wav","pcm",1000)
-n,rate,buf = obj.getaudio(nil,"c:\\test.wav","pcm",1000)
+n = obj.getaudio(buf, "audiobuffer", "spectrum", 32)
+n, rate = obj.getaudio(buf, "c:\\test.wav", "pcm", 1000)
+n, rate, buf = obj.getaudio(nil, "c:\\test.wav", "pcm", 1000)
 ```
 
 ### obj.copybuffer(dst,src)
@@ -950,7 +950,7 @@ obj.getinfo("saving")
 #### 最大画像サイズを取得する
 
 ```lua
-max_x,max_y = obj.getinfo("image_max")
+max_x, max_y = obj.getinfo("image_max")
 ```
 
 - 戻り値：最大画像サイズ（横幅,高さ）
@@ -982,8 +982,8 @@ msec = obj.getinfo("script_time")
 例：
 
 ```lua
-x,y,z = obj.interpolation(time,x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3)
-x,y = obj.interpolation(time,x0,y0,x1,y1,x2,y2,x3,y3)
+x, y, z = obj.interpolation(time, x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3)
+x, y = obj.interpolation(time, x0, y0, x1, y1, x2, y2, x3, y3)
 ```
 
 ### RGB(r,g,b)
@@ -994,9 +994,9 @@ r,g,bを2つ指定した場合はオブジェクトの時間経過に応じて�
 例：
 
 ```lua
-col = RGB(r,g,b)
-r,g,b = RGB(col)
-col = RGB(r1,g1,b1,r2,g2,b2)
+col = RGB(r, g, b)
+r, g, b = RGB(col)
+col = RGB(r1, g1, b1, r2, g2, b2)
 ```
 
 ### HSV(h,s,v)
@@ -1007,9 +1007,9 @@ h,s,vを2つ指定した場合はオブジェクトの時間経過に応じて�
 例：
 
 ```lua
-col = HSV(h,s,v)
-h,s,v = HSV(col)
-col = HSV(h1,s1,v1,h2,s2,v2)
+col = HSV(h, s, v)
+h, s, v = HSV(col)
+col = HSV(h1, s1, v1, h2, s2, v2)
 ```
 
 ### OR(a,b) / AND(a,b) / XOR(a,b)
@@ -1019,7 +1019,7 @@ OR,AND,XORのビット演算をします。
 例：
 
 ```lua
-c = OR(a,b)
+c = OR(a, b)
 ```
 
 ### SHIFT(a,shift)
@@ -1029,7 +1029,7 @@ c = OR(a,b)
 例：
 
 ```lua
-b = SHIFT(a,1)
+b = SHIFT(a, 1)
 ```
 
 ### rotation(x0,y0,x1,y1,x2,y2,x3,y3,zoom,r)
@@ -1046,7 +1046,7 @@ b = SHIFT(a,1)
 例：
 
 ```lua
-x0,y0,x1,y1,x2,y2,x3,y3 = rotation(x0,y0,x1,y1,x2,y2,x3,y3,zoom,r);
+x0, y0, x1, y1, x2, y2, x3, y3 = rotation(x0, y0, x1, y1, x2, y2, x3, y3, zoom, r)
 ```
 
 ### debug_print(text)
