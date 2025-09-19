@@ -42,6 +42,15 @@ obj.ox = obj.ox + vx * obj.time
 if grav then
 ```
 
+> [!NOTE]
+> `grav`に数値が入るため、上の例は実際には動きません。
+> 正しくは、`if grav ~= 0 then`のように数値と比較する必要があります：
+>
+> ```lua
+> --check@grav:重力,0
+> if grav ~= 0 then
+> ```
+
 ### 色設定項目を定義
 
 スクリプトファイルの先頭で`--color@変数名:項目名,デフォルト値`のように指定すると
@@ -194,6 +203,10 @@ obj.setfont(font, obj.track2, deco, col1, col2)
 | `obj.index`      | 複数オブジェクト時の番号 ※個別オブジェクト用                               | ○        |
 | `obj.num`        | 複数オブジェクト時の数（1=単体オブジェクト/0=不定） ※個別オブジェクト用    | ○        |
 
+> [!NOTE]
+> AviUtl1と違い、`obj.w`と`obj.h`は拡大などの影響を受けません。
+> （1では拡大率などに影響されたサイズでした）
+
 ## 関数
 
 スクリプトには以下の関数が追加されています。
@@ -275,6 +288,10 @@ obj.draw(2, 10, 0)
 ```lua
 obj.drawpoly(-50, -50, 0, 50, -50, 0, 50, 50, 0, -50, 50, 0, 0, 0, obj.w, 0, obj.w, obj.h, 0, obj.h)
 ```
+
+> [!NOTE]
+> AviUtl1と違い、この座標はオブジェクトのローカル座標になります。
+> （1では実際に描画する座標でした）
 
 ### obj.drawpoly({table}[,alpha])
 
@@ -716,22 +733,32 @@ n = obj.setanchor("track", 0, "line")
 状況によってキャッシュが更新されずに正しい値が取得出来ない場合があります。（draw,pixel系の描画関連）
 obj.pixeloption("get",xxx)を処理することで能動的にキャッシュを破棄することが出来ます。
 
-- `x,y` ：取得するピクセルの座標
-- `type` ：ピクセル情報のタイプ（`"col"`、`"rgb"`）
+- `x,y`：取得するピクセルの座標
+- `type`：ピクセル情報のタイプ（`"col"`、`"rgb"`）
   ※省略時は `obj.pixeloption("type")` で指定したタイプ（通常は`"col"`）
-- 戻り値 ：
+- 戻り値：
   - タイプが`"col"`の場合
     色情報（0x000000～0xffffff）と不透明度（0.0=透明/1.0=不透明）
-    `col,a = obj.getpixel(0,0,"col")`
+    ```lua
+    col, a = obj.getpixel(0, 0, "col")
+    ```
   - タイプが`"rgb"`の場合
     各8bit(0～255)のRGBA情報
-    `r,g,b,a = obj.getpixel(0,0,"rgb")`
+    ```lua
+    r, g, b, a = obj.getpixel(0, 0, "rgb")
+    ```
   - タイプが`"yc"`の場合
     YCbCr旧内部形式
-    `y,cb,cr,a = obj.getpixel(0,0,"yc")`
+
+    ```lua
+    y, cb, cr, a = obj.getpixel(0, 0, "yc")
+    ```
+
   - 引数なし
     横、縦のピクセル数
-    `w,h = obj.getpixel()`
+    ```lua
+    w, h = obj.getpixel()
+    ```
 
 ### obj.putpixel(x,y,...)
 

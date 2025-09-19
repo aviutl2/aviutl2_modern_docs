@@ -217,67 +217,91 @@ async function formatLuaNodes(ast: AstRoot, baseFormatted: string) {
       ),
   );
 
+  if (codeNodes.length === 0) {
+    return baseFormatted;
+  }
+
   // 処理を楽にするために、後ろから処理する
   codeNodes.sort((a, b) => {
     return b.position.start.offset - a.position.start.offset;
   });
 
-  return await tempy.temporaryDirectoryTask(async (dir) => {
-    // Lua部分を切り取って整形して、元のMarkdownの部分を置き換える
-    let replaced = baseFormatted;
-    const tempFilePaths: string[] = [];
-    for (const [i, node] of codeNodes.entries()) {
-      const nodeContent = replaced.slice(
-        node.position.start.offset,
-        node.position.end.offset,
-      );
-      let cleanedNodeContent = nodeContent
-        .replace(/^\s*```lua\s*/, "")
-        .replace(/\s*```\s*$/, "")
-        .replace(/^@/gm, "-- AU2DM_AT_SYMBOL ");
+  return await tempy.temporaryDirectoryTask(
+    async (dir) => {
+      // Lua部分を切り取って整形して、元のMarkdownの部分を置き換える
+      let replaced = baseFormatted;
+      const codeBlocks: {
+        original: string;
+        path: string;
+        node: CodeNode;
+        indent: string;
+        leading: string;
+        ifEnded: boolean;
+      }[] = [];
+      for (const [i, node] of codeNodes.entries()) {
+        const nodeContent = replaced.slice(
+          node.position.start.offset,
+          node.position.end.offset,
+        );
+        const indent = nodeContent.match(/(?<=\n)[^\n]*(?=```$)/)?.[0];
+        if (indent === undefined) {
+          throw new Error("Failed to detect indent");
+        }
+        const leading = nodeContent.match(/^[^\S\n]*/)?.[0] ?? "";
+        let cleanedNodeContent = nodeContent
+          .replace(new RegExp(`^${RegExp.escape(indent)}`, "gm"), "")
+          .replace(/^\s*```lua\s*/, "")
+          .replace(/\s*```\s*$/, "")
+          .replace(/^@/gm, "-- AU2DM_AT_SYMBOL ");
 
-      let isIfEndedCode = false;
-      if (cleanedNodeContent.trim().endsWith("then")) {
-        // ifで終わっているコードの場合、styluaがエラーになるので、無理やりendを追加する
-        cleanedNodeContent += "\nend";
-        isIfEndedCode = true;
+        let isIfEndedCode = false;
+        if (cleanedNodeContent.trim().endsWith("then")) {
+          // ifで終わっているコードの場合、styluaがエラーになるので、無理やりendを追加する
+          cleanedNodeContent += "\nend";
+          isIfEndedCode = true;
+        }
+        const tempFilePath = `${dir}/codeblock-${i}.lua`;
+        await writeFile(tempFilePath, cleanedNodeContent, "utf8");
+        codeBlocks.push({
+          original: cleanedNodeContent,
+          path: tempFilePath,
+          node,
+          indent,
+          leading,
+          ifEnded: isIfEndedCode,
+        });
       }
-      const tempFilePath = `${dir}/temp_${i}-${
-        isIfEndedCode ? "ifended" : "normal"
-      }-.lua`;
-      await writeFile(tempFilePath, cleanedNodeContent, "utf8");
-      tempFilePaths.push(tempFilePath);
-    }
 
-    if (tempFilePaths.length === 0) {
+      const stylua = Bun.spawn(["stylua", ...codeBlocks.map((b) => b.path)]);
+      if ((await stylua.exited) !== 0) {
+        const stderr = await new Response(stylua.stderr).text();
+        throw new Error(`stylua failed: ${stderr}`);
+      }
+      for (const codeBlock of codeBlocks) {
+        let formattedNode = await readFile(codeBlock.path, "utf8");
+        let formattedNodeOutput = formattedNode
+          .trim()
+          .replace(/^-- AU2DM_AT_SYMBOL /gm, "@");
+        if (codeBlock.ifEnded) {
+          // 無理やり追加したendを削除する
+          formattedNodeOutput = formattedNodeOutput.replace(/\nend\s*$/, "");
+        }
+        replaced =
+          replaced.slice(0, codeBlock.node.position.start.offset) +
+          "```lua\n" +
+          codeBlock.leading +
+          formattedNodeOutput.replace(/^/gm, codeBlock.indent) +
+          "\n" +
+          codeBlock.indent +
+          "```" +
+          replaced.slice(codeBlock.node.position.end.offset);
+      }
       return replaced;
-    }
-
-    const stylua = Bun.spawn(["stylua", ...tempFilePaths]);
-    if ((await stylua.exited) !== 0) {
-      const stderr = await new Response(stylua.stderr).text();
-      throw new Error(`stylua failed: ${stderr}`);
-    }
-    for (const [i, node] of codeNodes.entries()) {
-      const tempFilePath = tempFilePaths[i];
-      let formattedNode = await readFile(tempFilePath, "utf8");
-      const isIfEndedCode = tempFilePath.includes("-ifended-");
-      let formattedNodeOutput = formattedNode
-        .trim()
-        .replace(/^-- AU2DM_AT_SYMBOL /gm, "@");
-      if (isIfEndedCode) {
-        // 無理やり追加したendを削除する
-        formattedNodeOutput = formattedNodeOutput.replace(/\nend\s*$/, "");
-      }
-      replaced =
-        replaced.slice(0, node.position.start.offset) +
-        "```lua\n" +
-        formattedNodeOutput +
-        "\n```" +
-        replaced.slice(node.position.end.offset);
-    }
-    return replaced;
-  });
+    },
+    {
+      prefix: "au2dm-format-",
+    },
+  );
 }
 function printDiff(filePath: string, source: string, result: string) {
   // patchの先頭のIndexとかを削除。
