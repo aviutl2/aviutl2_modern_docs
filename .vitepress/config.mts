@@ -14,6 +14,9 @@ export default defineConfig({
     config: (md) => {
       md.use(markdownItBudoux({ language: "ja" }));
     },
+    container: {
+      noteLabel: "補注"
+    },
   },
   base: "/aviutl2_docs_mirror/",
   themeConfig: {
