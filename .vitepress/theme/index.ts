@@ -13,7 +13,6 @@ export default {
     });
   },
   enhanceApp() {
-    // @ts-expect-error
     if (!import.meta.env.SSR) {
       const patchedGlobal = globalThis as unknown as {
         __au2dm_budouxParser: Parser;
