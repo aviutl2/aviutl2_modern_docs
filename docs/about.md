@@ -4,3 +4,5 @@
 `aviutl2.txt`、`lua.txt`の内容を変換して配信しています。
 
 [GitHub](https://github.com/sevenc-nanashi/aviutl2_docs_mirror)にてソースコードを公開しています。
+
+また、AviUtl2 SDKのミラーは[こちら](https://github.com/sevenc-nanashi/aviutl2_sdk_mirror)です。
