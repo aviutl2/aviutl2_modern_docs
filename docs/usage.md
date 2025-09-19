@@ -261,7 +261,6 @@ WindowのMediaFoundationが対応している動画ファイルを読み込む�
 
 > [!NOTE]
 > Media Foundation File Readerはbeta10で削除されました。
-> [L-SMASH Works](https://github.com/Mr-Ojii/L-SMASH-Works-Auto-Builds#ja)の導入を推奨します。
 
 ## 画像ファイル
 
@@ -277,7 +276,6 @@ WindowのMediaFoundationが対応している音声ファイルを読み込む�
 
 > [!NOTE]
 > Media Foundation File Readerはbeta10で削除されました。
-> [L-SMASH Works](https://github.com/Mr-Ojii/L-SMASH-Works-Auto-Builds#ja)の導入を推奨します。
 
 ## テキスト
 
