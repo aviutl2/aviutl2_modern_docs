@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import { jaModel, Parser } from "budoux";
+import markdownItBudoux from "markdown-it-budoux";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -10,6 +11,9 @@ export default defineConfig({
   cleanUrls: true,
   markdown: {
     breaks: true,
+    config: (md) => {
+      md.use(markdownItBudoux({ language: "ja" }));
+    },
   },
   base: "/aviutl2_docs_mirror/",
   themeConfig: {
