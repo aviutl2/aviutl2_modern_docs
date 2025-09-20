@@ -26,7 +26,7 @@
 スクリプトファイルの先頭で`--track@変数名:項目名,最小値,最大値,デフォルト値,移動単位`のように指定するとトラックバーが有効になります。移動単位は`1`,`0.1`,`0.01`,`0.001`か省略が出来ます。
 ※旧スクリプトファイル形式の`--track0:項目名,最小値,最大値,デフォルト値,移動単位`も利用できます。
 
-```lua{1}
+```lua
 --track@vx:X速度,-10,10,0
 obj.ox = obj.ox + vx * obj.time
 ```
@@ -37,7 +37,7 @@ obj.ox = obj.ox + vx * obj.time
 チェックボックスが有効になります。
 ※旧スクリプトファイル形式の`--check0:項目名,デフォルト値（0か1）`も利用できます。
 
-```lua{1}
+```lua
 --check@grav:重力,0
 if grav then
 ```
@@ -46,7 +46,7 @@ if grav then
 > `grav`に数値が入るため、上の例は実際には動きません。
 > 正しくは、`if grav ~= 0 then`のように数値と比較する必要があります：
 >
-> ```lua{1}
+> ```lua
 > --check@grav:重力,0
 > if grav ~= 0 then
 > ```
@@ -145,7 +145,7 @@ obj.setfont(font, obj.track2, deco, col1, col2)
 
 ```hlsl
 --[[pixelshader@psmain:
-    float4 psmain(float4 pos：SV_Position)：SV_Target {
+    float4 psmain(float4 pos: SV_Position): SV_Target {
         ...
     }
 ]]
@@ -159,7 +159,7 @@ obj.setfont(font, obj.track2, deco, col1, col2)
 ```hlsl
 --[[computeshader@csmain:
     [numthreads(1, 1, 1)]
-    void csmain(uint2 id：SV_DispatchThreadID) {
+    void csmain(uint2 id: SV_DispatchThreadID) {
         ...
     }
 ]]

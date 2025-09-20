@@ -50,7 +50,7 @@ end
 
 ### 複数登録する場合のファイル内容 `@複数登録例.anm`
 
-```lua
+```lua{1,4}
 @sample1
 --track0:速度,-10,10,10
 obj.ox = obj.ox + obj.track0 * obj.time
