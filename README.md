@@ -1,4 +1,4 @@
-# AviUtl2 Better Docs
+# AviUtl2 Modern Docs
 
 AviUtl2のドキュメントを見やすくした非公式サイト。
 AviUtl2の`aviutl2.txt`と`lua.txt`の内容を変換・加工して配信しています。

@@ -6,7 +6,7 @@ import markdownItBudoux from "markdown-it-budoux";
 export default defineConfig({
   srcDir: "docs",
 
-  title: "AviUtl2 Better Docs",
+  title: "AviUtl2 Modern Docs",
   description: "AviUtl2のドキュメントを見やすくした非公式サイト",
   cleanUrls: true,
   markdown: {
@@ -18,7 +18,7 @@ export default defineConfig({
       noteLabel: "補注",
     },
   },
-  base: "/aviutl2_docs_mirror/",
+  base: "/aviutl2_modern_docs/",
   themeConfig: {
     nav: [{ text: "ホーム", link: "/" }],
     search: {
