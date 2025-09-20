@@ -6,8 +6,8 @@ import markdownItBudoux from "markdown-it-budoux";
 export default defineConfig({
   srcDir: "docs",
 
-  title: "AviUtl2 Docs Mirror",
-  description: "AviUtl2のドキュメントの非公式ミラー。",
+  title: "AviUtl2 Better Docs",
+  description: "AviUtl2のドキュメントを見やすくした非公式サイト",
   cleanUrls: true,
   markdown: {
     breaks: true,
@@ -15,7 +15,7 @@ export default defineConfig({
       md.use(markdownItBudoux({ language: "ja" }));
     },
     container: {
-      noteLabel: "補注"
+      noteLabel: "補注",
     },
   },
   base: "/aviutl2_docs_mirror/",
