@@ -4,7 +4,7 @@
 
 以下のテキストでオブジェクト時間のタイムカウンタが表示します。
 
-```aumes
+```autxt
 現在のオブジェクトの時間=<?mes(string.format("%02d:%02d.%02d",obj.time/60,obj.time%60,（obj.time*100）%100))?>
 ```
 

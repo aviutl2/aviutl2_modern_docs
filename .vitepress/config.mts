@@ -2,7 +2,8 @@ import { defineConfig } from "vitepress";
 import { jaModel, Parser } from "budoux";
 import markdownItBudoux from "markdown-it-budoux";
 import { auluaGrammar } from "./extensions/aulua.ts";
-import { aumesGrammar } from "./extensions/aumes.ts";
+import { autxtGrammar } from "./extensions/autxt.ts";
+import { customFence } from "./extensions/customFence.ts";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -15,6 +16,14 @@ export default defineConfig({
     breaks: true,
     config: (md) => {
       md.use(markdownItBudoux({ language: "ja" }));
+      md.use(
+        customFence({
+          languageLabels: {
+            aulua: "AviUtl2 Lua",
+            autxt: "AviUtl2 Text",
+          },
+        }),
+      );
     },
     container: {
       noteLabel: "補注",
@@ -23,7 +32,7 @@ export default defineConfig({
     shikiSetup: async (shiki) => {
       await shiki.loadLanguage("hlsl");
       await shiki.loadLanguage(auluaGrammar);
-      await shiki.loadLanguage(aumesGrammar);
+      await shiki.loadLanguage(autxtGrammar);
     },
   },
   base: "/aviutl2_modern_docs/",
