@@ -144,10 +144,10 @@ return st + (ed - st) * ratio
 ```aulua
 --track@bright:明るさ,-100,100,0,0.01
 --[[pixelshader@psmain:
-cbuffer constant0：register(b0) {
+cbuffer constant0: register(b0) {
     float bright;
 };
-float4 psmain(float4 pos：SV_Position)：SV_Target {
+float4 psmain(float4 pos: SV_Position): SV_Target {
     return float4(bright, bright, bright, 1);
 }
 ]]
