@@ -13,6 +13,22 @@ export default defineConfig({
   title: "AviUtl2 Modern Docs",
   description: "AviUtl2のドキュメントを見やすくした非公式サイト",
   cleanUrls: true,
+  transformHead(ctx) {
+    ctx.head.push([
+      "meta",
+      {
+        property: "og:title",
+        content: ctx.pageData.title,
+      },
+    ]);
+    ctx.head.push([
+      "meta",
+      {
+        property: "og:site_name",
+        content: "AviUtl2 Modern Docs",
+      },
+    ]);
+  },
   markdown: {
     breaks: true,
     config: (md) => {
