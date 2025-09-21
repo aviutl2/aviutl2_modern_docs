@@ -4,7 +4,7 @@
 
 以下のテキストでオブジェクト時間のタイムカウンタが表示します。
 
-```mes
+```aumes
 現在のオブジェクトの時間=<?mes(string.format("%02d:%02d.%02d",obj.time/60,obj.time%60,（obj.time*100）%100))?>
 ```
 
@@ -12,7 +12,7 @@
 
 以下のスクリプトで時間と共に右方向に移動しながら右回転します。
 
-```lua
+```aulua
 obj.ox = obj.ox + obj.time * 10
 obj.rz = obj.rz + obj.time * 360
 ```
@@ -21,7 +21,7 @@ obj.rz = obj.rz + obj.time * 360
 
 以下のスクリプトで時間と共に明るくなったり暗くなったりします。
 
-```lua
+```aulua
 i = math.cos(obj.time * math.pi * 2) * 50
 obj.effect("色調補正", "明るさ", 100 + i)
 ```
@@ -30,7 +30,7 @@ obj.effect("色調補正", "明るさ", 100 + i)
 
 以下のスクリプトでオブジェクトを円状に10個描画します。
 
-```lua
+```aulua
 n = 10
 l = obj.w * 2
 for i = 0, n do
@@ -50,7 +50,7 @@ end
 
 ### 複数登録する場合のファイル内容 `@複数登録例.anm`
 
-```lua
+```aulua
 @sample1
 --track0:速度,-10,10,10
 obj.ox = obj.ox + obj.track0 * obj.time
@@ -61,7 +61,7 @@ obj.oy = obj.oy + obj.track0 * obj.time
 
 ### 単独登録する場合のファイル内容 `単独登録例.anm`
 
-```lua
+```aulua
 --track0:速度,-10,10,10
 obj.ox = obj.ox + obj.track0 * obj.time
 ```
@@ -74,7 +74,7 @@ obj.ox = obj.ox + obj.track0 * obj.time
 割合をobj.getvalue("scenechange")で取得して処理します。
 ※0ならオブジェクト、1ならフレームバッファ側になります。
 
-```lua
+```aulua
 a = 1 - obj.getvalue("scenechange")
 obj.draw(0, 0, 0, 1, a)
 ```
@@ -85,7 +85,7 @@ obj.draw(0, 0, 0, 1, a)
 
 ### 変数項目の配列を使う場合
 
-```lua
+```aulua
 --value@pos:座標,{}
 num = 3
 obj.setanchor("pos", num, "loop")
@@ -100,7 +100,7 @@ end
 
 ### トラックバーを使う場合
 
-```lua
+```aulua
 --track0:X,-1000,1000,0
 --track1:Y,-1000,1000,0
 --track2:Z,-1000,1000,0
@@ -114,7 +114,7 @@ end
 
 ### 複数回のobj.setanchor()を使う場合
 
-```lua
+```aulua
 --value@pos1:座標1,{}
 --value@pos2:座標2,{}
 obj.setanchor("pos1", 4, "loop", "color", RGB(0, 255, 255))
@@ -130,7 +130,7 @@ obj.setanchor("pos2", 2, "line", "color", RGB(0, 255, 0))
 `--param:初期値`のように指定するとトラックバーの設定値が指定出来るようになります。
 `--timecontrol`のように指定するとトラックバーの時間制御編集が出来るようになります。
 
-```lua
+```aulua
 index, ratio = math.modf(obj.getpoint("index"))
 st = obj.getpoint(index)
 ed = obj.getpoint(index + 1)
@@ -141,7 +141,7 @@ return st + (ed - st) * ratio
 
 以下のスクリプトでオブジェクトの明るさを調整することが出来ます。
 
-```lua
+```aulua
 --track@bright:明るさ,-100,100,0,0.01
 --[[pixelshader@psmain:
 cbuffer constant0：register(b0) {

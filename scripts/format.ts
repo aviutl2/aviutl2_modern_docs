@@ -213,7 +213,7 @@ async function formatLuaNodes(ast: AstRoot, baseFormatted: string) {
         "lang" in node &&
         typeof node.lang === "string" &&
         node.lang &&
-        node.lang.toLowerCase() === "lua"
+        node.lang.toLowerCase() === "aulua"
       ),
   );
 
@@ -250,7 +250,7 @@ async function formatLuaNodes(ast: AstRoot, baseFormatted: string) {
         const leading = nodeContent.match(/^[^\S\n]*/)?.[0] ?? "";
         let cleanedNodeContent = nodeContent
           .replace(new RegExp(`^${RegExp.escape(indent)}`, "gm"), "")
-          .replace(/^\s*```lua\s*/, "")
+          .replace(/^\s*```aulua\s*/, "")
           .replace(/\s*```\s*$/, "")
           .replace(/^@/gm, "-- AU2DM_AT_SYMBOL ");
 
@@ -288,7 +288,7 @@ async function formatLuaNodes(ast: AstRoot, baseFormatted: string) {
         }
         replaced =
           replaced.slice(0, codeBlock.node.position.start.offset) +
-          "```lua\n" +
+          "```aulua\n" +
           codeBlock.leading +
           formattedNodeOutput.replace(/^/gm, codeBlock.indent) +
           "\n" +
