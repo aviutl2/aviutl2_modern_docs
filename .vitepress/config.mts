@@ -4,6 +4,7 @@ import markdownItBudoux from "markdown-it-budoux";
 import { auluaGrammar } from "./extensions/aulua.ts";
 import { autxtGrammar } from "./extensions/autxt.ts";
 import { customFence } from "./extensions/customFence.ts";
+import { asterisk } from "./extensions/asterisk.ts";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -24,6 +25,7 @@ export default defineConfig({
           },
         }),
       );
+      md.use(asterisk);
     },
     container: {
       noteLabel: "補注",

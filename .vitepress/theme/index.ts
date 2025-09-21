@@ -4,6 +4,7 @@ import { h } from "vue";
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import "./style.css";
+import "./custom.scss";
 
 export default {
   extends: DefaultTheme,

@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Asterisk";
+  src: url("./icomoon.woff2") format("woff2") url("./icomoon.woff")
+    format("woff") url("./icomoon.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+kbd {
+  background-color: var(--vp-c-default-soft);
+  border: 1px solid var(--vp-c-default-2);
+  color: var(--vp-c-text-1);
+  padding: 0.1em 0.3em;
+  box-shadow: 0 2px 0px var(--vp-c-default-2);
+  margin: 0.1em;
+  border-radius: 4px;
+}
+
+.asterisk-text {
+  color: var(--vp-c-text-2);
+
+  .asterisk-mark {
+    font-family: "Asterisk" !important;
+    margin-right: 0.1em;
+  }
+}
