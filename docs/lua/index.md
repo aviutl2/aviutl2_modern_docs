@@ -29,9 +29,6 @@
 ```aulua
 --track@vx:X速度,-10,10,0
 obj.ox = obj.ox + vx * obj.time
-local hoge = {
-a = "b"
-}
 ```
 
 ### チェックボックス項目を定義
