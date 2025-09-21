@@ -1,6 +1,8 @@
 import { defineConfig } from "vitepress";
 import { jaModel, Parser } from "budoux";
 import markdownItBudoux from "markdown-it-budoux";
+import { auluaGrammar } from "./extensions/aulua.ts";
+import { aumesGrammar } from "./extensions/aumes.ts";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -16,6 +18,12 @@ export default defineConfig({
     },
     container: {
       noteLabel: "補注",
+    },
+    codeCopyButtonTitle: "コピー",
+    shikiSetup: async (shiki) => {
+      await shiki.loadLanguage("hlsl");
+      await shiki.loadLanguage(auluaGrammar);
+      await shiki.loadLanguage(aumesGrammar);
     },
   },
   base: "/aviutl2_modern_docs/",

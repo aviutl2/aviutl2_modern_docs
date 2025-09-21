@@ -29,6 +29,9 @@
 ```lua
 --track@vx:X速度,-10,10,0
 obj.ox = obj.ox + vx * obj.time
+local hoge = {
+a = "b"
+}
 ```
 
 ### チェックボックス項目を定義
@@ -143,7 +146,7 @@ obj.setfont(font, obj.track2, deco, col1, col2)
 スクリプトファイルの先頭で`--[[pixelshader@登録名:`のような複数行コメントにピクセルシェーダーをHLSLで記述できます。
 ※登録名がエントリーポイントになります。
 
-```hlsl
+```lua
 --[[pixelshader@psmain:
     float4 psmain(float4 pos: SV_Position): SV_Target {
         ...
@@ -156,7 +159,7 @@ obj.setfont(font, obj.track2, deco, col1, col2)
 スクリプトファイルの先頭で`--[[computeshader@登録名:`のような複数行コメントにコンピュートシェーダーをHLSLで記述できます。
 ※登録名がエントリーポイントになります。
 
-```hlsl
+```lua
 --[[computeshader@csmain:
     [numthreads(1, 1, 1)]
     void csmain(uint2 id: SV_DispatchThreadID) {

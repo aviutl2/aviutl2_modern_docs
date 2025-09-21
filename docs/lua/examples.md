@@ -4,7 +4,7 @@
 
 以下のテキストでオブジェクト時間のタイムカウンタが表示します。
 
-```
+```mes
 現在のオブジェクトの時間=<?mes(string.format("%02d:%02d.%02d",obj.time/60,obj.time%60,（obj.time*100）%100))?>
 ```
 
@@ -50,7 +50,7 @@ end
 
 ### 複数登録する場合のファイル内容 `@複数登録例.anm`
 
-```lua{1,4}
+```lua
 @sample1
 --track0:速度,-10,10,10
 obj.ox = obj.ox + obj.track0 * obj.time
