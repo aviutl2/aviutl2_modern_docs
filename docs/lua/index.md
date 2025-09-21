@@ -106,7 +106,7 @@ obj.setfont(font, obj.track2, deco, col1, col2)
 
 ```aulua
 --text@txt:テキスト,デフォルト文字\n次の行
-obj.load("text",txt)
+obj.load("text", txt)
 ```
 
 ### 変数項目を定義
