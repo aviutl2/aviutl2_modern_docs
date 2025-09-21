@@ -43,8 +43,10 @@ const auluaPatterns: LanguageRegistration["patterns"] = [
         },
       },
       {
-        match: "[^\\{][^,]*",
+        begin: "(?=[^\\{][^,]*)",
         name: "string.unquoted.aulua",
+        patterns: [{ include: "#escaped_char" }],
+        end: "(?=,|$)",
       },
     ],
     end: "$",
