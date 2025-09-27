@@ -12,7 +12,7 @@
 - スクリプトの配置場所はProgramData\aviutl2\Script\フォルダ（及び一つ下のフォルダ）になります。
 - スクリプトからスクリプトを呼び出した場合は上手く動作しない場合があります。
 - 「キャッシュを破棄」の操作でスクリプト（シェーダー含む）が再読み込みされますが、設定項目の変更は反映されません。
-- 旧スクリプトファイル形式のpixel出力系の関数は非対応となります。※代わりにシェーダーが利用できます。
+- 旧スクリプトファイル形式と一部仕様が異なる場合があります。※pixel入出力系の引数等
 - スクリプト制御ではtable,string,mathライブラリのみ利用出来ます。os,debug,ffi.Cは共通で外しています。
 
 ## 設定項目
@@ -833,6 +833,52 @@ obj.pixeloption("get",xxx)を処理することで能動的にキャッシュを
 
 - `value`：引数なし=置き換え / 0=通常 / 1=加算 / 2=減算 / 3=乗算
 
+### obj.getpixeldata(target[,format])
+
+画像バッファからRGBA(32bit)形式でデータを読み出します。
+この関数はDLLを利用して画像処理をする為のものです。
+※VRAMからデータを取得するので処理は速くないです。
+
+- `target`：読み込む画像バッファ
+  - `"object"`：オブジェクト
+  - `"tempbuffer"`：仮想バッファ
+  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
+  - `"framebuffer"`：フレームバッファ
+- `format`：画像データのフォーマット ※デフォルトはRGBA32bit
+  - `"rgba"`：RGBA32bit
+  - `"bgra"`：BGRA32bit
+- 戻り値：画像データのポインタ（ユーザーデータ）、横、縦のピクセル数
+
+例：
+
+```aulua
+data,w,h = obj.getpixeldata("object","rgba")
+```
+
+### obj.putpixeldata(target,data,w,h[,format])
+
+RGBA(32bit)形式のデータを画像バッファへ書き込みます。
+この関数はDLLを利用して画像処理をする為のものです。
+※VRAMへデータを書き込むので処理は速くないです。
+
+- `target`：書き込む画像バッファ
+  - `"object"`：オブジェクト
+  - `"tempbuffer"`：仮想バッファ
+  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の前）
+  - `"framebuffer"`：フレームバッファ（同サイズのみ対応）
+- `data`：画像データのポインタ（ユーザーデータ）
+- `w`：横のピクセル数
+- `h`：縦のピクセル数
+- `format`：画像データのフォーマット ※デフォルトはRGBA32bit
+  - `"rgba"`：RGBA32bit
+  - `"bgra"`：BGRA32bit
+
+例：
+
+```aulua
+obj.putpixeldata("object",data,w,h,"rgba")
+```
+
 ### obj.getaudio(buf,file,type,size)
 
 音声ファイルからオーディオデータを取得します。
@@ -1016,6 +1062,14 @@ msec = obj.getinfo("script_time")
 
 - 戻り値：スクリプト実行開始からの経過時間（ミリ秒）
   ※パフォーマンスカウンターで計測しています
+
+#### バージョン情報を取得
+
+```aulua
+version = obj.getinfo("version")
+```
+
+- 戻り値：バージョン番号
 
 ### obj.interpolation(time,x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3)
 

@@ -1,5 +1,11 @@
 # 更新履歴
 
+## 2.00 beta13 <Badge text='2025/9/27' />
+
+- テキスト設定項目に入力したダブルクォート文字が正しく変数に反映されないのを修正
+- obj.getpixeldata(),obj.putpixeldata()を追加
+- obj.getinfo("version")を追加
+
 ## 2.00 beta12 <Badge text='2025/9/21' />
 
 - obj.getvalue("layer.x")で指定したレイヤーにオブジェクトが無い場合は値を返却しないように修正
