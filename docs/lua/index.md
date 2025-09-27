@@ -852,7 +852,7 @@ obj.pixeloption("get",xxx)を処理することで能動的にキャッシュを
 例：
 
 ```aulua
-data,w,h = obj.getpixeldata("object","rgba")
+data, w, h = obj.getpixeldata("object", "rgba")
 ```
 
 ### obj.putpixeldata(target,data,w,h[,format])
@@ -876,7 +876,7 @@ RGBA(32bit)形式のデータを画像バッファへ書き込みます。
 例：
 
 ```aulua
-obj.putpixeldata("object",data,w,h,"rgba")
+obj.putpixeldata("object", data, w, h, "rgba")
 ```
 
 ### obj.getaudio(buf,file,type,size)
