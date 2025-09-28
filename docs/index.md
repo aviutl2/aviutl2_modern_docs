@@ -48,5 +48,4 @@
 - `ProgramData\aviutl2`フォルダに環境設定等のファイルを保存します。※通常は`C:\ProgramData\aviutl2`
 - プラグインのフォルダは`ProgramData\aviutl2\Plugin`になります。
 - スクリプトのフォルダは`ProgramData\aviutl2\Script`になります。
-- 本体ファイル等を配置したフォルダに`data`フォルダを作成すると
-  `data`フォルダ内に環境設定等のファイルを保存するようになります。
+- 本体ファイル等を配置したフォルダに`data`フォルダを作成すると`data`フォルダ内に環境設定等のファイルを保存するようになります。
