@@ -206,6 +206,7 @@ obj.load("text", txt)
 | `obj.layer`      | オブジェクトが配置されているレイヤー ※描画対象のオブジェクトのレイヤー位置 | ○        |
 | `obj.index`      | 複数オブジェクト時の番号 ※個別オブジェクト用                               | ○        |
 | `obj.num`        | 複数オブジェクト時の数（1=単体オブジェクト/0=不定） ※個別オブジェクト用    | ○        |
+| `obj.id`         | オブジェクトのID ※アプリ起動毎の固有ID                                     | ○        |
 
 > [!NOTE]
 > AviUtl1と違い、`obj.w`と`obj.h`は拡大などの影響を受けません。
@@ -1060,7 +1061,7 @@ msec = obj.getinfo("script_time")
 version = obj.getinfo("version")
 ```
 
-- 戻り値：バージョン番号
+- 戻り値：本体のバージョン番号
 
 ### obj.interpolation(time,x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3)
 
