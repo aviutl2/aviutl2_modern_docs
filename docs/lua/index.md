@@ -1075,9 +1075,8 @@ version = obj.getinfo("version")
 例：
 
 ```aulua
-
 local func = obj.module("ScriptModule")
-    local total = func.sum(1,2,3)
+local total = func.sum(1, 2, 3)
 ```
 
 ### obj.interpolation(time,x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3)
