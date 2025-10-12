@@ -828,7 +828,7 @@ obj.pixeloption("get",xxx)を処理することで能動的にキャッシュを
 ### obj.getpixeldata(target[,format])
 
 画像バッファからRGBA(32bit)形式でデータを読み出します。
-この関数はDLLを利用して画像処理をする為のものです。
+この関数はスクリプトモジュールやDLLを利用して画像処理をする為のものです。
 ※VRAMからデータを取得するので処理は速くないです。
 
 - `target`：読み込む画像バッファ
@@ -850,7 +850,7 @@ data, w, h = obj.getpixeldata("object", "rgba")
 ### obj.putpixeldata(target,data,w,h[,format])
 
 RGBA(32bit)形式のデータを画像バッファへ書き込みます。
-この関数はDLLを利用して画像処理をする為のものです。
+この関数はスクリプトモジュールやDLLを利用して画像処理をする為のものです。
 ※VRAMへデータを書き込むので処理は速くないです。
 
 - `target`：書き込む画像バッファ
@@ -880,19 +880,21 @@ obj.putpixeldata("object", data, w, h, "rgba")
   　※nilを指定すると第3戻り値でテーブルを返します。
 - `file`：音声ファイル名（`"audiobuffer"`を指定すると編集中の音声データが取得出来ます）
 - `type`：取得データの種類
-  - `"pcm"`=PCMサンプリングデータ（16bitモノラルのスケール基準）
-  - `"spectrum"`=周波数毎の音量データ
-  - `"fourier"`=音声を離散フーリエ変換したデータ（sizeの指定は不要）
+  - `"pcm"`：PCMサンプリングデータ（16bitモノラルのスケール基準）
+  - `"spectrum"`：周波数毎の音量データ
+  - `"fourier"`：音声を離散フーリエ変換したデータ（sizeの指定は不要）
     　 ※元周波数の1/2048～1/2まで1/2048刻みの1024個のデータになります
+  - `"xxxx.l"`：左チャンネルの音声で取得（xxxxは取得データ種別）
+  - `"xxxx.r"`：右チャンネルの音声で取得（xxxxは取得データ種別）
 - `size`：取得するデータ数（指定した値より少ない場合があります）
-- 戻り値：取得したデータ数,サンプリングレート
+- 戻り値：取得したデータ数、サンプリングレート
 
 例：
 
 ```aulua
 n = obj.getaudio(buf, "audiobuffer", "spectrum", 32)
 n, rate = obj.getaudio(buf, "c:\\test.wav", "pcm", 1000)
-n, rate, buf = obj.getaudio(nil, "c:\\test.wav", "pcm", 1000)
+n, rate, buf = obj.getaudio(nil, "c:\\test.wav", "pcm.r", 1000)
 ```
 
 ### obj.copybuffer(dst,src)
@@ -1062,6 +1064,21 @@ version = obj.getinfo("version")
 ```
 
 - 戻り値：本体のバージョン番号
+
+### obj.module(name)
+
+スクリプトモジュール（.mod2）の関数を取得します。
+
+- `name`：モジュール名（スクリプトモジュールのファイル名本体）
+- 戻り値：スクリプトモジュールの関数テーブル
+
+例：
+
+```aulua
+
+local func = obj.module("ScriptModule")
+    local total = func.sum(1,2,3)
+```
 
 ### obj.interpolation(time,x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3)
 
