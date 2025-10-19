@@ -1,4 +1,4 @@
-# AviUtl ExEdit2 version 2.00 beta15 by ＫＥＮくん
+# AviUtl ExEdit2 version 2.00 beta16 by ＫＥＮくん
 
 ## はじめに
 
