@@ -1,9 +1,14 @@
+---
+title: このサイトについて
+description: aviutl2_modern_docsについて説明しています。
+---
+
 # このサイトについて
 
 このサイトは<span style="color: #48b0d5">[名無し。](https://sevenc7c.com)</span>が作成した、[AviUtl2](https://spring-fragrance.mints.ne.jp/aviutl/)の非公式ドキュメントです。
 AviUtl2の`aviutl2.txt`と`lua.txt`の内容を変換・加工して配信しています。
 
-[GitHub](https://github.com/sevenc-nanashi/aviutl2_docs_mirror)にてソースコードを公開しています。
+[GitHub](https://github.com/sevenc-nanashi/aviutl2_modern_docs)にてソースコードを公開しています。
 
 また、AviUtl2 SDKのミラーは[こちら](https://github.com/sevenc-nanashi/aviutl2_sdk_mirror)です。
 
@@ -17,6 +22,7 @@ AviUtl2の`aviutl2.txt`と`lua.txt`の内容を変換・加工して配信して
 - 変更履歴：新しいバージョンほど上に来るようにしました。
 - 変更履歴：箇条書きにしました。
 - 変更履歴（Lua）：対応するAviUtl2のバージョンを追記しました。
+- llms.txtを追加しました。
 - いくつかの部分に補注を追加しました。
 
 > [!NOTE]

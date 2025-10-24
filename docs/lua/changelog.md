@@ -1,3 +1,8 @@
+---
+title: Luaスクリプト：更新履歴
+description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説明しています。
+---
+
 # 更新履歴
 
 ## 2.00 beta16 <Badge text='2025/10/19' />

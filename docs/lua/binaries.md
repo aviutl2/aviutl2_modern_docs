@@ -1,3 +1,8 @@
+---
+title: Luaスクリプト：バイナリについて
+description: AviUtl ExEdit2のLuaスクリプトのバイナリについて説明しています。
+---
+
 # バイナリについて
 
 ## Lua/LuaJITのバイナリについて

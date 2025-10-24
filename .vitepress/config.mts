@@ -5,6 +5,7 @@ import { auluaGrammar } from "./extensions/aulua.ts";
 import { autxtGrammar } from "./extensions/autxt.ts";
 import { customFence } from "./extensions/customFence.ts";
 import { asterisk } from "./extensions/asterisk.ts";
+import llmstxt from "vitepress-plugin-llms";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -13,6 +14,13 @@ export default defineConfig({
   title: "AviUtl2 Modern Docs",
   description: "AviUtl2のドキュメントを見やすくした非公式サイト",
   cleanUrls: true,
+  vite: {
+    plugins: [
+      llmstxt({
+        excludeIndexPage: false,
+      }),
+    ],
+  },
   transformHead(ctx) {
     ctx.head.push([
       "meta",
@@ -117,7 +125,7 @@ export default defineConfig({
       },
       {
         text: "lua.txt",
-        base: "/lua/",
+        base: "/lua",
         items: [
           { text: "Luaスクリプト", link: "/" },
           { text: "使用例", link: "/examples" },

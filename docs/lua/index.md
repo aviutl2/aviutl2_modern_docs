@@ -1,3 +1,8 @@
+---
+title: Luaスクリプト
+description: AviUtl ExEdit2のLuaスクリプトについて説明しています。
+---
+
 # Luaスクリプト
 
 ## Luaスクリプトについて
