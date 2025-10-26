@@ -18,6 +18,9 @@ export default defineConfig({
     plugins: [
       llmstxt({
         excludeIndexPage: false,
+        customTemplateVariables: {
+          title: "AviUtl2 Modern Docs",
+        },
       }),
     ],
   },
