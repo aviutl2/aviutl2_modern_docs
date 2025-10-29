@@ -64,7 +64,6 @@ export default defineConfig({
       await shiki.loadLanguage(autxtGrammar);
     },
   },
-  base: "/aviutl2_modern_docs/",
   themeConfig: {
     nav: [{ text: "ホーム", link: "/" }],
     search: {
