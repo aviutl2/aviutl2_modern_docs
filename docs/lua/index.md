@@ -1019,14 +1019,14 @@ n, rate, buf = obj.getaudio(nil, "c:\\test.wav", "pcm.r", 1000)
     戻り値：`true`=有効 / `false`=無効
   - `"param"`=トラックバーの設定値を取得します。
   - `"link"`=関連トラックでのインデックスと総数を取得します。
-    `index,num = obj.getpoint("link")`
+    `index, num = obj.getpoint("link")`
     関連トラックは座標等で他のトラックの値を取得する為に使用します。
     X座標での戻り値：0,3 / Y座標での戻り値：1,3 / Z座標での戻り値：2,3
-  - `"timecontrol"`：時間制御を反映した現在の値を取得します。
-- `option`：取得する値の種別
-  - `"index"` = 時間制御を反映した区間での位置を取得
-  - `"time"` = 時間制御を反映した時間を取得
   - `"framerate"`：フレームレートを取得します。
+  - `"timecontrol"`：時間制御を反映した現在の値を取得します。
+    - `option`：取得する値の種別
+      - `"index"` = 時間制御を反映した区間での位置を取得
+      - `"time"` = 時間制御を反映した時間を取得
 
 ### obj.getinfo(name,...)
 
