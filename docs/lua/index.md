@@ -36,22 +36,17 @@ obj.ox = obj.ox + vx * obj.time
 
 ### チェックボックス項目を定義
 
-スクリプトファイルの先頭で`--check@変数名:項目名,デフォルト値（0か1）`のように指定するとチェックボックスが有効になります。
-※旧スクリプトファイル形式の`--check0:項目名,デフォルト値（0か1）`も利用できます。
+スクリプトファイルの先頭で`--check@変数名:項目名,デフォルト値（0か1またはtrueかfalse）`のように指定するとチェックボックスが有効になります。
+デフォルト値が`0`か`1`の場合は変数がnumber型（`0`/`1`）になります。
+デフォルト値が`true`か`false`の場合は変数がboolean型（`true`/`false`）になります。
+※旧スクリプトファイル形式の`--check0:項目名,デフォルト値（0か1）`も利用できます。(変数はboolean型)
 
 ```aulua
 --check@grav:重力,0
-if grav then
+--check@speed:速度,false
+if grav == 1 then ...
+if speed then ...
 ```
-
-> [!NOTE]
-> `grav`に数値が入るため、上の例は実際には動きません。
-> 正しくは、`if grav ~= 0 then`のように数値と比較する必要があります：
->
-> ```aulua
-> --check@grav:重力,0
-> if grav ~= 0 then
-> ```
 
 ### 色設定項目を定義
 
@@ -151,6 +146,18 @@ obj.load("text", txt)
 
 スクリプトファイルの先頭で`--[[pixelshader@登録名:`のような複数行コメントにピクセルシェーダーをHLSLで記述できます。
 ※登録名がエントリーポイントになります。
+ピクセルシェーダーの入力は下記が利用できます。
+
+```hlsl
+float4 psmain(float4 pos : SV_Position) : SV_Target
+```
+
+```hlsl
+float4 psmain(float4 pos : SV_Position, float2 uv : TEXCOORD) : SV_Target
+```
+
+※シェーダーリフレクションを利用してシグネチャから判別しています。
+※uvは描画範囲が0.0～1.0になるように設定されます。
 
 ```aulua
 --[[pixelshader@psmain:
@@ -491,8 +498,7 @@ obj.rand(10, 20)
 
 ### obj.rand1([seed,frame])
 
-0.0～1.0の乱数を発生させます。通常の乱数と異なり同一時間のフレームで
-常に同じ値が出るように乱数を発生させます。
+0.0以上1.0未満の乱数を発生させます。通常の乱数と異なり同一時間のフレームで常に同じ値が出るように乱数を発生させます。
 ※obj.を省略してrand1()のみでも使用出来ます。
 
 - `seed`：乱数の種（省略時はオブジェクト毎に異なる乱数になります。プラスの値を指定すると種が同じでもオブジェクト毎に異なる乱数になり、マイナスの値では種が同じならば全てのオブジェクトで同じ乱数になります）
@@ -626,9 +632,18 @@ obj.draw(),obj.drawpoly()描画時のサンプラーを変更します
 
 `obj.getoption("track_mode",value)`
 
-- `value`：トラックバーの番号または変数名
+- `value`：トラックバーの変数名または番号
+  `--track@変数名:`で定義した場合は変数名を指定します
+  `--track0:`で定義した場合は番号を指定します
 - 戻り値：移動無し=0
   移動無し以外の場合は移動モードの名称を返却
+
+例：
+
+```aulua
+--track@vx:X速度,-10,10,0
+obj.getoption("track_mode","vx")
+```
 
 #### オブジェクトの区間の数
 
@@ -948,32 +963,39 @@ n, rate, buf = obj.getaudio(nil, "c:\\test.wav", "pcm.r", 1000)
   - `"cache:xxxx"`=キャッシュバッファ（xxxxは任意の名前）
 - `color`：色（0x000000～0xffffff） ※未指定の場合は透明色
 
-### obj.pixelshader(name,target,{resource,...}[,{constant,...},blend])
+### obj.pixelshader(name,target,{resource,...}[,{constant,...},blend,sampler])
 
 ピクセルシェーダーを実行します。
 
 - `name`：シェーダーの登録名 ※登録したシェーダー名を文字列で指定します。
 - `target`：出力先のバッファ名
   Direct3Dのレンダーターゲットに設定されます。
-  - `"object"`=オブジェクト
-  - `"tempbuffer"`=仮想バッファ
-  - `"framebuffer"`=フレームバッファ
-  - `"cache:xxxx"`=キャッシュバッファ（xxxxは任意の名前）
+  - `"object"`：オブジェクト
+  - `"tempbuffer"`：仮想バッファ
+  - `"framebuffer"`：フレームバッファ
+  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
 - `resource`：参照するバッファ名の配列（1つの場合は直接バッファ名で指定出来ます）
   Direct3Dのシェーダーリソース（t0～）に設定されます。
   ※レンダーターゲットと同一の場合は複製して設定されます
-  - `"object"`=オブジェクト
-  - `"tempbuffer"`=仮想バッファ
-  - `"framebuffer"`=フレームバッファ
-  - `"cache:xxxx"`=キャッシュバッファ（xxxxは任意の名前）
+  - `"object"`：オブジェクト
+  - `"tempbuffer"`：仮想バッファ
+  - `"framebuffer"`：フレームバッファ
+  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
 - `constant`：参照する定数の配列
   Direct3Dの定数バッファ（b0）にfloatの配列として設定されます。
 - `blend`：出力先へのブレンド方法
   Direct3DのBlendStateを変更します。※デフォルトは`"copy"`
-  - `"copy"`=出力をそのままコピーします
-  - `"mask"`=α値のみを乗算します ※RGB値は利用されません
-  - `"draw"`=出力をアルファブレンドします
-  - `"add"`=出力を加算合成します
+  - `"copy"`：出力をそのままコピーします
+  - `"mask"`：α値のみを乗算します ※RGB値は利用されません
+  - `"draw"`：出力をアルファブレンドします
+  - `"add"`：出力を加算合成します
+- `sampler`：サンプラーの種別
+  Direct3DのSamplerState（s0）を設定します。※デフォルトは未設定
+  - `"clip"`：領域外（0.0～1.0の範囲外）は透明色
+  - `"clamp"`：領域外は境界の色
+  - `"loop"`：領域外は領域をループ
+  - `"mirror"`：領域外は領域を反転しながらループ
+  - `"dot"`：拡大縮小補間をしない（領域外は透明色）
 
 ### obj.computeshader(name,{target},{resource,...}[,{constant,...},countX,countY,countZ])
 
