@@ -1017,7 +1017,16 @@ n, rate, buf = obj.getaudio(nil, "c:\\test.wav", "pcm.r", 1000)
   - `"tempbuffer"`：仮想バッファ
   - `"framebuffer"`：フレームバッファ
   - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-- `color`：色（0x000000～0xffffff） ※未指定の場合は透明色
+- `color`：色（0x000000～0xffffff）※未指定の場合は透明色
+
+### obj.clearbuffer(target,w,h[,color])
+
+画像バッファのサイズを変更してクリアします。
+
+- `target`：クリアするバッファ名(フレームバッファはサイズを変更出来ません)
+- `w`：横のピクセル数
+- `h`：縦のピクセル数
+- `color`：色（0x000000～0xffffff）※未指定の場合は透明色
 
 ### obj.pixelshader(name,target,{resource,...}[,{constant,...},blend,sampler])
 

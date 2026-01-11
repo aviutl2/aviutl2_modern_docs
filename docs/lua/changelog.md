@@ -5,6 +5,11 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta28 <Badge text='2026/1/11' />
+
+- obj.getoption("gui")の返却が正しくないのを修正
+- obj.clearbuffer()にサイズ変更の引数を追加
+
 ## 2.00 beta26 <Badge text='2025/12/27' />
 
 - フィルタオブジェクトからobj.effect()を利用した時にフィルタ効果として処理されないのを修正
