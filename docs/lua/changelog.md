@@ -5,6 +5,10 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta28a <Badge text='2026/1/12' />
+
+- '--folder'の定義を追加
+
 ## 2.00 beta28 <Badge text='2026/1/11' />
 
 - obj.getoption("gui")の返却が正しくないのを修正
