@@ -262,8 +262,8 @@ float4 psmain(float4 pos : SV_Position, float2 uv : TEXCOORD) : SV_Target
 | `obj.screen_w`              | スクリーンサイズW                                                                                              | ○        |
 | `obj.screen_h`              | スクリーンサイズH                                                                                              | ○        |
 | `obj.framerate`             | フレームレート                                                                                                 | ○        |
-| `obj.frame`                 | オブジェクト基準での現在のフレーム番号                                                                         | ○        |
-| `obj.time`                  | オブジェクト基準での現在の時間（秒）                                                                           | ○        |
+| `obj.frame`<sup>4</sup>     | オブジェクト基準での現在のフレーム番号                                                                         | ○        |
+| `obj.time`<sup>4</sup>      | オブジェクト基準での現在の時間（秒）                                                                           | ○        |
 | `obj.totalframe`            | オブジェクトの総フレーム数                                                                                     | ○        |
 | `obj.totaltime`             | オブジェクトの総時間（秒）                                                                                     | ○        |
 | `obj.layer`                 | オブジェクトが配置されているレイヤー ※描画対象のオブジェクトのレイヤー位置                                     | ○        |
@@ -275,6 +275,7 @@ float4 psmain(float4 pos : SV_Position, float2 uv : TEXCOORD) : SV_Target
 1. 現時点のオブジェクトの設定値になります。出力項目(標準描画等)の設定値とは別のものになります。
 2. zoom、aspectは旧スクリプトファイルの利用かで算出反映処理が異なります
 3. w、hは常にオブジェクトのピクセル数になります
+4. オブジェクトがシーンチェンジ対象の場合は`frame`、`time`が`totalframe`、`totaltime`を超える場合があります
 
 ## 関数
 
