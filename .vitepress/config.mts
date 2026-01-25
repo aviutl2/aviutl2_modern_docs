@@ -9,7 +9,6 @@ import { autxtGrammar } from "./extensions/autxt.ts";
 import { customFence } from "./extensions/customFence.ts";
 import { asterisk } from "./extensions/asterisk.ts";
 
-const logoSvgUrl = "/aviutl2.svg";
 const logoPngUrl = "/aviutl2.png";
 const description = "AviUtl2のドキュメントを見やすくした非公式サイト";
 
@@ -47,7 +46,6 @@ export default defineConfig({
           },
         },
       }),
-      // @ts-expect-error 動いてるのでヨシ！
       llmstxt({
         excludeIndexPage: false,
         customTemplateVariables: {
@@ -128,7 +126,7 @@ export default defineConfig({
         "link",
         {
           rel: "icon",
-          href: logoSvgUrl,
+          href: logoPngUrl,
         },
       ],
       [
@@ -270,7 +268,7 @@ export default defineConfig({
       next: "次へ",
     },
 
-    logo: logoSvgUrl,
+    logo: logoPngUrl,
 
     footer: {
       message: "AviUtl2 Modern Docsは有志が作成した非公式ミラーサイトです。",
