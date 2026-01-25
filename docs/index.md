@@ -3,7 +3,7 @@ title: ホーム
 description: AviUtl ExEdit2の動作環境や使用上の注意、互換性などについて説明しています。
 ---
 
-# AviUtl ExEdit2 version 2.00 beta29 by ＫＥＮくん
+# AviUtl ExEdit2 version 2.00 beta30 by ＫＥＮくん
 
 ## はじめに
 
@@ -50,6 +50,6 @@ description: AviUtl ExEdit2の動作環境や使用上の注意、互換性な�
 
 - インストーラを利用しない場合の本体及び付属のファイルは任意のフォルダに配置してください。
 - `ProgramData\aviutl2`フォルダに環境設定等のファイルを保存します。※通常は`C:\ProgramData\aviutl2`
-- プラグインのフォルダは`ProgramData\aviutl2\Plugin`になります。
-- スクリプトのフォルダは`ProgramData\aviutl2\Script`になります。
+- プラグインのフォルダは`ProgramData\aviutl2\Plugin`になります。※一つ下のフォルダも対象になります
+- スクリプトのフォルダは`ProgramData\aviutl2\Script`になります。※一つ下のフォルダも対象になります
 - 本体ファイル等を配置したフォルダに`data`フォルダを作成すると`data`フォルダ内に環境設定等のファイルを保存するようになります。

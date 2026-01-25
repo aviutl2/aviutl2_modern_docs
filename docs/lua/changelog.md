@@ -5,6 +5,11 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta30 <Badge text='2026/1/25' />
+
+- `obj.getvalue()`に`"track.xxx"`の指定方法を追加
+- `--string`の定義を追加
+
 ## 2.00 beta29 <Badge text='2026/1/17' />
 
 - オブジェクトがシーンチェンジ対象の時の`obj.frame`、`obj.time`の値を修正
