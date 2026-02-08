@@ -270,7 +270,7 @@ float4 psmain(float4 pos : SV_Position, float2 uv : TEXCOORD) : SV_Target
 | `obj.layer`                 | オブジェクトが配置されているレイヤー ※描画対象のオブジェクトのレイヤー位置                                     | ○        |
 | `obj.index`                 | 複数オブジェクト時の番号 ※個別オブジェクト用                                                                   | ○        |
 | `obj.num`                   | 複数オブジェクト時の数（1=単体オブジェクト/0=不定） ※個別オブジェクト用                                        | ○        |
-| `obj.id`                    | オブジェクトのID ※アプリ起動毎の固有ID                                                                         | ○        |
+| `obj.id`                    | オブジェクトのID ※アプリ起動毎の固有ID ※描画対象のオブジェクトの固有ID                                         | ○        |
 | `obj.effect_id`             | オブジェクトの内の対象エフェクトのID ※アプリ起動毎の固有ID ※処理対象のフィルタ効果、オブジェクト入出力の固有ID | ○        |
 
 1. 現時点のオブジェクトの設定値になります。出力項目(標準描画等)の設定値とは別のものになります。
@@ -473,6 +473,21 @@ speed,timeを設定すると表示する文字数を変更出来ます。
 obj.load("text", "この文字が画像として読み込まれます")
 ```
 
+#### テキストレイアウト
+
+`obj.load("textlayout",text[,speed,time])`
+
+`obj.load("text")`で読み込むテキストの画像サイズを取得します。※引数は同じです
+現在のオブジェクトを更新しないでサイズを返却します。
+
+- 戻り値：横、縦のピクセル数
+
+例：
+
+```aulua
+w, h = obj.load("textlayout", "この文字を画像として読み込んだ時のサイズ")
+```
+
 #### 図形
 
 図形を読み込みます。
@@ -520,7 +535,7 @@ obj.load("figure", "円", 0xffffff, 100, true)
 `obj.load("before");`
 カスタムオブジェクトで他のオブジェクトを読み込む前の時のみ使えます。
 
-### obj.setfont(name,size[,type,col1,col2])
+### obj.setfont(name,size[,type,col1,col2,bold,italic,charspacing,linespacing])
 
 obj.load()のテキストで使うフォントを指定します。
 ※スクリプトの呼び出し毎に指定する必要があります。
@@ -532,6 +547,10 @@ obj.load()のテキストで使うフォントを指定します。
   - 3=縁取り文字 / 4=縁取り文字（細） / 5=縁取り文字（太） / 6=縁取り文字（角）
 - `col1`：文字の色（0x000000～0xffffff）
 - `col2`：影・縁の色（0x000000～0xffffff）
+- `bold`：太文字か？（`true` / `false`\<デフォルト\>）
+- `italic`：斜体か？（`true` / `false`\<デフォルト\>）
+- `charspacing`：文字間隔
+- `linespacing`：行間隔
 
 ### obj.rand(st_num,ed_num[,seed,frame])
 
@@ -803,6 +822,30 @@ cam = obj.getoption("camera_param")
 
 1. 上記の基準xxxxはオブジェクトの出力項目(標準描画等)の設定値になります
 2. zoom、aspectは基準拡大率XYZから算出した値になります
+
+### obj.getvalue(effect,item[,time,section])
+
+現在のオブジェクトの設定値を取得します。
+
+- `effect`：対象のエフェクト名（エイリアスファイルの`effect.name`の値）
+  同じエフェクトが複数ある場合は`":n"`のサフィックスでインデックス指定出来ます（nは0からの番号）
+
+- `item`：対象の設定項目の名称（エイリアスファイルのキーの名称） ※名称が数値の場合は利用出来ません
+- `time`：どの時点の値を取得するかの時間（秒）（省略時は現時間）
+- `section`：時間の基準となる区間の番号（省略時は開始点）
+  - `0`：開始点
+  - `1`：最初の中間点
+  - `2`：2個目の中間点
+  - `-1`：終了点
+- 戻り値：トラックバーの場合は指定時間の設定値
+  トラックバー以外の場合はエイリアスファイルの設定値と同じフォーマットの値
+
+例：
+
+```aulua
+font = obj.getvalue("テキスト", "フォント")
+range = obj.getvalue("ぼかし:1", "範囲")
+```
 
 ### obj.setanchor(name,num[,option,..])
 
