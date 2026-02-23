@@ -5,6 +5,10 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta33 <Badge text='2026/2/23' />
+
+- `obj.load("textlayout")`でオブジェクトのパラメータがクリアされていたのを修正
+
 ## 2.00 beta32 <Badge text='2026/2/8' />
 
 - `obj.id`の値を描画対象のオブジェクトIDとなるように修正
