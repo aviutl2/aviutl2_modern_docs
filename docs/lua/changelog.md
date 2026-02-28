@@ -5,6 +5,11 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta35 <Badge text='2026/2/28' />
+
+- `obj.index`、`obj.num`を変更出来るようにした
+- `--require`の定義を追加
+
 ## 2.00 beta33 <Badge text='2026/2/23' />
 
 - `obj.load("textlayout")`でオブジェクトのパラメータがクリアされていたのを修正
