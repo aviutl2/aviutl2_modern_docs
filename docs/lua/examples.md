@@ -51,12 +51,12 @@ end
 以下のスクリプトで文字列を個別オブジェクトとして描画します。
 
 ```aulua
-local text = {"あ","い","う","え","お"}
+local text = { "あ", "い", "う", "え", "お" }
 local ox = 0
-obj.multiobject(#text,function()
-   obj.load("text",text[obj.index + 1])
-   obj.ox = ox
-   ox = ox+obj.w
+obj.multiobject(#text, function()
+	obj.load("text", text[obj.index + 1])
+	obj.ox = ox
+	ox = ox + obj.w
 end)
 obj.ox = 0
 ```
