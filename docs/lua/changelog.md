@@ -5,6 +5,15 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta36 <Badge text='2026/3/8' />
+
+- オブジェクトが空の状態の時に`obj.load("tempbuffer",x,y,w,h)`で仮想バッファの領域指定が反映されないのを修正
+- `obj.multiobject()`を追加 ※`obj.index`、`obj.num`は`obj.multiobject()`の処理内で変更する形に修正します
+- `obj.setanchor()`のオプションに`"small"`、`"mesh"`、`"rgba"`、デフォルト座標の指定を追加
+- `obj.setoption("blend")`に`"rgba_add"`の指定を追加
+- `obj.setoption("focus_mode")`に`"no_resize"`の指定を追加
+- `--checksection`の定義を追加
+
 ## 2.00 beta35 <Badge text='2026/2/28' />
 
 - `obj.index`、`obj.num`を変更出来るようにした
