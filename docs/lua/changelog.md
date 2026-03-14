@@ -5,6 +5,15 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta37 <Badge text='2026/3/14' />
+
+- `print()`関数でログを出力するように修正 ※`debug_print()`も同様の機能に修正します
+- `obj.setoption("blend","alpha_sub")`の計算を修正
+- `--trackgroup`の定義を追加
+- `obj.setanchor()`に複数のトラックバー項目から値を参照する指定を追加
+- `obj.pixelshader()`、`obj.computeshader()`に他のスクリプトのシェーダー定義を利用する指定を追加
+- `obj.getpoint("default")`を追加
+
 ## 2.00 beta36 <Badge text='2026/3/8' />
 
 - オブジェクトが空の状態の時に`obj.load("tempbuffer",x,y,w,h)`で仮想バッファの領域指定が反映されないのを修正

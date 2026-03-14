@@ -117,14 +117,15 @@ end
 ### トラックバーを使う場合
 
 ```aulua
---track0:X,-1000,1000,0
---track1:Y,-1000,1000,0
---track2:Z,-1000,1000,0
-num = obj.setanchor("track", 0, "xyz", "line")
+--track@x:X,-100000,100000,0
+--track@y:Y,-100000,100000,0
+--track@z:Z,-100000,100000,0
+--trackgroup@x,y,z:Group
+num = obj.setanchor("x,y,z",0,"xyz","line");
 for i = 0, num - 1 do
-	x = obj.getvalue(0, 0, i)
-	y = obj.getvalue(1, 0, i)
-	z = obj.getvalue(2, 0, i)
+x = obj.getvalue("track.x",0,i)
+y = obj.getvalue("track.y",0,i)
+z = obj.getvalue("track.z",0,i)
 end
 ```
 
