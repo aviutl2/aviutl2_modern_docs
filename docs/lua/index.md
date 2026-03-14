@@ -438,9 +438,9 @@ obj.drawpoly(vertex)
 ```aulua
 vertex = {}
 for z = 100, 1000, 100 do
-	table.insert(vertex, { 0, 0, z, 1, 1, 1, 1 })
-	table.insert(vertex, { 100, 0, z, 1, 1, 1, 1 })
-	table.insert(vertex, { 100, 100, z, 1, 1, 1, 1 })
+    table.insert(vertex, { 0, 0, z, 1, 1, 1, 1 })
+    table.insert(vertex, { 100, 0, z, 1, 1, 1, 1 })
+    table.insert(vertex, { 100, 100, z, 1, 1, 1, 1 })
 end
 obj.drawpoly(vertex, 3)
 ```
@@ -1409,5 +1409,5 @@ x0, y0, x1, y1, x2, y2, x3, y3 = rotation(x0, y0, x1, y1, x2, y2, x3, y3, zoom, 
 
 ```aulua
 print("ログ表示")
-print("@error","エラー表示")
+print("@error", "エラー表示")
 ```

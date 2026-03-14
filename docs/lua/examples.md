@@ -39,10 +39,10 @@ obj.effect("色調補正", "明るさ", 100 + i)
 n = 10
 l = obj.w * 2
 for i = 0, n do
-	r = 360 * i / n
-	x = math.sin(r * math.pi / 180) * l
-	y = -math.cos(r * math.pi / 180) * l
-	obj.draw(x, y, 0, 1, 1, 0, 0, r)
+    r = 360 * i / n
+    x = math.sin(r * math.pi / 180) * l
+    y = -math.cos(r * math.pi / 180) * l
+    obj.draw(x, y, 0, 1, 1, 0, 0, r)
 end
 ```
 
@@ -54,9 +54,9 @@ end
 local text = { "あ", "い", "う", "え", "お" }
 local ox = 0
 obj.multiobject(#text, function()
-	obj.load("text", text[obj.index + 1])
-	obj.ox = ox
-	ox = ox + obj.w
+    obj.load("text", text[obj.index + 1])
+    obj.ox = ox
+    ox = ox + obj.w
 end)
 obj.ox = 0
 ```
@@ -106,8 +106,8 @@ obj.draw(0, 0, 0, 1, a)
 num = 3
 obj.setanchor("pos", num, "loop")
 for i = 0, num - 1 do
-	x = pos[i * 2 + 1]
-	y = pos[i * 2 + 2]
+    x = pos[i * 2 + 1]
+    y = pos[i * 2 + 2]
 end
 ```
 
@@ -121,11 +121,11 @@ end
 --track@y:Y,-100000,100000,0
 --track@z:Z,-100000,100000,0
 --trackgroup@x,y,z:Group
-num = obj.setanchor("x,y,z",0,"xyz","line");
+num = obj.setanchor("x,y,z", 0, "xyz", "line")
 for i = 0, num - 1 do
-x = obj.getvalue("track.x",0,i)
-y = obj.getvalue("track.y",0,i)
-z = obj.getvalue("track.z",0,i)
+    x = obj.getvalue("track.x", 0, i)
+    y = obj.getvalue("track.y", 0, i)
+    z = obj.getvalue("track.z", 0, i)
 end
 ```
 

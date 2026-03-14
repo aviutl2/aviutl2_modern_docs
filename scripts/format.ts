@@ -278,7 +278,14 @@ async function formatLuaNodes(ast: AstRoot, baseFormatted: string) {
         });
       }
 
-      const stylua = Bun.spawn(["stylua", ...codeBlocks.map((b) => b.path)]);
+      const stylua = Bun.spawn([
+        "stylua",
+        ...codeBlocks.map((b) => b.path),
+        "--indent-type",
+        "Spaces",
+        "--indent-width",
+        "4",
+      ]);
       if ((await stylua.exited) !== 0) {
         const stderr = await new Response(stylua.stderr).text();
         throw new Error(`stylua failed: ${stderr}`);
