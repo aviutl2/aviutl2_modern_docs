@@ -12,41 +12,64 @@ const auluaPatterns: LanguageRegistration["patterns"] = [
     },
   },
   {
-    begin: "^(--([a-z0-9]+)(?:@([A-Z_a-z][0-9A-Z_a-z]*))?:)",
+    begin: "^(--([a-z0-9]+))",
     beginCaptures: {
       "1": { name: "punctuation.definition.comment.aulua" },
       "2": { name: "keyword.control.aulua" },
-      "3": { name: "entity.name.variable.aulua" },
     },
     name: "meta.directive.aulua",
     patterns: [
-      { include: "#string" },
       {
-        include: "#numeric",
-      },
-      {
-        match: ",",
-        name: "punctuation.separator.arguments.aulua",
-      },
-      {
-        match: "-",
-        name: "keyword.operator.arithmetic.aulua",
-      },
-      {
-        match: "([^,=]+)(=)([^,]+)",
-        captures: {
-          "1": { name: "string.unquoted.aulua" },
-          "2": { name: "keyword.operator.assignment.aulua" },
-          "3": {
-            patterns: [{ include: "#numeric" }, { include: "#string" }],
-          },
+        begin: "(@)",
+        name: "meta.directive.variables.aulua",
+        beginCaptures: {
+          "1": { name: "punctuation.definition.directive.aulua" },
         },
+        patterns: [
+          {
+            match: "([A-Z_a-z][0-9A-Z_a-z]*)",
+            name: "entity.name.variable.aulua",
+          },
+        ],
+        end: "(?=:)",
       },
       {
-        begin: "(?=[^\\{][^,]*)",
-        name: "string.unquoted.aulua",
-        patterns: [{ include: "#escaped_char" }],
-        end: "(?=,|$)",
+        begin: ":",
+        beginCaptures: {
+          "0": { name: "punctuation.separator.directive.aulua" },
+        },
+        name: "meta.directive.arguments.aulua",
+        end: "$",
+        patterns: [
+          { include: "#string" },
+          {
+            include: "#numeric",
+          },
+          {
+            match: ",",
+            name: "punctuation.separator.arguments.aulua",
+          },
+          {
+            match: "-",
+            name: "keyword.operator.arithmetic.aulua",
+          },
+          {
+            match: "([^,=]+)(=)([^,]+)",
+            captures: {
+              "1": { name: "string.unquoted.aulua" },
+              "2": { name: "keyword.operator.assignment.aulua" },
+              "3": {
+                patterns: [{ include: "#numeric" }, { include: "#string" }],
+              },
+            },
+          },
+          {
+            begin: "(?=[^\\{][^,]*)",
+            name: "string.unquoted.aulua",
+            patterns: [{ include: "#escaped_char" }],
+            end: "(?=,|$)",
+          },
+        ],
       },
     ],
     end: "$",
