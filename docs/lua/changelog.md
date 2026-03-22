@@ -5,6 +5,12 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta38 <Badge text='2026/3/22' />
+- `obj.multiobject()`の終了時に元の`obj.index`、`obj.num`値に戻すように修正
+- `obj.getpoint("default")`に移動モードの指定を追加
+- `--track`の定義にゼロ値名称,操作倍率の引数を追加
+- 設定項目の項目名の一部のみを表示させる指定を追加
+
 ## 2.00 beta37 <Badge text='2026/3/14' />
 
 - `print()`関数でログを出力するように修正 ※`debug_print()`も同様の機能に修正します
