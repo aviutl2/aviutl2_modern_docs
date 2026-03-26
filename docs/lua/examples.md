@@ -10,7 +10,7 @@ description: AviUtl ExEdit2のLuaスクリプトの使用例について説明�
 以下のテキストでオブジェクト時間のタイムカウンタが表示します。
 
 ```autxt
-現在のオブジェクトの時間=<?mes(string.format("%02d:%02d.%02d",obj.time/60,obj.time%60,（obj.time*100）%100))?>
+現在のオブジェクトの時間=<?mes(string.format("%02d:%02d.%02d", obj.time / 60, obj.time % 60, (obj.time * 100) % 100))?>
 ```
 
 ## オブジェクトの座標や角度を時間経過で変化させる例
