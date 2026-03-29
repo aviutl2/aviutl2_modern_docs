@@ -5,6 +5,10 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta39 <Badge text='2026/3/29' />
+- `error()`で引数messageが無い場合に落ちるのを修正
+- `obj.setoption("blend")`で合成モードの指定が無い時は通常を設定するように修正
+
 ## 2.00 beta38 <Badge text='2026/3/22' />
 - `obj.multiobject()`の終了時に元の`obj.index`、`obj.num`値に戻すように修正
 - `obj.getpoint("default")`に移動モードの指定を追加
