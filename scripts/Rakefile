@@ -17,44 +17,68 @@ expected_files = %w[aviutl2.txt lua.txt].to_set
 
 USER_AGENT =
   "Ruby/#{RUBY_VERSION} (#{RUBY_PLATFORM}) aviutl2_docs_mirror, https://github.com/sevenc-nanashi/aviutl2_docs_mirror"
+API_BASE_URL = "https://api.aviutl2.jp"
+
+def fetch_versions
+  require "json"
+  require "open-uri"
+
+  versions_url = "#{API_BASE_URL}/versions"
+  puts "Fetching versions from #{versions_url}"
+  response = URI.open(versions_url, "User-Agent" => USER_AGENT).read
+  payload = JSON.parse(response)
+  versions = payload["versions"]
+
+  if !versions.is_a?(Array)
+    raise "Invalid API response: versions is missing"
+  end
+
+  if versions.length < 2
+    raise "At least 2 versions are required, but got #{versions.length}"
+  end
+
+  versions
+end
+
+def zip_name_from_downloads(version_data)
+  downloads = version_data["downloads"]
+  if !downloads.is_a?(Hash)
+    raise "Invalid API response: downloads is missing"
+  end
+
+  zip_url = downloads["zip"]
+  if !zip_url.is_a?(String)
+    raise "Invalid API response: downloads.zip is missing"
+  end
+
+  File.basename(URI.parse(zip_url).path)
+end
 
 task :download do
   require "open-uri"
 
-  index_url = "https://spring-fragrance.mints.ne.jp/aviutl/oldver.php"
-  puts "Fetching download page from #{index_url}"
-  page_content = URI.open(index_url, "User-Agent" => USER_AGENT).read
-  # <tr align=center><td><a href="aviutl2_sdk.zip">aviutl2_sdk.zip</a></td><td>version0.2_sdk</td></tr>
-  app_match =
-    page_content
-      .to_enum(
-        :scan,
-        %r{<a href="(?<filename>aviutl2[^"]+\.zip)">(?<app_zip_name>aviutl2[^<]+\.zip)</a>}
-      )
-      .map { Regexp.last_match }
-      .to_a
-  versions =
-    app_match
-      .map { _1[:app_zip_name] }
-      .reject { _1 == "aviutl2_sdk.zip" }
-      .sort_by do |n|
-        [
-          n.split(/([0-9]+)/).map.with_index { |d, i| i % 2 == 0 ? d : d.to_i },
-          n
-        ]
-      end
+  versions = fetch_versions
+  latest_version_data = versions[0]
+  prev_version_data = versions[1]
 
-  latest_version = versions.last
+  latest_version = latest_version_data["version"]
+  if !latest_version.is_a?(String)
+    raise "Invalid API response: version is missing"
+  end
+  latest_url = latest_version_data.dig("downloads", "zip")
+  if !latest_url.is_a?(String)
+    raise "Invalid API response: downloads.zip is missing"
+  end
+
   puts "Latest version detected: #{latest_version}"
 
   latest_filename = "./tmp/aviutl2.zip"
-  latest_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{latest_version}"
   URI.open(latest_url, "User-Agent" => USER_AGENT) do |f|
     IO.copy_stream(f, latest_filename)
   end
   sh "unzip -o #{latest_filename} -d tmp/aviutl2"
   puts "Unzipped app to tmp/aviutl2"
-  File.write("./tmp/aviutl2_version.txt", latest_version)
+  File.write("./tmp/aviutl2_version.txt", zip_name_from_downloads(latest_version_data))
 
   files = Dir.children("tmp/aviutl2").to_set
 
@@ -63,16 +87,23 @@ task :download do
     raise "Missing expected files: #{missing.to_a.join(", ")}"
   end
 
-  prev_version = versions[-2]
+  prev_version = prev_version_data["version"]
+  if !prev_version.is_a?(String)
+    raise "Invalid API response: version is missing"
+  end
+  prev_url = prev_version_data.dig("downloads", "zip")
+  if !prev_url.is_a?(String)
+    raise "Invalid API response: downloads.zip is missing"
+  end
+
   puts "Previous version detected: #{prev_version}"
   prev_filename = "./tmp/aviutl2_prev.zip"
-  prev_url = "https://spring-fragrance.mints.ne.jp/aviutl/#{prev_version}"
   URI.open(prev_url, "User-Agent" => USER_AGENT) do |f|
     IO.copy_stream(f, prev_filename)
   end
   sh "unzip -o #{prev_filename} -d tmp/aviutl2_prev"
   puts "Unzipped previous app to tmp/aviutl2_prev"
-  File.write("./tmp/aviutl2_prev_version.txt", prev_version)
+  File.write("./tmp/aviutl2_prev_version.txt", zip_name_from_downloads(prev_version_data))
 end
 
 task :compare do
