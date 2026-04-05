@@ -5,11 +5,23 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta40a <Badge text='2026/4/5' />
+
+- `--separator`の定義を追加した時にスクリプトが動作しなくなるのを修正
+
+## 2.00 beta40 <Badge text='2026/4/5' />
+
+- `obj.load("text")`に文字揃え種別の引数を追加
+- `obj.getvalue()`に`"pos"`、`"angle"`、`"center"`、`"scale"`の指定を追加
+- `--separator`の定義を追加
+
 ## 2.00 beta39 <Badge text='2026/3/29' />
+
 - `error()`で引数messageが無い場合に落ちるのを修正
 - `obj.setoption("blend")`で合成モードの指定が無い時は通常を設定するように修正
 
 ## 2.00 beta38 <Badge text='2026/3/22' />
+
 - `obj.multiobject()`の終了時に元の`obj.index`、`obj.num`値に戻すように修正
 - `obj.getpoint("default")`に移動モードの指定を追加
 - `--track`の定義にゼロ値名称,操作倍率の引数を追加
