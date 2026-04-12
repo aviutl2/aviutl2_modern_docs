@@ -463,21 +463,42 @@ obj.drawpoly(vertex, 3)
 
 現在のオブジェクトの画像を読み込みます。
 typeを省略した場合は自動的に判別します。
+画像が読み込めない場合はfalseを返却します。
+読み込めた場合で戻り値の記載がない場合はtrueを返却します。
 ※読み込まれていた画像は破棄されます。
 
 #### 動画ファイル
 
 `obj.load("movie",file[,time])`
+`obj.load("movie.frame",file[,frame])`
+
 動画ファイルから指定時間の画像を読み込みます。
+※`"movie.frame"`はフレーム番号を指定して総フレーム数を返却します。
 
 - `file`：動画ファイル名
-- `time`：表示する画像の時間（秒）（省略時はオブジェクトの現時間）
+- `time`：取得する時間（秒）（省略時はオブジェクトの現時間）
 - 戻り値：動画の総時間（秒）
 
 例：
 
 ```aulua
 obj.load("movie", "c:\\test.avi")
+```
+
+#### 動画ファイル情報
+
+`obj.load("movie.info",file)`
+
+動画ファイルの情報を取得します。
+現在のオブジェクト情報を更新しないで情報の返却のみをします。
+
+- `file`：動画ファイル名
+- 戻り値：動画のフレーム数、フレームレート（rate）、フレームレート（scale）
+
+例：
+
+```aulua
+obj.load("movie.info", "c:\\test.avi")
 ```
 
 #### 画像ファイル
@@ -534,7 +555,9 @@ obj.load("text", "この文字が画像として読み込まれます")
 
 #### テキストレイアウト
 
-`obj.load("textlayout",text[,speed,time])`
+`obj.load("text.layout",text[,speed,time,align])`
+
+※`"textlayout"`の指定も利用できます
 
 `obj.load("text")`で読み込むテキストの画像サイズを取得します。※引数は同じです
 現在のオブジェクト情報を更新しないでサイズの返却のみをします。
@@ -544,7 +567,7 @@ obj.load("text", "この文字が画像として読み込まれます")
 例：
 
 ```aulua
-w, h = obj.load("textlayout", "この文字を画像として読み込んだ時のサイズ")
+w, h = obj.load("text.layout", "この文字を画像として読み込んだ時のサイズ")
 ```
 
 #### 図形

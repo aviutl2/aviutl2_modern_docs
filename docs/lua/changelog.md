@@ -5,6 +5,11 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta41 <Badge text='2026/4/12' />
+
+- `obj.load()`で読み込み失敗を返却するようにした
+- `obj.load()`に`"movie.frame"`、`"movie.info"`、`"text.layout"`の指定を追加
+
 ## 2.00 beta40a <Badge text='2026/4/5' />
 
 - `--separator`の定義を追加した時にスクリプトが動作しなくなるのを修正

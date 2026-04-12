@@ -16,3 +16,6 @@
 
 Last updated: 2025/08/31
 Update process completed.
+
+Last updated: 2026/04/12
+Update process completed for aviutl2beta41.zip.
