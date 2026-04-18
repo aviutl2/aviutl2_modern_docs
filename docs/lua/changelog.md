@@ -5,6 +5,10 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta42 <Badge text='2026/4/18' />
+
+- `obj.load("movie")`の読み込み失敗時の返却を以前の値に修正 ※互換対応
+
 ## 2.00 beta41a <Badge text='2026/4/12' />
 
 - `obj.load()`の読み込み失敗時にオブジェクトの画像をクリアするように修正
