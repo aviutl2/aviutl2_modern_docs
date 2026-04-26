@@ -5,6 +5,11 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta43 <Badge text='2026/4/26' />
+
+- `--font`のデフォルト値のフォントが無い場合に例外になるのを修正
+- `obj.load("text.layout")`で文字揃え種別を指定した時に中心座標を返却するようにした
+
 ## 2.00 beta42 <Badge text='2026/4/18' />
 
 - `obj.load("movie")`の読み込み失敗時の返却を以前の値に修正 ※互換対応
