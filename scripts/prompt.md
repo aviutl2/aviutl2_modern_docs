@@ -28,3 +28,6 @@ Update process completed for aviutl2beta42.zip.
 
 Last updated: 2026/04/26
 Update process completed for aviutl2beta43.zip.
+
+Last updated: 2026/04/26
+Update process completed for aviutl2beta43a.zip.
