@@ -31,3 +31,6 @@ Update process completed for aviutl2beta43.zip.
 
 Last updated: 2026/04/26
 Update process completed for aviutl2beta43a.zip.
+
+Last updated: 2026/04/28
+Update process completed for aviutl2beta43b.zip. Lua diff was empty; updated docs/index.md, docs/changelog.md, and scripts/latest.txt.
