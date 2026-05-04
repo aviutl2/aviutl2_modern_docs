@@ -34,3 +34,6 @@ Update process completed for aviutl2beta43a.zip.
 
 Last updated: 2026/04/28
 Update process completed for aviutl2beta43b.zip. Lua diff was empty; updated docs/index.md, docs/changelog.md, and scripts/latest.txt.
+
+Last updated: 2026/05/04
+Update process completed for aviutl2beta44.zip. Lua diff was empty; updated docs/index.md, docs/usage.md, docs/changelog.md, and scripts/latest.txt. aviutl2 diff changed the layer-name operation from double-click to Alt+click, added a note about right-click drag settings affecting Alt+click, added the reference expression section before scripts/plugins, and added the beta44 changelog entry.
