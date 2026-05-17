@@ -40,3 +40,6 @@ Update process completed for aviutl2beta44.zip. Lua diff was empty; updated docs
 
 Last updated: 2026/05/10
 Update process completed for aviutl2beta45.zip. Updated docs/index.md, docs/changelog.md, docs/lua/index.md, docs/lua/changelog.md, and scripts/latest.txt. aviutl2 diff only added the beta45 changelog entry; lua diff changed the yyy::xxx display rule to use the text after the last :: and added obj.multiobject() callback return support for per-object base time offsets in seconds.
+
+Last updated: 2026/05/17
+Update process completed for aviutl2beta46.zip. Lua diff was empty; updated docs/index.md, docs/usage.md, docs/changelog.md, and scripts/latest.txt. aviutl2 diff changed the version header to beta46, added the installer command-line options section after layout/style.conf, and added the beta46 changelog entry.
