@@ -13,7 +13,7 @@ task :prepare do
   sh "bun install"
 end
 
-expected_files = %w[aviutl2.txt lua.txt].to_set
+expected_files = %w[aviutl2.txt lua.txt credits.txt].to_set
 
 USER_AGENT =
   "Ruby/#{RUBY_VERSION} (#{RUBY_PLATFORM}) aviutl2_docs_mirror, https://github.com/sevenc-nanashi/aviutl2_docs_mirror"

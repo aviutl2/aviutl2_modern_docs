@@ -233,6 +233,11 @@ export default defineConfig({
           { text: "バイナリについて", link: "/binaries" },
         ],
       },
+      {
+        text: "credits.txt",
+        base: "/credits",
+        items: [{ text: "ライセンス等", link: "/" }],
+      },
       { text: "このサイトについて", link: "/about" },
     ],
 
