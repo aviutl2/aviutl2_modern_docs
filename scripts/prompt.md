@@ -43,3 +43,6 @@ Update process completed for aviutl2beta45.zip. Updated docs/index.md, docs/chan
 
 Last updated: 2026/05/17
 Update process completed for aviutl2beta46.zip. Lua diff was empty; updated docs/index.md, docs/usage.md, docs/changelog.md, and scripts/latest.txt. aviutl2 diff changed the version header to beta46, added the installer command-line options section after layout/style.conf, and added the beta46 changelog entry.
+
+Last updated: 2026/05/24
+Update process completed for aviutl2beta47.zip. Updated docs/index.md, docs/usage.md, docs/changelog.md, docs/lua/binaries.md, scripts/latest.txt, and scripts/prompt.md. aviutl2 diff changed the version header to beta47, added a credits.txt license notice, added the beta47 changelog entry, documented preview zoom as mouse-position based, and noted system.conf external-module rejection. lua diff moved the Lua/LuaJIT binary section before the changelog and removed bundled Lua/LuaJIT license text because licenses are now collected in credits.txt.
