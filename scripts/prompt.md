@@ -46,3 +46,6 @@ Update process completed for aviutl2beta46.zip. Lua diff was empty; updated docs
 
 Last updated: 2026/05/24
 Update process completed for aviutl2beta47.zip. Updated docs/index.md, docs/usage.md, docs/changelog.md, docs/lua/binaries.md, scripts/latest.txt, and scripts/prompt.md. aviutl2 diff changed the version header to beta47, added a credits.txt license notice, added the beta47 changelog entry, documented preview zoom as mouse-position based, and noted system.conf external-module rejection. lua diff moved the Lua/LuaJIT binary section before the changelog and removed bundled Lua/LuaJIT license text because licenses are now collected in credits.txt.
+
+Last updated: 2026/05/30
+Update process completed for aviutl2beta48.zip. Updated docs/index.md, docs/changelog.md, docs/lua/index.md, docs/lua/changelog.md, scripts/latest.txt, and scripts/prompt.md. aviutl2 diff changed the version header to beta48 and added the beta48 changelog entry; the base file output note still says non-compressed AVI, PNG, JPG. lua diff added a note that obj.load("layer") may not work well when effect-side drawing such as individual objects is involved, added the obj.setanchor() "screen" option for screen coordinates, and added the Lua changelog entry.

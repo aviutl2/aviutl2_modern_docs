@@ -5,6 +5,11 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta48 <Badge text='2026/5/30' />
+
+- `obj.load("layer")`の対象が個別オブジェクトの場合の処理の修正と説明を追加
+- `obj.setanchor()`のオプションに`"screen"`の指定を追加
+
 ## 2.00 beta45 <Badge text='2026/5/10' />
 
 - 設定項目の項目名の一部のみを表示させる指定を修正
