@@ -5,6 +5,11 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta49 <Badge text='2026/6/7' />
+
+- `obj.getvalue()`のセクション毎チェックボックスの戻り値を変更
+- スクリプト共用の`global`テーブルを追加
+
 ## 2.00 beta48 <Badge text='2026/5/30' />
 
 - `obj.load("layer")`の対象が個別オブジェクトの場合の処理の修正と説明を追加

@@ -49,3 +49,6 @@ Update process completed for aviutl2beta47.zip. Updated docs/index.md, docs/usag
 
 Last updated: 2026/05/30
 Update process completed for aviutl2beta48.zip. Updated docs/index.md, docs/changelog.md, docs/lua/index.md, docs/lua/changelog.md, scripts/latest.txt, and scripts/prompt.md. aviutl2 diff changed the version header to beta48 and added the beta48 changelog entry; the base file output note still says non-compressed AVI, PNG, JPG. lua diff added a note that obj.load("layer") may not work well when effect-side drawing such as individual objects is involved, added the obj.setanchor() "screen" option for screen coordinates, and added the Lua changelog entry.
+
+Last updated: 2026/06/07
+Update process completed for aviutl2beta49.zip. Updated docs/index.md, docs/usage.md, docs/changelog.md, docs/lua/index.md, docs/lua/changelog.md, scripts/latest.txt, and scripts/prompt.md. aviutl2 diff changed the version header to beta49, added the font folder under ProgramData\aviutl2\Font for *.ttf/*.ttc/*.otf/*.otc, added the batch output section, added the beta49 changelog entry, and noted the font menu list-box option. lua diff added the shared global table, changed obj.getvalue() return behavior for section checkboxes, and added the Lua changelog entry.
