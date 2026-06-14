@@ -52,3 +52,6 @@ Update process completed for aviutl2beta48.zip. Updated docs/index.md, docs/chan
 
 Last updated: 2026/06/07
 Update process completed for aviutl2beta49.zip. Updated docs/index.md, docs/usage.md, docs/changelog.md, docs/lua/index.md, docs/lua/changelog.md, scripts/latest.txt, and scripts/prompt.md. aviutl2 diff changed the version header to beta49, added the font folder under ProgramData\aviutl2\Font for *.ttf/*.ttc/*.otf/*.otc, added the batch output section, added the beta49 changelog entry, and noted the font menu list-box option. lua diff added the shared global table, changed obj.getvalue() return behavior for section checkboxes, and added the Lua changelog entry.
+
+Last updated: 2026/06/14
+Update process completed for aviutl2beta50.zip. Updated docs/index.md, docs/usage.md, docs/changelog.md, docs/lua/index.md, docs/lua/changelog.md, scripts/latest.txt, and scripts/prompt.md. aviutl2 diff changed the version header to beta50, noted that ProgramData\aviutl2\Font also scans one folder below, and added the beta50 changelog entry. lua diff added the --checksection section-setting default argument, clarified that global values are stored as binary-safe strings, changed frame_s/frame_e to whole-scene based wording, added obj.getvalue(layer,effect,item,...), and added the Lua changelog entry.
