@@ -769,22 +769,40 @@ obj.draw(),obj.drawpoly()の描画先をフレームバッファにします。
 `obj.setoption("camera_param",cam)`
 
 - `cam`：カメラのパラメータ（テーブル）
-  - `.x`：カメラの座標X
-  - `.y`：カメラの座標Y
-  - `.z`：カメラの座標Z
-  - `.tx`：カメラの目標座標X
-  - `.ty`：カメラの目標座標Y
-  - `.tz`：カメラの目標座標Z
-  - `.rz`：カメラの傾き
-  - `.ux`：カメラの上方向単位ベクトルX
-  - `.uy`：カメラの上方向単位ベクトルY
-  - `.uz`：カメラの上方向単位ベクトルZ
-  - `.d`：カメラからスクリーンまでの距離（焦点距離）
+  - `cam.x`：カメラの座標X
+  - `cam.y`：カメラの座標Y
+  - `cam.z`：カメラの座標Z
+  - `cam.tx`：カメラの目標座標X
+  - `cam.ty`：カメラの目標座標Y
+  - `cam.tz`：カメラの目標座標Z
+  - `cam.rz`：カメラの傾き
+  - `cam.ux`：カメラの上方向単位ベクトルX
+  - `cam.uy`：カメラの上方向単位ベクトルY
+  - `cam.uz`：カメラの上方向単位ベクトルZ
+  - `cam.d`：カメラからスクリーンまでの距離（焦点距離）
 
 例：
 
 ```aulua
 cam = obj.getoption("camera_param")
+```
+
+#### カメラの焦点のパラメータを設定する
+
+カメラの焦点の各種パラメータを設定します。  
+※カメラ効果のみ使用可  
+`obj.setoption("camera_focus",focus)`
+
+- `focus`：カメラの焦点パラメータ（テーブル）
+  - `focus.x`：カメラの焦点座標X
+  - `focus.y`：カメラの焦点座標Y
+  - `focus.z`：カメラの焦点座標Z
+  - `focus.bokeh`：カメラの深度ぼけの強さ
+
+例：
+
+```aulua
+focus = obj.getoption("camera_focus")
 ```
 
 #### サンプラーモード
@@ -873,6 +891,20 @@ if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 
 ```aulua
 cam = obj.getoption("camera_param")
+```
+
+#### カメラの焦点のパラメータを取得する
+
+`obj.getoption("camera_focus")`
+
+- 戻り値：カメラの焦点パラメータ（テーブル）
+
+※テーブルの内容はobj.setoption("camera_focus")と同じです。
+
+例：
+
+```aulua
+focus = obj.getoption("camera_focus")
 ```
 
 #### 個別オブジェクトが有効かを調べる

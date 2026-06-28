@@ -5,6 +5,10 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta52 <Badge text='2026/6/28' />
+
+- `obj.setoption("camera_focus")`、`obj.getoption("camera_focus")`を追加
+
 ## 2.00 beta50 <Badge text='2026/6/14' />
 
 - `--checksection`の定義にセクション毎設定の初期値の引数を追加

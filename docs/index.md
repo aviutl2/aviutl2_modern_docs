@@ -3,7 +3,7 @@ title: ホーム
 description: AviUtl ExEdit2の動作環境や使用上の注意、互換性などについて説明しています。
 ---
 
-# AviUtl ExEdit2 version 2.00 beta51 by ＫＥＮくん
+# AviUtl ExEdit2 version 2.00 beta52 by ＫＥＮくん
 
 ## はじめに
 
@@ -55,4 +55,5 @@ description: AviUtl ExEdit2の動作環境や使用上の注意、互換性な�
 - プラグインのフォルダは`ProgramData\aviutl2\Plugin`になります。※一つ下のフォルダも対象になります
 - スクリプトのフォルダは`ProgramData\aviutl2\Script`になります。※一つ下のフォルダも対象になります
 - フォントファイル（`*.ttf`、`*.ttc`、`*.otf`、`*.otc`）を`ProgramData\aviutl2\Font`に配置しておくとフォントの種類に追加されます。※一つ下のフォルダも対象になります
+- 絵文字用の画像ファイル（`*.svg`、`*.png`、`*.bmp`）を`ProgramData\aviutl2\Font`に配置しておくと制御文字から利用出来る絵文字の種類に追加されます。※ファイル名のベース部分が同じファイルは一つのみ絵文字として登録されます。
 - 本体ファイル等を配置したフォルダに`data`フォルダを作成すると`data`フォルダ内に環境設定等のファイルを保存するようになります。
