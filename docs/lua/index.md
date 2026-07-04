@@ -651,6 +651,19 @@ obj.load()のテキストで使うフォントを指定します。
 - `charspacing`：文字間隔
 - `linespacing`：行間隔
 
+### obj.getfont()
+
+obj.load()のテキストで使うフォント設定を取得します。
+
+- 戻り値：各種フォント設定 ※obj.setfont()の引数と同じ並びで返却されます
+  ※フォント名の初期値は空（デフォルト指定）になります
+
+例：
+
+```aulua
+name, size, type = obj.getfont()
+```
+
 ### obj.rand(st_num,ed_num[,seed,frame])
 
 乱数を発生させます。通常の乱数と異なり同一時間のフレームで
@@ -913,6 +926,27 @@ focus = obj.getoption("camera_focus")
 
 - 戻り値：`true`：有効 / `false`：無効
 
+#### 合成モードを取得する
+
+`obj.getoption("blend")`
+
+- 戻り値：合成モード
+
+※obj.setoption("blend")の`value`と同じです。  
+※出力項目（標準描画等）の合成モードは最後に反映されます。
+
+#### 裏面を表示しないかを取得する
+
+`obj.getoption("culling")`
+
+- 戻り値：0=表示 / 1=非表示
+
+#### カメラの方向を向くかを取得する
+
+`obj.getoption("billboard")`
+
+- 戻り値：0=向かない / 1=横方向のみ / 2=縦方向のみ / 3=向く
+
 ### obj.getvalue(target[,time,section])
 
 現在のオブジェクトの設定値を取得します。
@@ -967,6 +1001,7 @@ focus = obj.getoption("camera_focus")
 
 - `effect`：対象のエフェクト名（エイリアスファイルの`effect.name`の値）
   同じエフェクトが複数ある場合は`":n"`のサフィックスでインデックス指定出来ます（nは0からの番号）
+  エフェクトが無効状態の場合は対象から除外されます
 
 - `item`：対象の設定項目の名称（エイリアスファイルのキーの名称） ※名称が数値の場合は利用出来ません
 - `time`：どの時点の値を取得するかの時間（秒）（省略時は現時間）
@@ -978,6 +1013,7 @@ focus = obj.getoption("camera_focus")
 - 戻り値：トラックバーの場合は指定時間の設定値
   セクション毎チェックボックスの場合は指定時間のセクションの設定値
   上記以外の場合はエイリアスファイルの設定値と同じフォーマットの値
+  取得対象が存在しない場合は返却無し ※`nil`で判定出来ます
 
 例：
 
@@ -1379,11 +1415,24 @@ max_x, max_y = obj.getinfo("image_max")
 
 #### グリッド（BPM）の情報を取得する
 
+先頭のBPM情報を取得します。
+
 ```aulua
 tempo, beat, offset = obj.getinfo("bpm")
 ```
 
 - 戻り値：テンポ,拍子,基準時間
+
+#### グリッド（BPM）の一覧情報を取得する
+
+```aulua
+bpm = obj.getinfo("bpm_list")
+```
+
+- 戻り値：BPM情報のテーブルの配列
+  - `bpm[1].tempo`：テンポ
+  - `bpm[1].beat`：拍子
+  - `bpm[1].offset`：基準時間
 
 #### アプリ起動からの経過時間を取得する
 
