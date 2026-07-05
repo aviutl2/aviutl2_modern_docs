@@ -5,6 +5,13 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.00 beta53a <Badge text='2026/7/5' />
+
+- `obj.getinfo("bpm_list")`の戻り値を変更
+- `obj.getinfo()`に`"frame_max"`、`"layer_max"`を追加
+- `obj.getoption()`に`"drawtarget"`、`"draw_state"`を追加
+- `obj.getpoint()`に`"frame_s"`、`"frame_e"`の指定を追加
+
 ## 2.00 beta53 <Badge text='2026/7/4' />
 
 - `obj.getvalue()`で指定エフェクトが無効状態の場合は対象とならないように修正

@@ -947,6 +947,18 @@ focus = obj.getoption("camera_focus")
 
 - 戻り値：0=向かない / 1=横方向のみ / 2=縦方向のみ / 3=向く
 
+#### 描画先の情報を取得する
+
+`obj.getoption("drawtarget")`
+
+- 戻り値：`"tempbuffer"`：仮想バッファ / `"framebuffer"`：フレームバッファ
+
+#### スクリプト内でフレームバッファに描画されたかのステータスを取得する
+
+`obj.getoption("draw_state")`
+
+- 戻り値：`true`：描画済み / `false`：未描画
+
 ### obj.getvalue(target[,time,section])
 
 現在のオブジェクトの設定値を取得します。
@@ -1370,6 +1382,8 @@ n, rate, buf = obj.getaudio(nil, "c:\\test.wav", "pcm.r", 1000)
       - `"time"`：時間制御を反映した時間を取得
       - `"value"`：時間制御の時間位置（開始点=0.0/終了点=1.0）を取得
         option2で取得する時間を指定することが出来ます。※未指定の場合は現在の時間
+  - `"frame_s"`：全体（シーン）基準の現在のオブジェクトの開始フレームを取得します。（0からの整数）
+  - `"frame_e"`：全体（シーン）基準の現在のオブジェクトの終了フレームを取得します。（0からの整数）
   - `"framerate"`：フレームレートを取得します。
   - `"default"`：トラックバーの標準値を取得します。※互換対応
     optionで取得するトラックバーの値の移動モードを指定することが出来ます。（名称を指定します）
@@ -1413,6 +1427,22 @@ max_x, max_y = obj.getinfo("image_max")
 
 - 戻り値：最大画像サイズ（横幅,高さ）
 
+#### オブジェクトが存在する最大のフレーム番号を取得する
+
+```aulua
+obj.getinfo("frame_max")
+```
+
+- 戻り値：最大のフレーム番号（0からの整数）
+
+#### オブジェクトが存在する最大のレイヤー番号を取得する
+
+```aulua
+obj.getinfo("layer_max")
+```
+
+- 戻り値：最大のレイヤー番号（1からの整数）
+
 #### グリッド（BPM）の情報を取得する
 
 先頭のBPM情報を取得します。
@@ -1421,7 +1451,7 @@ max_x, max_y = obj.getinfo("image_max")
 tempo, beat, offset = obj.getinfo("bpm")
 ```
 
-- 戻り値：テンポ,拍子,基準時間
+- 戻り値：テンポ,拍子,拍子オフセット（秒）
 
 #### グリッド（BPM）の一覧情報を取得する
 
@@ -1429,10 +1459,11 @@ tempo, beat, offset = obj.getinfo("bpm")
 bpm = obj.getinfo("bpm_list")
 ```
 
-- 戻り値：BPM情報のテーブルの配列
+- 戻り値：BPM情報テーブルの配列
   - `bpm[1].tempo`：テンポ
   - `bpm[1].beat`：拍子
-  - `bpm[1].offset`：基準時間
+  - `bpm[1].start`：開始位置（秒）
+  - `bpm[1].offset`：拍子オフセット（秒）
 
 #### アプリ起動からの経過時間を取得する
 
