@@ -1,4 +1,4 @@
-task default: %i[clean prepare download compare]
+task default: %i[clean prepare download compare update_i18n]
 
 task :clean do
   rm_rf "tmp/aviutl2"
@@ -130,6 +130,14 @@ task :compare do
     end
   end
   puts "Comparison complete. Diff files are in the tmp directory."
+end
+
+task :update_i18n do
+  require "open-uri"
+  editor = URI.open("https://raw.githubusercontent.com/aviutl2/aviutl2_community_translation/refs/heads/main/translations/en/editor.yml").read
+  File.write("../docs/components/ui/en_editor.yml", editor)
+  effects = URI.open("https://raw.githubusercontent.com/aviutl2/aviutl2_community_translation/refs/heads/main/translations/en/effects.yml").read
+  File.write("../docs/components/ui/en_effects.yml", effects)
 end
 
 task :update do
