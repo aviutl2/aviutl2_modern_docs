@@ -1,690 +1,690 @@
 ---
-title: 更新履歴
-description: AviUtl ExEdit2の更新履歴について説明しています。
+title: Changelog
+description: Explains the AviUtl ExEdit2 changelog.
 ---
 
-# 更新履歴
+# Changelog
 
 ## v2.0.54 <Badge text='2026/7/7' />
 
-- 時間制御編集を表示した状態でトラックバーの移動方法を変更した時に落ちることがあるのを修正
-- フィルタプラグイン、スクリプトモジュールで文字列返却する編集セクション関数が落ちるのを修正
-- スクリプトモジュールのメタテーブルの解放時に落ちることがあるのを修正
-- ショートカットキーの設定ダイアログの表示幅を調整
-- オブジェクト設定のテキストの表示速度が0の時の表示を調整
-- 言語ファイルでDefault言語の差分ファイルを定義出来るようにした
-- 言語ファイルにオブジェクト設定の設定項目のツールチップ文言を定義出来るようにした
+- Fixed a crash that could occur when changing a trackbar movement method while time control editing was shown.
+- Fixed edit section functions that return strings crashing in filter plugins and script modules.
+- Fixed a crash that could occur when freeing script module metatables.
+- Adjusted the display width of the shortcut key settings dialog.
+- Adjusted the object settings display when text display speed is 0.
+- Added support for defining differential files for the Default language in language files.
+- Added support for defining tooltip text for object setting items in language files.
 
 ## 2.00 beta53a <Badge text='2026/7/5' />
 
-- ウィンドウメニューのグリッド（BPM）の設定にショートカットキーを設定出来るように修正
-- グリッド（BPM）の初期値はテンポ、拍子のみ保持するように修正
-- グリッド（BPM）の設定項目に拍子のオフセットを追加
+- Added support for assigning shortcut keys to the Grid (BPM) settings in the window menu.
+- Changed the initial Grid (BPM) values to keep only tempo and time signature.
+- Added a time signature offset item to Grid (BPM) settings.
 
 ## 2.00 beta53 <Badge text='2026/7/4' />
 
-- グリッド（BPM）の設定で複数のBPMを設定出来るようにした
-- ウィンドウメニューの編集のシーン操作にグリッド（BPM）の設定を追加
-- トラックバー移動メニューに特定種別のみで追加される項目を含めるように修正
-- オブジェクト設定の数値項目のエイリアスを作成出来るようにした
-- 参照式にレイヤー指定、自身の項目名指定の記述方法を追加
-- クリップボードにPNG形式でコピーするオプションを追加
+- Added support for configuring multiple BPM values in Grid (BPM) settings.
+- Added Grid (BPM) settings to Scene Operations under Edit in the window menu.
+- Updated the trackbar movement menu to include items that are added only for specific types.
+- Added support for creating aliases for numeric items in object settings.
+- Added reference expression syntax for specifying a layer and specifying an item on the current object.
+- Added an option to copy to the clipboard in PNG format.
 
 ## 2.00 beta52 <Badge text='2026/6/28' />
 
-- レイアウト変更時に個別ウィンドウが表示状態の場合だと位置が反映されないのを修正
-- アプリケーションデータのエイリアスファイルを一つ下のフォルダも対象となるようにした
-- テキストの制御文字に絵文字を追加
+- Fixed positions not being reflected when detached windows were visible during layout changes.
+- Included one lower folder level when scanning application data alias files.
+- Added emoji to text control characters.
 
 ## 2.00 beta51 <Badge text='2026/6/20' />
 
-- 言語ファイルのサブ言語設定を複数指定出来るようにした
-- オブジェクト設定のフィルタ項目のペースト時に表示状態等の設定も反映するようにした
-- スポット光源（カメラ制御）、点光源（カメラ制御）を仮追加
-- 幾つかの誤字を修正
+- Added support for specifying multiple sub-language settings in language files.
+- Made pasting filter items in object settings also apply settings such as display state.
+- Temporarily added Spot Light (Camera Control) and Point Light (Camera Control).
+- Fixed several typos.
 
 ## 2.00 beta50 <Badge text='2026/6/14' />
 
-- フィルタプラグインのエフェクト生成時に条件によって落ちることがあるのを修正
-- 幾つかのアイコンの表示色を`style.conf`のテキスト色となるように修正
-- 差分の言語ファイルの設定が上書き結合になっていないのを修正
-- 言語ファイル（`.aul2`）の設定項目に言語の情報やサブ言語の項目を追加
-- ウィンドウメニューのその他に言語ファイル情報のメニューを追加
-- プロジェクトのクリア時に映像関連のキャッシュを破棄するようにした
-- アプリケーションデータのフォントを一つ下のフォルダも対象となるようにした
-- レイヤーの高さが小さい時にオブジェクトの装飾表示が小さくなりすぎないようにした
-- バッチ出力の開始時のプロジェクトデータを終了時に復元するようにした
-- バッチ出力の完了時の動作を設定出来るようにした
+- Fixed a crash that could occur depending on conditions when creating filter plugin effects.
+- Updated several icon display colors to use the text color from `style.conf`.
+- Fixed differential language file settings not being merged as overwrites.
+- Added language information and sub-language items to language file (`.aul2`) settings.
+- Added a Language File Information menu under Other in the window menu.
+- Made video-related caches be discarded when clearing a project.
+- Included one lower folder level when scanning application data fonts.
+- Prevented object decorations from becoming too small when layer height is small.
+- Made project data from the start of batch output be restored when batch output ends.
+- Added support for configuring the action after batch output completes.
 
 ## 2.00 beta49 <Badge text='2026/6/7' />
 
-- AVIファイル入出力向けのコーデックの設定を追加
-- ファイル出力に失敗した時の通知メッセージを変更
-- オブジェクト設定の区間毎チェックの有効・無効の設定を追加
-- オブジェクト設定の区間毎チェックボックスの表示を調整
-- プレビュー再生に繰り返し再生するオプションを追加
-- アプリケーションデータにフォントファイルのフォルダを追加
-- フォントメニューの設定にリストボックス側にも適用するオプションを追加
-- プロジェクトファイルにフレーム範囲選択の情報を保存するように修正
-- バッチ出力に仮対応
+- Added codec settings for AVI file input and output.
+- Changed the notification message shown when file output fails.
+- Added settings to enable or disable per-section checks in object settings.
+- Adjusted the display of per-section checkboxes in object settings.
+- Added a repeat playback option to preview playback.
+- Added a font file folder to application data.
+- Added an option in font menu settings to also apply changes to list boxes.
+- Updated project files to save frame range selection information.
+- Temporarily added batch output support.
 
 ## 2.00 beta48 <Badge text='2026/5/30' />
 
-- シーンが正方形の時にカスタムオブジェクトの星が正しく描画されないのを修正
-- オブジェクト設定の区間毎チェックボックスの表示を調整
-- レイヤー編集の時間軸の拡大率の最大値を変更
-- AVIファイル出力のビデオ圧縮に仮対応
-- VCM、ACMの制御処理を改善
+- Fixed the custom object star not drawing correctly when the scene is square.
+- Adjusted the display of per-section checkboxes in object settings.
+- Changed the maximum time-axis zoom ratio in layer editing.
+- Temporarily added video compression support for AVI file output.
+- Improved VCM and ACM control processing.
 
 ## 2.00 beta47 <Badge text='2026/5/24' />
 
-- オブジェクト設定の参照式の数値項目の判定方法を修正
-- 参照式を設定したオブジェクトを分割した時に落ちるのを修正
-- テキストの文字変形の計算順序を修正 ※個別オブジェクト以外の時
-- プレビュー編集のマウスホイール操作の拡大縮小時にマウス位置が基準となるように修正
-- ウィンドウメニューの編集に現在のフレームのオブジェクトを選択（逆順）を追加
-- `system.conf`に外部モジュールを拒否する設定項目を追加
-- 非表示のオブジェクトの表示色を調整
+- Fixed how numeric items in reference expressions are detected in object settings.
+- Fixed a crash when splitting an object with reference expressions set.
+- Fixed the calculation order for text character transforms. ※ Except for individual objects.
+- Made mouse-wheel zooming in preview editing use the mouse position as the reference point.
+- Added Select Objects at Current Frame (Reverse Order) to Edit in the window menu.
+- Added a setting item to `system.conf` for rejecting external modules.
+- Adjusted the display color of hidden objects.
 
 ## 2.00 beta46 <Badge text='2026/5/17' />
 
-- オブジェクト分割で画像サイズが細かくなりすぎる時に落ちるのを修正
-- フォント名に制御文字が含まれる場合は空白文字に置換するように修正
-- 非表示のレイヤーのオブジェクトの表示色を調整
+- Fixed a crash when object splitting made the image size too fine.
+- Replaced control characters in font names with spaces.
+- Adjusted the display color of objects on hidden layers.
 
 ## 2.00 beta45 <Badge text='2026/5/10' />
 
-- 複数のオブジェクトを纏めてカメラ制御、グループ制御、クリッピングオブジェクトの有効・無効を切り替え出来るようにした
-- 複数のオブジェクトを纏めてフィルタ効果の表示の有効・無効、ロックを切り替え出来るようにした
-- 複数のオブジェクトを纏めてフィルタ効果の貼り付け、削除の操作を出来るようにした
+- Added support for toggling Camera Control, Group Control, and Clipping Object for multiple objects at once.
+- Added support for toggling filter effect visibility and locks for multiple objects at once.
+- Added support for pasting and deleting filter effects on multiple objects at once.
 
 ## 2.00 beta44 <Badge text='2026/5/4' />
 
-- 他のレイヤーの表示・非表示の切り替え操作をダブクリックから<kbd>Alt</kbd>+クリックに変更
-- シーンの設定ダイアログの各項目をリストから選択出来るようにした
-- シーンの設定ダイアログでプリセットを作成する機能を追加
-- オブジェクト設定の数値項目に参照式の設定を仮追加
+- Changed the operation for toggling other layers' visibility from double-click to <kbd>Alt</kbd>+click.
+- Made each item in the scene settings dialog selectable from lists.
+- Added a feature for creating presets in the scene settings dialog.
+- Temporarily added reference expression settings to numeric items in object settings.
 
 ## 2.00 beta43b <Badge text='2026/4/28' />
 
-- プラグインの関数の動作を修正
+- Fixed plugin function behavior.
 
 ## 2.00 beta43a <Badge text='2026/4/26' />
 
-- パッケージファイルが正しいパスにインストールされないのを修正
+- Fixed package files not being installed to the correct path.
 
 ## 2.00 beta43 <Badge text='2026/4/26' />
 
-- フォント一覧の取得処理を修正
-- テキスト項目のツールチップが翻訳されないのを修正
-- 出力中のシーンのキャッシュをプレビュー時と区別するように修正
-- ウィンドウメニューの表示にレイアウト設定のメニューを追加
-- オブジェクト設定のグループ項目の表示を調整
-- オブジェクト設定の余白のサイズを調整
+- Fixed font list retrieval processing.
+- Fixed text item tooltips not being translated.
+- Made scene caches during output distinct from preview caches.
+- Added a Layout Settings menu under View in the window menu.
+- Adjusted the display of group items in object settings.
+- Adjusted the margin size in object settings.
 
 ## 2.00 beta42 <Badge text='2026/4/18' />
 
-- フレーム範囲選択を再生範囲にするオプションを追加
-- 再生バッファの最大まで取得して再生した時はバッファ区間をリピート再生するようにした
-- Ctrlキーを押しながらレイヤー名をドラッグした時に別のレイヤーのオブジェクトも全選択出来るようにした
-- レイヤー名をダブクリックした時に他のレイヤーの表示・非表示の切り替えをするようにした
-- 他のレイヤーの表示・非表示を切り替えた時に自身のレイヤーを表示状態にするようにした
-- ウィンドウメニューの編集のレイヤー操作に現在以外のレイヤーを表示/非表示を追加
-- テキスト編集の対象をオブジェクトの入力項目にテキストが含まれる場合にした
-- オブジェクト設定の開閉後に一部のアイコンボタンが表示されないのを修正
-- オブジェクト設定のマスク画像選択のリストにシーンやファイル選択も表示するようにした
-- オブジェクト設定のリスト選択項目の配色を変更
-- 共通操作の設定に入力補助のキーの組み合わせの設定を追加
+- Added an option to use the frame range selection as the playback range.
+- When playback starts after filling the playback buffer to its maximum, the buffered section now repeats.
+- Added support for selecting all objects on another layer by dragging the layer name while holding <kbd>Ctrl</kbd>.
+- Made double-clicking a layer name toggle the visibility of other layers.
+- Made the current layer visible when toggling the visibility of other layers.
+- Added Show/Hide Layers Other Than Current to Layer Operations under Edit in the window menu.
+- Changed text editing targets to objects whose input items contain text.
+- Fixed some icon buttons not being shown after closing and reopening object settings.
+- Made scene and file selections also appear in mask image selection lists in object settings.
+- Changed the color scheme of list selection items in object settings.
+- Added input assistance key combination settings to common operation settings.
 
 ## 2.00 beta41a <Badge text='2026/4/12' />
 
-- スクリプトの関数の動作が少し異なっていたのを修正
+- Fixed slightly different script function behavior.
 
 ## 2.00 beta41 <Badge text='2026/4/12' />
 
-- レイヤーに貼り付け、複製したオブジェクトを選択するように修正
-- フレーム移動操作時に不要なレンダリングが発生しないように修正
-- フィルタプラグインの初期値が正しく反映されないのを修正
-- テキストの基準範囲の算出処理を改行するタイミングに変更
-- テキストの描画範囲の計算を修正
-- プレビュー再生速度を変更出来るようにした
-- フレーム移動時にプレビュー音声を再生するオプションを追加
+- Made pasted and duplicated objects on layers become selected.
+- Prevented unnecessary rendering during frame movement operations.
+- Fixed filter plugin initial values not being applied correctly.
+- Changed text reference range calculation to occur when line breaks are inserted.
+- Fixed text drawing range calculation.
+- Added support for changing preview playback speed.
+- Added an option to play preview audio when moving frames.
 
 ## 2.00 beta40a <Badge text='2026/4/5' />
 
-- スクリプトの一部の定義が正しく動作しないのを修正
+- Fixed some script definitions not working correctly.
 
 ## 2.00 beta40 <Badge text='2026/4/5' />
 
-- トラックバーの移動方法に補間移動(回転)を追加
-- 共通操作の設定のAlt+左クリックドラック操作の設定にレイヤー編集のみを追加
-- テキストの制御文字にプリセット、文字装飾、ふりがな、字間、行間、変形、コメントを追加
-- テキストの制御文字の座標指定にX座標のみ指定、相対指定を戻す指定を追加
-- テキスト編集の入力補助処理の調整と入力補助メニュー項目を追加
-- テキストの行の高さの算出処理を文字を表示するタイミングに変更
-- テキストのグリフや装飾で表示の基準位置が変わらないような中心座標となるように修正
-- 各種プリセット等の作成ダイアログで既存のプリセット名をリストから選択出来るようにした
-- 時間制御のプリセット作成時に既定のプリセット名で保存出来ないようにした
-- レイヤー編集のメニューにエイリアスをファイルに保存を追加
+- Added Interpolation Movement (Rotation) to trackbar movement methods.
+- Added Layer Editing Only to the Alt+left-click drag operation setting in common operation settings.
+- Added preset, character decoration, ruby text, character spacing, line spacing, transform, and comment to text control characters.
+- Added X-coordinate-only specification and resetting relative specification to text control character coordinate specification.
+- Adjusted text editing input assistance processing and added input assistance menu items.
+- Changed text line height calculation to occur when characters are displayed.
+- Adjusted text glyph and decoration center coordinates so the display reference position does not change.
+- Made existing preset names selectable from lists in creation dialogs for presets and similar items.
+- Prevented time control preset creation from saving with the default preset name.
+- Added Save Alias to File to the layer editing menu.
 
 ## 2.00 beta39 <Badge text='2026/3/29' />
 
-- 画像合成(オブジェクト)の合成描画時に特殊な合成モードが反映されているのを修正
-- 幾つかのスクリプトで終了時に合成モードを通常に戻すように修正
-- プレビュー編集でオブジェクトの回転アンカーの操作と表示オプションを追加
-- プレビュー編集でオブジェクトのAlt+ドラッグの拡大縮小操作を追加
-- プレビュー編集でオブジェクトの拡大縮小アンカーのAlt+ドラッグの回転操作を追加
-- ウィンドウメニューの編集にメディアを正面に向けるメニューを追加
-- カメラ制御オプションのオブジェクトの向きの選択肢を追加
-- トラックバーの移動方法に直線移動(回転)を追加
-- 幾つかのマウスポインターの形状を変更
+- Fixed special blend modes being applied during composited drawing for Image Composition (Object).
+- Updated several scripts to restore the blend mode to Normal when they finish.
+- Added operation and display options for object rotation anchors in preview editing.
+- Added Alt+drag scaling operations for objects in preview editing.
+- Added Alt+drag rotation operations for object scaling anchors in preview editing.
+- Added a Face Media Forward menu item under Edit in the window menu.
+- Added choices for object orientation in camera control options.
+- Added Linear Movement (Rotation) to trackbar movement methods.
+- Changed several mouse pointer shapes.
 
 ## 2.00 beta38a <Badge text='2026/3/22' />
 
-- スクリプトの一部の定義値が正しくない時に固まるのを修正
+- Fixed freezing when some script definition values were incorrect.
 
 ## 2.00 beta38 <Badge text='2026/3/22' />
 
-- メディアオブジェクトの開始終了位置変更時の再生位置やオブジェクトの長さの調整処理を修正
-- リスト選択項目のプルダウンメニューがタスクバーの下に隠れないように修正
-- ウィンドウメニューの編集にアプリケーションを再起動のメニューを追加
-- レイヤー編集で選択オブジェクト選択内のオブジェクトの全選択の操作を追加
-- Altキーを押しながらトラックバーの名前をクリックで設定値のダイアログを表示するようにした
-- テキスト、モデル、図形(.svg)ファイルのD&Dの優先順位を変更出来るようにした
-- オブジェクトの座標変換処理を改善
+- Fixed adjustment processing for playback position and object length when changing media object start and end positions.
+- Prevented pull-down menus for list selection items from being hidden under the taskbar.
+- Added Restart Application to Edit in the window menu.
+- Added an operation in layer editing to select all objects inside the selected object selection.
+- Made Alt-clicking a trackbar name show the setting value dialog.
+- Added support for changing D&D priority among text, model, and shape (`.svg`) files.
+- Improved object coordinate conversion processing.
 
 ## 2.00 beta37 <Badge text='2026/3/14' />
 
-- WaveFileReaderでWAVE_FORMAT_EXTENSIBLEのPCM形式のファイルを扱えるように修正
-- オブジェクトのクリック選択中に分割した場合にその後のオブジェクトの操作が正しく動作しないことがあるのを修正
-- メディアオブジェクトの再生速度が「移動無し」以外での開始終了位置変更や分割で再生位置を調整するように修正
-- 中間点のクリック選択中に分割、中間点削除のショートカットキー操作をした時はその中間点を対象とするようにした
-- レイヤー編集のメディアオブジェクトの長さ補正時に開始位置を固定するオプションを追加
-- 動画や画像オブジェクトをシーンの画面サイズにフィットさせる操作を追加
-- 砕け散るのフィルタ効果に中心項目のアンカーを追加
+- Updated WaveFileReader to handle PCM files using WAVE_FORMAT_EXTENSIBLE.
+- Fixed object operations sometimes not working correctly after splitting while click-selecting an object.
+- Adjusted playback position when changing start/end positions or splitting media objects whose playback speed is not No Movement.
+- When splitting or deleting an intermediate point by shortcut while click-selecting one, that intermediate point is now targeted.
+- Added an option to keep the start position fixed when correcting media object length in layer editing.
+- Added operations to fit video and image objects to the scene screen size.
+- Added a center-item anchor to the Shatter filter effect.
 
 ## 2.00 beta36a <Badge text='2026/3/8' />
 
-- スクリプトのアンカー設定関数が引数によっては正しく動作しないのを修正
+- Fixed script anchor setting functions not working correctly with some arguments.
 
 ## 2.00 beta36 <Badge text='2026/3/8' />
 
-- ウィンドウのタイトルバーの右クリックでシステムメニューを表示するように修正
-- オブジェクトの円形のアンカーの表示位置を中心座標となるように修正
-- カメラ制御の対象オブジェクトの描画順序が正しくないのを修正
-- 簡易変形で変形によって画像が重なる部分の合成処理を修正
-- 簡易変形、簡易変形(カメラ制御)の初期値を調整
-- メッシュ変形のスクリプトを追加
+- Made right-clicking a window title bar show the system menu.
+- Adjusted circular object anchors to display at their center coordinates.
+- Fixed the drawing order of camera control target objects.
+- Fixed compositing for overlapping image areas caused by transforms in Simple Transform.
+- Adjusted the initial values of Simple Transform and Simple Transform (Camera Control).
+- Added a Mesh Transform script.
 
 ## 2.00 beta35 <Badge text='2026/2/28' />
 
-- オブジェクトが複製される操作時にオブジェクト名が反映されないのを修正
-- 画像合成(オブジェクト)のクリッピングオブジェクトの設定が反映されないのを修正
-- 画像合成(オブジェクト)にレイヤー設定が反映されないのを修正
-- レイヤー編集の画像合成(オブジェクト)の表示色を変更
-- オブジェクトの出力種別に仮想バッファ出力を追加
-- フィルタ効果の画像入力系の設定項目に仮想バッファを追加
-- プレビュー編集で選択オブジェクトのアンカーを優先するオプションを追加
-- レイヤー編集のオブジェクトやオブジェクト設定の設定項目からシーンを移動する操作を追加
-- ウィンドウメニューの編集のシーン操作にシーンの移動系のメニューを追加
-- ウィンドウメニューの編集にオブジェクトのアンカー操作をロックのメニューを追加
-- ショートカットキーの設定ダイアログの入力操作を調整
-- クリッピングオブジェクトの説明を追記
-- タスクバーの進捗表示をするようにした
+- Fixed object names not being applied when objects are duplicated.
+- Fixed clipping object settings not being applied to Image Composition (Object).
+- Fixed layer settings not being applied to Image Composition (Object).
+- Changed the display color of Image Composition (Object) in layer editing.
+- Added Virtual Buffer Output to object output types.
+- Added Virtual Buffer to image input setting items for filter effects.
+- Added an option to prioritize selected object anchors in preview editing.
+- Added operations to move scenes from layer editing objects and object setting items.
+- Added scene movement menus to Scene Operations under Edit in the window menu.
+- Added Lock Object Anchor Operations to Edit in the window menu.
+- Adjusted input operations in the shortcut key settings dialog.
+- Added a description for clipping objects.
+- Added taskbar progress display.
 
 ## 2.00 beta34 <Badge text='2026/2/23' />
 
-- テキストオブジェクトに改行が含まれない時に自動スクロールが左方向になるように修正
-- スライダーの移動量の設定のホイール操作の移動単位にマイナス値を設定出来るようにした
-- クリック時にオブジェクトのグループを選択(プレビュー)のオプションの初期値をOFFにした
-- レイヤー編集のオブジェクト選択に現在のフレーム上にあるオブジェクトを選択を追加
-- ウィンドウメニューの編集にレイヤー操作、シーン操作のメニューを追加
-- 幾つかのダイアログのリストビュー表示に検索欄を追加
-- 画像合成(オブジェクト)を追加
+- Changed auto-scroll to move left when a text object contains no line breaks.
+- Added support for negative values in the wheel operation unit for slider movement amount settings.
+- Changed the default value of Select Object Group on Click (Preview) to OFF.
+- Added Select Objects at Current Frame to object selection in layer editing.
+- Added Layer Operations and Scene Operations menus under Edit in the window menu.
+- Added search fields to list views in several dialogs.
+- Added Image Composition (Object).
 
 ## 2.00 beta33 <Badge text='2026/2/14' />
 
-- XY2軸の設定項目の場合の補間移動、補間移動(時間制御)、直線移動(時間制御)を修正
-- 映像オブジェクトの再生位置が再生範囲の時の終端時間の計算を修正
-- Shiftキーを押しながらのオブジェクトのアンカー移動のスナップを修正
-- レイヤー編集のカーソル形状がフレーム範囲でない時の中間点の表示位置を修正
-- レイヤー編集でオブジェクトをクリックした位置の区間を選択するように修正
-- レイヤー編集でオブジェクトの選択区間を表示するようにした
-- オブジェクト設定のフレーム位置の背景色をオブジェクト種別の色となるようにした
-- オブジェクト設定の数値項目、リスト項目上でCtrl+マウスホイール操作を出来るようにした
-- オブジェクト設定のスライダーの移動量の設定に増減ボタン、ホイール操作の移動単位の項目を追加
-- オブジェクト設定のスライダーにつまみを表示するオプションを追加
+- Fixed Interpolation Movement, Interpolation Movement (Time Control), and Linear Movement (Time Control) for XY two-axis setting items.
+- Fixed end time calculation when a video object's playback position uses the playback range.
+- Fixed snapping when moving object anchors while holding <kbd>Shift</kbd>.
+- Fixed intermediate point display positions when the layer editing cursor shape is not Frame Range.
+- Made layer editing select the section at the clicked position on an object.
+- Added display of the selected object section in layer editing.
+- Made the background color of frame positions in object settings use the object type color.
+- Added support for <kbd>Ctrl</kbd>+mouse-wheel operations on numeric and list items in object settings.
+- Added increment/decrement buttons and a wheel operation unit item to slider movement amount settings in object settings.
+- Added an option to show knobs on sliders in object settings.
 
 ## 2.00 beta32 <Badge text='2026/2/8' />
 
-- 部分フィルタのアンカー表示を修正
-- カメラ制御対象範囲に部分フィルタがある時は部分フィルタまでを先に描画するように修正
-- グループ制御対象範囲にシーンチェンジがある時に正しく描画されないのを修正
-- シーンチェンジのオブジェクトの切替リストが表示されないのを修正
-- その他のメニューにパッケージ情報を追加
-- D2Dのマルチスレッドオプションを変更
-- style.confにログの色設定を追加
+- Fixed anchor display for partial filters.
+- When a partial filter is in the camera control target range, drawing now proceeds up to the partial filter first.
+- Fixed incorrect drawing when a scene change is in the group control target range.
+- Fixed scene change object switch lists not being shown.
+- Added Package Information to the Other menu.
+- Changed the D2D multithread option.
+- Added log color settings to `style.conf`.
 
 ## 2.00 beta31 <Badge text='2026/2/1' />
 
-- カメラ制御対象範囲にシーンチェンジがある時に正しく描画されないのを修正
-- 同じシーンのフレームにカメラ制御が複数ある時に正しく描画されないのを修正
-- 画像ファイルの連番ファイル読み込みに再生速度、ループ再生の設定を追加
-- 映像の時間位置からフレーム位置への計算方法を調整
-- プラグイン・スクリプトのインストール時の情報を追加
-- システム情報を表示するウィンドウを追加
+- Fixed incorrect drawing when a scene change is in the camera control target range.
+- Fixed incorrect drawing when multiple camera controls exist on frames in the same scene.
+- Added playback speed and loop playback settings to sequential image file loading.
+- Adjusted how video time positions are converted to frame positions.
+- Added information shown when installing plugins and scripts.
+- Added a window that displays system information.
 
 ## 2.00 beta30a <Badge text="2026/1/25" />
 
-- 複数のフィルタ効果を貼り付けした時の順序が正しくないことがあるのを修正
-- オブジェクトを整列する操作のショートカットを追加
+- Fixed the order sometimes being incorrect when pasting multiple filter effects.
+- Added shortcuts for object alignment operations.
 
 ## 2.00 beta30 <Badge text="2026/1/25" />
 
-- オブジェクトの入力設定項目が無い時に出力設定項目が表示されないのを修正
-- グループ化したウィンドウの表示・非表示の切替で出来るだけサイズが維持されるように修正
-- リスト選択項目以外のウィンドウからアクティブ化した時のクリックが抑制されないように修正
-- 複数のフィルタ効果を貼り付けした時の順序が正しくないのを修正
-- ワイプの反転(アウト)の設定が正しく反映されないのを修正
-- 映像の時間位置からフレーム位置への計算方法を修正
-- プレビュー再生中は自動バックアップを抑制するようにした
-- 未保存の変更がある時はウィンドウタイトルに`*`を表示するようにした
-- レイヤーの高さの設定をシーン毎に保持するようにした
-- オブジェクトをグループ制御の対象にするかの設定を追加
-- 選択したオブジェクトを整列する操作を追加を追加
-- アプリケーションアイコンを変更
+- Fixed output setting items not being shown when an object has no input setting items.
+- Made grouped windows preserve size as much as possible when toggling visibility.
+- Prevented clicks from being suppressed when activating from windows other than list selection items.
+- Fixed the order being incorrect when pasting multiple filter effects.
+- Fixed the Wipe Reverse (Out) setting not being applied correctly.
+- Fixed how video time positions are converted to frame positions.
+- Suppressed automatic backups during preview playback.
+- Made the window title show `*` when there are unsaved changes.
+- Made layer height settings be stored per scene.
+- Added a setting for whether objects are targets of group control.
+- Added operations to align selected objects.
+- Changed the application icon.
 
 ## 2.00 beta29 <Badge text="2026/1/17" />
 
-- シーンの設定にファイル出力時の設定を追加
-- ファイル出力時の保存ファイル名をシーン毎に保持するようにした
-- 空のフレームを挿入の機能にオブジェクトを伸長するかの指定を追加
-- 選択したオブジェクトを整列する操作を追加
-- リサイズフィルタの処理を改良
+- Added file output settings to scene settings.
+- Made output file names during file output be stored per scene.
+- Added a setting for whether to extend objects when inserting empty frames.
+- Added operations to align selected objects.
+- Improved resize filter processing.
 
 ## 2.00 beta28a <Badge text="2026/1/12" />
 
-- 設定ウィンドウの設定グループ項目が正しく表示されないを修正
-- ウィンドウを分離した時に一部のウィンドウでタイトルが表示されないのを修正
-- 言語ファイルのスクリプト名のセクションがトラックバーの設定値に対応していないのを修正
-- シーン再生のフレーム移動の連動対象が複数ある場合は現在位置に近い方を採用するようにした
+- Fixed setting group items not being shown correctly in the settings window.
+- Fixed titles not being shown in some windows when detached.
+- Fixed script name sections in language files not corresponding to trackbar setting values.
+- When multiple linked targets exist for frame movement in scene playback, the one closest to the current position is now used.
 
 ## 2.00 beta28 <Badge text="2026/1/11" />
 
-- テキストをUndoした時にオブジェクト表示名に反映されないことがあるのを修正
-- 設定ウィンドウの設定の開閉時に再生位置のフレーム番号表示が反映されないのを修正
-- シーンの音声データを参照する画像フィルタでデッドロックすることがあるのを修正
-- ヒストグラムを表示するウィンドウを追加
-- シーン再生のフレーム移動の連動対象にシーンを参照するフィルタを追加
-- 設定ウィンドウで色選択や時間制御の編集対象になっている項目の表示を調整
-- プレビュー編集の<kbd>Ctrl</kbd>+マウスホイール操作でプレビュー画面の拡大率を変更出来るようにした
-- プレビュー編集のホイールボタンドラッグ操作でプレビュー画面をスクロール出来るようにした
-- オブジェクト設定のオブジェクトの切替で出力設定も変更出来るようにした
-- 複数の言語ファイルを1つの言語設定として配置出来るようにした
+- Fixed text undo sometimes not being reflected in object display names.
+- Fixed frame number display for the playback position not updating when opening or closing settings in the settings window.
+- Fixed a deadlock that could occur in image filters that reference scene audio data.
+- Added a window that displays histograms.
+- Added filters that reference scenes as linked targets for frame movement in scene playback.
+- Adjusted display of items being edited by color selection or time control in the settings window.
+- Added support for changing preview zoom with <kbd>Ctrl</kbd>+mouse wheel in preview editing.
+- Added support for scrolling the preview view by dragging with the wheel button in preview editing.
+- Made output settings also change when switching objects in object settings.
+- Added support for placing multiple language files as one language setting.
 
 ## 2.00 beta27 <Badge text="2026/1/3" />
 
-- アプリ起動時にIME制御が無効になっていないのを修正
-- 保存されているウィンドウ座標が領域外の場合に位置を補正するように修正
-- レイヤー編集の中間点の表示サイズにDPI設定が反映されるように修正
-- プラグインからテキストを変更した時に表示名が変更されないことがあるのを修正
-- シーン再生に編集フレームの移動操作に連動するオプションを追加
-- 共通操作の設定にドラッグ時の自動スクロール速度の設定を追加
-- レイヤー編集のマウスホイールの拡大縮小で現在のフレーム基準にするオプションを追加
-- 再生位置をフレーム番号で表示するオプションの対象にシーンオブジェクトを追加
-- 再生位置をフレーム番号で表示する時の表示フレーム番号を調整
-- カウンターの浮動小数点の誤差を調整
+- Fixed IME control not being disabled when the app starts.
+- Adjusted stored window positions when they are outside the visible area.
+- Made DPI settings apply to intermediate point display size in layer editing.
+- Fixed display names sometimes not changing when text is changed from a plugin.
+- Added an option to link scene playback to edit frame movement operations.
+- Added drag auto-scroll speed settings to common operation settings.
+- Added an option to use the current frame as the reference for mouse-wheel zooming in layer editing.
+- Added scene objects as targets for the option to show playback position as a frame number.
+- Adjusted displayed frame numbers when showing playback position as frame numbers.
+- Adjusted floating-point error in counters.
 
 ## 2.00 beta26 <Badge text="2025/12/27" />
 
-- オブジェクトの中間点を移動する時にグループのオブジェクトも移動するように修正
-- オブジェクトのドラッグ操作中は最終フレーム変更によるスクロール調整を抑制
-- レイヤー編集の<kbd>Shift</kbd>キーを押しながらのオブジェクト開始終了点移動を修正
-- 選択オブジェクトの再クリックでキャンセルするように修正
-- グリッド(BPM)の表示フレーム位置を修正
-- ローテーションのフィルタ効果を追加
-- モザイクフィルタにタイル風の設定を追加
-- 任意のシーンを再生するウィンドウを追加
-- レイヤー編集のカーソル形状をフレーム範囲にするかのオプションを追加
-- レイヤー編集でオブジェクト開始終了点移動時に隣接オブジェクトを移動するオプションを追加
-- レイヤー編集の<kbd>Alt</kbd>+マウスホイール操作で縦横逆のスクロールをするようにした
+- Made moving an object's intermediate point also move group objects.
+- Suppressed scroll adjustments caused by final frame changes while dragging objects.
+- Fixed moving object start/end points while holding <kbd>Shift</kbd> in layer editing.
+- Made clicking a selected object again cancel selection.
+- Fixed displayed frame positions for Grid (BPM).
+- Added the Rotation filter effect.
+- Added tile-style settings to the Mosaic filter.
+- Added a window for playing any scene.
+- Added an option for whether the layer editing cursor shape is Frame Range.
+- Added an option to move adjacent objects when moving object start/end points in layer editing.
+- Made <kbd>Alt</kbd>+mouse-wheel operations in layer editing scroll in the opposite axis.
 
 ## 2.00 beta25 <Badge text="2025/12/20" />
 
-- 制御系のオブジェクト色の設定が反映されないのを修正
-- カメラ制御に深度ぼけ、焦点レイヤーの設定を追加
-- パーティクル出力に出力終了調整の設定を追加
-- メディアの移動操作のショートカットを追加
-- レイヤー編集のカーソル移動でオブジェクトにスナップするかのオプションを追加
-- モーションブラー、オフスクリーン描画のアンカー表示を調整
-- プラグインのウィンドウを分離出来るようにした
+- Fixed control-type object color settings not being applied.
+- Added depth blur and focus layer settings to Camera Control.
+- Added output end adjustment settings to Particle Output.
+- Added shortcuts for media movement operations.
+- Added an option for whether cursor movement snaps to objects in layer editing.
+- Adjusted anchor display for Motion Blur and Off-screen Drawing.
+- Added support for detaching plugin windows.
 
 ## 2.00 beta24a <Badge text="2025/12/14" />
 
-- シーンチェンジを追加した時に落ちるのを修正
+- Fixed a crash when adding a scene change.
 
 ## 2.00 beta24 <Badge text="2025/12/14" />
 
-- モーションブラーのフィルタ効果を追加
-- フィルタオブジェクトを追加してオブジェクト追加メニュー、オブジェクト色を調整
-- グローフィルタのサイズ固定が反映されないことがあるのを修正
-- VRAM画像キャッシュの制御処理を修正
-- オブジェクト描画の排他制御を修正
+- Added the Motion Blur filter effect.
+- Added filter objects and adjusted the Add Object menu and object colors.
+- Fixed the Glow filter's fixed size sometimes not being applied.
+- Fixed VRAM image cache control processing.
+- Fixed exclusive control for object drawing.
 
 ## 2.00 beta23a <Badge text="2025/12/7" />
 
-- 一部のオブジェクトの設定を表示した時に落ちることがあるのを修正
-- オブジェクト名の設定とショートカットキー操作を追加
-- レイヤー名のクリック中の削除、名前変更のキー操作はレイヤーを対象とするようにした
+- Fixed a crash that could occur when showing settings for some objects.
+- Added object name settings and shortcut key operations.
+- Made delete and rename key operations while clicking a layer name target the layer.
 
 ## 2.00 beta23 <Badge text="2025/12/6" />
 
-- オブジェクト設定、シーンリストのアイテム移動時にスクロール追従するように修正
-- オブジェクト設定にファイルをD&Dした時に落ちることがあるのを修正
-- 幾つかのフィルタ効果でオブジェクト設定のファイルのD&Dに対応した
-- 縁取り、枠線のフィルタ効果のパターン画像にシーン等を設定出来るようにした
-- プレビュー再生で最後まで再生した時は再生開始位置に戻るようにした
-- オブジェクト設定のクリック中のコピー、貼り付け、削除、切り取りのキー操作はフィルタ項目を対象とするようにした
-- オブジェクト設定のフィルタ項目の追加時の挿入位置を調整
-- オブジェクト設定の数値設定項目で計算式を入力出来るようにした
-- シーンリストの操作にシーンのコピー、貼り付けを追加
-- シーンリストのクリック中のコピー、貼り付け、削除、複製のキー操作はシーンを対象とするようにした
-- シーンをファイルから作成、ファイルへ保存する機能を追加
+- Made scrolling follow item movement in object settings and scene lists.
+- Fixed a crash that could occur when dragging and dropping files into object settings.
+- Added file drag-and-drop support in object settings for several filter effects.
+- Added support for setting scenes and similar sources as pattern images for the Border and Outline filter effects.
+- Made preview playback return to the playback start position after playing to the end.
+- Made copy, paste, delete, and cut key operations while clicking object settings target filter items.
+- Adjusted insertion positions when adding filter items in object settings.
+- Added support for entering formulas in numeric setting items in object settings.
+- Added scene copy and paste operations to the scene list.
+- Made copy, paste, delete, and duplicate key operations while clicking the scene list target scenes.
+- Added features to create scenes from files and save scenes to files.
 
 ## 2.00 beta22a <Badge text="2025/12/2" />
 
-- 画像合成のフィルタ効果の中心座標を修正
+- Fixed the center coordinates of the Image Composition filter effect.
 
 ## 2.00 beta22 <Badge text="2025/11/30" />
 
-- シーンを複製した時にレイヤーの設定が複製されないのを修正
-- エイリアス追加等のダイアログで複数階層ラベルを設定出来るように修正
-- フィルタ効果でシーンを参照する時にシーンのフレーム範囲内を参照するように修正
-- 画像合成のフィルタ効果を追加
-- 時間制御編集で自身以外の制御点もスナップ対象にした
-- オブジェクト設定にサブグループ項目を表示出来るようにした
+- Fixed layer settings not being duplicated when duplicating scenes.
+- Added support for setting multi-level labels in dialogs such as Add Alias.
+- When filter effects reference scenes, they now reference within the scene's frame range.
+- Added the Image Composition filter effect.
+- Made control points other than the current one snap targets in time control editing.
+- Added support for showing subgroup items in object settings.
 
 ## 2.00 beta21 <Badge text="2025/11/22" />
 
-- 画像ループフィルタのオフセットの設定が反映されないのを修正
-- 個別オブジェクトの場合に出来るだけアンカーが表示されるように修正
-- 中心座標がオブジェクトの中心と異なる場合に一部のアンカーが正しく表示されないのを修正
-- シーンチェンジの映像参照フレームが正しく描画されないことがあるのを修正
-- 自動バックアップ保存時に編集データの更新フラグがクリアされていたのを修正
-- グループ制御にオフスクリーン描画を追加した場合に正しく描画されないのを修正
-- 上書き削除系の確認ダイアログの既定ボタンをキャンセルに変更
-- アプリケーション終了時の確認ダイアログを変更
-- 万華鏡フィルタに領域外を透過する設定を追加
-- 色設定のパレット名を変更出来るようにした
-- オブジェクト設定のプリセットを複数選択オブジェクトに適用出来るようにした
-- オブジェクト設定で同じフィルタへの追加や切替を複数選択オブジェクトに適用出来るようにした
-- 選択範囲の全てのレイヤーの切り取り、切り取りして詰める機能を追加
-- アプリケーションデータのフォルダの項目を追加
+- Fixed Image Loop filter offset settings not being applied.
+- Made anchors display as much as possible for individual objects.
+- Fixed some anchors not displaying correctly when center coordinates differ from the object center.
+- Fixed scene change video reference frames sometimes not drawing correctly.
+- Fixed the edit data update flag being cleared when saving automatic backups.
+- Fixed incorrect drawing when Off-screen Drawing is added to Group Control.
+- Changed the default button in overwrite/delete confirmation dialogs to Cancel.
+- Changed the confirmation dialog shown when exiting the application.
+- Added a setting to make areas outside the range transparent in the Kaleidoscope filter.
+- Added support for renaming color setting palettes.
+- Added support for applying object setting presets to multiple selected objects.
+- Added support for applying addition or switching to the same filter to multiple selected objects in object settings.
+- Added Cut and Cut and Close Gap features for all layers in the selected range.
+- Added folder items for application data.
 
 ## 2.00 beta20 <Badge text="2025/11/16" />
 
-- シーンチェンジの映像参照フレームの計算を修正
-- メディア入力があるオブジェクトは出力も含めて初期値となるように修正
-- グループ化したメディアエクスプローラーのパス変更時にタブ名が変更されないのを修正
-- ショートカットキー等でのオブジェクトの貼り付けの位置を修正
-- シーンの設定に背景色の項目を追加
-- レイヤー編集に拡大率とレイヤーの高さを変更する操作を追加
-- オブジェクト設定にプリセットを作成する機能を追加
-- 色設定のパレット作成時にラベルを指定出来るようにした
-- プレビュー編集でオブジェクトの中心座標もスナップ対象にした
-- 編集操作をしていない時は自動バックアップをスキップするようにした
-- バックアップ履歴から開いた時はプロジェクト名を空にして最近使った履歴に含めないようにした
-- ショートカットキーの追加とデフォルト設定を一部調整
-- シーンチェンジのデフォルト設定を一部調整
+- Fixed scene change video reference frame calculation.
+- Made objects with media input use initial values, including output.
+- Fixed grouped Media Explorer tab names not changing when paths change.
+- Fixed object paste positions for shortcut keys and similar operations.
+- Added a background color item to scene settings.
+- Added operations to change zoom ratio and layer height in layer editing.
+- Added a feature to create presets in object settings.
+- Added support for specifying labels when creating color setting palettes.
+- Made object center coordinates snap targets in preview editing.
+- Skipped automatic backup when no editing operation has been performed.
+- When opening from backup history, the project name is now cleared and not included in recent history.
+- Added shortcut keys and adjusted some default settings.
+- Adjusted some default scene change settings.
 
 ## 2.00 beta19a <Badge text="2025/11/9" />
 
-- スクリプトの実行モジュールが異なる時に正しく排他制御されないのを修正
-- シーンチェンジフィルタの表示時間位置の精度を修正
-- レイヤー設定にレイヤー選択時の設定対象変更のオプションを追加
-- レイヤー編集のツールチップの内容を変更
+- Fixed exclusive control not working correctly when script execution modules differ.
+- Fixed display time position precision for scene change filters.
+- Added an option to layer settings for changing the setting target when selecting layers.
+- Changed layer editing tooltip content.
 
 ## 2.00 beta19 <Badge text="2025/11/8" />
 
-- ログ表示で横スクロール出来るようにした
-- メディアエクスプローラーをグループ化した時のタブ名を調整
-- テキストオブジェクトに自動スクロールのオプションを追加
-- 粒子化フィルタにゆらぎ、ゆがみの設定を追加
-- レイヤー設定を追加
+- Added horizontal scrolling to the log display.
+- Adjusted tab names when Media Explorer is grouped.
+- Added an auto-scroll option to text objects.
+- Added fluctuation and distortion settings to the Particle filter.
+- Added layer settings.
 
 ## 2.00 beta18b <Badge text='2025/11/2' />
 
-- 時間制御(オブジェクト)の対象レイヤー範囲が正しく反映されないことがあるのを修正
+- Fixed the target layer range for Time Control (Object) sometimes not being applied correctly.
 
 ## 2.00 beta18a <Badge text="2025/11/2" />
 
-- プラグイン、スクリプト機能の修正
+- Fixed plugin and script features.
 
 ## 2.00 beta18 <Badge text="2025/11/1" />
 
-- 音声をPCM(float)32bitでファイル出力した時に落ちることがあるのを修正
-- オブジェクト設定のカラーコードの入力が色設定ウィンドウに反映されないのを修正
-- シーンの参照が複数階層の場合に正しく表示されないことがあるのを修正
-- バックアップファイル履歴の対象ファイルを既定のファイル名形式に限定するようにした
-- ハンドルされない例外やアプリケーション応答停止時にバックアップファイルを作成するようにした
-- 前回正常に終了しなかった場合にプロジェクトを復元するかを確認するようにした
-- 単一ファイルで構成されるプラグイン・スクリプトをD&Dでインストール出来るようにした
+- Fixed a crash that could occur when outputting audio as PCM (float) 32-bit.
+- Fixed color code input in object settings not being reflected in the color settings window.
+- Fixed scene references sometimes not displaying correctly when they span multiple levels.
+- Limited backup file history target files to the default file name format.
+- Added backup file creation for unhandled exceptions and application hangs.
+- Added a confirmation for restoring a project when the previous session did not exit normally.
+- Added support for installing single-file plugins and scripts by drag and drop.
 
 ## 2.00 beta17 <Badge text="2025/10/26" />
 
-- メディアファイルのD&D時に映像が1フレームで音声付き場合は音声ファイルと判定するように修正
-- 中間点のあるエイリアスファイル(.object)の貼り付けに失敗することがあるのを修正
-- フッター表示の総時間の計算を修正
-- ファイル出力ダイアログの表示項目を追加
-- 動画ファイルのD&D時に音声を分離するオプションを追加
-- 空のシーンへのD&D時にシーン設定を動画ファイルに合わせるオプションを追加
-- ウィンドウの表示エリア毎にウィンドウをグループに纏められるようにした
+- When dragging and dropping media files, one-frame video with audio is now detected as an audio file.
+- Fixed alias files (`.object`) with intermediate points sometimes failing to paste.
+- Fixed total time calculation in the footer display.
+- Added display items to the file output dialog.
+- Added an option to separate audio when dragging and dropping video files.
+- Added an option to match scene settings to a video file when dragging and dropping into an empty scene.
+- Added support for grouping windows by window display area.
 
 ## 2.00 beta16a <Badge text='2025/10/19' />
 
-- テキスト編集のサイズ指定、座標指定の入力補助が正しく反映されないのを修正
+- Fixed size and coordinate input assistance not being applied correctly in text editing.
 
 ## 2.00 beta16 <Badge text="2025/10/19" />
 
-- 画像ループで透明度のある画像が正しく描画されないのを修正
-- オーディオデータのアップサンプリング時の変換処理を修正
-- テキストオブジェクトの字間の上限値と描画オブジェクトの範囲を調整
-- テキスト編集でサイズ指定、座標指定の入力補助機能を追加
-- テキスト編集の入力補助メニューの設定ファイルを追加
-- 各ウィンドウを個別のウィンドウに分離出来るようにした
+- Fixed images with transparency not drawing correctly in Image Loop.
+- Fixed conversion processing when upsampling audio data.
+- Adjusted the character spacing upper limit for text objects and the range of drawn objects.
+- Added input assistance for size and coordinate specification in text editing.
+- Added a settings file for the text editing input assistance menu.
+- Added support for detaching each window into an individual window.
 
 ## 2.00 beta15 <Badge text="2025/10/12" />
 
-- 縁取りフィルタの描画処理を修正
-- 現在位置が表示されないスライダーの項目があるのを修正
-- 並行光源(カメラ制御)に影を付けるかのオプションを追加
-- カメラ制御の描画処理を調整
+- Fixed drawing processing for the Border filter.
+- Fixed some slider items not showing the current position.
+- Added an option to add shadows to Parallel Light (Camera Control).
+- Adjusted camera control drawing processing.
 
 ## 2.00 beta14 <Badge text="2025/10/5" />
 
-- 部分フィルタと組み合わせが出来ないフィルタを追加した時に落ちることがあるのを修正
-- BT.601からRGBへの変換式が正しくないのを修正
-- バックアップファイル、ファイル履歴の設定の最大数を100に変更
-- レイヤー編集の音声波形を絶対値で表示するオプションを追加
-- トラックバーの移動方法に移動量指定を追加
+- Fixed a crash that could occur when adding a filter that cannot be combined with partial filters.
+- Fixed the conversion formula from BT.601 to RGB.
+- Changed the maximum number for backup file and file history settings to 100.
+- Added an option to display audio waveforms as absolute values in layer editing.
+- Added Movement Amount Specification to trackbar movement methods.
 
 ## 2.00 beta13 <Badge text="2025/9/27" />
 
-- 画像ファイルで指定されているパスが正しくない時に落ちていたのを修正
-- グラデーションフィルタの描画処理を修正
-- VRAMにデータをキャッシュするかの判定を調整
-- 枠線を付けるフィルタ効果を追加
-- 直線移動(時間制御)で中間点無視の設定を追加
-- 時間制御編集で中間点の時間の位置を表示するオプションを追加
-- レイヤー編集のスクロールバーを上側に表示するオプションを追加
-- <kbd>Alt</kbd>+左クリックドラックで右クリックドラック操作とする共通操作の設定を追加
-- 複数のオブジェクトを選択した状態で纏めて変更出来るオブジェクト設定項目を拡張
-- 色設定で複数のオブジェクトを編集対象に出来るようにした。
+- Fixed a crash when an image file specified an invalid path.
+- Fixed drawing processing for the Gradient filter.
+- Adjusted the determination of whether data is cached in VRAM.
+- Added a filter effect that adds an outline.
+- Added an Ignore Intermediate Points setting to Linear Movement (Time Control).
+- Added an option to show intermediate point time positions in time control editing.
+- Added an option to show the layer editing scroll bar at the top.
+- Added a common operation setting that treats <kbd>Alt</kbd>+left-click drag as right-click drag.
+- Expanded object setting items that can be changed collectively when multiple objects are selected.
+- Added support for editing multiple objects in color settings.
 
 ## 2.00 beta12 <Badge text="2025/9/21" />
 
-- グリッド（XY軸）を表示している時に落ちることがあるのを修正
-- 図形の背景を使ったシーンを参照した時に正しく表示されないのを修正
-- オブジェクト設定のXYZ等のグループの連携設定を解除出来るようにした
-- 表示フレームの移動時に選択中のオブジェクトを追従するオプションを追加
-- ファイル設定項目でファイル指定を解除するボタンを追加
-- スクリプト系のファイル設定項目でファイルのD&Dに対応
-- 時間制御編集の制御点をカーソルや中間点にスナップするようにした
-- 時間制御編集の中間点位置の表示方法を変更
-- テキストの制御文字の装飾に取り消し線を追加
-- シーンを複製する機能を追加
+- Fixed a crash that could occur while Grid (XY Axis) was displayed.
+- Fixed scenes using a shape background not displaying correctly when referenced.
+- Added support for unlinking grouped settings such as XYZ in object settings.
+- Added an option for selected objects to follow when moving the displayed frame.
+- Added a button to clear file selection in file setting items.
+- Added file drag-and-drop support for script-related file setting items.
+- Made time control editing control points snap to the cursor and intermediate points.
+- Changed how intermediate point positions are displayed in time control editing.
+- Added strikethrough to text control character decorations.
+- Added a feature to duplicate scenes.
 
 ## 2.00 beta11a <Badge text="2025/9/14" />
 
-- モデルファイルの読み込みの修正
+- Fixed model file loading.
 
 ## 2.00 beta11 <Badge text="2025/9/13" />
 
-- テキストオブジェクトの長さを自動調節が有効の時に落ちるのを修正
-- オブジェクトの開始終了点をグループで移動する時に落ちることがあるのを修正
-- オブジェクトの開始終了点をグループで移動する時に再生位置等が調整されないのを修正
-- 複数オブジェクトのエイリアスでグループの設定を保存するように修正
-- ドロップシャドウの描画方法を変更
-- ダイアログを<kbd>Enter</kbd>キーで決定するかの設定を追加
-- ファイル出力完了時のサウンド（WAVファイル）を鳴らす設定を追加
-- ファイル出力に連番ファイル出力（PNG/JPG）を追加
-- 非圧縮画像用のファイル入力（BMP/TGA）を追加
-- 目標中心回転に距離の設定を追加
-- VRAM（GPU側のメモリ）に画像データをキャッシュ出来るようにした
-- モデルファイル（.obj）の読み込みに仮対応
+- Fixed a crash when automatic length adjustment is enabled for text objects.
+- Fixed a crash that could occur when moving object start/end points as a group.
+- Fixed playback position and related values not being adjusted when moving object start/end points as a group.
+- Made group settings be saved in aliases containing multiple objects.
+- Changed the drawing method for Drop Shadow.
+- Added a setting for whether dialogs are confirmed with the <kbd>Enter</kbd> key.
+- Added a setting to play a sound (WAV file) when file output completes.
+- Added sequential image output (PNG/JPG) to file output.
+- Added file input for uncompressed images (BMP/TGA).
+- Added a distance setting to Target-Centered Rotation.
+- Added support for caching image data in VRAM (GPU-side memory).
+- Temporarily added support for loading model files (`.obj`).
 
 ## 2.00 beta10 <Badge text="2025/9/7" />
 
-- 拡張色設定のフィルタ効果を追加
-- オーディオバッファを読み込むオブジェクトを追加
-- 縁取りフィルタにパターン画像ファイルの設定を追加
-- 再生位置をフレーム番号で表示するオプションを追加
-- 各種選択一覧メニューの設定でラベルを複数階層にする方法を追加
-- オブジェクト設定のスライダーをクリックした位置に移動する操作とオプションを追加
-- プレビュー編集画面にグリッド（XY軸）を表示する機能を追加
-- グリッド（BPM）、グリッド（カメラ制御）の設定値をプロジェクトのシーン毎に保持するように修正
-- 起動時のプロジェクトの初期値を前回の新規作成時の値とするように修正
-- プラグイン・スクリプトファイル追加時に確認ダイアログを表示するようにした
-- 32bitDLLの入出力プラグインの互換対応を削除
-- MediaFoundationReaderを削除
+- Added the Extended Color Setting filter effect.
+- Added an object that reads audio buffers.
+- Added a pattern image file setting to the Border filter.
+- Added an option to display playback position as a frame number.
+- Added a way to make labels multi-level in various selection list menu settings.
+- Added an operation and option to move object setting sliders to the clicked position.
+- Added a feature to show Grid (XY Axis) in the preview editing view.
+- Made Grid (BPM) and Grid (Camera Control) settings be stored per project scene.
+- Made the project's initial values on startup use the values from the previous new project creation.
+- Added confirmation dialogs when adding plugin and script files.
+- Removed compatibility support for 32-bit DLL input/output plugins.
+- Removed MediaFoundationReader.
 
 ## 2.00 beta9 <Badge text="2025/8/30" />
 
-- WaveFileReaderで音声がPCM16bit1ch,PCM24bitのファイルを読み込めるように修正
-- テキストオブジェクトの表示クリアの制御文字が正しく動作しないのを修正
-- テキストの個別オブジェクトの表示タイミングがフェード効果等に反映されないのを修正
-- シーンオブジェクトの長さの自動調節の最大が1フレーム短くなっていたのを修正
-- レイヤー上のオブジェクトのドラッグ移動時の補正処理を修正
-- ランダム移動の乱数の種の計算を修正
-- 複数のオブジェクトのエイリアスを作成出来るようにした
-- 動画ファイル等の再生位置の上限秒数を変更
-- 動画ファイルがYUV形式で読み込まれる場合の設定をオブジェクト設定に移動
-- プレビュー再生中以外も音量レベルメーターを反映するかのオプションを追加
+- Updated WaveFileReader to load audio files in PCM 16-bit 1ch and PCM 24-bit formats.
+- Fixed the display clear control character for text objects not working correctly.
+- Fixed display timing for individual text objects not being reflected in fade effects and similar effects.
+- Fixed the maximum automatic length adjustment for scene objects being one frame too short.
+- Fixed correction processing when dragging objects on layers.
+- Fixed random seed calculation for Random Movement.
+- Added support for creating aliases from multiple objects.
+- Changed the upper limit in seconds for playback positions of video files and similar media.
+- Moved settings used when video files are loaded in YUV format to object settings.
+- Added an option for whether the volume level meter updates outside preview playback.
 
 ## 2.00 beta8 <Badge text="2025/8/24" />
 
-- オブジェクトの長さを変更した時にレイヤー範囲の表示が崩れるのを修正
-- オブジェクトの出力種別の変更時に関連出来ないフィルタを削除するように修正
-- オブジェクトの開始終了点を移動する時にグループのオブジェクトも移動するように修正
-- <kbd>Ctrl</kbd>キーを押しながらオブジェクトのダブルクリックで同じレイヤーのオブジェクトを選択するように修正
-- <kbd>Shift</kbd>キーを押しながら中間点を操作した時に中間点以前以降を移動するように修正
-- プロジェクトの新規作成の設定値を次回作成時の初期値とするように修正
-- 出力中や再生中の状態での音声波形の取得処理を待機するように修正
-- 音声の分離でマルチトラックの数を分離するように修正
-- 音声波形の表示色の設定を調整
-- 画像描画の合成モードの処理を調整
-- 入力プラグインの排他制御を調整
-- 入力プラグインにWaveFileReaderを追加
-- オブジェクトの選択区間の長さを変更、中間点を均等配置を追加
-- プレビュー再生の音量レベルメーターを表示する機能を追加
+- Fixed layer range display breaking when object length changes.
+- Made unrelated filters be removed when changing an object's output type.
+- Made group objects also move when moving object start/end points.
+- Made <kbd>Ctrl</kbd>+double-clicking an object select objects on the same layer.
+- Made operations on intermediate points while holding <kbd>Shift</kbd> move before and after the intermediate point.
+- Made new project settings become the initial values for the next new project.
+- Made audio waveform retrieval wait while outputting or playing.
+- Made audio separation separate by the number of multitracks.
+- Adjusted audio waveform display color settings.
+- Adjusted blend mode processing for image drawing.
+- Adjusted exclusive control for input plugins.
+- Added WaveFileReader to input plugins.
+- Added changing the length of selected object sections and evenly spacing intermediate points.
+- Added a feature to show a volume level meter during preview playback.
 
 ## 2.00 beta7 <Badge text="2025/8/16" />
 
-- ショートカットキーが正しく保存されない場合があるのを修正
-- 表示メニューからのプレビュー編集のズームイン・ズームアウトが動作しないのを修正
-- 音声波形の取得中にキャッシュを破棄した場合に落ちることがあるのを修正
-- 基本出力（フレームバッファのデフォルト出力種別）の設定項目等を修正
-- 再生バッファの最大まで取得して再生するオプションを個別の操作に変更
-- マルチトラックの動画読み込みに対応する仕組みを追加 ※MediaFoundationFileReaderは仮対応
-- オブジェクト設定のフィルタ項目の切り取り、コピー、ペースト機能を追加
-- レイヤー上のオブジェクトの時間位置を調整する時間制御（オブジェクト）を追加
-- ウィンドウメニューのその他にアプリケーションデータ、ウェブサイトを表示するメニューを追加
+- Fixed shortcut keys sometimes not being saved correctly.
+- Fixed preview editing zoom in/out from the View menu not working.
+- Fixed a crash that could occur when discarding caches while retrieving audio waveforms.
+- Fixed setting items and related behavior for Basic Output, the default framebuffer output type.
+- Changed the option to play after filling the playback buffer to its maximum into a separate operation.
+- Added a mechanism for loading multitrack video. ※ MediaFoundationFileReader support is temporary.
+- Added cut, copy, and paste features for filter items in object settings.
+- Added Time Control (Object), which adjusts time positions of objects on layers.
+- Added menu items to show Application Data and Website under Other in the window menu.
 
 ## 2.00 beta6 <Badge text="2025/8/10" />
 
-- プレビュー再生のコマ落ち制御、バッファリング制御を調整
-- プレビュー再生中はログ表示を更新しないように修正
-- テキスト編集が非フォーカス時でもホイール操作が出来るように修正
-- オブジェクトの切り取り後にタイムラインを詰める・詰めない操作で分離
-- オブジェクトをタイムラインの左側に詰める機能を追加
-- オブジェクトをフレームの選択範囲に切り出す機能を追加
-- レイヤー編集の音声オブジェクトに音声波形を表示する機能を追加
-- レイヤー編集、テキスト編集等のD&D操作にテキストファイル（txt）を追加
-- レイヤー編集のオブジェクトのツールチップを表示するようにした
+- Adjusted frame drop and buffering control for preview playback.
+- Prevented log display updates during preview playback.
+- Added support for wheel operations when text editing is not focused.
+- Split object cut behavior into operations that close the timeline gap and operations that do not.
+- Added a feature to close objects to the left side of the timeline.
+- Added a feature to cut objects to the selected frame range.
+- Added a feature to show audio waveforms on audio objects in layer editing.
+- Added text files (`.txt`) to drag-and-drop operations for layer editing, text editing, and similar areas.
+- Added tooltips for objects in layer editing.
 
 ## 2.00 beta5 <Badge text="2025/8/3" />
 
-- テキスト内のスクリプトに全角文字が含められなくなったのを修正
-- 動画ファイルオブジェクトで音声無し、音声のみの場合の表示色を修正
-- 切り取り、分割時の選択オブジェクトを後方側となるように修正
-- グループ制御に追加したスクリプトのフィルタ効果が反映されない場合があるのを修正
-- ウィンドウの最大化の状態が次回起動時に反映されなかったのを修正
-- プレビューの停止と一時停止のボタン・ショートカットを分離
-- オブジェクト設定のオプションにスライダーの移動量の設定を追加
-- レイヤー編集のオブジェクト名を常に先頭から表示するオプションを追加
-- 映像オブジェクトから音声オブジェクトを分離する機能を追加
-- フレーム範囲選択の開始終了フレームに移動する機能を追加
-- 設定した移動量で現在のフレームを移動する機能を追加
+- Fixed full-width characters no longer being allowed in scripts inside text.
+- Fixed display colors for video file objects with no audio or audio only.
+- Made the selected object after cut or split be the later-side object.
+- Fixed script filter effects added to Group Control sometimes not being applied.
+- Fixed window maximized state not being reflected on the next startup.
+- Separated preview stop and pause buttons and shortcuts.
+- Added slider movement amount settings to object setting options.
+- Added an option to always show object names from the beginning in layer editing.
+- Added a feature to separate audio objects from video objects.
+- Added a feature to move to the start/end frames of the frame range selection.
+- Added a feature to move the current frame by the configured movement amount.
 
 ## 2.00 beta4 <Badge text="2025/7/27" />
 
-- リサイズの設定が正しく反映されない場合があるのを修正
-- テキスト内のスクリプトに改行を含められるように修正
-- テキスト編集で改行が反映されない場合があるのを修正
-- 音量フェードのフェードアウトの処理を修正
-- オブジェクトの中間点の位置で分割出来るように修正
-- スクリプトのリスト選択項目でデフォルト指定が無い場合に落ちることがあるのを修正
-- ファイル出力を中断をするタイミングでファイル出力が完了していた場合に落ちるのを修正
-- 環境設定等のファイルの保存先を実行ファイル直下の`data`フォルダに変更する方法を追加
-- レイヤー編集のマウスホイール操作を縦スクロールにするオプションを追加
-- フレーム範囲選択の操作を追加して指定範囲の切り取り、ファイル出力に対応
-- テキストオブジェクトのサロゲートペア文字、カラーフォントに仮対応
-- レイヤー編集のメニューにオブジェクト選択を追加
+- Fixed resize settings sometimes not being applied correctly.
+- Added support for line breaks in scripts inside text.
+- Fixed line breaks sometimes not being reflected in text editing.
+- Fixed fade-out processing for Volume Fade.
+- Added support for splitting objects at intermediate point positions.
+- Fixed a crash that could occur when script list selection items had no default specified.
+- Fixed a crash when file output completed at the timing where file output was being interrupted.
+- Added a way to change save destinations for environment settings and similar files to the `data` folder directly under the executable.
+- Added an option to make mouse-wheel operations in layer editing scroll vertically.
+- Added frame range selection operations and support for cutting and file output of the selected range.
+- Temporarily added support for surrogate pair characters and color fonts in text objects.
+- Added Object Selection to the layer editing menu.
 
 ## 2.00 beta3 <Badge text="2025/7/20" />
 
-- 画像の先読みタスク数が上限に達した場合にデッドロックするのを修正
-- 音声波形表示の設定値によっては落ちることがあるのを修正
-- AVI2.0のファイルが正しく読み込めなかったのを修正
-- 動画ファイル等の再生速度が変更された時のオブジェクトの長さ調整処理を修正
-- プレビュー編集画面のリサイズ操作でサイズ項目のUndoが反映されないのを修正
-- テキスト編集のペースト時に改行が正しく反映されるように修正
-- シーンの設定のフレームレートの上限値を修正
-- カメラ制御の目標レイヤーに自身のレイヤーを設定出来るようにした
-- 異なる太さのフォントに対応
-- 高DPI環境での表示に対応
-- 画面・色の設定を追加
-- 入出力プラグイン向けの対応フォーマットを追加
-- 言語ファイルをD&Dで設定出来るようにした
+- Fixed a deadlock when the number of image prefetch tasks reached the limit.
+- Fixed a crash that could occur depending on audio waveform display settings.
+- Fixed AVI 2.0 files not being read correctly.
+- Fixed object length adjustment when playback speed changes for video files and similar media.
+- Fixed undo not being reflected for size items when resizing in the preview editing view.
+- Made line breaks be reflected correctly when pasting in text editing.
+- Fixed the upper frame rate limit in scene settings.
+- Added support for setting the current layer as the target layer for Camera Control.
+- Added support for fonts with different weights.
+- Added support for high-DPI environments.
+- Added screen and color settings.
+- Added supported formats for input/output plugins.
+- Added support for setting language files by drag and drop.
 
 ## 2.00 beta2 <Badge text="2025/7/12" />
 
-- パーティクル出力の「移動範囲の座標からランダムに出力」の出力座標を修正
-- ワイプ、フェード、音量フェードが正しく動作しない場合があるのを修正
-- オブジェクト未選択時に「現在のフレームのオブジェクトを選択」操作で落ちるのを修正
-- スクリプトやシーンチェンジを利用したシーンを参照した場合に落ちることがあるのを修正
-- シーンの再帰の抑制処理を修正
-- カウンターの初期値の桁数を修正
-- オブジェクト設定のアイコン表示を修正
-- 一部の継続して問題ない例外を無視するように修正
-- ショートカットキーの追加と初期値を一部修正
-- 選択オブジェクトの前後のオブジェクトを選択する機能を追加
-- 選択オブジェクトの長さを変更する機能を追加
-- 選択オブジェクトを複製する機能を追加
-- 指定時間に移動する機能を追加
-- レイヤー編集で中間点追加・分割を現在のフレームで行うオプションを追加
-- メディアエクスプローラーにアプリケーションデータのフォルダを表示するメニューを追加
+- Fixed output coordinates for Randomly Output from Movement Range Coordinates in Particle Output.
+- Fixed Wipe, Fade, and Volume Fade sometimes not working correctly.
+- Fixed a crash when using Select Objects at Current Frame with no object selected.
+- Fixed a crash that could occur when referencing scenes that use scripts or scene changes.
+- Fixed scene recursion suppression processing.
+- Fixed the number of digits for counter initial values.
+- Fixed icon display in object settings.
+- Made some non-fatal exceptions be ignored.
+- Added shortcut keys and fixed some initial values.
+- Added a feature to select objects before or after the selected object.
+- Added a feature to change selected object length.
+- Added a feature to duplicate selected objects.
+- Added a feature to move to a specified time.
+- Added an option to add intermediate points and split at the current frame in layer editing.
+- Added a menu item to show application data folders in Media Explorer.
 
 ## 2.00 beta1 <Badge text="2025/7/7" />
 
-- ベータ版を公開
+- Released the beta version.

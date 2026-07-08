@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineProps } from "vue";
+import { computed } from "vue";
 import UiText from "./UiText.vue";
 import enEditor from "./ui/en_editor.yml";
 import enEffects from "./ui/en_effects.yml";

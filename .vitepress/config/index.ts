@@ -158,6 +158,13 @@ export default defineConfig({
     externalLinkIcon: true,
 
     logo: logoPngUrl,
+
+    socialLinks: [
+      {
+        icon: "github",
+        link: "https://github.com/aviutl2/aviutl2_modern_docs",
+      },
+    ],
   },
   markdown: {
     breaks: true,
@@ -165,14 +172,10 @@ export default defineConfig({
       md.use(markdownItBudoux({ language: "ja" }));
       md.use(asterisk);
     },
-    container: {
-      noteLabel: "補注",
-    },
     languageLabel: {
       aulua: "AviUtl2 Lua",
       autxt: "AviUtl2 Text",
     },
-    codeCopyButtonTitle: "コピー",
     shikiSetup: async (shiki) => {
       await shiki.loadLanguage("hlsl");
       await shiki.loadLanguage(auluaGrammar);

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
-
 const props = defineProps<{
   lang: Record<string, Record<string, string>>;
   scope: string;

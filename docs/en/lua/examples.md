@@ -1,39 +1,39 @@
 ---
-title: Luaスクリプト：使用例
-description: AviUtl ExEdit2のLuaスクリプトの使用例について説明しています。
+title: "Lua Script: Examples"
+description: This page provides examples of Lua scripts in AviUtl ExEdit2.
 ---
 
-# 使用例
+# Examples
 
-## テキスト内でスクリプトを使う例
+## Example: Use a Script in Text
 
-以下のテキストでオブジェクト時間のタイムカウンタが表示します。
+The following text displays a time counter for the object time.
 
 ```autxt
-現在のオブジェクトの時間=<?mes(string.format("%02d:%02d.%02d", obj.time / 60, obj.time % 60, (obj.time * 100) % 100))?>
+Current object time=<?mes(string.format("%02d:%02d.%02d", obj.time / 60, obj.time % 60, (obj.time * 100) % 100))?>
 ```
 
-## オブジェクトの座標や角度を時間経過で変化させる例
+## Example: Change Object Coordinates and Angle Over Time
 
-以下のスクリプトで時間と共に右方向に移動しながら右回転します。
+The following script moves the object to the right and rotates it clockwise over time.
 
 ```aulua
 obj.ox = obj.ox + obj.time * 10
 obj.rz = obj.rz + obj.time * 360
 ```
 
-## オブジェクトにフィルタ効果をかける例
+## Example: Apply a Filter Effect to an Object
 
-以下のスクリプトで時間と共に明るくなったり暗くなったりします。
+The following script makes the object become brighter and darker over time.
 
 ```aulua
 i = math.cos(obj.time * math.pi * 2) * 50
 obj.effect("色調補正", "明るさ", 100 + i)
 ```
 
-## オブジェクトを複数描画させる例
+## Example: Draw an Object Multiple Times
 
-以下のスクリプトでオブジェクトを円状に10個描画します。
+The following script draws 10 copies of the object in a circle.
 
 ```aulua
 n = 10
@@ -46,12 +46,12 @@ for i = 0, n do
 end
 ```
 
-## オブジェクトを個別オブジェクトとして複数描画させる例
+## Example: Draw Multiple Copies as Individual Objects
 
-以下のスクリプトで文字列を個別オブジェクトとして描画します。
+The following script draws strings as individual objects.
 
 ```aulua
-local text = { "あ", "い", "う", "え", "お" }
+local text = { "A", "B", "C", "D", "E" }
 local ox = 0
 obj.multiobject(#text, function()
     obj.load("text", text[obj.index + 1])
@@ -61,48 +61,48 @@ end)
 obj.ox = 0
 ```
 
-## アニメーション効果、カスタムオブジェクト等を1ファイルで複数登録する例
+## Example: Register Multiple Animation Effects, Custom Objects, and Other Scripts in One File
 
-スクリプトファイル（\*.anm2,\*.obj2,\*.scn2,\*.cam2,\*.tra2）のファイル名の先頭を`@`にして以下のように各スクリプトの先頭に`@名前`のように定義すると複数のスクリプトを纏めて定義することが出来ます。
-※script.anm2,script.obj2のスクリプトもこの形式になっています。
+If the filename of a script file (`*.anm2`, `*.obj2`, `*.scn2`, `*.cam2`, `*.tra2`) starts with `@`, and each script starts with a definition such as `@name` as shown below, multiple scripts can be defined together.
+※ The scripts in `script.anm2` and `script.obj2` also use this format.
 
-### 複数登録する場合のファイル内容 `@複数登録例.anm`
+### File Contents for Multiple Registration: `@multi-registration-example.anm`
 
 ```aulua
 @sample1
---track0:速度,-10,10,10
+--track0:Speed,-10,10,10
 obj.ox = obj.ox + obj.track0 * obj.time
 @sample2
---track0:速度,-10,10,10
+--track0:Speed,-10,10,10
 obj.oy = obj.oy + obj.track0 * obj.time
 ```
 
-### 単独登録する場合のファイル内容 `単独登録例.anm`
+### File Contents for Single Registration: `single-registration-example.anm`
 
 ```aulua
---track0:速度,-10,10,10
+--track0:Speed,-10,10,10
 obj.ox = obj.ox + obj.track0 * obj.time
 ```
 
-## シーンチェンジスクリプトの例
+## Example: Scene Change Script
 
-以下のスクリプトで時間と共にクロスフェードします。
-シーンチェンジスクリプトではフレームバッファにシーンチェンジ後の画像オブジェクトにシーンチェンジ前の画像が入っていてどちらを表示するかの割合をobj.getvalue("scenechange")で取得して処理します。
-※0ならオブジェクト、1ならフレームバッファ側になります。
+The following script crossfades over time.
+In a scene change script, the frame buffer contains the image before the scene change, and the image object after the scene change contains the image after the scene change. The script uses `obj.getvalue("scenechange")` to get the ratio that determines which one is displayed.
+※ `0` means the object side, and `1` means the frame buffer side.
 
 ```aulua
 a = 1 - obj.getvalue("scenechange")
 obj.draw(0, 0, 0, 1, a)
 ```
 
-## アンカーポイントの表示と座標の取得をする例
+## Example: Display Anchor Points and Get Coordinates
 
-以下のスクリプトでアンカーポイントの表示と座標の取得をします。
+The following scripts display anchor points and get their coordinates.
 
-### 変数項目の配列を使う場合
+### Using an Array Variable Item
 
 ```aulua
---value@pos:座標,{}
+--value@pos:Coordinates,{}
 num = 3
 obj.setanchor("pos", num, "loop")
 for i = 0, num - 1 do
@@ -111,10 +111,10 @@ for i = 0, num - 1 do
 end
 ```
 
-※3D座標の場合はXYZの3座標ずつ配列に入ります。
-※pos={}は初期値を入れておくことも出来ます。
+※ For 3D coordinates, each XYZ coordinate triplet is stored in the array.
+※ `pos={}` can also contain initial values.
 
-### トラックバーを使う場合
+### Using Trackbars
 
 ```aulua
 --track@x:X,-100000,100000,0
@@ -129,25 +129,25 @@ for i = 0, num - 1 do
 end
 ```
 
-### 複数回のobj.setanchor()を使う場合
+### Using `obj.setanchor()` Multiple Times
 
 ```aulua
---value@pos1:座標1,{}
---value@pos2:座標2,{}
+--value@pos1:Coordinates 1,{}
+--value@pos2:Coordinates 2,{}
 obj.setanchor("pos1", 4, "loop", "color", RGB(0, 255, 255))
 obj.setanchor("pos2", 2, "line", "color", RGB(0, 255, 0))
 ```
 
-## トラックバー移動スクリプトの例
+## Example: Trackbar Movement Script
 
-以下のスクリプトでトラックバーの値を開始点から終了点まで等速で移動させます。
-トラックバー移動スクリプトでは通常のオブジェクト関係の変数や関数は使用出来ません。
-スクリプトファイル（\*.tra2）の先頭で`--twopoint`のように指定すると中間点を無視する設定になります。
-`--speed:加速初期値（0/1）,減速初期値（0/1）`のように指定すると加減速の設定が出来るようになります。
-`--param:初期値`のように指定するとトラックバーの設定値が指定出来るようになります。
-`--param:項目名,初期値`のように指定すると設定ダイアログの項目名を指定することが出来ます。
-`--param`を複数行指定することで複数の設定値を持つことが出来ます。
-`--timecontrol`のように指定するとトラックバーの時間制御編集が出来るようになります。
+The following script moves a trackbar value from the start point to the end point at a constant speed.
+Normal object-related variables and functions cannot be used in trackbar movement scripts.
+Specifying `--twopoint` at the beginning of a script file (`*.tra2`) ignores intermediate points.
+Specifying something like `--speed:initial acceleration value (0/1),initial deceleration value (0/1)` enables acceleration and deceleration settings.
+Specifying `--param:initial value` enables trackbar setting values.
+Specifying `--param:item name,initial value` sets an item name for the settings dialog.
+Specifying multiple `--param` lines allows multiple setting values.
+Specifying `--timecontrol` enables time control editing for the trackbar.
 
 ```aulua
 index, ratio = math.modf(obj.getpoint("index"))
@@ -156,18 +156,18 @@ ed = obj.getpoint(index + 1)
 return st + (ed - st) * ratio
 ```
 
-### 複数の設定値を指定した場合
+### When Multiple Setting Values Are Specified
 
 ```aulua
 param1, param2 = obj.getpoint("param")
 ```
 
-## ピクセルシェーダーを利用する例
+## Example: Use a Pixel Shader
 
-以下のスクリプトでオブジェクトの明るさを調整することが出来ます。
+The following script adjusts the brightness of the object.
 
 ```aulua
---track@bright:明るさ,-100,100,0,0.01
+--track@bright:Brightness,-100,100,0,0.01
 --[[pixelshader@psmain:
 cbuffer constant0: register(b0) {
     float bright;

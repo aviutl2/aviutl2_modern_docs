@@ -10,50 +10,50 @@ description: This page provides an overview of AviUtl ExEdit2.
 This tool allows you to display and process multiple videos, images, and text in arbitrary locations and output them to files.
 I hope this tool will be helpful for your video creation.
 
-## 動作環境
+## System Requirements
 
-- Windows10（64bit）以降に対応しています。
-- AVX2に対応したCPUが必要です。
-- DirectX11.3以上が必要です。
-- ROVに対応したGPUが必要です。
-  ※動作確認はWin10+GTX1650な環境で確認しています。
+- Windows 10 (64-bit) or later is supported.
+- A CPU with AVX2 support is required.
+- DirectX 11.3 or later is required.
+- A GPU with ROV support is required.
+  ※ Testing has been performed in a Windows 10 + GTX 1650 environment.
 
-## 使用上の注意
+## Usage Notes
 
-本プログラムはフリーソフトです。
-本プログラムの使用によって何らかの障害が発生した場合でも、作者は一切の責任を負わないものとします。
+This program is freeware.
+The author assumes no responsibility for any damage that may occur from using this program.
 
-プラグインやスクリプト等の外部ファイルも自己責任で使用してください。
-※外部プログラムにはマルウェア等が含まれるリスクがあるので注意が必要です。
+Use external files such as plugins and scripts at your own risk.
+※ External programs may contain malware or similar risks, so caution is required.
 
-本プログラムは商用を目的とした業務でも使用できます。
-本プログラム以外（素材・拡張機能等）はそちらの利用規約を確認ください。
-プログラムファイルの不特定多数への再配布はご遠慮ください。
+This program may also be used for commercial work.
+For items other than this program, such as assets and extensions, check their respective terms of use.
+Please refrain from redistributing the program files to an unspecified large audience.
 
-本プログラムで使用しているライブラリのライセンス等は、付属の[credits.txt](./credits/index.md)に纏めて記載しています。
+Licenses for the libraries used by this program are listed in the included [credits.txt](./credits/index.md).
 
-## 互換性
+## Compatibility
 
-- 内部フォーマットはRGBA16bitFloat（乗算済みα）、PCM32bitFloatになります。
-- 以前のAviUtlや拡張編集から内部設計が変わっているので動作が異なる場合があります。
-- 以前の32bitDLLのプラグインやDLLを同梱しているスクリプトは基本的に利用できません。
-- 以前の拡張編集のスクリプトに互換対応していますが、一部機能に対応していません。
-- 以前の上のオブジェクトでクリッピングが無くなり、代わりにクリッピングオブジェクトで下位オブジェクトをマスク処理をする形になります。
+- The internal formats are RGBA 16-bit float (premultiplied alpha) and PCM 32-bit float.
+- Because the internal design differs from previous AviUtl and ExEdit versions, behavior may differ.
+- Plugins using older 32-bit DLLs and scripts that bundle DLLs generally cannot be used.
+- Compatibility with previous ExEdit scripts is supported, but some features are not supported.
+- The previous clipping by the object above has been removed. Instead, clipping objects mask lower-level objects.
 
-## 注意点
+## Notes
 
-- 標準のファイル入力はAVI、WAV、BMP、PNG、JPG、GIFファイルに対応しています。
-- 標準のファイル出力は非圧縮AVI、PNG、JPGに対応しています。
-- WindowのImagingComponent（WIC）が対応している画像ファイルを読み込めますが拡張子の設定が必要です。
-- シーンの追加削除等の操作は現状ではUndoに対応していません。
-- 画像の最大サイズはDirectX11のTexture2Dの最大サイズ（16384x16384）になります。
+- Standard file input supports AVI, WAV, BMP, PNG, JPG, and GIF files.
+- Standard file output supports uncompressed AVI, PNG, and JPG.
+- Image files supported by Windows Imaging Component (WIC) can be loaded, but their extensions must be configured.
+- Operations such as adding or deleting scenes currently do not support Undo.
+- The maximum image size is the DirectX 11 Texture2D maximum size (16384x16384).
 
-## ファイル配置
+## File Placement
 
-- インストーラを利用しない場合の本体及び付属のファイルは任意のフォルダに配置してください。
-- `ProgramData\aviutl2`フォルダに環境設定等のファイルを保存します。※通常は`C:\ProgramData\aviutl2`
-- プラグインのフォルダは`ProgramData\aviutl2\Plugin`になります。※一つ下のフォルダも対象になります
-- スクリプトのフォルダは`ProgramData\aviutl2\Script`になります。※一つ下のフォルダも対象になります
-- フォントファイル（`*.ttf`、`*.ttc`、`*.otf`、`*.otc`）を`ProgramData\aviutl2\Font`に配置しておくとフォントの種類に追加されます。※一つ下のフォルダも対象になります
-- 絵文字用の画像ファイル（`*.svg`、`*.png`、`*.bmp`）を`ProgramData\aviutl2\Font`に配置しておくと制御文字から利用出来る絵文字の種類に追加されます。※ファイル名のベース部分が同じファイルは一つのみ絵文字として登録されます。
-- 本体ファイル等を配置したフォルダに`data`フォルダを作成すると`data`フォルダ内に環境設定等のファイルを保存するようになります。
+- If you do not use the installer, place the main program and included files in any folder.
+- Environment settings and similar files are saved in the `ProgramData\aviutl2` folder. ※ Normally, this is `C:\ProgramData\aviutl2`.
+- The plugin folder is `ProgramData\aviutl2\Plugin`. ※ One level below that folder is also included.
+- The script folder is `ProgramData\aviutl2\Script`. ※ One level below that folder is also included.
+- If font files (`*.ttf`, `*.ttc`, `*.otf`, `*.otc`) are placed in `ProgramData\aviutl2\Font`, they are added to the font list. ※ One level below that folder is also included.
+- If emoji image files (`*.svg`, `*.png`, `*.bmp`) are placed in `ProgramData\aviutl2\Font`, they are added as emojis that can be used from control characters. ※ Files with the same base filename are registered as only one emoji.
+- If you create a `data` folder in the folder where the main program files are placed, environment settings and similar files will be saved inside that `data` folder.

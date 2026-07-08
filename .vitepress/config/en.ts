@@ -10,7 +10,7 @@ export default defineAdditionalConfig({
         base: "/en",
         items: [
           { text: "Overview", link: "/" },
-          { text: "Usage", link: "/usage" },
+          { text: "Quick Guide", link: "/usage" },
           { text: "Changelog", link: "/changelog" },
         ],
       },
@@ -26,9 +26,9 @@ export default defineAdditionalConfig({
       {
         text: "credits.txt",
         base: "/en/credits",
-        items: [{ text: "Credits", link: "/" }],
+        items: [{ text: "Licenses", link: "/" }],
       },
-      { text: "About this page", link: "/en/about" },
+      { text: "About This Site", link: "/en/about" },
     ],
   },
 });

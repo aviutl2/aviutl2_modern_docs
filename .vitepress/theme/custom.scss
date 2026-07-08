@@ -27,12 +27,30 @@ kbd {
 
 :root {
   --vp-sidebar-bg-color: transparent;
+  --vp-font-family-base: "Yu Gothic UI", "Yu Gothic", sans-serif;
+  --vp-font-family-mono: Consolas, monospace;
+}
+:root[lang="en"] {
+  --vp-font-family-base: "Inter", "Yu Gothic UI", "Yu Gothic", sans-serif;
+
+  .asterisk-mark {
+    font-size: 0;
+    &::after {
+      content: "* ";
+      font-size: 1rem;
+    }
+  }
+}
+:root[lang="ja"] {
+  --vp-font-family-base: "Yu Gothic UI", "Yu Gothic", sans-serif;
 }
 
 .VPSidebar {
   --c-sidebar-background: #fff;
   background-image:
-    linear-gradient(color-mix(in srgb, var(--c-sidebar-background) 80%, transparent) 0 100%),
+    linear-gradient(
+      color-mix(in srgb, var(--c-sidebar-background) 80%, transparent) 0 100%
+    ),
     radial-gradient(at 50% 50%, #9b99e0ff, #9b99e000 70%),
     conic-gradient(
       from -45deg at 50% 50%,

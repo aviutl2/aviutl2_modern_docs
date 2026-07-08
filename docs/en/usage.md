@@ -1,688 +1,688 @@
 ---
-title: 簡易説明
-description: AviUtl ExEdit2の各種操作方法についての簡易説明です。
+title: Quick Guide
+description: A quick guide to various AviUtl ExEdit2 operations.
 ---
 
 <script setup>
 import EnUiText from "../components/EnUiText.vue";
 </script>
 
-# 簡易説明
+# Quick Guide
 
-簡易的な操作説明になります。※細かい説明は今後作成予定です。  
-基本的な操作は以前の拡張編集と似たような操作になっています。
+This is a quick operation guide. ※ More detailed explanations are planned for the future.  
+The basic operations are similar to the previous ExEdit.
 
-## "<EnUiText scope="Menu" text="ファイル" />" Menu
+## <EnUiText scope="Menu" text="ファイル" /> Menu
 
-プロジェクトの読み込みや保存、編集データのファイル出力が出来ます。
+Loads and saves projects, and exports editing data to files.
 
-## 「編集」メニュー
+## <EnUiText scope="Menu" text="編集" /> Menu
 
-各種編集操作や読み込み済みキャッシュの破棄等が出来ます。
+Provides editing operations and clears loaded caches.
 
-## 「表示」メニュー
+## <EnUiText scope="Menu" text="表示" /> Menu
 
-各ウィンドウの表示・非表示の切り替え等が出来ます。
+Shows or hides each window.
 
-## 「設定」メニュー
+## <EnUiText scope="Menu" text="設定" /> Menu
 
-ショートカットキーの登録や各種メニューの表示順序、バックアップやキャッシュサイズの設定等が出来ます。
+Configures shortcut keys, menu display order, backups, cache size, and other settings.
 
-## 「その他」メニュー
+## <EnUiText scope="Menu" text="その他" /> Menu
 
-バージョン情報やスクリプトの情報が確認出来ます。
+Shows version information and script information.
 
-## ウィンドウ操作
+## Window Operations
 
-アプリケーションウィンドウの中に各種ウィンドウを配置出来るようになっています。  
-各ウィンドウの境界でマウスのドラッグすることでサイズの変更や位置の入れ替えをすることが出来ます。  
-メニューバーの「表示」から各ウィンドウの表示・非表示を変更できます。  
-各ウィンドウの右クリックメニューの「ウィンドウ配置」から表示エリアのグループを変更できます。  
-※「ウィンドウを分離」で個別のウィンドウに分離することが出来ます。
-※「ウィンドウのグループ化」を有効にすると同じエリアのグループ化したウィンドウが纏まりタブで選択出来ます。
-各ウィンドウの右クリックメニューの「オプション」からウィンドウに関連する動作設定が変更できます。
+Various windows can be placed inside the application window.  
+Drag the border of each window to resize it or swap its position.  
+Use <EnUiText scope="Menu" text="表示" /> on the menu bar to show or hide each window.  
+Use <EnUiText scope="Menu" text="ウィンドウ配置" /> in each window's right-click menu to change its display area group.  
+※ <EnUiText scope="Menu" text="ウィンドウを分離" /> separates the window into its own window.
+※ When <EnUiText scope="Menu" text="ウィンドウのグループ化" /> is enabled, grouped windows in the same area are collected and selectable as tabs.
+Use <EnUiText scope="Menu" text="オプション" /> in each window's right-click menu to change behavior settings related to that window.
 
-## レイヤー編集
+## <EnUiText scope="Menu" text="レイヤー編集" />
 
-レイヤー上の任意の時間位置に画像ファイル等のオブジェクトを配置して表示することが出来ます。  
-各種オブジェクト描画やフィルタ処理は上から順に実行されます。
+Objects such as image files can be placed and displayed at any time position on a layer.  
+Object drawing and filter processing are executed in order from top to bottom.
 
-<kbd>Ctrl</kbd>キーを押しながらオブジェクトを操作すると複数のオブジェクトが選択状態になります。  
-※グループ化されたオブジェクトも選択状態になります。  
-<kbd>Ctrl</kbd>キーを押しながらオブジェクトをダブルクリックすると同じレイヤーのオブジェクトが選択出来ます。  
-※オブジェクトの開始終了点でダブルクリックした場合は開始以前終了以降のオブジェクトが選択出来ます。  
-<kbd>Ctrl</kbd>+<kbd>Shift</kbd>キーを押しながらクリックすると選択オブジェクト範囲内のオブジェクトを全選択することが出来ます。
-<kbd>Ctrl</kbd>キーを押しながらレイヤー名をクリックするとレイヤー上のオブジェクトのみを全選択することが出来ます。  
-※<kbd>Ctrl</kbd>キーを押したままマウスドラッグすると別レイヤーのオブジェクトも全選択状態に出来ます。  
-<kbd>Ctrl</kbd>キーを押しながらマウスドラッグ操作で矩形範囲のオブジェクトを選択することが出来ます。
+Hold <kbd>Ctrl</kbd> while operating objects to select multiple objects.  
+※ Grouped objects are also selected.  
+Hold <kbd>Ctrl</kbd> and double-click an object to select objects on the same layer.  
+※ If you double-click the start or end point of an object, objects before the start point or after the end point can be selected.  
+Hold <kbd>Ctrl</kbd>+<kbd>Shift</kbd> and click to select all objects within the selected object range.
+Hold <kbd>Ctrl</kbd> and click a layer name to select only the objects on that layer.  
+※ If you drag the mouse while holding <kbd>Ctrl</kbd>, objects on other layers can also be selected.  
+Hold <kbd>Ctrl</kbd> and drag the mouse to select objects in a rectangular range.
 
-オブジェクトの開始終了点の操作ではグループで開始終了位置が同一のオブジェクトも移動します。  
-オブジェクトの開始終了中間点の操作で<kbd>Shift</kbd>キーを押している場合は選択点以前以降が移動します。
-オブジェクトや開始終了中間点のクリック選択中はカーソルキーで位置を移動することが出来ます。
-中間点のクリック選択中の分割、中間点削除のショートカットキー操作はその中間点に対しての操作になります。
-<kbd>Alt</kbd>キーを押しながらオブジェクトをダブルクリックするとオブジェクトが参照しているシーンに移動することが出来ます。
+When operating an object's start or end point, objects in the same group that share the same start or end position also move.  
+When operating an object's start, end, or intermediate point while holding <kbd>Shift</kbd>, the area before or after the selected point moves.
+While an object or its start, end, or intermediate point is selected by clicking, the cursor keys can move its position.
+Shortcut key operations for splitting or deleting an intermediate point while it is selected apply to that intermediate point.
+Hold <kbd>Alt</kbd> and double-click an object to move to the scene referenced by that object.
 
-<kbd>Shift</kbd>キーを押しながら表示フレームを移動するとフレーム範囲選択状態に出来ます。  
-※上部のフレーム範囲選択表示をダブルクリックで範囲選択を解除することが出来ます。
+Hold <kbd>Shift</kbd> while moving the displayed frame to enter frame range selection mode.  
+※ Double-click the frame range selection display at the top to clear the range selection.
 
-メディアファイル、エイリアスファイル（.object）をD&Dすることで読み込むことが出来ます。  
-レイヤー名をクリックするとレイヤーの表示・非表示状態を変更することが出来ます。  
-※クリック選択中の削除、名前変更のショートカットキー操作はレイヤーに対しての操作になります。
-レイヤー名をドラッグするとレイヤー位置を変更できます。  
-<kbd>Alt</kbd>キーを押しながらレイヤー名をクリックすると他のレイヤーの表示・非表示状態を変更することが出来ます。  
-右ボタンドラッグでレイヤーをスクロール出来ます。  
-編集エリア部分で<kbd>Ctrl</kbd>キーを押しながら右ボタンドラッグ（左右）でレイヤーの拡大率を変更することが出来ます。
-レイヤー名部分で<kbd>Ctrl</kbd>キーを押しながら右ボタンドラッグ（上下）でレイヤーの高さを変更することが出来ます。
+Media files and alias files (`.object`) can be loaded by drag and drop.  
+Click a layer name to toggle the layer's visibility.  
+※ Shortcut key operations for delete or rename while a layer is selected by clicking apply to that layer.
+Drag a layer name to change the layer position.  
+Hold <kbd>Alt</kbd> and click a layer name to toggle the visibility of other layers.  
+Drag with the right mouse button to scroll layers.  
+In the editing area, hold <kbd>Ctrl</kbd> and drag with the right mouse button horizontally to change the layer zoom level.
+In the layer name area, hold <kbd>Ctrl</kbd> and drag with the right mouse button vertically to change the layer height.
 
-右クリックメニューから各種操作が出来ます。
-オブジェクトの整列操作はメニューを表示した時の右クリック位置の選択オブジェクトが基準になります。
-※右クリック位置にオブジェクトが無い場合は最後に選択したオブジェクトが基準になります。
-※整列操作は中間点や他のオブジェクトの位置によって移動が制限されることがあります。
-※選択オブジェクトに挟まれた未選択オブジェクトも纏めて移動されることがあります。
-※<kbd>Alt</kbd>キー+クリック操作は共通操作の設定の右クリックドラッグ操作設定によっては利用出来ません。
+Various operations are available from the right-click menu.
+Object alignment operations use the selected object at the right-click position when the menu was opened as the reference.
+※ If there is no object at the right-click position, the last selected object is used as the reference.
+※ Alignment operations may be restricted by intermediate points or the positions of other objects.
+※ Unselected objects between selected objects may also be moved together.
+※ <kbd>Alt</kbd>+click operations may be unavailable depending on the right-click drag operation settings in the common operation settings.
 
-## レイヤー設定
+## Layer Settings
 
-選択されたレイヤーの設定が表示されます。
-レイヤー上のメディアオブジェクト全てに対する座標、音量を調整することが出来ます。
-※カメラ制御の対象オブジェクトには影響しません。
+Displays settings for the selected layer.
+Coordinates and volume can be adjusted for all media objects on the layer.
+※ This does not affect target objects for camera control.
 
-## プレビュー編集
+## <EnUiText scope="Menu" text="プレビュー編集" />
 
-現在の表示フレームのプレビューを表示します。  
-下部のコントロールバーから表示フレームの変更や再生等の操作が出来ます。
+Displays a preview of the currently displayed frame.  
+The control bar at the bottom can change the displayed frame, play the preview, and perform other operations.
 
-プレビュー表示されているオブジェクトはマウスドラックで移動することが出来ます。
-オブジェクトの頂点の拡大縮小アンカーはマウスドラックで拡大率を変更することが出来ます。
-オブジェクト自体のAlt+ドラック操作で拡大率を変更することも出来ます。
-※入力設定に「サイズ」項目が存在して「移動無し」の場合は拡大率ではなくサイズを調整します。
-拡大縮小アンカーはAlt+ドラック操作でZ軸回転の設定を変更することも出来ます。
-※オブジェクトのアンカーはフィルタ効果等の組み合わせ方によっては正しく表示出来ない場合があります。
+Previewed objects can be moved by dragging with the mouse.
+Scale anchors at the object's vertices can change the scale by dragging with the mouse.
+The scale can also be changed by <kbd>Alt</kbd>+dragging the object itself.
+※ If the input settings contain a <EnUiText scope="Effect" text="サイズ" /> item and it is set to <EnUiText scope="Effect" text="移動無し" />, the size is adjusted instead of the scale.
+Scale anchors can also change the Z-axis rotation setting with <kbd>Alt</kbd>+drag.
+※ Object anchors may not display correctly depending on the combination of filter effects.
 
-回転アンカーの表示が有効の場合はオブジェクトの中心に回転アンカーが表示されます。
-回転アンカーをドラッグするとオブジェクトを縦横軸で回転することが出来ます。
-Altキーを押しながらドラッグすると奥行き軸で回転することが出来ます。
-Altキーを押しながらダブルクリックするとオブジェクトを正面に向けることが出来ます。
+When rotation anchor display is enabled, a rotation anchor appears at the center of the object.
+Drag the rotation anchor to rotate the object on the vertical and horizontal axes.
+Hold <kbd>Alt</kbd> while dragging to rotate on the depth axis.
+Hold <kbd>Alt</kbd> and double-click to face the object forward.
 
-カメラ制御の場合は右ボタンドラッグでカメラの視点の変更が出来ます。  
-音量レベルメーターの平均レベルは再生時は約400ms、編集時は1フレームの平均値になります。
+For camera control, drag with the right mouse button to change the camera viewpoint.  
+The average level of the volume level meter is about 400 ms during playback and the average value for one frame during editing.
 
-メディアファイル、プロジェクトファイル、エイリアスファイル（.object）をD&Dすることで現在のフレーム位置のレイヤーに追加することが出来ます。
+Media files, project files, and alias files (`.object`) can be added to the layer at the current frame position by drag and drop.
 
-<kbd>Ctrl</kbd>+マウスホイール操作でマウス位置を基準にプレビュー画面の拡大率を変更出来ます。
-ホイールボタンドラッグでプレビュー画面をスクロール出来ます。
-右クリックメニューから各種操作が出来ます。
+Use <kbd>Ctrl</kbd>+mouse wheel to change the preview screen zoom level around the mouse position.
+Drag with the wheel button to scroll the preview screen.
+Various operations are available from the right-click menu.
 
-## シーン再生
+## Scene Playback
 
-指定のシーンの表示フレームのプレビューを表示します。
-下部のコントロールバーから表示フレームの変更や再生等の操作が出来ます。
+Displays a preview of the displayed frame for the specified scene.
+The control bar at the bottom can change the displayed frame, play the preview, and perform other operations.
 
-同じシーンや参照シーンの編集フレームの移動に連動することが出来ます。
-参照シーンの連動はシーンオブジェクトやマスク等のシーンを参照するフィルタが存在する場合に連動します。
-※参照シーンの連動はシーンオブジェクトの設定等よっては正しく連動出来ない場合があります。
-※再生速度が移動無しで順方向、再生位置が再生範囲に設定されている必要があります。
+It can follow movement of the editing frame in the same scene or a referenced scene.
+Referenced scene synchronization works when a scene object or a filter such as a mask that references a scene exists.
+※ Referenced scene synchronization may not work correctly depending on the scene object settings.
+※ The playback speed must be set to <EnUiText scope="Effect" text="移動無し" /> in the forward direction, and the playback position must be set to <EnUiText scope="Effect" text="再生範囲" />.
 
-プレビュー画面をクリックすると再生、マウスドラックで表示フレームを移動することが出来ます。
-<kbd>Ctrl</kbd>+マウスホイール操作でマウス位置を基準にプレビュー画面の拡大率を変更出来ます。
-右ボタンドラッグでプレビュー画面をスクロール出来ます。
-右クリックメニューから各種操作が出来ます。
+Click the preview screen to play, or drag with the mouse to move the displayed frame.
+Use <kbd>Ctrl</kbd>+mouse wheel to change the preview screen zoom level around the mouse position.
+Drag with the right mouse button to scroll the preview screen.
+Various operations are available from the right-click menu.
 
-## オブジェクト設定
+## <EnUiText scope="Menu" text="オブジェクト設定" />
 
-レイヤーから選択されたオブジェクトの設定が表示されます。  
-フィルタ名をドラッグするとフィルタ項目の位置を変更できます。
-※クリック選択中のコピー、貼り付け、削除等のショートカットキー操作はフィルタ項目に対しての操作になります。
+Displays the settings for the object selected from the layer.  
+Drag a filter name to change the position of the filter item.
+※ Shortcut key operations such as copy, paste, and delete while a filter item is selected by clicking apply to that filter item.
 
-トラックバーの数値の部分は直接入力できます。※入力中に<kbd>Tab</kbd>キーで次の候補に移動します。  
-※スライダーをクリックした位置に移動するオプションが有効な場合はダブルクリックで入力状態に出来ます。
-数値部分をドラッグすることで値を変更することも出来ます。  
-※スライダーのつまみを表示するオプションが有効な場合はつまみのドラックで値を変更することも出来ます。
-<kbd>Shift</kbd>キーを押しながらドラッグすると細かく変更出来ます。
-<kbd>Alt</kbd>キーを押しながらクリックするとスライダーをクリックした位置へ移動出来ます。
-数値やリスト項目は<kbd>Ctrl</kbd>+マウスホイール操作で値を変更することも出来ます。
+The numeric part of a trackbar can be entered directly. ※ Press <kbd>Tab</kbd> while entering a value to move to the next candidate.  
+※ If the option to move to the clicked slider position is enabled, double-clicking can enter input mode.
+Values can also be changed by dragging the numeric part.  
+※ If the option to show the slider knob is enabled, values can also be changed by dragging the knob.
+Hold <kbd>Shift</kbd> while dragging to make finer adjustments.
+Hold <kbd>Alt</kbd> and click to move to the clicked slider position.
+Numeric values and list items can also be changed with <kbd>Ctrl</kbd>+mouse wheel.
 
-オブジェクトにシーンを参照する設定項目がある場合は<kbd>Alt</kbd>キーを押しながら設定項目のボタンをダブルクリックすると参照しているシーンに移動することが出来ます。
+If an object has a setting item that references a scene, hold <kbd>Alt</kbd> and double-click that setting item's button to move to the referenced scene.
 
-オブジェクトを選択している状態で<kbd>Tab</kbd>キー（標準設定）を押すと現在のフレーム上にあるオブジェクトに移動します。
-既に選択されている場合はその次のレイヤーのオブジェクトに移動します。  
-<kbd>Shift</kbd>キーを押しながらだと逆方向に移動します。
+When an object is selected, pressing <kbd>Tab</kbd> (default setting) moves to an object on the current frame.
+If that object is already selected, it moves to the object on the next layer.  
+Hold <kbd>Shift</kbd> to move in the reverse direction.
 
-複数のオブジェクトを選択した状態で設定項目を変更すると選択オブジェクトの全てに反映します。
-※ファイルやシーン等の一部項目やフィルタの位置が異なる場合は反映されません。
+When setting items are changed while multiple objects are selected, the changes are applied to all selected objects.
+※ Some items, such as files and scenes, and cases where filter positions differ are not applied.
 
-右クリックメニューからオブジェクト作成時や初期化時の初期値を変更することが出来ます。
-メディア入力があるオブジェクトの場合は出力も組み合わせた設定が初期値として保存されます。
-※出力としての初期値を設定することは出来ません。※パーティクル出力の初期値等
+The right-click menu can change default values used when creating or initializing objects.
+For objects with media input, settings combined with the output are saved as the default values.
+※ Defaults cannot be set as output defaults. ※ Such as particle output defaults.
 
-アイコンメニューから設定項目のプリセットを作成することが出来ます。
-プリセットは自身のみの設定か自身以降のフィルタ効果を含めた設定を保存して呼び出すことが出来ます。
-※自身以降のフィルタ効果を含めた場合はプリセット適用時に自身以降を差し替えます。
-プリセット作成時には保存対象とする設定項目を指定することが出来ます。
-対象外の設定項目はプリセットを適用しても適用前の設定値が維持されます。
+The icon menu can create presets for setting items.
+Presets can save and recall either only the current settings or settings that include filter effects from the current item onward.
+※ If filter effects from the current item onward are included, applying the preset replaces the current item and later items.
+When creating a preset, you can specify which setting items to save.
+Setting items outside the target range keep their previous values even after the preset is applied.
 
-選択中のオブジェクトに座標等の設定があるメディアオブジェクトの場合は
-テンキーの<kbd>2</kbd><kbd>4</kbd><kbd>6</kbd><kbd>8</kbd>で移動、<kbd>/</kbd><kbd>\*</kbd>で回転、<kbd>-</kbd><kbd>+</kbd>で拡大率が変更することが出来ます。
+If the selected object is a media object with settings such as coordinates,
+the numeric keypad <kbd>2</kbd><kbd>4</kbd><kbd>6</kbd><kbd>8</kbd> moves it, <kbd>/</kbd><kbd>\*</kbd> rotates it, and <kbd>-</kbd><kbd>+</kbd> changes its scale.
 
-対応するメディアファイルをD&Dすることで設定ファイルを変更することが出来ます。  
-右ボタンドラッグで設定画面をスクロール出来ます。  
-右クリックメニューから各種操作が出来ます。
+The setting file can be changed by dragging and dropping a supported media file.  
+Drag with the right mouse button to scroll the settings screen.  
+Various operations are available from the right-click menu.
 
-## メディアエクスプローラー
+## <EnUiText scope="Menu" text="メディアエクスプローラー" />
 
-ウィンドウズのエクスプローラーを表示します。  
-上部のコントロールバーから表示フォルダの移動が出来ます。  
-上部のコントロールバーからの右クリックメニューでブックマークやウィンドウ配置、アプリケーションデータのフォルダの表示が出来ます。  
-※アプリケーションデータのファイル設置はアプリケーション再起動後に反映されます。
+Displays Windows Explorer.  
+The control bar at the top can move between displayed folders.  
+The right-click menu on the top control bar can manage bookmarks, change window placement, and show the application data folder.  
+※ Files placed in the application data folder are reflected after restarting the application.
 
-## シーンリスト
+## <EnUiText scope="Menu" text="シーンリスト" />
 
-シーンの一覧を表示します。  
-シーン名をドラッグするとシーンの位置を変更できます。
-※クリック選択中のコピー、貼り付け、削除等のショートカットキー操作はシーンに対しての操作になります。
+Displays the scene list.  
+Drag a scene name to change the scene position.
+※ Shortcut key operations such as copy, paste, and delete while a scene is selected by clicking apply to that scene.
 
-メディアファイル、シーンファイルをD&Dすることでシーンを追加することが出来ます。
-※以前の拡張編集のオブジェクトファイル（exo）をシーンとして追加できますが、様々な仕様の違いがあるので正しく読めない部分が多いです。
+Scenes can be added by dragging and dropping media files or scene files.
+※ Object files (`exo`) from the previous ExEdit can be added as scenes, but many parts may not load correctly because of various specification differences.
 
-右ボタンドラッグで一覧画面をスクロール出来ます。
-右クリックメニューから各種操作が出来ます。
-※シーンのコピーは参照コピーになります。
+Drag with the right mouse button to scroll the list screen.
+Various operations are available from the right-click menu.
+※ Scene copies are reference copies.
 
-## オブジェクトリスト
+## <EnUiText scope="Menu" text="オブジェクトリスト" />
 
-現在のフレームのオブジェクトの一覧を表示します。  
-右ボタンドラッグで一覧画面をスクロール出来ます。  
-右クリックメニューから各種操作が出来ます。
+Displays a list of objects on the current frame.  
+Drag with the right mouse button to scroll the list screen.  
+Various operations are available from the right-click menu.
 
-## 色設定
+## <EnUiText scope="Menu" text="色設定" />
 
-選択中オブジェクトの色を設定します。  
-オブジェクト設定の色設定項目の設定アイコンをクリックすることで対象項目の設定を表示することが出来ます。
-複数のオブジェクトを選択した状態で設定アイコンをクリックすると複数のオブジェクトを変更出来ます。
+Sets the color of the selected object.  
+Click the settings icon for a color setting item in <EnUiText scope="Menu" text="オブジェクト設定" /> to display settings for that target item.
+If multiple objects are selected when the settings icon is clicked, multiple objects can be changed.
 
-上部の切り替えアイコンからパレットの作成変更が出来ます。  
-パレットの色にはプリセット名を設定することが出来ます。  
-プリセット名はオブジェクト設定の色設定項目の選択リストに追加されます。  
-プリセット名はテキストスクリプトから呼び出すことが出来ます。
+The switch icon at the top can create and change palettes.  
+Preset names can be set for palette colors.  
+Preset names are added to the selection list for color setting items in <EnUiText scope="Menu" text="オブジェクト設定" />.  
+Preset names can be referenced from text scripts.
 
-## 時間制御編集
+## <EnUiText scope="Menu" text="時間制御編集" />
 
-選択中オブジェクトの時間制御設定を編集します。  
-オブジェクト設定のトラックバーの移動方法が時間制御に対応している場合に設定アイコンをクリックすることで対象項目の設定を表示することが出来ます。
+Edits time control settings for the selected object.  
+If the trackbar movement method in <EnUiText scope="Menu" text="オブジェクト設定" /> supports time control, click the settings icon to display settings for the target item.
 
-時間制御ではオブジェクトの開始から終了までの時間軸を調整することが出来ます。  
-横軸が開始値から終了値までの値軸、縦軸が開始時間から終了時間までの時間軸になっています。  
-※直線移動（時間制御）、補間移動（時間制御）では中間点の時間は無視され時間制御設定の時間が反映されます。
+Time control can adjust the time axis from the start to the end of an object.  
+The horizontal axis is the value axis from the start value to the end value, and the vertical axis is the time axis from the start time to the end time.  
+※ For <EnUiText scope="Effect" text="直線移動(時間制御)" /> and <EnUiText scope="Effect" text="補間移動(時間制御)" />, intermediate point times are ignored and the times from the time control settings are applied.
 
-上部のリストアイコンからプリセットの読み込み、作成をすることが出来ます。  
-右クリックメニューから各種操作が出来ます。  
-コピー、貼り付け操作は時間制御設定の全体が対象になります。
+The list icon at the top can load and create presets.  
+Various operations are available from the right-click menu.  
+Copy and paste operations target the entire time control setting.
 
-## テキスト編集
+## <EnUiText scope="Menu" text="テキスト編集" />
 
-選択中オブジェクトのテキストを編集します。  
-オブジェクトの入力項目にテキストが含まれる場合に編集することが出来ます。
+Edits the text of the selected object.  
+Editing is available when the object's input item contains text.
 
-テキスト編集では<kbd>Ctrl</kbd>+<kbd>Space</kbd>キーで入力補助機能が利用できます。  
-フォント名の制御文字部分では設定されているフォントの候補が表示されます。  
-カラーコードの制御文字部分では設定されているプリセット色の候補が表示されます。  
-絵文字の制御文字部分では登録されている絵文字の候補が表示されます。  
-それ以外では制御文字のテンプレートメニューが表示されます。
-範囲選択中に<kbd>Ctrl</kbd>+<kbd>プラス・マイナスキー（テンキー）</kbd>でサイズ指定の制御文字が入力補助されます。
-範囲選択中に<kbd>Ctrl</kbd>+<kbd>カーソルキー</kbd>で座標指定の制御文字が入力補助されます。
+In text editing, <kbd>Ctrl</kbd>+<kbd>Space</kbd> can use input assistance.  
+In the font-name control character section, candidates for configured fonts are displayed.  
+In the color-code control character section, candidates for configured preset colors are displayed.  
+In the emoji control character section, candidates for registered emojis are displayed.  
+In other areas, a control character template menu is displayed.
+While a range is selected, <kbd>Ctrl</kbd>+<kbd>plus/minus keys on the numeric keypad</kbd> assists with entering size control characters.
+While a range is selected, <kbd>Ctrl</kbd>+<kbd>cursor keys</kbd> assists with entering coordinate control characters.
 
-## エイリアス
+## Alias
 
-オブジェクト設定等から現在の設定値でのオブジェクトやフィルタ、数値項目のエイリアスを作成することが出来ます。
+Aliases can be created for objects, filters, and numeric items with the current setting values from <EnUiText scope="Menu" text="オブジェクト設定" /> and other areas.
 
-エイリアスの保存フォルダは`ProgramData\aviutl2\Alias`になります。  
-※現状では削除機能が無いので直接ファイルを削除してください。
+The alias save folder is `ProgramData\aviutl2\Alias`.  
+※ There is currently no delete function, so delete files directly.
 
-## ショートカットキー
+## Shortcut Keys
 
-ウィンドウメニューの「設定」→「ショートカットキーの設定」からショートカットキーを登録することが出来ます。  
-対象のショートカットキー欄をクリックしてからキーを押すことで変更できます。
+Shortcut keys can be registered from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="ショートカットキーの設定" /> in the window menu.  
+Click the target shortcut key field, then press a key to change it.
 
-## オブジェクト追加メニュー
+## Object Add Menu
 
-ウィンドウメニューの「設定」→「オブジェクト追加メニューの設定」からオブジェクトの追加メニューの表示順序や階層、表示/非表示を変更することが出来ます。
+The display order, hierarchy, and visibility of the object add menu can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="オブジェクト追加メニューの設定" /> in the window menu.
 
-対象の項目欄をマウスドラックすることで表示順序が変更できます。  
-対象のラベル欄をクリックすると表示階層名を選択、編集することが出来ます。  
-ラベル名に`\`で区切られた文字を指定すると複数階層にすることが出来ます。
-右クリックメニューから各種操作が出来ます。
+Drag the target item field with the mouse to change the display order.  
+Click the target label field to select or edit the display hierarchy name.  
+Specify text separated by `\` in the label name to create multiple hierarchy levels.
+Various operations are available from the right-click menu.
 
-## トラックバー移動メニュー
+## Trackbar Move Menu
 
-ウィンドウメニューの「設定」→「トラックバー移動メニューの設定」からトラックバーの移動方法のメニューの表示順序や階層、表示/非表示を変更することが出来ます。
+The display order, hierarchy, and visibility of the trackbar movement method menu can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="トラックバー移動メニューの設定" /> in the window menu.
 
-対象の項目欄をマウスドラックすることで表示順序が変更できます。  
-対象のラベル欄をクリックすると表示階層名を選択、編集することが出来ます。  
-ラベル名に`\`で区切られた文字を指定すると複数階層にすることが出来ます。
-右クリックメニューから各種操作が出来ます。
+Drag the target item field with the mouse to change the display order.  
+Click the target label field to select or edit the display hierarchy name.  
+Specify text separated by `\` in the label name to create multiple hierarchy levels.
+Various operations are available from the right-click menu.
 
-## 時間制御プリセットメニュー
+## Time Control Preset Menu
 
-ウィンドウメニューの「設定」→「時間制御メニューの設定」から時間制御のプリセット一覧のメニューの表示順序や階層、表示/非表示を変更することが出来ます。
+The display order, hierarchy, and visibility of the time control preset list menu can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="時間制御メニューの設定" /> in the window menu.
 
-対象の項目欄をマウスドラックすることで表示順序が変更できます。  
-対象のラベル欄をクリックすると表示階層名を選択、編集することが出来ます。  
-ラベル名に`\`で区切られた文字を指定すると複数階層にすることが出来ます。
-右クリックメニューから各種操作が出来ます。
+Drag the target item field with the mouse to change the display order.  
+Click the target label field to select or edit the display hierarchy name.  
+Specify text separated by `\` in the label name to create multiple hierarchy levels.
+Various operations are available from the right-click menu.
 
-## プリセット色メニュー
+## Preset Color Menu
 
-ウィンドウメニューの「設定」→「プリセット色メニューの設定」からプリセット色のメニューの表示順序や階層、表示/非表示を変更することが出来ます。
+The display order, hierarchy, and visibility of the preset color menu can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="プリセット色メニューの設定" /> in the window menu.
 
-対象の項目欄をマウスドラックすることで表示順序が変更できます。  
-対象のラベル欄をクリックすると表示階層名を選択、編集することが出来ます。  
-ラベル名に`\`で区切られた文字を指定すると複数階層にすることが出来ます。
-右クリックメニューから各種操作が出来ます。
+Drag the target item field with the mouse to change the display order.  
+Click the target label field to select or edit the display hierarchy name.  
+Specify text separated by `\` in the label name to create multiple hierarchy levels.
+Various operations are available from the right-click menu.
 
-## フォントメニュー
+## Font Menu
 
-ウィンドウメニューの「設定」→「フォントメニューの設定」からフォントのメニューの表示順序や階層、表示/非表示を変更することが出来ます。
-※ドロップダウンリストには全てのフォントが表示されます。
-リストボックス側にも設定を適用するオプションを利用出来ます。
+The display order, hierarchy, and visibility of the font menu can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="フォントメニューの設定" /> in the window menu.
+※ All fonts are displayed in the dropdown list.
+An option is available to apply the settings to list boxes as well.
 
-対象の項目欄をマウスドラックすることで表示順序が変更できます。  
-対象のラベル欄をクリックすると表示階層名を選択、編集することが出来ます。  
-ラベル名に`\`で区切られた文字を指定すると複数階層にすることが出来ます。
-右クリックメニューから各種操作が出来ます。
+Drag the target item field with the mouse to change the display order.  
+Click the target label field to select or edit the display hierarchy name.  
+Specify text separated by `\` in the label name to create multiple hierarchy levels.
+Various operations are available from the right-click menu.
 
-## 入力プラグインの設定
+## Input Plugin Settings
 
-ウィンドウメニューの「設定」→「入力プラグインの設定」から入力プラグインの優先順位や対応拡張子を変更することが出来ます。  
-メディアファイルの読み込み時は対応拡張子が設定されているプラグインが利用されます。
+The priority order and supported extensions of input plugins can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="入力プラグインの設定" /> in the window menu.  
+When loading media files, plugins with configured supported extensions are used.
 
-対象のプラグイン欄をマウスドラックすることで優先順位が変更できます。  
-右クリックメニューから対象プラグインの設定等の操作が出来ます。
+Drag the target plugin field with the mouse to change its priority order.  
+The right-click menu can perform operations such as configuring the target plugin.
 
-## バックアップ履歴
+## Backup History
 
-ウィンドウメニューの「設定」→「バックアップ履歴の設定」から自動バックアップや編集レジューム、履歴一覧の設定をすることが出来ます。  
-バックアップの保存フォルダは`ProgramData\aviutl2\Backup`になります。
+Automatic backups, edit resume, and history list settings can be configured from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="バックアップ履歴の設定" /> in the window menu.  
+The backup save folder is `ProgramData\aviutl2\Backup`.
 
-## キャッシュサイズ
+## Cache Size
 
-ウィンドウメニューの「設定」→「キャッシュサイズの設定」から各種キャッシュサイズの設定を変更することが出来ます。
-VRAMデータキャッシュは静止画のみキャッシュ対象となります。
-※0に設定した場合はVRAMデータキャッシュが無効になります。
+Various cache size settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="キャッシュサイズの設定" /> in the window menu.
+The VRAM data cache only caches still images.
+※ If set to 0, the VRAM data cache is disabled.
 
-## 共通操作の設定
+## Common Operation Settings
 
-ウィンドウメニューの「設定」→「共通操作の設定」から全体の共通操作の設定を変更することが出来ます。
+Overall common operation settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="共通操作の設定" /> in the window menu.
 
-## 画面・色の設定
+## Screen and Color Settings
 
-ウィンドウメニューの「設定」→「画面・色の設定」から高DPI表示やYUV入出力変換の設定を変更することが出来ます。  
-※アプリケーション起動中のDPIの変更は反映されません。  
-※高DPI環境で拡大サイズ表示した場合に見えづらくなる場合があります。
+High-DPI display and YUV input/output conversion settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="画面の設定" /> in the window menu.  
+※ DPI changes while the application is running are not reflected.  
+※ In high-DPI environments, enlarged size display may be difficult to see.
 
-## 言語の設定
+## Language Settings
 
-ウィンドウメニューの「設定」→「言語の設定」から言語を変更することが出来ます。  
-言語ファイル（.aul2）を`ProgramData\aviutl2\Language`に配置することで言語を追加することが出来ます。  
-言語ファイル（.aul2）をプレビュー画面にD&Dすることでも設定できます。
+The language can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="言語の設定" /> in the window menu.  
+Languages can be added by placing language files (`.aul2`) in `ProgramData\aviutl2\Language`.  
+Language files (`.aul2`) can also be set by dragging and dropping them onto the preview screen.
 
-## メディアオブジェクトを追加
+## Add Media Objects
 
-レイヤー編集ウィンドウの右クリックメニューからメディアオブジェクトを追加することが出来ます。
-メディアオブジェクトは上のレイヤーから順番に描画されます。
-右クリックメニューにある「フィルタ効果を追加」からフィルタ効果をレイヤー上に配置すると直前のメディアオブジェクトに対してフィルタ効果をかけることが出来ます。
+Media objects can be added from the right-click menu in the <EnUiText scope="Menu" text="レイヤー編集" /> window.
+Media objects are drawn in order from the upper layers.
+If a filter effect is placed on a layer from <EnUiText scope="Menu" text="フィルタ効果を追加" /> in the right-click menu, the filter effect is applied to the immediately preceding media object.
 
-## フィルタオブジェクトを追加
+## Add Filter Objects
 
-レイヤー編集ウィンドウの右クリックメニューからフィルタオブジェクトを追加することが出来ます。
-フィルタオブジェクトは現在の描画バッファに対してフィルタをかけることが出来ます。
+Filter objects can be added from the right-click menu in the <EnUiText scope="Menu" text="レイヤー編集" /> window.
+Filter objects can apply filters to the current drawing buffer.
 
-## 動画ファイル
+## <EnUiText text="動画ファイル" />
 
-指定した動画ファイルを読み込みます。標準ではAVIファイルが読み込めます。
-再生位置が「移動無し」「再生範囲」でループ再生しない場合はオブジェクトの開始終了位置の変更や分割で再生位置が調整されます。
-※再生速度の設定によっては調整出来ない場合があります。
+Loads the specified video file. AVI files can be loaded by default.
+If the playback position is <EnUiText scope="Effect" text="移動無し" /> or <EnUiText scope="Effect" text="再生範囲" /> and loop playback is not used, the playback position is adjusted when changing or splitting the object's start and end positions.
+※ Depending on the playback speed setting, adjustment may not be possible.
 
-## 画像ファイル
+## <EnUiText text="画像ファイル" />
 
-指定した画像ファイルを読み込みます。標準ではBMP,PNG,JPG,GIFファイルが読み込めます。
-WindowのImagingComponent（WIC）が対応している画像ファイルを読み込むことが出来ますが入力プラグインの設定からWICImageFileReaderの拡張子の登録が必要になります。
+Loads the specified image file. BMP, PNG, JPG, and GIF files can be loaded by default.
+Image files supported by Windows Imaging Component (WIC) can be loaded, but their extensions must be registered for WICImageFileReader from the input plugin settings.
 
-## 音声ファイル
+## <EnUiText text="音声ファイル" />
 
-指定した音声ファイルを読み込みます。標準ではWAVファイルが読み込めます。
-再生位置が「移動無し」「再生範囲」、再生速度が「移動無し」でループ再生しない場合はオブジェクトの開始終了位置の変更や分割で再生位置が調整されます。
+Loads the specified audio file. WAV files can be loaded by default.
+If the playback position is <EnUiText scope="Effect" text="移動無し" /> or <EnUiText scope="Effect" text="再生範囲" />, the playback speed is <EnUiText scope="Effect" text="移動無し" />, and loop playback is not used, the playback position is adjusted when changing or splitting the object's start and end positions.
 
-## テキスト
+## Text
 
-テキストを表示します。  
-テキストには制御文字が利用できます。
+Displays text.  
+Control characters can be used in text.
 
-### 色の変更（文字色、影縁色）
+### Change Color (Text Color, Shadow/Outline Color)
 
-`<#[RGB値（16進数）[,RGB値]]>` ※RGB値以外にプリセット色を指定できます。
-文字色、影縁色を変更します。
+`<#[RGB value (hex)][,RGB value]>` ※ Preset colors can be specified instead of RGB values.
+Changes the text color and shadow/outline color.
 
-例：`<#ffffff>` `<#000000,ffffff>` `<#>` `<#red>`
+Example: `<#ffffff>` `<#000000,ffffff>` `<#>` `<#red>`
 
-### サイズの変更
+### Change Size
 
-`<s[文字サイズ]>`
-`<s[フォントサイズ][,フォント名][,装飾（B=太字/I=斜体/S=取り消し線）][,縁取りサイズ]>`
+`<s[text size]>`
+`<s[font size][,font name][,decoration (B=bold/I=italic/S=strikethrough)][,outline size]>`
 
-文字のサイズを変更します。※フォント等も変更できますが`<@フォント>`での変更が推奨です
-※フォントサイズにプラスマイナスや`*`を付けると相対の指定になります。
+Changes the text size. ※ Fonts and other settings can also be changed, but changing them with `<@font>` is recommended.
+※ Adding plus, minus, or `*` to the font size makes it a relative specification.
 
-例：`<s32>` `<s+10>` `<s*1.5>` `<s>`
+Example: `<s32>` `<s+10>` `<s*1.5>` `<s>`
 
-### フォント、文字装飾の変更
+### Change Font and Text Decoration
 
-`<@[フォント名][,文字装飾（0～6/B/I/S）]>`
+`<@[font name][,text decoration (0-6/B/I/S)]>`
 
-フォントや文字装飾を変更します。
-文字装飾：
+Changes the font and text decoration.
+Text decoration:
 
-- `0`：標準文字
-- `1`：影付き文字
-- `2`：影付き文字（薄）
-- `3`：縁取り文字
-- `4`：縁取り文字（細）
-- `5`：縁取り文字（太）
-- `6`：縁取り文字（角）
+- `0`: standard text
+- `1`: shadowed text
+- `2`: shadowed text (light)
+- `3`: outlined text
+- `4`: outlined text (thin)
+- `5`: outlined text (thick)
+- `6`: outlined text (square)
 
-スタイル：
+Style:
 
-- `B`：太字
-- `I`：斜体
-- `S`：取り消し線
+- `B`: bold
+- `I`: italic
+- `S`: strikethrough
 
-※スタイルは文字装飾の番号の後に複数指定できます。
-※取り消し線は個別オブジェクトの場合に利用出来ません。
+※ Multiple styles can be specified after the text decoration number.
+※ Strikethrough cannot be used for individual objects.
 
-例：`<@メイリオ>` `<@メイリオ,3>` `<@メイリオ,6BI>` `<@>`
+Example: `<@Meiryo>` `<@Meiryo,3>` `<@Meiryo,6BI>` `<@>`
 
-### フォントスタイルの変更
+### Change Font Style
 
-`<@+[スタイル(B=太字/I=斜体/S=取り消し線)]>` ※フォントスタイルの追加
-`<@-[スタイル(B=太字/I=斜体/S=取り消し線)]>` ※フォントスタイルの削除
+`<@+[style (B=bold/I=italic/S=strikethrough)]>` ※ adds a font style
+`<@-[style (B=bold/I=italic/S=strikethrough)]>` ※ removes a font style
 
-現在のフォントにスタイルの追加削除をします。
+Adds or removes styles from the current font.
 
-例：`<@+B>` `<@-B>`
+Example: `<@+B>` `<@-B>`
 
-### プリセットの適用
+### Apply Preset
 
-`<$[プリセット名]>`
+`<$[preset name]>`
 
-テキストのプリセットで対象項目が有効になっている設定を反映します。※制御文字で変更可能な項目のみ反映します
-※サイズ、字間、行間、表示速度は開始点の値を反映します。
-※`<$>`はプリセットで変更可能な設定項目の全てをテキストの初期値に戻します。
+Applies settings for enabled target items in the text preset. ※ Only items that can be changed with control characters are applied.
+※ Size, character spacing, line spacing, and display speed use the values at the start point.
+※ `<$>` resets all setting items that can be changed by presets to the initial text values.
 
-個別オブジェクトの場合は自身以降のフィルタ効果も適用されます。※フィルタの追加になります
+For individual objects, filter effects from the current item onward are also applied. ※ They are added as filters.
 
-例：`<$プリセット名>` `<$>`
+Example: `<$preset name>` `<$>`
 
-### 表示速度の変更
+### Change Display Speed
 
-`<r[表示速度]>`
+`<r[display speed]>`
 
-文字の表示速度を変更します。
+Changes the text display speed.
 
-例：`<r10>` `<r>`
+Example: `<r10>` `<r>`
 
-### 表示ウェイト
+### Display Wait
 
-`<w[待機時間（秒）]>`
+`<w[wait time (seconds)]>`
 
-指定の時間が経過するまで表示を待機します。
-時間の前に`*`を付けると表示した文字数を掛けた時間で待機します。
+Waits to display until the specified time has elapsed.
+Adding `*` before the time waits for that time multiplied by the number of displayed characters.
 
-例：`<w5>` `<w0.5>` `<w*0.2>`
+Example: `<w5>` `<w0.5>` `<w*0.2>`
 
-### 表示クリア
+### Clear Display
 
-`<c[クリアまでの待機時間（秒）]>` ※直後の改行は無視されます。
+`<c[wait time until clear (seconds)]>` ※ The immediately following line break is ignored.
 
-指定の時間を待機した後に文字をクリアします。※未指定は即時クリア
+Clears the text after waiting for the specified time. ※ If omitted, the text is cleared immediately.
 
-例：`<c>` `<c5>` `<c*0.2>`
+Example: `<c>` `<c5>` `<c*0.2>`
 
-### 座標の指定
+### Specify Coordinates
 
-`<p[X座標][,Y座標][,Z座標]>`
+`<p[X coordinate][,Y coordinate][,Z coordinate]>`
 
-文字を表示する位置を指定の座標に変更します。※値によっては正しく描画出来ない場合があります
-座標にプラスマイナスを付けると相対の座標指定になります。
-相対での指定は`<p>`で基準座標に戻すことが出来ます。※絶対指定や改行後は基準が更新されます
+Changes the text display position to the specified coordinates. ※ Depending on the value, it may not draw correctly.
+Adding plus or minus to coordinates makes them relative coordinate specifications.
+For relative specifications, `<p>` can return to the base coordinates. ※ Absolute specifications and line breaks update the base.
 
-例：`<p+10>` `<p20,40,80>` `<p+20,+40>` `<p>`
+Example: `<p+10>` `<p20,40,80>` `<p+20,+40>` `<p>`
 
-### 字間・行間の変更
+### Change Character and Line Spacing
 
-`<gw[字間]>`
-`<gh[行間]>`
+`<gw[character spacing]>`
+`<gh[line spacing]>`
 
-字間・行間を変更します。
+Changes character spacing and line spacing.
 
-例：`<gw10>` `<gh10>` `<gw>` `<gh>`
+Example: `<gw10>` `<gh10>` `<gw>` `<gh>`
 
-### 文字変形の指定
+### Specify Text Transformation
 
-`<tw[横スケール]>`
-`<th[幅スケール]>`
-`<tr[角度]>`
+`<tw[horizontal scale]>`
+`<th[width scale]>`
+`<tr[angle]>`
 
-表示する文字の縦横スケールや角度を変更します。※値によっては正しく描画出来ない場合があります
-角度にプラスマイナスを付けると相対の角度指定になります。
+Changes the vertical/horizontal scale and angle of displayed text. ※ Depending on the value, it may not draw correctly.
+Adding plus or minus to the angle makes it a relative angle specification.
 
-例：`<tw0.8>` `<th0.8>` `<tr90>` `<tr+45>` `<tw>` `<th>` `<tr>`
+Example: `<tw0.8>` `<th0.8>` `<tr90>` `<tr+45>` `<tw>` `<th>` `<tr>`
 
-### 絵文字の表示
+### Display Emoji
 
-`<&[絵文字名]>`
+`<&[emoji name]>`
 
-登録されている画像ファイルを絵文字として表示します。  
-※アプリケーションデータのフォントファイルのフォルダに絵文字の画像ファイルを配置する必要があります。
+Displays a registered image file as an emoji.  
+※ Emoji image files must be placed in the application data font file folder.
 
-例：`<&絵文字>` `<&いいね>`
+Example: `<&emoji>` `<&like>`
 
-### ふりがな(ルビ)の指定
+### Specify Furigana (Ruby)
 
-`</>[漢字]<![スケール][+]>[ふりがな]></>`
+`</>[kanji]<![scale][+]>[furigana]></>`
 
-文字列ブロックに対してふりがな表示の指定します。
-※制御文字との組み合わせによっては正しく描画出来ない場合があります。
-プラス指定を付けるとふりがなを含めた行間に拡張します。
+Specifies furigana display for a text block.
+※ Depending on the combination with control characters, it may not draw correctly.
+Adding the plus specification expands line spacing to include furigana.
 
-例：`</>制御文字<!>せいぎょもじ</>`
-`</>行間拡張<!+>ぎょうかんかくちょう</>`
-`</>字間調整<!0.4><gw8><#ff8888>じかんちょうせい<#><gw></>`
+Example: `</>control characters<!>kontororu moji</>`
+`</>line spacing expansion<!+>gyokan kakucho</>`
+`</>character spacing adjustment<!0.4><gw8><#ff8888>jikan chosei<#><gw></>`
 
-### コメント、文字列区切り
+### Comments and Text Block Separators
 
-`<//[コメント]//>` ※改行を含めたコメントに出来ます
-`</>` ※文字列のブロックを区切ることが出来ます(初期は行全体がブロック)
+`<//[comment]//>` ※ Comments can include line breaks.
+`</>` ※ Separates text blocks. By default, the entire line is one block.
 
-表示に影響しないコメントを記述できます。
+Comments that do not affect display can be written.
 
-例：`<// あとで修正する //>`
+Example: `<// fix later //>`
 
-### スクリプト
+### Script
 
-`<?[スクリプト]?>`
-`<?=[スクリプトの関数mes()の引数]?>`
+`<?[script]?>`
+`<?=[argument for the script function mes()]?>`
 
-スクリプトを実行して戻り値の文字列を表示します。
-※スクリプトの仕様については[Luaスクリプト](./lua/index)を参照してください
+Executes a script and displays the returned string.
+※ For script specifications, see [Lua Script](./lua/index).
 
-例：`<?obj.rz=obj.time*360?>` `<?=string.format("%02d:%02d",obj.time/60,obj.time%60)?>`
+Example: `<?obj.rz=obj.time*360?>` `<?=string.format("%02d:%02d",obj.time/60,obj.time%60)?>`
 
-## 図形
+## Figure
 
-単色の背景や簡単な図形を表示します。  
-図形の種類ボタンからSVGファイルを指定すると図形として利用できます。  
-SVGファイルを`ProgramData\aviutl2\Figure`に配置しておくと図形の種類に追加されます。
+Displays a solid-color background or simple shapes.  
+If an SVG file is specified from the figure type button, it can be used as a figure.  
+Placing SVG files in `ProgramData\aviutl2\Figure` adds them to the figure types.
 
-## フレームバッファ
+## Frame Buffer
 
-現在の描画バッファのデータを取り込みます。  
-画面全体にフィルタを掛ける場合に利用します。
+Imports data from the current drawing buffer.  
+Use this when applying a filter to the entire screen.
 
-## 画像合成（オブジェクト）
+## <EnUiText text="画像合成(オブジェクト)" />
 
-下位のレイヤーにある画像合成の対象オブジェクトを一つの画像に合成します。
-※対象レイヤー数で下位のレイヤー範囲を指定することが出来ます。
-※画像合成オブジェクトは対象レイヤーの最下位で描画されます。
-※対象オブジェクトはグループ制御やカメラ制御の対象になりません。画像合成オブジェクトが対象となります。
-※対象オブジェクトのフィルタの組み合わせ方によっては意図した動作にならない場合があります。
-※対象オブジェクトが同一平面上に配置されない場合は意図した表示や動作にならない場合があります。
+Composites image-composition target objects on lower layers into a single image.
+※ The lower layer range can be specified with the number of target layers.
+※ The image composition object is drawn at the bottom of the target layers.
+※ Target objects are not targets of group control or camera control. The image composition object becomes the target instead.
+※ Depending on the filter combinations of the target objects, the result may not behave as intended.
+※ If target objects are not placed on the same plane, the display or behavior may not match the intended result.
 
-## グループ制御
+## Group Control
 
-下位のレイヤーにあるグループ制御の対象オブジェクトの描画座標、音量等を調整します。
-※対象レイヤー数で下位のレイヤー範囲を指定することが出来ます。
-フィルタ効果の追加で対象のメディアオブジェクト全てにフィルタ効果を適用することが出来ます。
+Adjusts drawing coordinates, volume, and other values for group-control target objects on lower layers.
+※ The lower layer range can be specified with the number of target layers.
+Adding filter effects can apply filter effects to all target media objects.
 
-## カメラ制御
+## Camera Control
 
-下位のレイヤーにあるカメラ制御の対象オブジェクトをカメラの座標と目標点の方向にあわせて描画します。
-※対象レイヤー数で下位のレイヤー範囲を指定することが出来ます。
-※対象オブジェクトは対象レイヤーの最下位で纏めて描画されます。
-※プレビュー時のグリッド(カメラ制御)の表示はフレームバッファに描画されます。
-※環境光の設定が無い状態で光源を設定した場合は環境光が自動設定されます。
-※影を付ける範囲が大きい場合に正しく影を描画出来ない場合があります。
-※カメラ制御の光源は最大10個まで追加出来ます。
+Draws camera-control target objects on lower layers according to the camera coordinates and the direction of the target point.
+※ The lower layer range can be specified with the number of target layers.
+※ Target objects are drawn together at the bottom of the target layers.
+※ During preview, the grid display for camera control is drawn to the frame buffer.
+※ If a light source is set when no ambient light setting exists, ambient light is set automatically.
+※ If the shadow range is large, shadows may not draw correctly.
+※ Up to 10 light sources can be added for camera control.
 
-## シーンチェンジ
+## Scene Change
 
-シーン切り替えのエフェクトを追加します。
+Adds a scene transition effect.
 
-シーンの切り替わるフレーム位置にシーンチェンジの開始フレームを合わせるように配置してください。  
-動画ファイルオブジェクトの終端にシーンチェンジの先頭を配置した場合は動画の再生が継続されます。
-※カメラ制御対象範囲にシーンチェンジがある場合はシーンチェンジ対象部分が先に描画されます。
-※時間制御の組み合わせ方によっては意図した動作にならない場合があります。
+Place it so that the start frame of the scene change aligns with the frame position where the scene switches.  
+If the beginning of the scene change is placed at the end of a video file object, video playback continues.
+※ If a scene change is inside a camera-control target range, the scene-change target area is drawn first.
+※ Depending on the combination with time control, the result may not behave as intended.
 
-ワイプ効果を定義したモノクロのPNGファイルを`ProgramData\aviutl2\Transition`に配置しておくとシーンチェンジの種類に追加されます。
+Placing monochrome PNG files that define wipe effects in `ProgramData\aviutl2\Transition` adds them to the scene change types.
 
-## モーションブラー
+## <EnUiText text="モーションブラー" />
 
-時間軸方向に画像をぼかします。
-オブジェクトやフィルタ効果の組み合わせによっては正しく処理出来ない場合があります。
-※シークや再生時のコマ落ち等でオブジェクトの途中から表示した時は正しい表示になりません。
-※カメラ制御対象範囲にモーションブラーがある場合はブラー部分が先に描画されます。
-※編集用視点のカメラ制御対象範囲の場合はモーションブラーを無効にします。
+Blurs the image along the time axis.
+Depending on the combination of objects and filter effects, processing may not work correctly.
+※ If display starts from the middle of an object because of seeking or dropped frames during playback, it will not display correctly.
+※ If motion blur is inside a camera-control target range, the blurred part is drawn first.
+※ Motion blur is disabled for camera-control target ranges in the editing viewpoint.
 
-## 部分フィルタ
+## Partial Filter
 
-部分フィルタに追加されたフィルタ効果を画面の一部分のみに反映させます。
-※フィルタによっては正しく処理出来ない場合があります。
-※カメラ制御対象範囲に部分フィルタがある場合は部分フィルタ対象部分が先に描画されます。
+Applies filter effects added to the partial filter only to part of the screen.
+※ Some filters may not process correctly.
+※ If a partial filter is inside a camera-control target range, the partial-filter target area is drawn first.
 
-## クリッピングオブジェクト
+## Clipping Object
 
-メディアオブジェクトをクリッピングオブジェクトに設定すると下位のレイヤーにある対象オブジェクトをクリッピングオブジェクトの形に切り抜いて描画することが出来ます。
-※オブジェクト設定の上部にあるアイコンからクリッピングオブジェクトの切り替えが出来ます。
+When a media object is set as a clipping object, target objects on lower layers can be clipped and drawn in the shape of the clipping object.
+※ Clipping objects can be toggled from the icon at the top of <EnUiText scope="Menu" text="オブジェクト設定" />.
 
-対象オブジェクトがグループ制御やカメラ制御の場合はグループ制御、カメラの制御の対象オブジェクトの全てが切り抜きの対象になります。
+If the target object is group control or camera control, all objects targeted by that group control or camera control become clipping targets.
 
-複数のクリッピングオブジェクトを対象オブジェクトの上位のレイヤーに配置した場合はクリッピングオブジェクトを合成して切り抜きます。
+If multiple clipping objects are placed on layers above the target object, the clipping objects are composited and used for clipping.
 
-## 参照式
+## Reference Expressions
 
-オブジェクト設定の数値項目の名前のクリックメニューから参照式を設定することが出来ます。  
-参照式を設定すると自身やその他の項目の値を参照して計算した結果を最終的な値とすることが出来ます。
+Reference expressions can be set from the click menu for numeric item names in <EnUiText scope="Menu" text="オブジェクト設定" />.  
+When a reference expression is set, the final value can be calculated by referencing values from the current item or other items.
 
-### 同一エフェクトの別項目を参照する例
+### Example: Reference Another Item in the Same Effect
 
 `X`  
 `サイズ`
 
-### 同一オブジェクトの別エフェクトの項目を参照する例
+### Example: Reference an Item in Another Effect on the Same Object
 
 `ぼかし.範囲`  
 `図形.X`
 
-### 別レイヤーのオブジェクトのエフェクトの項目を参照する例
+### Example: Reference an Effect Item on an Object in Another Layer
 
 `layer1.ぼかし.範囲`  
-`above.X` ※一番近くの上側のオブジェクトを参照  
-`under.X` ※一番近くの下側のオブジェクトを参照  
-`above2.X` ※2つ上のレイヤーのオブジェクトを参照  
-`under2.X` ※2つ下のレイヤーのオブジェクトを参照  
-`レイヤー名.ぼかし.範囲` ※レイヤー名を設定している場合はレイヤー名でも指定出来ます
+`above.X` ※ references the nearest object above  
+`under.X` ※ references the nearest object below  
+`above2.X` ※ references the object two layers above  
+`under2.X` ※ references the object two layers below  
+`レイヤー名.ぼかし.範囲` ※ can specify a layer by name when a layer name is set
 
-### 参照項目から値を計算する例
+### Example: Calculate Values from Referenced Items
 
 `X*2`  
 `layer1.X-100`  
 `@abs(layer7.X)/2`
 
-### 自身の項目名で参照する例
+### Example: Reference Using the Current Item Name
 
-項目名が`$`の場合は自身の項目名に展開されます。
+If the item name is `$`, it is expanded to the current item name.
 
 `above.$`  
 `$+1`
 
-### 参照式で利用出来る関数
+### Functions Available in Reference Expressions
 
-関数名の先頭に`@`が付きます。
+Function names are prefixed with `@`.
 
-- `@min(a,b)` / `@max(a,b)` / `@abs(v)` ...：Luaのmathライブラリの各関数
-- `@clamp(v,min,max)`：追加の独自関数
+- `@min(a,b)` / `@max(a,b)` / `@abs(v)` ...: functions from Lua's math library
+- `@clamp(v,min,max)`: additional custom function
 
-※項目名によっては参照出来ない場合があります。（記号や先頭に数値が含まれる場合など）  
-※別レイヤーの先頭エフェクトを参照する場合はエフェクト名を省略出来ます。  
-※参照エフェクトがメディア入力の場合は出力の項目も対象になります。
+※ Some item names may not be referenceable, such as names containing symbols or starting with numbers.  
+※ When referencing the first effect on another layer, the effect name can be omitted.  
+※ If the referenced effect is media input, output items are also included.
 
-## スクリプト・プラグイン
+## Scripts and Plugins
 
-スクリプトファイルを追加することでアニメーション効果、カスタムオブジェクト、カメラ効果、シーンチェンジ、トラックバー移動方法を追加することが出来ます。
-※各スクリプトは個別のオブジェクト、フィルタ効果の項目になります。
+Adding script files can add animation effects, custom objects, camera effects, scene changes, and trackbar movement methods.
+※ Each script becomes an individual object or filter effect item.
 
-プラグインファイルを追加することで入力ファイル、出力ファイル、編集ウィンドウ、オブジェクト、フィルタ効果の種類を追加することが出来ます。
+Adding plugin files can add input file types, output file types, editing windows, objects, and filter effect types.
 
-パッケージファイルや単一ファイルで構成されるプラグイン・スクリプトはプレビュー画面にD&Dすることでインストールすることも出来ます。
-※プラグイン・スクリプトファイルは複数纏めてD&Dすることが出来ます。
+Plugins and scripts consisting of package files or single files can also be installed by dragging and dropping them onto the preview screen.
+※ Multiple plugin and script files can be dragged and dropped together.
 
-パッケージファイルでインストールしたファイルはパッケージ情報からアンインストールすることも出来ます。
+Files installed from package files can also be uninstalled from <EnUiText scope="Dialog" text="パッケージ情報" />.
 
-## フォント・絵文字
+## Fonts and Emojis
 
-システムにインストールされていないフォントファイル（`*.ttf`、`*.ttc`、`*.otf`、`*.otc`）を`ProgramData\aviutl2\Font`に配置しておくとフォントの種類に追加されます。
-絵文字用の画像ファイル（`*.svg`、`*.png`、`*.bmp`）を配置しておくと制御文字から利用出来る絵文字の種類に追加されます。  
-※ファイル名のベース部分が同じファイルは一つのみ絵文字として登録されます。
+If font files that are not installed on the system (`*.ttf`, `*.ttc`, `*.otf`, `*.otc`) are placed in `ProgramData\aviutl2\Font`, they are added to the font list.
+If emoji image files (`*.svg`, `*.png`, `*.bmp`) are placed there, they are added as emoji types that can be used from control characters.  
+※ Files with the same base filename are registered as only one emoji.
 
-※一つ下のフォルダも対象になります。
+※ One level below the folder is also included.
 
-## レイアウト
+## Layout
 
-UIからの設定は出来ないですが、設定ファイル`style.conf`を設置することで各種表示レイアウト、色、フォント等を変更することが出来ます。
+Although these settings cannot be changed from the UI, placing a `style.conf` settings file can change display layouts, colors, fonts, and other settings.
 
-インストールフォルダにある`style.conf`ファイルを元にして、変更したい項目を修正したファイルを`ProgramData\aviutl2\style.conf`に設置しておくと反映されます。  
-※変更したいセクション項目のみの記載でも大丈夫です。
+Create a file based on the `style.conf` file in the installation folder, modify the items you want to change, and place it at `ProgramData\aviutl2\style.conf` to apply the changes.  
+※ It is also acceptable to include only the section items you want to change.
 
-設定ファイル`system.conf`では、外部モジュールを拒否する設定項目を利用出来ます。
+The `system.conf` settings file can use a setting item that rejects external modules.
 
-## バッチ出力
+## Batch Output
 
-編集データのファイル出力を纏めて処理することが出来ます。
-AVIファイル出力や各種プラグイン出力のファイル保存ダイアログにあるバッチ登録ボタンからバッチを追加することが出来ます。
+File output for editing data can be processed in batches.
+Batches can be added from the batch registration button in the file save dialog for AVI file output and various plugin outputs.
 
-ウィンドウメニューの「ファイル」→「バッチ出力」からバッチ出力のダイアログを表示することが出来ます。
-バッチ出力のダイアログからバッチ出力の開始や各種設定が出来ます。
-※出力プラグインによってはバッチ側に出力設定が保持されないものがあります。
+The batch output dialog can be displayed from <EnUiText scope="Menu" text="ファイル" /> -> Batch Output in the window menu.
+Batch output can be started and various settings can be configured from the batch output dialog.
+※ Some output plugins do not keep output settings on the batch side.
 
-## インストーラ
+## Installer
 
-インストーラでは下記のコマンドラインオプションが利用出来ます。
+The installer supports the following command-line options.
 
 ```txt
 AviUtl2_setup.exe [option]
-（引数無し）              : インストールウィザード
--uninstall              : アンインストールウィザード
--I （インストールパス）   : インストール実行 ※管理権限で実行する必要があります
--U                      : アンインストール実行 ※管理権限で実行する必要があります
--F                      : ファイルをアプリケーションに関連付け ※-Iの前に指定する必要があります
--S                      : デスクトップにショートカットを作成 ※-Iの前に指定する必要があります
--L                      : 言語ファイルをコピー ※-Iの前に指定する必要があります
+(no arguments)          : installation wizard
+-uninstall              : uninstall wizard
+-I (installation path)  : install; ※ must be run with administrator privileges
+-U                      : uninstall; ※ must be run with administrator privileges
+-F                      : associate files with the application; ※ must be specified before -I
+-S                      : create a desktop shortcut; ※ must be specified before -I
+-L                      : copy language files; ※ must be specified before -I
 ```

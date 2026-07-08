@@ -1,238 +1,235 @@
 ---
-title: Luaスクリプト
-description: AviUtl ExEdit2のLuaスクリプトについて説明しています。
+title: Lua Script
+description: This page explains Lua scripts in AviUtl ExEdit2.
 ---
 
-# Luaスクリプト
+# Lua Script
 
-## Luaスクリプトについて
+## About Lua Scripts
 
-スクリプト制御、スクリプトファイル（\*.anm2,\*.obj2,\*.cam2,\*.scn2,\*.tra2）、テキストのスクリプト制御文字で利用可能なスクリプトにはLua言語が使用出来ます。
-また幾つかの変数と関数が拡張されています。
-※旧スクリプトファイル（\*.anm,\*.obj,\*.cam,\*.scn,\*.tra）も利用できますが、一部の機能が非対応となっています。
+The Lua language can be used for scripts available from script control, script files (`*.anm2`, `*.obj2`, `*.cam2`, `*.scn2`, `*.tra2`), and text script control characters.
+Several variables and functions are also extended.
+※ Legacy script files (`*.anm`, `*.obj`, `*.cam`, `*.scn`, `*.tra`) can also be used, but some features are not supported.
 
-## 注意点
+## Notes
 
-- スクリプトの文字コードはUTF-8になります。※旧スクリプトファイルはSJISです。
-- スクリプトの配置場所はProgramData\aviutl2\Script\フォルダ（及び一つ下のフォルダ）になります。
-- スクリプトからスクリプトを呼び出した場合は上手く動作しない場合があります。
-- 「キャッシュを破棄」の操作でスクリプト（シェーダー含む）が再読み込みされますが、設定項目の変更は反映されません。
-- 旧スクリプトファイル形式と一部仕様が異なる場合があります。※pixel入出力系の引数等
-- スクリプト制御ではtable,string,mathライブラリのみ利用出来ます。os,debug,ffi.Cは共通で外しています。
+- The script character encoding is UTF-8. ※ Legacy script files use SJIS.
+- Scripts are placed in the `ProgramData\aviutl2\Script\` folder and one level below it.
+- Calling a script from another script may not work correctly.
+- The "Clear Cache" operation reloads scripts, including shaders, but changes to setting items are not reflected.
+- Some specifications may differ from the legacy script file format. ※ Such as arguments for pixel input/output functions.
+- In script control, only the `table`, `string`, and `math` libraries can be used. `os`, `debug`, and `ffi.C` are excluded everywhere.
 
-## 設定項目
+## Setting Items
 
-スクリプトファイルの先頭で以下を指定することで設定項目が追加出来ます。
-※項目名を`yyy::xxx`のように指定すると最後の`::`以降の`xxx`の部分のみ設定画面で表示される形に出来ます。
+Setting items can be added by specifying the following at the beginning of a script file.
+※ If an item name is specified as `yyy::xxx`, only the part after the final `::`, `xxx`, can be displayed on the settings screen.
 
-### トラックバー項目を定義
+### Define a Trackbar Item
 
-スクリプトファイルの先頭で`--track@変数名:項目名,最小値,最大値,デフォルト値,移動単位,ゼロ値名称,操作倍率`のように指定するとトラックバーが有効になります。
-移動単位、ゼロ値名称、操作倍率は省略できます。
-移動単位は設定値の最小単位で`1`、`0.1`、`0.01`、`0.001`を指定できます。
-※0.000000001まで指定出来ますが最大最小値の範囲に応じて調整されます。（内部は32bit整数で保持されます）
-ゼロ値名称は設定値が0の時にトラックバーに表示する文字列を指定できます。
-操作倍率は設定値の範囲に対してのトラックバー操作範囲の倍率で1.0以下を指定できます。
-※旧スクリプトファイル形式の`--track0:項目名,最小値,最大値,デフォルト値,移動単位`も利用できます。
+Specifying something like `--track@variable name:item name,minimum value,maximum value,default value,step size,zero value label,operation multiplier` at the beginning of a script file enables a trackbar.
+The step size, zero value label, and operation multiplier can be omitted.
+For the step size, the minimum unit of the setting value can be specified as `1`, `0.1`, `0.01`, or `0.001`.
+※ Values down to 0.000000001 can be specified, but they are adjusted according to the minimum and maximum value range. Internally, values are stored as 32-bit integers.
+The zero value label specifies the string displayed on the trackbar when the setting value is 0.
+The operation multiplier specifies the multiplier of the trackbar operation range relative to the setting value range, and can be 1.0 or less.
+※ The legacy script file format `--track0:item name,minimum value,maximum value,default value,step size` can also be used.
 
 ```aulua
---track@vx:X速度,-10,10,0
+--track@vx:X Speed,-10,10,0
 obj.ox = obj.ox + vx * obj.time
 ```
 
-### トラックバー項目のグループを定義
+### Define a Trackbar Item Group
 
-スクリプトファイルの先頭で`--trackgroup@変数名1,変数名2,変数名3:項目名`のように指定するとトラックバー項目のグループ化が有効になります。
-変数名には先に定義されているトラックバー項目の変数名を2か3項目列挙します。
-※項目名は表示されませんが保存データのキー名として利用されます。
+Specifying something like `--trackgroup@variable name 1,variable name 2,variable name 3:item name` at the beginning of a script file enables grouping of trackbar items.
+List two or three previously defined trackbar item variable names.
+※ The item name is not displayed, but it is used as the key name for saved data.
 
 ```aulua
---track@x:X座標,-100000,100000,0
---track@y:Y座標,-100000,100000,0
---track@z:Z座標,-100000,100000,0
+--track@x:X Coordinate,-100000,100000,0
+--track@y:Y Coordinate,-100000,100000,0
+--track@z:Z Coordinate,-100000,100000,0
 --trackgroup@x,y,z:Group
 ```
 
-### チェックボックス項目を定義
+### Define a Checkbox Item
 
-スクリプトファイルの先頭で`--check@変数名:項目名,デフォルト値（0か1またはtrueかfalse）`のように指定するとチェックボックスが有効になります。
-デフォルト値が`0`か`1`の場合は変数がnumber型（`0`/`1`）になります。
-デフォルト値が`true`か`false`の場合は変数がboolean型（`true`/`false`）になります。
-※旧スクリプトファイル形式の`--check0:項目名,デフォルト値（0か1）`も利用できます。(変数はboolean型)
-スクリプトファイルの先頭で`--checksection@変数名:項目名,デフォルト値（trueかfalse）,セクション毎設定の初期値（trueかfalse）`のように指定するとセクション毎のチェックボックスが有効になります。
+Specifying something like `--check@variable name:item name,default value (0 or 1, or true or false)` at the beginning of a script file enables a checkbox.
+If the default value is `0` or `1`, the variable becomes the number type (`0`/`1`).
+If the default value is `true` or `false`, the variable becomes the boolean type (`true`/`false`).
+※ The legacy script file format `--check0:item name,default value (0 or 1)` can also be used. In that case, the variable is the boolean type.
+Specifying something like `--checksection@variable name:item name,default value (true or false),initial value for per-section setting (true or false)` at the beginning of a script file enables a per-section checkbox.
 
 ```aulua noformat
---check@grav:重力,0
---check@speed:速度,false
+--check@grav:Gravity,0
+--check@speed:Speed,false
 if grav == 1 then ...
 if speed then ...
 ```
 
-### 色設定項目を定義
+### Define a Color Setting Item
 
-スクリプトファイルの先頭で`--color@変数名:項目名,デフォルト値`のように指定すると色設定項目が有効になります。
-デフォルト値にnilを指定すると透明色の選択が出来るようになります。
-※旧スクリプトファイル形式の`--color:デフォルト値`も利用できます。
+Specifying something like `--color@variable name:item name,default value` at the beginning of a script file enables a color setting item.
+Specifying `nil` as the default value makes transparent color selectable.
+※ The legacy script file format `--color:default value` can also be used.
 
 ```aulua
---color@col:図形色,0xffffff
+--color@col:Figure Color,0xffffff
 obj.load("figure", "四角形", col, 100)
 ```
 
-### ファイル選択項目を定義
+### Define a File Selection Item
 
-スクリプトファイルの先頭で`--file@変数名:項目名`のように指定するとファイル選択項目が有効になります。
-※旧スクリプトファイル形式の`--file:`も利用できます。
+Specifying something like `--file@variable name:item name` at the beginning of a script file enables a file selection item.
+※ The legacy script file format `--file:` can also be used.
 
 ```aulua
---file@path:画像ファイル
+--file@path:Image File
 obj.load("image", path)
 ```
 
-### フォルダ選択項目を定義
+### Define a Folder Selection Item
 
-スクリプトファイルの先頭で`--folder@変数名:項目名`のように指定すると
-フォルダ選択項目が有効になります。
+Specifying something like `--folder@variable name:item name` at the beginning of a script file enables a folder selection item.
 
 ```aulua
---folder@path:フォルダ
+--folder@path:Folder
 ```
 
-### フォント設定項目を定義
+### Define a Font Setting Item
 
-スクリプトファイルの先頭で`--font@変数名:項目名,デフォルト値`のように指定するとフォント設定項目が有効になります。
+Specifying something like `--font@variable name:item name,default value` at the beginning of a script file enables a font setting item.
 
 ```aulua
---font@font:フォント名,MS UI Gothic
+--font@font:Font Name,MS UI Gothic
 obj.setfont(font, 50, deco, col1, col2)
 ```
 
-### 図形設定項目を定義
+### Define a Figure Setting Item
 
-スクリプトファイルの先頭で`--figure@変数名:項目名,デフォルト値`のように指定すると図形設定項目が有効になります。
+Specifying something like `--figure@variable name:item name,default value` at the beginning of a script file enables a figure setting item.
 
 ```aulua
---figure@fig:先端図形,三角形
+--figure@fig:Tip Figure,三角形
 obj.load("figure", fig, col, 100)
 ```
 
-### リスト選択項目を定義
+### Define a List Selection Item
 
-スクリプトファイルの先頭で`--select@変数名:項目名=デフォルト値,選択肢=値,選択肢=値,選択肢=値`のように指定するとリスト選択項目が有効になります。デフォルト値は省略できます。
+Specifying something like `--select@variable name:item name=default value,choice=value,choice=value,choice=value` at the beginning of a script file enables a list selection item. The default value can be omitted.
 
 ```aulua
---select@deco:装飾タイプ,標準文字=0,影付き文字=1,影付き文字（薄）=2,縁取り文字=3,縁取り文字（細）=4,縁取り文字（太）=5,縁取り文字（角）=6
+--select@deco:Decoration Type,Standard Text=0,Shadowed Text=1,Shadowed Text (Light)=2,Outlined Text=3,Outlined Text (Thin)=4,Outlined Text (Thick)=5,Outlined Text (Square)=6
 obj.setfont(font, obj.track2, deco, col1, col2)
 ```
 
-### テキスト設定項目を定義
+### Define a Text Setting Item
 
-スクリプトファイルの先頭で`--text@変数名:項目名,デフォルト値`のように指定するとテキスト設定項目が有効になります。
-`--string@変数名:項目名,デフォルト値`のように指定すると1行のテキスト設定項目が定義できます。
+Specifying something like `--text@variable name:item name,default value` at the beginning of a script file enables a text setting item.
+Specifying something like `--string@variable name:item name,default value` defines a single-line text setting item.
 
 ```aulua
---text@txt:テキスト,デフォルト文字\n次の行
+--text@txt:Text,Default text\nNext line
 obj.load("text", txt)
 ```
 
-### 変数項目を定義
+### Define a Variable Item
 
-スクリプトファイルの先頭で`--value@変数名:項目名,デフォルト値`のように指定すると変数項目が有効になります。
-変数項目はテキスト入力項目となり数値、文字列、配列を定義できます。
-※デフォルト値の内容で種別が切り替わります。
+Specifying something like `--value@variable name:item name,default value` at the beginning of a script file enables a variable item.
+A variable item becomes a text input item and can define numbers, strings, and arrays.
+※ The type changes according to the default value contents.
 
 ```aulua
---value@num:数値,0
---value@text:文字列,"0"
---value@table:配列,{0,0,0}
+--value@num:Number,0
+--value@text:String,"0"
+--value@table:Array,{0,0,0}
 ```
 
-### 汎用データ領域を定義
+### Define a Generic Data Area
 
-スクリプトファイルの先頭で`--data@登録名:サイズ(1024バイト以下)`のように指定すると汎用データ領域が有効になります。※スクリプトモジュールやDLL向けになります。
-`obj.data("登録名")`で汎用データ領域のポインタ(ユーザーデータ)が取得できます。
-デフォルト値はユーザーデータの領域を0クリアした値になります。
-※保存済みの汎用データのサイズが異なる場合はデフォルト値に初期化されます。
+Specifying something like `--data@registered name:size (1024 bytes or less)` at the beginning of a script file enables a generic data area. ※ This is intended for script modules and DLLs.
+`obj.data("registered name")` gets a pointer to the generic data area (userdata).
+The default value is the userdata area cleared to 0.
+※ If the saved generic data has a different size, it is initialized to the default value.
 
 ```aulua
 --data@pos:8
 local pos = obj.data("pos")
 ```
 
-### 設定グループを定義
+### Define a Setting Group
 
-スクリプトファイルの先頭で`--group:グループ名,デフォルト表示状態(true/false)`のように指定すると
-以降の設定項目がグループ化されます。デフォルト表示状態は省略できます。
-※`--group`（グループ名未指定）の指定でグループの終端を定義することが出来ます。
-
-```aulua
---group:座標
-```
-
-### セパレーターを定義
-
-スクリプトファイルの先頭で`--separator:セパレーター名`のように指定するとセパレーターを追加できます。
+Specifying something like `--group:group name,default display state (true/false)` at the beginning of a script file groups the following setting items. The default display state can be omitted.
+※ Specifying `--group` without a group name defines the end of the group.
 
 ```aulua
---separator:中心座標
+--group:Coordinates
 ```
 
-### オブジェクト追加メニューのラベルを定義
+### Define a Separator
 
-スクリプトファイルの先頭で`--label:ラベル名`のように指定するとオブジェクト追加メニューの階層のラベルの初期値を設定できます。
+Specifying something like `--separator:separator name` at the beginning of a script file adds a separator.
 
 ```aulua
---label:加工
+--separator:Center Coordinates
 ```
 
-### フィルタオブジェクト対応
+### Define an Object Add Menu Label
 
-スクリプトファイル（\*.anm2）の先頭で`--filter`のように指定するとフィルタオブジェクトに対応することが出来ます。
-※`obj.getinfo("filter")`を利用してフィルタオブジェクト処理を分けることが出来ます。
+Specifying something like `--label:label name` at the beginning of a script file sets the initial value for the hierarchy label in the object add menu.
 
-フィルタオブジェクトではオブジェクトにフレームバッファの画像が入っています。
-※フレームバッファのデータは不定です。一時バッファとして利用出来ます。
+```aulua
+--label:Processing
+```
 
-フィルタオブジェクトでは下記の制限があります。
+### Filter Object Support
 
-- オブジェクトのサイズを変更しないこと ※終了時に変わっていなければ大丈夫
-- オブジェクトの変数を変更しないこと ※終了時に変わっていなければ大丈夫
-- `obj.draw()`以降のフィルタが継続する
-- 引数無しの`obj.effect()`は処理されない
+Specifying `--filter` at the beginning of a script file (`*.anm2`) enables support for filter objects.
+※ `obj.getinfo("filter")` can be used to branch filter object processing.
 
-※その他もあると思います。。
+In a filter object, the object contains the frame buffer image.
+※ The frame buffer data is undefined. It can be used as a temporary buffer.
 
-### スクリプト種別を指定
+Filter objects have the following restrictions.
 
-スクリプトファイルの先頭で`--script:種別`のように指定するとスクリプトの種別（luaJIT,lua）を指定できます。
-未指定の場合はluaJITになります。※旧スクリプトファイルではluaになります
+- Do not change the object size. ※ It is acceptable if the size is unchanged at the end.
+- Do not change object variables. ※ It is acceptable if they are unchanged at the end.
+- Filters after `obj.draw()` continue.
+- `obj.effect()` without arguments is not processed.
+
+※ There are probably other restrictions as well.
+
+### Specify the Script Type
+
+Specifying something like `--script:type` at the beginning of a script file specifies the script type (`luaJIT` or `lua`).
+If omitted, `luaJIT` is used. ※ Legacy script files use `lua`.
 
 ```aulua
 --script:lua
 ```
 
-### スクリプトの情報を指定
+### Specify Script Information
 
-スクリプトファイルの先頭で`--information:ラベル名`のように指定するとスクリプトの情報を設定できます。
+Specifying something like `--information:label name` at the beginning of a script file sets script information.
 
 ```aulua
---information:テストスクリプト ver2.00 by Kenkun
+--information:Test Script ver2.00 by Kenkun
 ```
 
-### スクリプトが必要な本体のバージョン番号を指定
+### Specify the Required Main Program Version Number
 
-スクリプトファイルの先頭で`--require:必要な本体のバージョン番号`のように指定すると
-スクリプトが必要な本体のバージョンを設定できます。
+Specifying something like `--require:required main program version number` at the beginning of a script file sets the main program version required by the script.
 
 ```aulua
 --require:2003500
 ```
 
-### ピクセルシェーダーを定義
+### Define a Pixel Shader
 
-スクリプトファイルの先頭で`--[[pixelshader@登録名:`のような複数行コメントにピクセルシェーダーをHLSLで記述できます。
-※登録名がエントリーポイントになります。
-ピクセルシェーダーの入力は下記が利用できます。
+At the beginning of a script file, a pixel shader can be written in HLSL inside a multiline comment such as `--[[pixelshader@registered name:`.
+※ The registered name becomes the entry point.
+The following inputs can be used for a pixel shader.
 
 ```hlsl
 float4 psmain(float4 pos : SV_Position) : SV_Target
@@ -242,8 +239,8 @@ float4 psmain(float4 pos : SV_Position) : SV_Target
 float4 psmain(float4 pos : SV_Position, float2 uv : TEXCOORD) : SV_Target
 ```
 
-※シェーダーリフレクションを利用してシグネチャから判別しています。
-※uvは描画範囲が0.0～1.0になるように設定されます。
+※ The signature is detected using shader reflection.
+※ `uv` is set so the drawing range is 0.0 to 1.0.
 
 ```aulua
 --[[pixelshader@psmain:
@@ -253,10 +250,10 @@ float4 psmain(float4 pos : SV_Position, float2 uv : TEXCOORD) : SV_Target
 ]]
 ```
 
-### コンピュートシェーダーを定義
+### Define a Compute Shader
 
-スクリプトファイルの先頭で`--[[computeshader@登録名:`のような複数行コメントにコンピュートシェーダーをHLSLで記述できます。
-※登録名がエントリーポイントになります。
+At the beginning of a script file, a compute shader can be written in HLSL inside a multiline comment such as `--[[computeshader@registered name:`.
+※ The registered name becomes the entry point.
 
 ```aulua
 --[[computeshader@csmain:
@@ -267,95 +264,95 @@ float4 psmain(float4 pos : SV_Position, float2 uv : TEXCOORD) : SV_Target
 ]]
 ```
 
-### その他
+### Other
 
-※旧スクリプトファイル形式の`--dialog`、`--param`も利用できます。個々の設定項目が作成されます。
+※ The legacy script file format `--dialog` and `--param` can also be used. Individual setting items are created.
 
-## 変数
+## Variables
 
-対象オブジェクトの情報が以下の変数に入ります。
+Information about the target object is stored in the following variables.
 
-| 変数名                      | 説明                                                                                                           | ReadOnly |
-| :-------------------------- | :------------------------------------------------------------------------------------------------------------- | -------- |
-| `obj.ox`<sup>1</sup>        | 基準座標からの相対座標X                                                                                        |          |
-| `obj.oy`<sup>1</sup>        | 基準座標からの相対座標Y                                                                                        |          |
-| `obj.oz`<sup>1</sup>        | 基準座標からの相対座標Z                                                                                        |          |
-| `obj.rx`<sup>1</sup>        | X軸回転角度（360.0で一回転）                                                                                   |          |
-| `obj.ry`<sup>1</sup>        | Y軸回転角度（360.0で一回転）                                                                                   |          |
-| `obj.rz`<sup>1</sup>        | Z軸回転角度（360.0で一回転）                                                                                   |          |
-| `obj.cx`<sup>1</sup>        | 中心の相対座標X                                                                                                |          |
-| `obj.cy`<sup>1</sup>        | 中心の相対座標Y                                                                                                |          |
-| `obj.cz`<sup>1</sup>        | 中心の相対座標Z                                                                                                |          |
-| `obj.sx`<sup>1</sup>        | X座標の拡大率（1.0=等倍）                                                                                      |          |
-| `obj.sy`<sup>1</sup>        | Y座標の拡大率（1.0=等倍）                                                                                      |          |
-| `obj.sz`<sup>1</sup>        | Z座標の拡大率（1.0=等倍）                                                                                      |          |
-| `obj.zoom`<sup>1、2</sup>   | 拡大率（1.0=等倍）                                                                                             |          |
-| `obj.aspect`<sup>1、2</sup> | アスペクト比（-1.0～1.0/プラス=横縮小/マイナス縦縮小）                                                         |          |
-| `obj.alpha`<sup>1</sup>     | 不透明度（0.0～1.0/0.0=透明/1.0=不透明）                                                                       |          |
-| `obj.x`                     | 表示基準座標X                                                                                                  | ○        |
-| `obj.y`                     | 表示基準座標Y                                                                                                  | ○        |
-| `obj.z`                     | 表示基準座標Z                                                                                                  | ○        |
-| `obj.w`<sup>3</sup>         | 画像サイズW                                                                                                    | ○        |
-| `obj.h`<sup>3</sup>         | 画像サイズH                                                                                                    | ○        |
-| `obj.screen_w`              | スクリーンサイズW                                                                                              | ○        |
-| `obj.screen_h`              | スクリーンサイズH                                                                                              | ○        |
-| `obj.framerate`             | フレームレート                                                                                                 | ○        |
-| `obj.frame`<sup>4</sup>     | オブジェクト基準での現在のフレーム番号                                                                         | ○        |
-| `obj.time`<sup>4</sup>      | オブジェクト基準での現在の時間（秒）                                                                           | ○        |
-| `obj.totalframe`            | オブジェクトの総フレーム数                                                                                     | ○        |
-| `obj.totaltime`             | オブジェクトの総時間（秒）                                                                                     | ○        |
-| `obj.layer`                 | オブジェクトが配置されているレイヤー ※描画対象のオブジェクトのレイヤー位置                                     | ○        |
-| `obj.index`<sup>5</sup>     | 複数オブジェクト時の番号 ※個別オブジェクト用                                                                   | ○        |
-| `obj.num`<sup>5</sup>       | 複数オブジェクト時の数（1=単体オブジェクト/0=不定） ※個別オブジェクト用                                        | ○        |
-| `obj.id`                    | オブジェクトのID ※アプリ起動毎の固有ID ※描画対象のオブジェクトの固有ID                                         | ○        |
-| `obj.effect_id`             | オブジェクトの内の対象エフェクトのID ※アプリ起動毎の固有ID ※処理対象のフィルタ効果、オブジェクト入出力の固有ID | ○        |
-| `global.xxx`                | スクリプトで共用のテーブル変数（xxxは任意のキー名） ※値はバイナリセーフな文字列型で保持されます                |          |
+| Variable                    | Description                                                                                                                                              | ReadOnly |
+| :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `obj.ox`<sup>1</sup>        | X coordinate relative to the base coordinate                                                                                                             |          |
+| `obj.oy`<sup>1</sup>        | Y coordinate relative to the base coordinate                                                                                                             |          |
+| `obj.oz`<sup>1</sup>        | Z coordinate relative to the base coordinate                                                                                                             |          |
+| `obj.rx`<sup>1</sup>        | X-axis rotation angle (360.0 is one full rotation)                                                                                                       |          |
+| `obj.ry`<sup>1</sup>        | Y-axis rotation angle (360.0 is one full rotation)                                                                                                       |          |
+| `obj.rz`<sup>1</sup>        | Z-axis rotation angle (360.0 is one full rotation)                                                                                                       |          |
+| `obj.cx`<sup>1</sup>        | Relative X coordinate of the center                                                                                                                      |          |
+| `obj.cy`<sup>1</sup>        | Relative Y coordinate of the center                                                                                                                      |          |
+| `obj.cz`<sup>1</sup>        | Relative Z coordinate of the center                                                                                                                      |          |
+| `obj.sx`<sup>1</sup>        | Scale of the X coordinate (1.0 = original size)                                                                                                          |          |
+| `obj.sy`<sup>1</sup>        | Scale of the Y coordinate (1.0 = original size)                                                                                                          |          |
+| `obj.sz`<sup>1</sup>        | Scale of the Z coordinate (1.0 = original size)                                                                                                          |          |
+| `obj.zoom`<sup>1, 2</sup>   | Scale (1.0 = original size)                                                                                                                              |          |
+| `obj.aspect`<sup>1, 2</sup> | Aspect ratio (-1.0 to 1.0 / positive = horizontal compression / negative = vertical compression)                                                         |          |
+| `obj.alpha`<sup>1</sup>     | Opacity (0.0 to 1.0 / 0.0 = transparent / 1.0 = opaque)                                                                                                  |          |
+| `obj.x`                     | Display base coordinate X                                                                                                                                | Yes      |
+| `obj.y`                     | Display base coordinate Y                                                                                                                                | Yes      |
+| `obj.z`                     | Display base coordinate Z                                                                                                                                | Yes      |
+| `obj.w`<sup>3</sup>         | Image size W                                                                                                                                             | Yes      |
+| `obj.h`<sup>3</sup>         | Image size H                                                                                                                                             | Yes      |
+| `obj.screen_w`              | Screen size W                                                                                                                                            | Yes      |
+| `obj.screen_h`              | Screen size H                                                                                                                                            | Yes      |
+| `obj.framerate`             | Frame rate                                                                                                                                               | Yes      |
+| `obj.frame`<sup>4</sup>     | Current frame number relative to the object                                                                                                              | Yes      |
+| `obj.time`<sup>4</sup>      | Current time relative to the object, in seconds                                                                                                          | Yes      |
+| `obj.totalframe`            | Total number of object frames                                                                                                                            | Yes      |
+| `obj.totaltime`             | Total object time, in seconds                                                                                                                            | Yes      |
+| `obj.layer`                 | Layer where the object is placed; ※ the layer position of the drawing target object                                                                      | Yes      |
+| `obj.index`<sup>5</sup>     | Number for multiple objects; ※ for individual objects                                                                                                    | Yes      |
+| `obj.num`<sup>5</sup>       | Count for multiple objects (1 = single object / 0 = undefined); ※ for individual objects                                                                 | Yes      |
+| `obj.id`                    | Object ID; ※ a unique ID for each application launch; ※ the unique ID of the drawing target object                                                       | Yes      |
+| `obj.effect_id`             | ID of the target effect within the object; ※ a unique ID for each application launch; ※ the unique ID of the target filter effect or object input/output | Yes      |
+| `global.xxx`                | Table variable shared by scripts (`xxx` is any key name); ※ values are stored as binary-safe strings                                                     |          |
 
-1. 現時点のオブジェクトの設定値になります。出力項目(標準描画等)の設定値とは別のものになります。
-2. zoom、aspectは旧スクリプトファイルの利用かで算出反映処理が異なります
-3. w、hは常にオブジェクトのピクセル数になります
-4. オブジェクトがシーンチェンジ対象の場合は`frame`、`time`が`totalframe`、`totaltime`を超える場合があります
-5. `index`、`num`はテキストオブジェクト等で個別オブジェクトを設定した場合に複数オブジェクトの値が設定されます ※スクリプトで個別オブジェクトとして描画させる場合はobj.multiobject()を利用します
+1. These are the current object setting values. They are separate from output item setting values such as standard drawing.
+2. The calculation and application process for `zoom` and `aspect` differs depending on whether a legacy script file is used.
+3. `w` and `h` are always the number of pixels in the object.
+4. If the object is a scene change target, `frame` and `time` may exceed `totalframe` and `totaltime`.
+5. `index` and `num` are set to multiple-object values when individual objects are set for text objects and similar objects. ※ Use `obj.multiobject()` when drawing as individual objects from a script.
 
-例：
+Example:
 
 ```aulua
 global.test = 123
 print(global.test)
 ```
 
-## 関数
+## Functions
 
-スクリプトには以下の関数が追加されています。
+The following functions are added to scripts.
 
 ### obj.mes(text)
 
-テキストオブジェクトの中で指定のテキストを追加します。
-テキストオブジェクトのテキスト内のみ使用出来ます。
-※obj.を省略してmes()のみでも使用出来ます。
+Adds the specified text inside a text object.
+This can be used only inside text in a text object.
+※ It can also be used as `mes()` with `obj.` omitted.
 
-- `text`：表示するテキストを指定します。
+- `text`: Specifies the text to display.
 
-例：
+Example:
 
 ```aulua
-obj.mes("この文字が挿入されて表示されます")
+obj.mes("This text is inserted and displayed")
 ```
 
 ### obj.effect([name,param1,value1,param2,value2,...])
 
-指定のフィルタ効果を実行します。メディアオブジェクトのみ使用出来ます。
-引数なしで呼ぶとスクリプト以降のフィルタ効果を実行します。
+Executes the specified filter effect. This can be used only with media objects.
+When called without arguments, it executes filter effects after the script.
 
-- `name`：エフェクトの名前を指定します。
-- `param1`：エフェクトのパラメータの名前を指定します。
-- `value1`：エフェクトのパラメータの値を指定します。
-- `param?`,`value?`の組み合わせは必要な分だけ指定できます。
+- `name`: Specifies the effect name.
+- `param1`: Specifies the effect parameter name.
+- `value1`: Specifies the effect parameter value.
+- `param?` and `value?` pairs can be specified as many times as needed.
 
-※トラックバー、チェックボックス以外の設定のparam,valueはエイリアスファイル等で出力された時の名前や値になります。
-※旧スクリプトファイルのパラメータは`effect.conf`の定義を参照して読み替えを行います。足りない定義は適宜追加します。
+※ For settings other than trackbars and checkboxes, `param` and `value` are the names and values output in alias files and similar files.
+※ Parameters in legacy script files are translated by referencing definitions in `effect.conf`. Missing definitions are added as needed.
 
-例：
+Example:
 
 ```aulua
 obj.effect("色調補正", "明るさ", 150, "色相", 180)
@@ -363,21 +360,21 @@ obj.effect("色調補正", "明るさ", 150, "色相", 180)
 
 ### obj.draw([ox,oy,oz,zoom,alpha,rx,ry,rz])
 
-現在のオブジェクトを描画します。
-通常何もしなくても最後に描画されますがobj.draw()を使うことによりオブジェクトを複数回描画することが出来ます。
-※obj.draw()を使用した場合スクリプト以降のフィルタ効果は実行されません。
-※obj.effect()を引数なしで呼ぶことで事前にスクリプト以降のフィルタ効果を実行出来ます。
+Draws the current object.
+Normally, the object is drawn at the end even if nothing is done, but using `obj.draw()` allows the object to be drawn multiple times.
+※ If `obj.draw()` is used, filter effects after the script are not executed.
+※ Calling `obj.effect()` without arguments can execute filter effects after the script in advance.
 
-- `ox`：相対座標X
-- `oy`：相対座標Y
-- `oz`：相対座標Z
-- `zoom`：拡大率（1.0=等倍）
-- `alpha`：不透明度（0.0=透明/1.0=不透明）
-- `rx`：X軸回転角度（360.0で一回転）
-- `ry`：Y軸回転角度（360.0で一回転）
-- `rz`：Z軸回転角度（360.0で一回転）
+- `ox`: Relative coordinate X
+- `oy`: Relative coordinate Y
+- `oz`: Relative coordinate Z
+- `zoom`: Scale (1.0 = original size)
+- `alpha`: Opacity (0.0 = transparent / 1.0 = opaque)
+- `rx`: X-axis rotation angle (360.0 is one full rotation)
+- `ry`: Y-axis rotation angle (360.0 is one full rotation)
+- `rz`: Z-axis rotation angle (360.0 is one full rotation)
 
-例：
+Example:
 
 ```aulua
 obj.draw(2, 10, 0)
@@ -385,45 +382,45 @@ obj.draw(2, 10, 0)
 
 ### obj.drawpoly(x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3[,u0,v0,u1,v1,u2,v2,u3,v3,alpha])
 
-現在のオブジェクトの任意部分を任意の四角形で描画します。
-※内角が全て180度以下の平面以外は正しく描画されません。
-※頂点0から3が時計回りになる面が表面になります。
-※obj.drawpoly()を使用した場合スクリプト以降のフィルタ効果は実行されません。
+Draws any part of the current object as any quadrilateral.
+※ It will not draw correctly unless the surface is a plane where all interior angles are 180 degrees or less.
+※ The side where vertices 0 through 3 are clockwise is the front side.
+※ If `obj.drawpoly()` is used, filter effects after the script are not executed.
 
-- `x0,y0,z0`：四角形の頂点0の座標
-- `x1,y1,z1`：四角形の頂点1の座標
-- `x2,y2,z2`：四角形の頂点2の座標
-- `x3,y3,z3`：四角形の頂点3の座標
-- `u0,v0`：頂点0に対応するオブジェクトの画像の座標
-- `u1,v1`：頂点1に対応するオブジェクトの画像の座標
-- `u2,v2`：頂点2に対応するオブジェクトの画像の座標
-- `u3,v3`：頂点3に対応するオブジェクトの画像の座標
+- `x0,y0,z0`: Coordinates of quadrilateral vertex 0
+- `x1,y1,z1`: Coordinates of quadrilateral vertex 1
+- `x2,y2,z2`: Coordinates of quadrilateral vertex 2
+- `x3,y3,z3`: Coordinates of quadrilateral vertex 3
+- `u0,v0`: Coordinates in the object image corresponding to vertex 0
+- `u1,v1`: Coordinates in the object image corresponding to vertex 1
+- `u2,v2`: Coordinates in the object image corresponding to vertex 2
+- `u3,v3`: Coordinates in the object image corresponding to vertex 3
 
-例：
+Example:
 
 ```aulua
 obj.drawpoly(-50, -50, 0, 50, -50, 0, 50, 50, 0, -50, 50, 0, 0, 0, obj.w, 0, obj.w, obj.h, 0, obj.h)
 ```
 
 > [!NOTE]
-> AviUtl1と違い、この座標はオブジェクトのローカル座標になります。
-> （1では実際に描画する座標でした）
+> Unlike AviUtl1, these coordinates are object-local coordinates.
+> In AviUtl1, they were the actual drawing coordinates.
 
 ### obj.drawpoly({table}[,alpha])
 
-複数分のobj.drawpoly()の引数をテーブルで指定することが出来ます。
-obj.drawpoly()を複数回呼び出すより描画が速くなります。
-テーブルの形式は下記が対応しています。※異なる形式を混在させる事はできません
+Arguments for multiple `obj.drawpoly()` calls can be specified in a table.
+This draws faster than calling `obj.drawpoly()` multiple times.
+The following table formats are supported. ※ Different formats cannot be mixed.
 
 - `{x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3,u0,v0,u1,v1,u2,v2,u3,v3}`
 - `{x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3,u0,v0,u1,v1,u2,v2,u3,v3,vx0,vy0,vz0,vx1,vy1,vz1,vx2,vy2,vz2,vx3,vy3,vz3}`
 - `{x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3,r0,g0,b0,a0,r1,g1,b1,a1,r2,g2,b2,a2,r3,g3,b3,a3}`
 - `{x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3,r0,g0,b0,a0,r1,g1,b1,a1,r2,g2,b2,a2,r3,g3,b3,a3,vx0,vy0,vz0,vx1,vy1,vz1,vx2,vy2,vz2,vx3,vy3,vz3}`
 
-※vx,vy,vzは法線ベクトル
-※r,g,b,aは描画色(0.0～1.0の乗算済みα) ※色の指定時はオブジェクトの画像は利用されません
+※ `vx`, `vy`, and `vz` are normal vectors.
+※ `r`, `g`, `b`, and `a` are drawing colors (premultiplied alpha from 0.0 to 1.0). ※ When colors are specified, the object image is not used.
 
-例：
+Example:
 
 ```aulua
 table.insert(vertex, { x0, y0, 0, x1, y1, 0, x2, y2, 0, x3, y3, 0, u0, v0, u1, v1, u2, v2, u3, v3 })
@@ -433,20 +430,20 @@ obj.drawpoly(vertex)
 
 ### obj.drawpoly({table}\[,vertex_num,alpha\])
 
-頂点リストのテーブルを指定して四角形、三角形を描画することが出来ます。
-テーブルの形式は下記が対応しています。※異なる形式を混在させる事はできません
+Quadrilaterals and triangles can be drawn by specifying a vertex list table.
+The following table formats are supported. ※ Different formats cannot be mixed.
 
-- `{x,y,z,u,v}`：頂点座標 + テクスチャ座標
-- `{x,y,z,u,v,vx,vy,vz}`：頂点座標 + テクスチャ座標 + 法線ベクトル
-- `{x,y,z,r,g,b,a}`：頂点座標 + 頂点の色
-- `{x,y,z,r,g,b,a,vx,vy,vz}`：頂点座標 + 頂点の色 + 法線ベクトル
-- `vertex_num`：面の頂点数( 4\<デフォルト\>：四角形 / 3：三角形 )
+- `{x,y,z,u,v}`: Vertex coordinates + texture coordinates
+- `{x,y,z,u,v,vx,vy,vz}`: Vertex coordinates + texture coordinates + normal vector
+- `{x,y,z,r,g,b,a}`: Vertex coordinates + vertex color
+- `{x,y,z,r,g,b,a,vx,vy,vz}`: Vertex coordinates + vertex color + normal vector
+- `vertex_num`: Number of vertices in the face (4 &lt;default&gt;: quadrilateral / 3: triangle)
 
-※テーブルは面の頂点数で割り切れる数になります
-※u,vはオブジェクトの正規化座標(0.0～1.0)
-※vx,vy,vzは法線ベクトル
-※r,g,b,aは描画色(0.0～1.0の乗算済みα) ※色の指定時はオブジェクトの画像は利用されません
-例：
+※ The table length must be divisible by the number of vertices in the face.
+※ `u` and `v` are normalized coordinates of the object (0.0 to 1.0).
+※ `vx`, `vy`, and `vz` are normal vectors.
+※ `r`, `g`, `b`, and `a` are drawing colors (premultiplied alpha from 0.0 to 1.0). ※ When colors are specified, the object image is not used.
+Example:
 
 ```aulua
 vertex = {}
@@ -469,196 +466,196 @@ obj.drawpoly(vertex, 3)
 
 ### obj.load(\[type\],...)
 
-現在のオブジェクトの画像を読み込みます。
-typeを省略した場合は自動的に判別します。
-※読み込まれていた画像は破棄されます。
+Loads an image into the current object.
+If `type` is omitted, it is detected automatically.
+※ The previously loaded image is discarded.
 
-#### 動画ファイル
+#### Video File
 
 `obj.load("movie",file[,time])`
 `obj.load("movie.frame",file[,frame])`
 
-動画ファイルから指定時間の画像を読み込みます。
-※`"movie.frame"`はフレーム番号を指定して総フレーム数を返却します。
+Loads an image at the specified time from a video file.
+※ `"movie.frame"` specifies a frame number and returns the total number of frames.
 
-- `file`：動画ファイル名
-- `time`：取得する時間（秒）（省略時はオブジェクトの現時間）
-- 戻り値：動画の総時間（秒） ※読み込み失敗時は0を返却
+- `file`: Video filename
+- `time`: Time to get, in seconds. If omitted, the current object time is used.
+- Return value: Total video time in seconds. ※ Returns 0 on load failure.
 
-例：
+Example:
 
 ```aulua
 obj.load("movie", "c:\\test.avi")
 ```
 
-#### 動画ファイル情報
+#### Video File Information
 
 `obj.load("movie.info",file)`
 
-動画ファイルの情報を取得します。
-現在のオブジェクト情報を更新しないで情報の返却のみをします。
+Gets video file information.
+Only returns information without updating the current object information.
 
-- `file`：動画ファイル名
-- 戻り値：動画のフレーム数、フレームレート（rate）、フレームレート（scale） ※読み込み失敗時は全て0を返却
+- `file`: Video filename
+- Return value: Video frame count, frame rate (`rate`), and frame rate (`scale`). ※ Returns all 0 on load failure.
 
-例：
+Example:
 
 ```aulua
 obj.load("movie.info", "c:\\test.avi")
 ```
 
-#### 画像ファイル
+#### Image File
 
 `obj.load("image",file)`
-画像ファイルを読み込みます。
+Loads an image file.
 
-- `file`：画像ファイル名
-- 戻り値：`true`=成功 / `false`=読み込み失敗
+- `file`: Image filename
+- Return value: `true` = success / `false` = load failure
 
-例：
+Example:
 
 ```aulua
 obj.load("image", "c:\\test.bmp")
 ```
 
-#### テキスト
+#### Text
 
 `obj.load("text",text[,speed,time,align])`
-テキストを読み込みます。
-色とサイズ、フォントの制御文字が使用出来ます。
-speed,timeを設定すると表示する文字数を変更出来ます。
-※テキストオブジェクトには使用出来ません。
+Loads text.
+Control characters for color, size, and font can be used.
+Setting `speed` and `time` can change the number of characters displayed.
+※ This cannot be used for text objects.
 
-- `text`：読み込むテキスト
-- `speed`：timeパラメータの1秒間で表示する文字数
-- `time`：speedパラメータに対する経過時間
-- `align`：文字揃え種別 ※文字揃え種別を指定すると中心座標が設定されます。
-  - 横書：
-    - `0`：左寄\[上]
-    - `1`：中央\[上]
-    - `2`：右寄\[上]
-    - `3`：左寄\[中]
-    - `4`：中央\[中]
-    - `5`：右寄\[中]
-    - `6`：左寄\[下]
-    - `7`：中央\[下]
-    - `8`：右寄\[下]
-  - 縦書：
-    - `9`：上段\[右]
-    - `10`：中段\[右]
-    - `11`：下段\[右]
-    - `12`：上段\[中]
-    - `13`：中段\[中]
-    - `14`：下段\[中]
-    - `15`：上段\[左]
-    - `16`：中段\[左]
-    - `17`：下段\[左]
-- 戻り値：`true`=成功 / `false`=読み込み失敗
+- `text`: Text to load
+- `speed`: Number of characters displayed per second for the `time` parameter
+- `time`: Elapsed time for the `speed` parameter
+- `align`: Text alignment type. ※ If a text alignment type is specified, center coordinates are set.
+  - Horizontal writing:
+    - `0`: left [top]
+    - `1`: center [top]
+    - `2`: right [top]
+    - `3`: left [middle]
+    - `4`: center [middle]
+    - `5`: right [middle]
+    - `6`: left [bottom]
+    - `7`: center [bottom]
+    - `8`: right [bottom]
+  - Vertical writing:
+    - `9`: top row [right]
+    - `10`: middle row [right]
+    - `11`: bottom row [right]
+    - `12`: top row [center]
+    - `13`: middle row [center]
+    - `14`: bottom row [center]
+    - `15`: top row [left]
+    - `16`: middle row [left]
+    - `17`: bottom row [left]
+- Return value: `true` = success / `false` = load failure
 
-例：
+Example:
 
 ```aulua
-obj.load("text", "この文字が画像として読み込まれます")
+obj.load("text", "This text is loaded as an image")
 ```
 
-#### テキストレイアウト
+#### Text Layout
 
 `obj.load("text.layout",text[,speed,time,align])`
 
-※`"textlayout"`の指定も利用できます
+※ The `"textlayout"` specification can also be used.
 
-`obj.load("text")`で読み込むテキストの画像サイズを取得します。※引数は同じです
-現在のオブジェクト情報を更新しないでサイズの返却のみをします。
-※文字揃え種別を指定すると中心座標も返却されます。
+Gets the image size of text loaded by `obj.load("text")`. ※ The arguments are the same.
+Only returns the size without updating the current object information.
+※ If a text alignment type is specified, center coordinates are also returned.
 
-- 戻り値：横、縦のピクセル数
+- Return value: Horizontal and vertical pixel counts
 
-例：
+Example:
 
 ```aulua
-w, h = obj.load("text.layout", "この文字を画像として読み込んだ時のサイズ")
-w, h, cx, cy = obj.load("text.layout", "中心座標付き", 0, 0, 0)
+w, h = obj.load("text.layout", "Size when this text is loaded as an image")
+w, h, cx, cy = obj.load("text.layout", "With center coordinates", 0, 0, 0)
 ```
 
-#### 図形
+#### Figure
 
-図形を読み込みます。
+Loads a figure.
 `obj.load("figure",name[,color,size,line,round])`
 
-- `name`：図形名、SVGファイル名
-- `color`：色（0x000000～0xffffff）
-- `size`：図形のサイズ
-- `line`：図形のライン幅
-- `round`：角を丸くするか？（ `true`：する / `false`\<デフォルト\>：しない ）
-- 戻り値：`true`=成功 / `false`=読み込み失敗
+- `name`: Figure name or SVG filename
+- `color`: Color (0x000000 to 0xffffff)
+- `size`: Figure size
+- `line`: Figure line width
+- `round`: Whether to round corners (`true`: yes / `false` &lt;default&gt;: no)
+- Return value: `true` = success / `false` = load failure
 
-例：
+Example:
 
 ```aulua
 obj.load("figure", "円", 0xffffff, 100, true)
 ```
 
-#### フレームバッファ
+#### Frame Buffer
 
-フレームバッファから読み込みます。
+Loads from the frame buffer.
 `load("framebuffer"[,x,y,w,h][,alpha])`
 
-- `x,y,w,h`：フレームバッファから取得する範囲（省略時は全体）
-- `alpha`：アルファチャンネルを維持（ `true`：する / `false`\<デフォルト\>：しない ）
-- 戻り値：`true`=成功 / `false`=読み込み失敗
+- `x,y,w,h`: Range to get from the frame buffer. If omitted, the entire buffer is used.
+- `alpha`: Keep the alpha channel (`true`: yes / `false` &lt;default&gt;: no)
+- Return value: `true` = success / `false` = load failure
 
-#### 仮想バッファ
+#### Temporal Buffer
 
-仮想バッファから読み込みます。
-※仮想バッファはobj.copybuffer(),obj.setoption()で作成することが出来ます。
+Loads from the temporal buffer.
+※ The temporal buffer can be created with `obj.copybuffer()` and `obj.setoption()`.
 `load("tempbuffer"[,x,y,w,h])`
 
-- `x,y,w,h`：仮想バッファから取得する範囲（省略時は全体）
-- 戻り値：`true`=成功 / `false`=読み込み失敗
+- `x,y,w,h`: Range to get from the temporal buffer. If omitted, the entire buffer is used.
+- Return value: `true` = success / `false` = load failure
 
-#### レイヤー上のオブジェクト
+#### Object on a Layer
 
-指定のレイヤー上のオブジェクトを読み込みます。
-※個別オブジェクト等のエフェクト側で描画処理が入る場合は上手く動作しないです。
+Loads the object on the specified layer.
+※ This does not work well when drawing processing is performed on the effect side, such as with individual objects.
 `obj.load("layer",no[,effect])`
 
-- `no`：レイヤー番号（1～）
-- `effect`：追加エフェクトの実行（ `true`：する / `false`\<デフォルト\>：しない ）
-- 戻り値：`true`=成功 / `false`=読み込み失敗
+- `no`: Layer number (1 or greater)
+- `effect`: Execute additional effects (`true`: yes / `false` &lt;default&gt;: no)
+- Return value: `true` = success / `false` = load failure
 
-#### 直前オブジェクト
+#### Previous Object
 
-直前オブジェクトを読み込みます。
+Loads the previous object.
 `obj.load("before");`
-カスタムオブジェクトで他のオブジェクトを読み込む前の時のみ使えます。
+This can be used only before loading another object in a custom object.
 
-- 戻り値：`true`=成功 / `false`=読み込み失敗
+- Return value: `true` = success / `false` = load failure
 
 ### obj.setfont(name,size[,type,col1,col2,bold,italic,charspacing,linespacing])
 
-obj.load()のテキストで使うフォントを指定します。
-※スクリプトの呼び出し毎に指定する必要があります。
+Specifies the font used for text in `obj.load()`.
+※ This must be specified each time the script is called.
 
-- `name`：フォント名
-- `size`：フォントサイズ
-- `type`：文字の装飾（0～6）
-  - 0=標準文字 / 1=影付き文字 / 2=影付き文字（薄）
-  - 3=縁取り文字 / 4=縁取り文字（細） / 5=縁取り文字（太） / 6=縁取り文字（角）
-- `col1`：文字の色（0x000000～0xffffff）
-- `col2`：影・縁の色（0x000000～0xffffff）
-- `bold`：太文字か？（`true` / `false`\<デフォルト\>）
-- `italic`：斜体か？（`true` / `false`\<デフォルト\>）
-- `charspacing`：文字間隔
-- `linespacing`：行間隔
+- `name`: Font name
+- `size`: Font size
+- `type`: Text decoration (0 to 6)
+  - 0 = standard text / 1 = shadowed text / 2 = shadowed text (light)
+  - 3 = outlined text / 4 = outlined text (thin) / 5 = outlined text (thick) / 6 = outlined text (square)
+- `col1`: Text color (0x000000 to 0xffffff)
+- `col2`: Shadow/outline color (0x000000 to 0xffffff)
+- `bold`: Whether to use bold text (`true` / `false` &lt;default&gt;)
+- `italic`: Whether to use italic text (`true` / `false` &lt;default&gt;)
+- `charspacing`: Character spacing
+- `linespacing`: Line spacing
 
 ### obj.getfont()
 
-obj.load()のテキストで使うフォント設定を取得します。
+Gets the font settings used for text in `obj.load()`.
 
-- 戻り値：各種フォント設定 ※obj.setfont()の引数と同じ並びで返却されます
-  ※フォント名の初期値は空（デフォルト指定）になります
+- Return value: Various font settings. ※ They are returned in the same order as the arguments of `obj.setfont()`.
+  ※ The initial font name value is empty, which specifies the default.
 
-例：
+Example:
 
 ```aulua
 name, size, type = obj.getfont()
@@ -666,16 +663,15 @@ name, size, type = obj.getfont()
 
 ### obj.rand(st_num,ed_num[,seed,frame])
 
-乱数を発生させます。通常の乱数と異なり同一時間のフレームで
-常に同じ値が出るように乱数を発生させます。
-※obj.を省略してrand()のみでも使用出来ます。
+Generates a random number. Unlike normal random numbers, this generates random numbers so the same value is always produced for frames at the same time.
+※ It can also be used as `rand()` with `obj.` omitted.
 
-- `st_num`：乱数の最小値
-- `ed_num`：乱数の最大値
-- `seed`：乱数の種（省略時はオブジェクト毎に異なる乱数になります。プラスの値を指定すると種が同じでもオブジェクト毎に異なる乱数になり、マイナスの値では種が同じならば全てのオブジェクトで同じ乱数になります）
-- `frame`：フレーム番号（省略時は現在のフレームになります）
+- `st_num`: Minimum random value
+- `ed_num`: Maximum random value
+- `seed`: Random seed. If omitted, a different random number is used for each object. If a positive value is specified, a different random number is used for each object even with the same seed. If a negative value is specified, the same random number is used for all objects with the same seed.
+- `frame`: Frame number. If omitted, the current frame is used.
 
-例：
+Example:
 
 ```aulua
 obj.rand(10, 20)
@@ -683,13 +679,13 @@ obj.rand(10, 20)
 
 ### obj.rand1([seed,frame])
 
-0.0以上1.0未満の乱数を発生させます。通常の乱数と異なり同一時間のフレームで常に同じ値が出るように乱数を発生させます。
-※obj.を省略してrand1()のみでも使用出来ます。
+Generates a random number from 0.0 or greater to less than 1.0. Unlike normal random numbers, this generates random numbers so the same value is always produced for frames at the same time.
+※ It can also be used as `rand1()` with `obj.` omitted.
 
-- `seed`：乱数の種（省略時はオブジェクト毎に異なる乱数になります。プラスの値を指定すると種が同じでもオブジェクト毎に異なる乱数になり、マイナスの値では種が同じならば全てのオブジェクトで同じ乱数になります）
-- `frame`：フレーム番号（省略時は現在のフレームになります）
+- `seed`: Random seed. If omitted, a different random number is used for each object. If a positive value is specified, a different random number is used for each object even with the same seed. If a negative value is specified, the same random number is used for all objects with the same seed.
+- `frame`: Frame number. If omitted, the current frame is used.
 
-例：
+Example:
 
 ```aulua
 obj.rand1()
@@ -697,337 +693,337 @@ obj.rand1()
 
 ### obj.setoption(name,value)
 
-現在のオブジェクトの各種オプションを設定します。
-※スクリプトの呼び出し毎に指定する必要があります。
+Sets various options for the current object.
+※ This must be specified each time the script is called.
 
-- `name`：オプション名
-- `value`：オプション値
+- `name`: Option name
+- `value`: Option value
 
-#### 裏面を表示しない
+#### Hide Back Faces
 
 `obj.setoption("culling",value)`
 
-- `value`：0=表示 / 1=非表示
+- `value`: 0 = show / 1 = hide
 
-#### カメラの方向を向く
+#### Face the Camera Direction
 
 `obj.setoption("billboard",value)`
 
-- `value`：0=向かない / 1=横方向のみ / 2=縦方向のみ / 3=向く
+- `value`: 0 = do not face / 1 = horizontal only / 2 = vertical only / 3 = face
 
-#### 合成モード
+#### Blend Mode
 
 `obj.setoption("blend",value[,option])`
 
-- `value`：
-  - `"none"`：通常
-  - `"add"`：加算
-  - `"sub"`：減算
-  - `"mul"`：乗算
-  - `"screen"`：スクリーン
-  - `"overlay"`：オーバーレイ
-  - `"light"`：比較（明）
-  - `"dark"`：比較（暗）
-  - `"brightness"`：輝度
-  - `"chroma"`：色差
-  - `"shadow"`：陰影
-  - `"light_dark"`：明暗
-  - `"diff"`：差分
-  - 以下は仮想バッファ専用の合成モードです。
-    - `"alpha_add"`：色情報は加重平均してアルファ値は加算します
-    - `"alpha_max"`：色情報は加重平均してアルファ値は大きい方を採用します
-    - `"alpha_sub"`：色情報は何もせずにアルファ値を減算します
-    - `"alpha_add2"`：色情報は重ね合わせしてアルファ値は加算します
-    - `"rgba_add"`：RGBA値を単純に加算します ※Direct3DのBlendStateのみの処理なので軽いです
+- `value`:
+  - `"none"`: normal
+  - `"add"`: add
+  - `"sub"`: subtract
+  - `"mul"`: multiply
+  - `"screen"`: screen
+  - `"overlay"`: overlay
+  - `"light"`: compare (light)
+  - `"dark"`: compare (dark)
+  - `"brightness"`: brightness
+  - `"chroma"`: chroma
+  - `"shadow"`: shadow
+  - `"light_dark"`: light/dark
+  - `"diff"`: difference
+  - The following blend modes are for the temporal buffer only.
+    - `"alpha_add"`: Color information is weighted averaged and alpha values are added
+    - `"alpha_max"`: Color information is weighted averaged and the larger alpha value is used
+    - `"alpha_sub"`: Color information is left unchanged and the alpha value is subtracted
+    - `"alpha_add2"`: Color information is composited and alpha values are added
+    - `"rgba_add"`: RGBA values are simply added. ※ This is lightweight because it only uses Direct3D BlendState processing.
 
-※旧スクリプトファイル形式の数値指定も利用できます。
-※合成モードを利用すると描画処理が重くなります。
+※ Numeric specifications from the legacy script file format can also be used.
+※ Using blend modes makes drawing processing heavier.
 
-#### 描画先を仮想バッファに変更する
+#### Change the Drawing Target to the Temporal Buffer
 
 `obj.setoption("drawtarget","tempbuffer"[,w,h])`
 
-- `w,h`：仮想バッファのサイズ（省略時は初期化しません）
+- `w,h`: Temporal buffer size. If omitted, it is not initialized.
 
-描画先を仮想バッファにするとobj.draw(),obj.drawpoly()での描画が仮想バッファに対して行われます。
-この場合はオブジェクトの持っている座標等の設定は反映せず引数の座標そのままで描画されます。
-サイズを指定すると仮想バッファを透明色で初期化します。
-仮想バッファは全てのオブジェクトで共用になります。
+When the drawing target is set to the temporal buffer, drawing with `obj.draw()` and `obj.drawpoly()` is performed on the temporal buffer.
+In this case, settings such as the object's coordinates are not applied, and drawing uses the argument coordinates as-is.
+If a size is specified, the temporal buffer is initialized with transparent color.
+The temporal buffer is shared by all objects.
 
-#### 描画先をフレームバッファに変更する
+#### Change the Drawing Target to the Frame Buffer
 
 `obj.setoption("drawtarget","framebuffer")`
-obj.draw(),obj.drawpoly()の描画先をフレームバッファにします。
-フレームバッファに対してdraw()等で描画を行っていない場合にはsetoption()で変更しなくてもスクリプト終了後には自動的にフレームバッファに対しての描画となります。
+Sets the drawing target of `obj.draw()` and `obj.drawpoly()` to the frame buffer.
+If drawing such as `draw()` has not been performed on the frame buffer, drawing is automatically performed on the frame buffer after the script ends even without changing this with `setoption()`.
 
-#### スクリプト内でフレームバッファに描画されたかのステータスを変更する
+#### Change the Status of Whether the Frame Buffer Was Drawn in the Script
 
 `obj.setoption("draw_state",flag)`
 
-- `flag`：`true`：描画済み / `false`：未描画
+- `flag`: `true` = drawn / `false` = not drawn
 
-#### オブジェクトのフォーカス枠モード
+#### Object Focus Frame Mode
 
 `obj.setoption("focus_mode",value)`
 
-- `value`：
-  - `"fixed_size"`：大きさ固定の枠にする
-  - `"no_resize"`：リサイズ無しの枠にする
+- `value`:
+  - `"fixed_size"`: Use a fixed-size frame
+  - `"no_resize"`: Use a frame without resizing
 
-#### カメラのパラメータを設定する
+#### Set Camera Parameters
 
-カメラの各種パラメータを設定します。
-カメラがエディットモードの時は反映されません。
-※カメラ効果のみ使用可
+Sets various camera parameters.
+This is not applied when the camera is in edit mode.
+※ This can be used only with camera effects.
 `obj.setoption("camera_param",cam)`
 
-- `cam`：カメラのパラメータ（テーブル）
-  - `cam.x`：カメラの座標X
-  - `cam.y`：カメラの座標Y
-  - `cam.z`：カメラの座標Z
-  - `cam.tx`：カメラの目標座標X
-  - `cam.ty`：カメラの目標座標Y
-  - `cam.tz`：カメラの目標座標Z
-  - `cam.rz`：カメラの傾き
-  - `cam.ux`：カメラの上方向単位ベクトルX
-  - `cam.uy`：カメラの上方向単位ベクトルY
-  - `cam.uz`：カメラの上方向単位ベクトルZ
-  - `cam.d`：カメラからスクリーンまでの距離（焦点距離）
+- `cam`: Camera parameters (table)
+  - `cam.x`: Camera coordinate X
+  - `cam.y`: Camera coordinate Y
+  - `cam.z`: Camera coordinate Z
+  - `cam.tx`: Camera target coordinate X
+  - `cam.ty`: Camera target coordinate Y
+  - `cam.tz`: Camera target coordinate Z
+  - `cam.rz`: Camera tilt
+  - `cam.ux`: Camera upward unit vector X
+  - `cam.uy`: Camera upward unit vector Y
+  - `cam.uz`: Camera upward unit vector Z
+  - `cam.d`: Distance from the camera to the screen (focal length)
 
-例：
+Example:
 
 ```aulua
 cam = obj.getoption("camera_param")
 ```
 
-#### カメラの焦点のパラメータを設定する
+#### Set Camera Focus Parameters
 
-カメラの焦点の各種パラメータを設定します。  
-※カメラ効果のみ使用可  
+Sets various camera focus parameters.  
+※ This can be used only with camera effects.  
 `obj.setoption("camera_focus",focus)`
 
-- `focus`：カメラの焦点パラメータ（テーブル）
-  - `focus.x`：カメラの焦点座標X
-  - `focus.y`：カメラの焦点座標Y
-  - `focus.z`：カメラの焦点座標Z
-  - `focus.bokeh`：カメラの深度ぼけの強さ
+- `focus`: Camera focus parameters (table)
+  - `focus.x`: Camera focus coordinate X
+  - `focus.y`: Camera focus coordinate Y
+  - `focus.z`: Camera focus coordinate Z
+  - `focus.bokeh`: Strength of camera depth blur
 
-例：
+Example:
 
 ```aulua
 focus = obj.getoption("camera_focus")
 ```
 
-#### サンプラーモード
+#### Sampler Mode
 
-obj.draw(),obj.drawpoly()描画時のサンプラーを変更します。
-※obj.drawpoly()でuv座標を引数で指定した場合はuv座標が領域範囲でクリップされます ※互換対応
+Changes the sampler used when drawing with `obj.draw()` and `obj.drawpoly()`.
+※ If UV coordinates are specified as arguments in `obj.drawpoly()`, the UV coordinates are clipped to the area range. ※ For compatibility.
 `obj.setoption("sampler",value)`
 
-- `value`：
-  - `"clip"`：領域外は透明色 ※obj.draw()のデフォルト設定
-  - `"clamp"`：領域外は一番外側の色 ※obj.drawpoly()のデフォルト設定
-  - `"loop"`：領域外はループ
-  - `"mirror"`：領域外は領域を反転しながらループ
-  - `"dot"`：拡大縮小補間をしない（領域外は透明色）
-    ※省略時はデフォルト設定になります
+- `value`:
+  - `"clip"`: Outside the area is transparent color. ※ This is the default setting for `obj.draw()`.
+  - `"clamp"`: Outside the area uses the outermost color. ※ This is the default setting for `obj.drawpoly()`.
+  - `"loop"`: Outside the area loops.
+  - `"mirror"`: Outside the area loops while mirroring the area.
+  - `"dot"`: Does not interpolate scaling. Outside the area is transparent color.
+    ※ If omitted, the default setting is used.
 
 ### obj.getoption(name,...)
 
-現在のオブジェクトの各種オプションを取得します。
+Gets various options for the current object.
 
-- `name`：オプション名
+- `name`: Option name
 
-#### トラックバーの移動モード
+#### Trackbar Movement Mode
 
 `obj.getoption("track_mode",value)`
 
-- `value`：トラックバーの変数名または番号
-  `--track@変数名:`で定義した場合は変数名を指定します
-  `--track0:`で定義した場合は番号を指定します
-- 戻り値：移動無し=0
-  移動無し以外の場合は移動モードの名称を返却
+- `value`: Trackbar variable name or number
+  If defined with `--track@variable name:`, specify the variable name.
+  If defined with `--track0:`, specify the number.
+- Return value: No movement = 0
+  For anything other than no movement, the movement mode name is returned.
 
-例：
+Example:
 
 ```aulua
---track@vx:X速度,-10,10,0
+--track@vx:X Speed,-10,10,0
 obj.getoption("track_mode", "vx")
 ```
 
-#### オブジェクトの区間の数
+#### Number of Object Sections
 
 `obj.getoption("section_num")`
 
-- 戻り値：区間の数（中間点の数+1）
+- Return value: Number of sections (number of intermediate points + 1)
 
-#### スクリプト名を取得する
+#### Get Script Name
 
 `obj.getoption("script_name"[,value][,skip])`
 
-- `value`：フィルタ効果の上下の相対位置（0は自分/マイナスは上/プラスは下）
-- `skip`：無効になっているフィルタ効果をスキップするか（ `true`：する / `false`\<デフォルト\>：しない ）
-- 戻り値：スクリプト名（対象がスクリプト以外なら空のテキスト）
+- `value`: Relative position above or below the filter effect (0 is self / negative is above / positive is below)
+- `skip`: Whether to skip disabled filter effects (`true`: yes / `false` &lt;default&gt;: no)
+- Return value: Script name. Empty text if the target is not a script.
 
-例：
+Example:
 
 ```aulua
 if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 ```
 
-#### GUIの表示状態を調べる
+#### Check GUI Display State
 
 `obj.getoption("gui")`
 
-- 戻り値：`true`：表示 / `false`：非表示
+- Return value: `true` = visible / `false` = hidden
 
-※動画の出力中は非表示状態になります。
+※ It is hidden during video output.
 
-#### カメラ制御状態を取得する
+#### Get Camera Control State
 
 `obj.getoption("camera_mode")`
 
-- 戻り値：0=カメラ制御対象外 / 0以外=カメラ制御対象
+- Return value: 0 = not a camera control target / nonzero = camera control target
 
 > [!NOTE]
-> 実際には`true`/`false`で返されます。
+> In practice, this is returned as `true`/`false`.
 
-#### カメラのパラメータを取得する
+#### Get Camera Parameters
 
 `obj.getoption("camera_param")`
 
-- 戻り値：カメラのパラメータ（テーブル）
+- Return value: Camera parameters (table)
 
-※テーブルの内容はobj.setoption("camera_param")と同じです。
+※ The table contents are the same as `obj.setoption("camera_param")`.
 
-例：
+Example:
 
 ```aulua
 cam = obj.getoption("camera_param")
 ```
 
-#### カメラの焦点のパラメータを取得する
+#### Get Camera Focus Parameters
 
 `obj.getoption("camera_focus")`
 
-- 戻り値：カメラの焦点パラメータ（テーブル）
+- Return value: Camera focus parameters (table)
 
-※テーブルの内容はobj.setoption("camera_focus")と同じです。
+※ The table contents are the same as `obj.setoption("camera_focus")`.
 
-例：
+Example:
 
 ```aulua
 focus = obj.getoption("camera_focus")
 ```
 
-#### 個別オブジェクトが有効かを調べる
+#### Check Whether Individual Objects Are Enabled
 
 `obj.getoption("multi_object")`
 
-- 戻り値：`true`：有効 / `false`：無効
+- Return value: `true` = enabled / `false` = disabled
 
-#### 合成モードを取得する
+#### Get Blend Mode
 
 `obj.getoption("blend")`
 
-- 戻り値：合成モード
+- Return value: Blend mode
 
-※obj.setoption("blend")の`value`と同じです。  
-※出力項目（標準描画等）の合成モードは最後に反映されます。
+※ This is the same as the `value` of `obj.setoption("blend")`.  
+※ The blend mode of output items such as standard drawing is applied last.
 
-#### 裏面を表示しないかを取得する
+#### Get Whether Back Faces Are Hidden
 
 `obj.getoption("culling")`
 
-- 戻り値：0=表示 / 1=非表示
+- Return value: 0 = show / 1 = hide
 
-#### カメラの方向を向くかを取得する
+#### Get Whether It Faces the Camera Direction
 
 `obj.getoption("billboard")`
 
-- 戻り値：0=向かない / 1=横方向のみ / 2=縦方向のみ / 3=向く
+- Return value: 0 = do not face / 1 = horizontal only / 2 = vertical only / 3 = face
 
-#### 描画先の情報を取得する
+#### Get Drawing Target Information
 
 `obj.getoption("drawtarget")`
 
-- 戻り値：`"tempbuffer"`：仮想バッファ / `"framebuffer"`：フレームバッファ
+- Return value: `"tempbuffer"` = temporal buffer / `"framebuffer"` = frame buffer
 
-#### スクリプト内でフレームバッファに描画されたかのステータスを取得する
+#### Get the Status of Whether the Frame Buffer Was Drawn in the Script
 
 `obj.getoption("draw_state")`
 
-- 戻り値：`true`：描画済み / `false`：未描画
+- Return value: `true` = drawn / `false` = not drawn
 
 ### obj.getvalue(target[,time,section])
 
-現在のオブジェクトの設定値を取得します。
+Gets setting values for the current object.
 
-- `target`：設定種別
-  - `0`：トラックバー0の値
-  - `1`：トラックバー1の値
-  - `2`：トラックバー2の値
-  - `3`：トラックバー3の値
-  - `"track.xxx"`：変数名xxxのトラックバーの値 ※`track.[変数名]`で変数名付きトラックバーの値を取得出来ます
-  - `"x"`：基準座標X<sup>1</sup>
-  - `"y"`：基準座標Y<sup>1</sup>
-  - `"z"`：基準座標Z<sup>1</sup>
-  - `"pos"`基準座標の3値<sup>1</sup>
-  - `"rx"`：基準X軸回転角度<sup>1</sup>
-  - `"ry"`：基準Y軸回転角度<sup>1</sup>
-  - `"rz"`：基準Z軸回転角度<sup>1</sup>
-  - `"angle"`：基準回転角度の3値<sup>1</sup>
-  - `"cx"`：基準中心座標X<sup>1</sup>
-  - `"cy"`：基準中心座標Y<sup>1</sup>
-  - `"cz"`：基準中心座標Z<sup>1</sup>
-  - `"center"`：基準中心座標の3値<sup>1</sup>
-  - `"sx"`：基準拡大率X（1.0=等倍）<sup>1</sup>
-  - `"sy"`：基準拡大率Y（1.0=等倍）<sup>1</sup>
-  - `"sz"`：基準拡大率Z（1.0=等倍）<sup>1</sup>
-  - `"scale"`：基準拡大率の3値<sup>1</sup>
-  - `"zoom"`：基準拡大率（100=等倍）<sup>1、2</sup>
-    ※obj.zoom（1.0=等倍）と異なっているので注意 ※互換対応
-  - `"aspect"`：基準アスペクト比（-1.0～1.0/プラス=横縮小/マイナス縦縮小）<sup>1、2</sup> ※互換対応
-  - `"alpha"`：基準不透明度（0.0～1.0/0.0=透明/1.0=不透明）<sup>1</sup>
-  - `"time"`：オブジェクト基準の時間
-  - `"frame_s"`：全体（シーン）基準のオブジェクトの開始フレーム（0からの整数）
-  - `"frame_e"`：全体（シーン）基準のオブジェクトの終了フレーム（0からの整数）
-  - `"layer7.x"`：レイヤー7のオブジェクトの基準座標X
-    ※`layer[レイヤー番号].[設定種別]`で別レイヤーのオブジェクトの値を取得出来ます
-    ※`layer[レイヤー番号]`でオブジェクトの有無が確認出来ます（true/false）
-  - `"scenechange"`：シーンチェンジでの表示割合（0.0～1.0） シーンチェンジのみ使用可
-    ※使い方はシーンチェンジスクリプトの例を参照してください
-- `time`：どの時点の値を取得するかの時間（秒）（省略時は現時間）
-- `section`：時間の基準となる区間の番号（省略時は開始点）
-  - `0`：開始点
-  - `1`：最初の中間点
-  - `2`：2個目の中間点
-  - `-1`：終了点
+- `target`: Setting type
+  - `0`: Trackbar 0 value
+  - `1`: Trackbar 1 value
+  - `2`: Trackbar 2 value
+  - `3`: Trackbar 3 value
+  - `"track.xxx"`: Trackbar value for variable name `xxx`. ※ Use `track.[variable name]` to get the value of a named trackbar.
+  - `"x"`: Base coordinate X<sup>1</sup>
+  - `"y"`: Base coordinate Y<sup>1</sup>
+  - `"z"`: Base coordinate Z<sup>1</sup>
+  - `"pos"`: Three base coordinate values<sup>1</sup>
+  - `"rx"`: Base X-axis rotation angle<sup>1</sup>
+  - `"ry"`: Base Y-axis rotation angle<sup>1</sup>
+  - `"rz"`: Base Z-axis rotation angle<sup>1</sup>
+  - `"angle"`: Three base rotation angle values<sup>1</sup>
+  - `"cx"`: Base center coordinate X<sup>1</sup>
+  - `"cy"`: Base center coordinate Y<sup>1</sup>
+  - `"cz"`: Base center coordinate Z<sup>1</sup>
+  - `"center"`: Three base center coordinate values<sup>1</sup>
+  - `"sx"`: Base scale X (1.0 = original size)<sup>1</sup>
+  - `"sy"`: Base scale Y (1.0 = original size)<sup>1</sup>
+  - `"sz"`: Base scale Z (1.0 = original size)<sup>1</sup>
+  - `"scale"`: Three base scale values<sup>1</sup>
+  - `"zoom"`: Base scale (100 = original size)<sup>1, 2</sup>
+    ※ Note that this differs from `obj.zoom` (1.0 = original size). ※ For compatibility.
+  - `"aspect"`: Base aspect ratio (-1.0 to 1.0 / positive = horizontal compression / negative = vertical compression)<sup>1, 2</sup>. ※ For compatibility.
+  - `"alpha"`: Base opacity (0.0 to 1.0 / 0.0 = transparent / 1.0 = opaque)<sup>1</sup>
+  - `"time"`: Time relative to the object
+  - `"frame_s"`: Object start frame relative to the whole scene (integer starting from 0)
+  - `"frame_e"`: Object end frame relative to the whole scene (integer starting from 0)
+  - `"layer7.x"`: Base coordinate X of the object on layer 7
+    ※ Use `layer[layer number].[setting type]` to get values from objects on other layers.
+    ※ Use `layer[layer number]` to check whether an object exists (`true`/`false`).
+  - `"scenechange"`: Display ratio in a scene change (0.0 to 1.0). Available only for scene changes.
+    ※ See the scene change script example for usage.
+- `time`: Time, in seconds, for the point at which to get the value. If omitted, the current time is used.
+- `section`: Section number used as the time reference. If omitted, the start point is used.
+  - `0`: Start point
+  - `1`: First intermediate point
+  - `2`: Second intermediate point
+  - `-1`: End point
 
-1. 上記の基準xxxxはオブジェクトの出力項目(標準描画等)の設定値になります
-2. zoom、aspectは基準拡大率XYZから算出した値になります
+1. The base values above are setting values for object output items, such as standard drawing.
+2. `zoom` and `aspect` are calculated from the base scale XYZ values.
 
 ### obj.getvalue(effect,item[,time,section])
 
-現在のオブジェクトの設定値を取得します。
+Gets setting values for the current object.
 
-- `effect`：対象のエフェクト名（エイリアスファイルの`effect.name`の値）
-  同じエフェクトが複数ある場合は`":n"`のサフィックスでインデックス指定出来ます（nは0からの番号）
-  エフェクトが無効状態の場合は対象から除外されます
+- `effect`: Target effect name, the value of `effect.name` in alias files.
+  If there are multiple effects with the same name, an index can be specified with the `":n"` suffix, where `n` starts from 0.
+  Disabled effects are excluded from targets.
 
-- `item`：対象の設定項目の名称（エイリアスファイルのキーの名称） ※名称が数値の場合は利用出来ません
-- `time`：どの時点の値を取得するかの時間（秒）（省略時は現時間）
-- `section`：時間の基準となる区間の番号（省略時は開始点）
-  - `0`：開始点
-  - `1`：最初の中間点
-  - `2`：2個目の中間点
-  - `-1`：終了点
-- 戻り値：トラックバーの場合は指定時間の設定値
-  セクション毎チェックボックスの場合は指定時間のセクションの設定値
-  上記以外の場合はエイリアスファイルの設定値と同じフォーマットの値
-  取得対象が存在しない場合は返却無し ※`nil`で判定出来ます
+- `item`: Target setting item name, the key name in alias files. ※ Names that are numbers cannot be used.
+- `time`: Time, in seconds, for the point at which to get the value. If omitted, the current time is used.
+- `section`: Section number used as the time reference. If omitted, the start point is used.
+  - `0`: Start point
+  - `1`: First intermediate point
+  - `2`: Second intermediate point
+  - `-1`: End point
+- Return value: For trackbars, the setting value at the specified time.
+  For per-section checkboxes, the setting value for the section at the specified time.
+  For other items, a value in the same format as the setting value in the alias file.
+  If the target does not exist, nothing is returned. ※ This can be checked with `nil`.
 
-例：
+Example:
 
 ```aulua
 font = obj.getvalue("テキスト", "フォント")
@@ -1036,39 +1032,39 @@ range = obj.getvalue("ぼかし:1", "範囲")
 
 ### obj.getvalue(layer,effect,item[,time,section])
 
-指定レイヤーのオブジェクトの設定値を取得します。※現時間のオブジェクトが対象になります
+Gets setting values for the object on the specified layer. ※ The object at the current time is targeted.
 
-対象レイヤーの引数以外は`obj.getvalue(effect,item,...)`と同じです。
+Except for the target layer argument, this is the same as `obj.getvalue(effect,item,...)`.
 
-- `layer`：対象レイヤー番号（1～）
+- `layer`: Target layer number (1 or greater)
 
 ### obj.setanchor(name,num[,option,..])
 
-アンカーポイントを表示します。
-この関数を呼び出した時にアンカーポイントの表示設定とアンカーが移動していた場合の変数への反映を行います。
-呼び出し順序や回数を変更すると正しく反映されない場合があります。
+Displays anchor points.
+When this function is called, it applies anchor point display settings and reflects moved anchors back to variables.
+Changing the call order or number of calls may prevent correct reflection.
 
-- `name`：`--value`、`--dialog`の配列で定義されている座標を格納する変数名を指定します。※変数名を文字列として指定
-  `"track"`を指定すると`--track0`から指定されているトラックバーの始点終点中間点の値を参照します。
-  変数名をカンマ区切りで2か3項目列挙した場合は`--track@xxx`で定義されている各トラックバーの始点終点中間点の値を参照します。
-  ※直接テーブル変数名を指定するとアンカー表示や移動なしで線だけを表示します。
-- `num`：アンカーポイントの数を指定します。
-  `name="track"`の場合は0を指定して下さい。アンカーポイント数は開始終了中間点の数になります。
-- `option`：各種オプションを列挙出来ます。
-  - `"line"`：アンカーポイントを線で結びます。
-  - `"loop"`：アンカーポイントを線で結び一周させます。
-  - `"star"`：アンカーポイントをオブジェクトの中心とそれぞれ線で結びます。
-  - `"arm"`：アンカーポイントとオブジェクトの中心を線で結びます。
-  - `"mesh",横数,縦数`：アンカーポイントを網目状に線で結びます。後続の引数に格子点数を指定します。
-  - `"color",色`：上記オプションの線の色(RGB)を変更します。後続の引数に色(0x000000～0xffffff)を指定します。
-  - `"rgba",色`：上記オプションの線の色(RGBA)を変更します。後続の引数にα値を含めた色(0x00000000～0xffffffff)を指定します。
-  - `"inout"`：上記オプションの線の表示をIN,OUT側の2個として表示します。（アンカー数は半々になります）
-  - `"xyz"`：アンカーポイントを3D座標で制御します。※デフォルトは2D座標
-  - `"screen"`：スクリーン座標で制御します。※デフォルトはオブジェクト座標
-    ※カメラ制御+シャドーで使用する場合にプレビューで影部分が少しずれる場合があります。
-- 戻り値：取得したアンカーポイントの数
+- `name`: Specifies the variable name that stores coordinates defined as an array in `--value` or `--dialog`. ※ Specify the variable name as a string.
+  Specifying `"track"` references start, end, and intermediate point values from trackbars specified from `--track0`.
+  If two or three variable names are listed separated by commas, it references start, end, and intermediate point values from each trackbar defined with `--track@xxx`.
+  ※ If a table variable name is specified directly, only lines are displayed without anchor display or movement.
+- `num`: Specifies the number of anchor points.
+  If `name="track"`, specify 0. The number of anchor points becomes the number of start, end, and intermediate points.
+- `option`: Various options can be listed.
+  - `"line"`: Connects anchor points with lines.
+  - `"loop"`: Connects anchor points with lines and closes the loop.
+  - `"star"`: Connects each anchor point to the center of the object with lines.
+  - `"arm"`: Connects anchor points and the center of the object with lines.
+  - `"mesh",horizontal count,vertical count`: Connects anchor points with lines in a mesh. Specify the grid point counts in the following arguments.
+  - `"color",color`: Changes the line color (RGB) for the above options. Specify the color (0x000000 to 0xffffff) in the following argument.
+  - `"rgba",color`: Changes the line color (RGBA) for the above options. Specify a color including alpha (0x00000000 to 0xffffffff) in the following argument.
+  - `"inout"`: Displays the above option lines as two sets, IN and OUT. The anchor count is split evenly.
+  - `"xyz"`: Controls anchor points with 3D coordinates. ※ The default is 2D coordinates.
+  - `"screen"`: Controls anchor points with screen coordinates. ※ The default is object coordinates.
+    ※ When used with camera control + shadow, the shadow area may shift slightly in the preview.
+- Return value: Number of anchor points obtained
 
-例：
+Example:
 
 ```aulua
 obj.setanchor("pos", 3)
@@ -1077,115 +1073,115 @@ n = obj.setanchor("track", 0, "line")
 
 ### obj.getpixel(x,y[,type])
 
-現在のオブジェクトのピクセル情報を取得します。
-引数なしで呼ぶとオブジェクトのピクセル数を取得できます。
-※getpixel()はVRAMアクセスを低減する為にキャッシュしたものから値を返却します。
-状況によってキャッシュが更新されずに正しい値が取得出来ない場合があります。（draw,pixel系の描画関連）
-obj.pixeloption("get",xxx)を処理することで能動的にキャッシュを破棄することが出来ます。
+Gets pixel information for the current object.
+When called without arguments, it gets the number of pixels in the object.
+※ To reduce VRAM access, `getpixel()` returns values from cached data.
+Depending on the situation, the cache may not be updated and correct values may not be obtainable, such as with drawing related to `draw` and pixel operations.
+Processing `obj.pixeloption("get",xxx)` can actively discard the cache.
 
-- `x,y`：取得するピクセルの座標
-- `type`：ピクセル情報のタイプ（`"col"`、`"rgb"`）
-  ※省略時は `obj.pixeloption("type")` で指定したタイプ（通常は`"col"`）
-- 戻り値：
-  - タイプが`"col"`の場合
-    色情報（0x000000～0xffffff）と不透明度（0.0=透明/1.0=不透明）
+- `x,y`: Coordinates of the pixel to get
+- `type`: Pixel information type (`"col"`, `"rgb"`)
+  ※ If omitted, the type specified by `obj.pixeloption("type")` is used. Normally this is `"col"`.
+- Return value:
+  - If the type is `"col"`
+    Color information (0x000000 to 0xffffff) and opacity (0.0 = transparent / 1.0 = opaque)
     ```aulua
     col, a = obj.getpixel(0, 0, "col")
     ```
-  - タイプが`"rgb"`の場合
-    各8bit(0～255)のRGBA情報
+  - If the type is `"rgb"`
+    8-bit RGBA information for each channel (0 to 255)
     ```aulua
     r, g, b, a = obj.getpixel(0, 0, "rgb")
     ```
-  - タイプが`"yc"`の場合
-    YCbCr旧内部形式
+  - If the type is `"yc"`
+    Legacy internal YCbCr format
 
     ```aulua
     y, cb, cr, a = obj.getpixel(0, 0, "yc")
     ```
 
-  - 引数なし
-    横、縦のピクセル数
+  - No arguments
+    Horizontal and vertical pixel counts
     ```aulua
     w, h = obj.getpixel()
     ```
 
 ### obj.putpixel(x,y,...)
 
-現在のオブジェクトのピクセル情報を書き換えます。
-引数なしで呼ぶとオブジェクトのピクセル数を取得できます。
-受け渡すピクセル情報のタイプは `obj.pixeloption("type")` で指定したタイプになります。
-※putpixel()はピクセル毎にコンピュートシェーダーで実行するので処理は速くないです。
+Rewrites pixel information for the current object.
+When called without arguments, it gets the number of pixels in the object.
+The type of pixel information passed is the type specified by `obj.pixeloption("type")`.
+※ `putpixel()` is not fast because it runs through a compute shader for each pixel.
 
-- `x,y`：書き換えるピクセルの座標
-- 色情報：
-  - タイプが`"col"`の場合
-    色情報（0x000000～0xffffff）と不透明度（0.0=透明/1.0=不透明）
+- `x,y`: Coordinates of the pixel to rewrite
+- Color information:
+  - If the type is `"col"`
+    Color information (0x000000 to 0xffffff) and opacity (0.0 = transparent / 1.0 = opaque)
     `obj.putpixel(0,0,col,a)`
-  - タイプが`"rgb"`の場合
-    各8bit(0～255)のRGBA情報
+  - If the type is `"rgb"`
+    8-bit RGBA information for each channel (0 to 255)
     `obj.putpixel(0,0,r,g,b,a)`
-  - タイプが`"yc"`の場合
-    YCbCr内部形式
+  - If the type is `"yc"`
+    Internal YCbCr format
     `obj.putpixel(0,0,y,cb,cr,a)`
 
 ### obj.copypixel(dst_x,dst_y,src_x,src_y)
 
-現在のオブジェクトのピクセル情報をコピーします。
-※copypixel()はピクセル毎にコンピュートシェーダーで実行するので処理は速くないです。
+Copies pixel information for the current object.
+※ `copypixel()` is not fast because it runs through a compute shader for each pixel.
 
-- `dst_x,dst_y`：コピー先の座標
-- `src_x,src_y`：コピー元の座標
+- `dst_x,dst_y`: Destination coordinates
+- `src_x,src_y`: Source coordinates
 
 ### obj.pixeloption(name,value)
 
-`obj.getpixel()`,`obj.putpixel()`,`obj.copypixel()` の処理オプションを設定します。
-※スクリプトの呼び出し毎に指定する必要があります。
+Sets processing options for `obj.getpixel()`, `obj.putpixel()`, and `obj.copypixel()`.
+※ This must be specified each time the script is called.
 
-- `name`：オプション名
-- `value`：オプション値
+- `name`: Option name
+- `value`: Option value
 
-#### ピクセル情報タイプを指定する
+#### Specify the Pixel Information Type
 
 `obj.pixeloption("type",value)`
 
-- `value`：`"col"` / `"rgb"` / `"yc"`
+- `value`: `"col"` / `"rgb"` / `"yc"`
 
-#### ピクセル情報の読み出し先を指定する
+#### Specify the Pixel Information Read Source
 
 `obj.pixeloption("get",value)`
 
-- `value`：`"object"`：オブジェクト / `"framebuffer"`：フレームバッファ
+- `value`: `"object"` = object / `"framebuffer"` = frame buffer
 
-#### ピクセル情報の書き込み先を指定する
+#### Specify the Pixel Information Write Destination
 
 `obj.pixeloption("put",value)`
 
-- `value`：`"object"`：オブジェクト / `"framebuffer"`：フレームバッファ
+- `value`: `"object"` = object / `"framebuffer"` = frame buffer
 
-#### 書き込む時のブレンドタイプを指定する
+#### Specify the Blend Type When Writing
 
 `obj.pixeloption("blend",value)`
 
-- `value`：引数なし=置き換え / 0=通常 / 1=加算 / 2=減算 / 3=乗算
+- `value`: No arguments = replace / 0 = normal / 1 = add / 2 = subtract / 3 = multiply
 
 ### obj.getpixeldata(target[,format])
 
-画像バッファからRGBA(32bit)形式でデータを読み出します。
-この関数はスクリプトモジュールやDLLを利用して画像処理をする為のものです。
-※VRAMからデータを取得するので処理は速くないです。
+Reads data from an image buffer in RGBA (32-bit) format.
+※ This function is intended for image processing using script modules or DLLs.
+※ It is not fast because it gets data from VRAM.
 
-- `target`：読み込む画像バッファ
-  - `"object"`：オブジェクト
-  - `"tempbuffer"`：仮想バッファ
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-  - `"framebuffer"`：フレームバッファ
-- `format`：画像データのフォーマット ※デフォルトはRGBA32bit
-  - `"rgba"`：RGBA32bit
-  - `"bgra"`：BGRA32bit
-- 戻り値：画像データのポインタ（ユーザーデータ）、横、縦のピクセル数
+- `target`: Image buffer to read
+  - `"object"`: Object
+  - `"tempbuffer"`: Temporal buffer
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+  - `"framebuffer"`: Frame buffer
+- `format`: Image data format. ※ The default is RGBA 32-bit.
+  - `"rgba"`: RGBA 32-bit
+  - `"bgra"`: BGRA 32-bit
+- Return value: Image data pointer (userdata), horizontal pixel count, vertical pixel count
 
-例：
+Example:
 
 ```aulua
 data, w, h = obj.getpixeldata("object", "rgba")
@@ -1193,23 +1189,23 @@ data, w, h = obj.getpixeldata("object", "rgba")
 
 ### obj.putpixeldata(target,data,w,h[,format])
 
-RGBA(32bit)形式のデータを画像バッファへ書き込みます。
-この関数はスクリプトモジュールやDLLを利用して画像処理をする為のものです。
-※VRAMへデータを書き込むので処理は速くないです。
+Writes RGBA (32-bit) data to an image buffer.
+※ This function is intended for image processing using script modules or DLLs.
+※ It is not fast because it writes data to VRAM.
 
-- `target`：書き込む画像バッファ
-  - `"object"`：オブジェクト
-  - `"tempbuffer"`：仮想バッファ
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の前）
-  - `"framebuffer"`：フレームバッファ（同サイズのみ対応）
-- `data`：画像データのポインタ（ユーザーデータ）
-- `w`：横のピクセル数
-- `h`：縦のピクセル数
-- `format`：画像データのフォーマット ※デフォルトはRGBA32bit
-  - `"rgba"`：RGBA32bit
-  - `"bgra"`：BGRA32bit
+- `target`: Image buffer to write
+  - `"object"`: Object
+  - `"tempbuffer"`: Temporal buffer
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+  - `"framebuffer"`: Frame buffer. Only the same size is supported.
+- `data`: Image data pointer (userdata)
+- `w`: Horizontal pixel count
+- `h`: Vertical pixel count
+- `format`: Image data format. ※ The default is RGBA 32-bit.
+  - `"rgba"`: RGBA 32-bit
+  - `"bgra"`: BGRA 32-bit
 
-例：
+Example:
 
 ```aulua
 obj.putpixeldata("object", data, w, h, "rgba")
@@ -1217,23 +1213,23 @@ obj.putpixeldata("object", data, w, h, "rgba")
 
 ### obj.getaudio(buf,file,type,size)
 
-音声ファイルからオーディオデータを取得します。
-オブジェクトの時間を基準とした位置のデータを取得します。
+Gets audio data from an audio file.
+Gets data at the position relative to the object time.
 
-- `buf`：データを受け取るテーブルを指定します。
-  　※nilを指定すると第3戻り値でテーブルを返します。
-- `file`：音声ファイル名（`"audiobuffer"`を指定すると編集中の音声データが取得出来ます）
-- `type`：取得データの種類
-  - `"pcm"`：PCMサンプリングデータ（16bitモノラルのスケール基準）
-  - `"spectrum"`：周波数毎の音量データ
-  - `"fourier"`：音声を離散フーリエ変換したデータ（sizeの指定は不要）
-    　 ※元周波数の1/2048～1/2まで1/2048刻みの1024個のデータになります
-  - `"xxxx.l"`：左チャンネルの音声で取得（xxxxは取得データ種別）
-  - `"xxxx.r"`：右チャンネルの音声で取得（xxxxは取得データ種別）
-- `size`：取得するデータ数（指定した値より少ない場合があります）
-- 戻り値：取得したデータ数、サンプリングレート
+- `buf`: Specifies the table that receives the data.
+  ※ If `nil` is specified, the table is returned as the third return value.
+- `file`: Audio filename. Specify `"audiobuffer"` to get the audio data being edited.
+- `type`: Type of data to get
+  - `"pcm"`: PCM sampling data (16-bit mono scale reference)
+  - `"spectrum"`: Volume data by frequency
+  - `"fourier"`: Data from discrete Fourier transform of the audio. `size` is not required.
+    ※ This returns 1024 data points in 1/2048 increments from 1/2048 to 1/2 of the original frequency.
+  - `"xxxx.l"`: Gets the left channel audio (`xxxx` is the acquired data type)
+  - `"xxxx.r"`: Gets the right channel audio (`xxxx` is the acquired data type)
+- `size`: Number of data points to get. Fewer than the specified value may be returned.
+- Return value: Number of acquired data points, sampling rate
 
-例：
+Example:
 
 ```aulua
 n = obj.getaudio(buf, "audiobuffer", "spectrum", 32)
@@ -1243,280 +1239,280 @@ n, rate, buf = obj.getaudio(nil, "c:\\test.wav", "pcm.r", 1000)
 
 ### obj.copybuffer(dst,src)
 
-画像バッファをコピーします。
-※コピー先の画像バッファのサイズはコピー元のサイズに変更されます。
+Copies an image buffer.
+※ The destination image buffer size is changed to the source size.
 
-- `dst`：コピー先のバッファ
-  - `"tempbuffer"`：仮想バッファ
-  - `"object"`：オブジェクト
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-  - `"framebuffer"`：フレームバッファ（コピー元が同サイズのオブジェクト、仮想バッファ、キャッシュバッファのみ対応）
-- `src`：コピー元のバッファ
-  - `"framebuffer"`：フレームバッファ
-  - `"object"`：オブジェクト
-  - `"tempbuffer"`：仮想バッファ
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-  - `"image:xxxx"`：画像ファイル（xxxxはスクリプトフォルダからの相対パスの画像ファイル名）
-- 戻り値：`true`：成功 / `false`：失敗
+- `dst`: Destination buffer
+  - `"tempbuffer"`: Temporal buffer
+  - `"object"`: Object
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+  - `"framebuffer"`: Frame buffer. Only supported when the source is an object, temporal buffer, or cache buffer of the same size.
+- `src`: Source buffer
+  - `"framebuffer"`: Frame buffer
+  - `"object"`: Object
+  - `"tempbuffer"`: Temporal buffer
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+  - `"image:xxxx"`: Image file (`xxxx` is an image filename relative to the script folder)
+- Return value: `true` = success / `false` = failure
 
-キャッシュバッファの名前は全てのオブジェクトで共通となります。
-キャッシュバッファは1フレームの描画毎に破棄されます。
+Cache buffer names are shared by all objects.
+Cache buffers are discarded for each frame drawing.
 
 ### obj.clearbuffer(target[,color])
 
-画像バッファをクリアします。
+Clears an image buffer.
 
-- `target`：クリアするバッファ名
-  - `"object"`：オブジェクト
-  - `"tempbuffer"`：仮想バッファ
-  - `"framebuffer"`：フレームバッファ
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-- `color`：色（0x000000～0xffffff）※未指定の場合は透明色
+- `target`: Buffer name to clear
+  - `"object"`: Object
+  - `"tempbuffer"`: Temporal buffer
+  - `"framebuffer"`: Frame buffer
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+- `color`: Color (0x000000 to 0xffffff). ※ If omitted, transparent color is used.
 
 ### obj.clearbuffer(target,w,h[,color])
 
-画像バッファのサイズを変更してクリアします。
+Changes the image buffer size and clears it.
 
-- `target`：クリアするバッファ名(フレームバッファはサイズを変更出来ません)
-- `w`：横のピクセル数
-- `h`：縦のピクセル数
-- `color`：色（0x000000～0xffffff）※未指定の場合は透明色
+- `target`: Buffer name to clear. The frame buffer size cannot be changed.
+- `w`: Horizontal pixel count
+- `h`: Vertical pixel count
+- `color`: Color (0x000000 to 0xffffff). ※ If omitted, transparent color is used.
 
 ### obj.pixelshader(name,target,{resource,...}[,{constant,...},blend,sampler])
 
-ピクセルシェーダーを実行します。
+Runs a pixel shader.
 
-- `name`：シェーダーの登録名 ※登録したシェーダー名を文字列で指定します。
-  `登録名@スクリプト名`のように指定すると他のスクリプトのシェーダー定義が利用出来ます。
-- `target`：出力先のバッファ名
-  Direct3Dのレンダーターゲットに設定されます。
-  - `"object"`：オブジェクト
-  - `"tempbuffer"`：仮想バッファ
-  - `"framebuffer"`：フレームバッファ
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-- `resource`：参照するバッファ名の配列（1つの場合は直接バッファ名で指定出来ます）
-  Direct3Dのシェーダーリソース（t0～）に設定されます。
-  ※レンダーターゲットと同一の場合は複製して設定されます
-  - `"object"`：オブジェクト
-  - `"tempbuffer"`：仮想バッファ
-  - `"framebuffer"`：フレームバッファ
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-  - `"random"`：乱数バッファ(0.0～1.0の乱数値の256x256の領域)※DXGI_FORMAT_R32_FLOAT（r値のみ）になります
-- `constant`：参照する定数の配列
-  Direct3Dの定数バッファ（b0）にfloatの配列として設定されます。
-- `blend`：出力先へのブレンド方法
-  Direct3DのBlendStateを変更します。※デフォルトは`"copy"`
-  - `"copy"`：出力をそのままコピーします
-  - `"mask"`：α値のみを乗算します ※RGB値は利用されません
-  - `"draw"`：出力をアルファブレンドします
-  - `"add"`：出力を加算合成します
-- `sampler`：サンプラーの種別
-  Direct3DのSamplerState（s0）を設定します。※デフォルトは未設定
-  - `"clip"`：領域外（0.0～1.0の範囲外）は透明色
-  - `"clamp"`：領域外は境界の色
-  - `"loop"`：領域外は領域をループ
-  - `"mirror"`：領域外は領域を反転しながらループ
-  - `"dot"`：拡大縮小補間をしない（領域外は透明色）
+- `name`: Shader registered name. ※ Specify the registered shader name as a string.
+  Specify it like `registered name@script name` to use a shader definition from another script.
+- `target`: Output buffer name
+  This is set as the Direct3D render target.
+  - `"object"`: Object
+  - `"tempbuffer"`: Temporal buffer
+  - `"framebuffer"`: Frame buffer
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+- `resource`: Array of buffer names to reference. If there is only one, the buffer name can be specified directly.
+  These are set as Direct3D shader resources (`t0` and later).
+  ※ If this is the same as the render target, it is duplicated and set.
+  - `"object"`: Object
+  - `"tempbuffer"`: Temporal buffer
+  - `"framebuffer"`: Frame buffer
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+  - `"random"`: Random buffer, a 256x256 area with random values from 0.0 to 1.0. ※ This is DXGI_FORMAT_R32_FLOAT, only the R value.
+- `constant`: Array of constants to reference
+  This is set as a float array in the Direct3D constant buffer (`b0`).
+- `blend`: Blend method for the output destination
+  Changes the Direct3D BlendState. ※ The default is `"copy"`.
+  - `"copy"`: Copies the output as-is
+  - `"mask"`: Multiplies only the alpha value. ※ RGB values are not used.
+  - `"draw"`: Alpha-blends the output
+  - `"add"`: Additively blends the output
+- `sampler`: Sampler type
+  Sets the Direct3D SamplerState (`s0`). ※ The default is unset.
+  - `"clip"`: Outside the area (outside the 0.0 to 1.0 range) is transparent color
+  - `"clamp"`: Outside the area uses the boundary color
+  - `"loop"`: Outside the area loops the area
+  - `"mirror"`: Outside the area loops while mirroring the area
+  - `"dot"`: Does not interpolate scaling. Outside the area is transparent color.
 
 ### obj.computeshader(name,{target},{resource,...}[,{constant,...},countX,countY,countZ,sampler])
 
-コンピュートシェーダーを実行します。
+Runs a compute shader.
 
-- `name`：シェーダーの登録名 ※登録したシェーダー名を文字列で指定します。
-  `登録名@スクリプト名`のように指定すると他のスクリプトのシェーダー定義が利用出来ます。
-- `target`：読み書き先のバッファ名の配列（1つの場合は直接バッファ名で指定出来ます）
-  Direct3DのUnorderedAccessリソース（u0～）に設定されます。
-  - `"object"`：オブジェクト
-  - `"tempbuffer"`：仮想バッファ
-  - `"framebuffer"`：フレームバッファ
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-- `resource`：参照するバッファ名の配列（1つの場合は直接バッファ名で指定出来ます）
-  Direct3Dのシェーダーリソース（t0～）に設定されます。
-  ※UnorderedAccessと同一の場合は複製して設定されます
-  - `"object"`：オブジェクト
-  - `"tempbuffer"`：仮想バッファ
-  - `"framebuffer"`：フレームバッファ
-  - `"cache:xxxx"`：キャッシュバッファ（xxxxは任意の名前）
-  - `"random"`：乱数バッファ（0.0～1.0の乱数値の256x256の領域）※DXGI_FORMAT_R32_FLOAT（r値のみ）になります
-- `constant`：参照する定数の配列
-  Direct3Dの定数バッファ（b0）にfloatの配列として設定されます。
-- `countX`：X軸スレッドグループ数 ※未指定の場合は1
-- `countY`：Y軸スレッドグループ数 ※未指定の場合は1
-- `countZ`：Z軸スレッドグループ数 ※未指定の場合は1
+- `name`: Shader registered name. ※ Specify the registered shader name as a string.
+  Specify it like `registered name@script name` to use a shader definition from another script.
+- `target`: Array of buffer names to read/write. If there is only one, the buffer name can be specified directly.
+  These are set as Direct3D Unordered Access resources (`u0` and later).
+  - `"object"`: Object
+  - `"tempbuffer"`: Temporal buffer
+  - `"framebuffer"`: Frame buffer
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+- `resource`: Array of buffer names to reference. If there is only one, the buffer name can be specified directly.
+  These are set as Direct3D shader resources (`t0` and later).
+  ※ If this is the same as an Unordered Access resource, it is duplicated and set.
+  - `"object"`: Object
+  - `"tempbuffer"`: Temporal buffer
+  - `"framebuffer"`: Frame buffer
+  - `"cache:xxxx"`: Cache buffer (`xxxx` is any name)
+  - `"random"`: Random buffer, a 256x256 area with random values from 0.0 to 1.0. ※ This is DXGI_FORMAT_R32_FLOAT, only the R value.
+- `constant`: Array of constants to reference
+  This is set as a float array in the Direct3D constant buffer (`b0`).
+- `countX`: Number of X-axis thread groups. ※ If omitted, 1 is used.
+- `countY`: Number of Y-axis thread groups. ※ If omitted, 1 is used.
+- `countZ`: Number of Z-axis thread groups. ※ If omitted, 1 is used.
 
-- `sampler`：サンプラーの種別
-  Direct3DのSamplerState（s0）を設定します。※デフォルトは未設定
-  - `"clip"`：領域外（0.0～1.0の範囲外）は透明色
-  - `"clamp"`：領域外は境界の色
-  - `"loop"`：領域外は領域をループ
-  - `"mirror"`：領域外は領域を反転しながらループ
-  - `"dot"`：拡大縮小補間をしない（領域外は透明色）
+- `sampler`: Sampler type
+  Sets the Direct3D SamplerState (`s0`). ※ The default is unset.
+  - `"clip"`: Outside the area (outside the 0.0 to 1.0 range) is transparent color
+  - `"clamp"`: Outside the area uses the boundary color
+  - `"loop"`: Outside the area loops the area
+  - `"mirror"`: Outside the area loops while mirroring the area
+  - `"dot"`: Does not interpolate scaling. Outside the area is transparent color.
 
 ### obj.getpoint(target[,option,option2])
 
-トラックバーの値を取得します。
-トラックバー移動スクリプトのみ使用出来ます。
+Gets trackbar values.
+This can be used only in trackbar movement scripts.
 
-- `target`：
-  - 整数：各区間でのトラックバー値
-    0=開始点 / 1=最初の中間点 / 2=2個目の中間点 / ...
-    optionで取得する関連トラックの相対位置を指定することが出来ます。
-  - `"index"`：現在の区間での位置を取得します。
-    開始点と最初の中間点の間の場合は0.5等の少数で表されます。
-  - `"num"`：開始終了中間点の総数を取得します。
-  - `"time"`：現在の時間を取得します。
-    optionで時間を取得する区間を指定することができます。
-  - `"accelerate"`：加速度が設定されているかを取得します。
-    戻り値：`true`：有効 / `false`：無効
-  - `"decelerate"`：減速度が設定されているかを取得します。
-    戻り値：`true`：有効 / `false`：無効
-  - `"param"`：トラックバーの設定値を取得します。
-    設定値が複数ある場合は戻り値が複数になります。
-  - `"link"`：関連トラックでのインデックスと総数を取得します。
+- `target`:
+  - Integer: Trackbar value in each section
+    0 = start point / 1 = first intermediate point / 2 = second intermediate point / ...
+    `option` can specify the relative position of the related track to get.
+  - `"index"`: Gets the position in the current section.
+    If it is between the start point and the first intermediate point, it is represented as a decimal such as 0.5.
+  - `"num"`: Gets the total number of start, end, and intermediate points.
+  - `"time"`: Gets the current time.
+    `option` can specify the section for which to get the time.
+  - `"accelerate"`: Gets whether acceleration is set.
+    Return value: `true` = enabled / `false` = disabled
+  - `"decelerate"`: Gets whether deceleration is set.
+    Return value: `true` = enabled / `false` = disabled
+  - `"param"`: Gets trackbar setting values.
+    If there are multiple setting values, multiple return values are returned.
+  - `"link"`: Gets the index and total count for the related track.
     `index, num = obj.getpoint("link")`
-    関連トラックは座標等で他のトラックの値を取得する為に使用します。
-    X座標での戻り値：0,3 / Y座標での戻り値：1,3 / Z座標での戻り値：2,3
-  - `"timecontrol"`：時間制御を反映した現在の値を取得します。
-    - `option`：取得する値の種別
-      - `"index"`：時間制御を反映した区間での位置を取得
-      - `"time"`：時間制御を反映した時間を取得
-      - `"value"`：時間制御の時間位置（開始点=0.0/終了点=1.0）を取得
-        option2で取得する時間を指定することが出来ます。※未指定の場合は現在の時間
-  - `"frame_s"`：全体（シーン）基準の現在のオブジェクトの開始フレームを取得します。（0からの整数）
-  - `"frame_e"`：全体（シーン）基準の現在のオブジェクトの終了フレームを取得します。（0からの整数）
-  - `"framerate"`：フレームレートを取得します。
-  - `"default"`：トラックバーの標準値を取得します。※互換対応
-    optionで取得するトラックバーの値の移動モードを指定することが出来ます。（名称を指定します）
-    ※時間制御や設定値の情報が不足している場合は利用出来ません。（標準値が返却されます）
+    Related tracks are used to get values from other tracks for coordinates and similar values.
+    Return value for X coordinate: 0,3 / Y coordinate: 1,3 / Z coordinate: 2,3
+  - `"timecontrol"`: Gets the current value with time control applied.
+    - `option`: Type of value to get
+      - `"index"`: Gets the position in the section with time control applied
+      - `"time"`: Gets the time with time control applied
+      - `"value"`: Gets the time position for time control (start point = 0.0 / end point = 1.0)
+        `option2` can specify the time to get. ※ If omitted, the current time is used.
+  - `"frame_s"`: Gets the current object's start frame relative to the whole scene (integer starting from 0)
+  - `"frame_e"`: Gets the current object's end frame relative to the whole scene (integer starting from 0)
+  - `"framerate"`: Gets the frame rate.
+  - `"default"`: Gets the default trackbar value. ※ For compatibility.
+    `option` can specify the movement mode for the trackbar value to get. Specify the name.
+    ※ This cannot be used if time control or setting value information is insufficient. The default value is returned.
 
 ### obj.getinfo(name,...)
 
-各種環境情報を取得します。
+Gets various environment information.
 
-- `name`：取得する情報の名前
+- `name`: Name of the information to get
 
-#### スクリプトフォルダのパスを取得する
+#### Get the Script Folder Path
 
 ```aulua
 obj.getinfo("script_path")
 ```
 
-- 戻り値：スクリプトフォルダのパス
+- Return value: Script folder path
 
-#### フィルタオブジェクトの処理中かを調べる
+#### Check Whether a Filter Object Is Being Processed
 
 ```aulua
 obj.getinfo("filter")
 ```
 
-- 戻り値：`true`：フィルタオブジェクトの処理中
+- Return value: `true` = processing a filter object
 
-#### 動画の出力中かを調べる
+#### Check Whether Video Is Being Output
 
 ```aulua
 obj.getinfo("saving")
 ```
 
-- 戻り値：`true`：出力中 / `false`：非出力中
+- Return value: `true` = outputting / `false` = not outputting
 
-#### 最大画像サイズを取得する
+#### Get the Maximum Image Size
 
 ```aulua
 max_x, max_y = obj.getinfo("image_max")
 ```
 
-- 戻り値：最大画像サイズ（横幅,高さ）
+- Return value: Maximum image size (width, height)
 
-#### オブジェクトが存在する最大のフレーム番号を取得する
+#### Get the Maximum Frame Number Where an Object Exists
 
 ```aulua
 obj.getinfo("frame_max")
 ```
 
-- 戻り値：最大のフレーム番号（0からの整数）
+- Return value: Maximum frame number (integer starting from 0)
 
-#### オブジェクトが存在する最大のレイヤー番号を取得する
+#### Get the Maximum Layer Number Where an Object Exists
 
 ```aulua
 obj.getinfo("layer_max")
 ```
 
-- 戻り値：最大のレイヤー番号（1からの整数）
+- Return value: Maximum layer number (integer starting from 1)
 
-#### グリッド（BPM）の情報を取得する
+#### Get Grid (BPM) Information
 
-先頭のBPM情報を取得します。
+Gets the first BPM information.
 
 ```aulua
 tempo, beat, offset = obj.getinfo("bpm")
 ```
 
-- 戻り値：テンポ,拍子,拍子オフセット（秒）
+- Return value: Tempo, beat, beat offset in seconds
 
-#### グリッド（BPM）の一覧情報を取得する
+#### Get Grid (BPM) List Information
 
 ```aulua
 bpm = obj.getinfo("bpm_list")
 ```
 
-- 戻り値：BPM情報テーブルの配列
-  - `bpm[1].tempo`：テンポ
-  - `bpm[1].beat`：拍子
-  - `bpm[1].start`：開始位置（秒）
-  - `bpm[1].offset`：拍子オフセット（秒）
+- Return value: Array of BPM information tables
+  - `bpm[1].tempo`: Tempo
+  - `bpm[1].beat`: Beat
+  - `bpm[1].start`: Start position in seconds
+  - `bpm[1].offset`: Beat offset in seconds
 
-#### アプリ起動からの経過時間を取得する
+#### Get Elapsed Time Since App Startup
 
 ```aulua
 sec = obj.getinfo("clock")
 ```
 
-- 戻り値：アプリ起動からの経過時間（秒）
-  ※パフォーマンスカウンターで計測しています
+- Return value: Elapsed time since app startup, in seconds
+  ※ Measured with a performance counter.
 
-#### スクリプトの処理時間を取得する
+#### Get Script Processing Time
 
 ```aulua
 msec = obj.getinfo("script_time")
 ```
 
-- 戻り値：スクリプト実行開始からの経過時間（ミリ秒）
-  ※パフォーマンスカウンターで計測しています
+- Return value: Elapsed time since script execution started, in milliseconds
+  ※ Measured with a performance counter.
 
-#### バージョン情報を取得
+#### Get Version Information
 
 ```aulua
 version = obj.getinfo("version")
 ```
 
-- 戻り値：本体のバージョン番号
+- Return value: Main program version number
 
 ### obj.data(name)
 
-汎用データ領域を取得します。
-※スクリプトモジュールやDLL向けになります。
+Gets a generic data area.
+※ This is intended for script modules and DLLs.
 
-- `name`：汎用データ領域の登録名
-- 戻り値：汎用データ領域のポインタ（ユーザーデータ）
+- `name`: Registered name of the generic data area
+- Return value: Pointer to the generic data area (userdata)
 
 ### obj.multiobject(num,func)
 
-オブジェクトを個別オブジェクトとして複数描画します。
+Draws an object multiple times as individual objects.
 
-- `num`：描画する個別オブジェクトの数
-- `func`：オブジェクトの描画処理のコールバック関数 (描画する回数呼ばれます)
-  コールバック関数の返却で個別オブジェクトの基準時間のオフセット（秒）を返却出来ます
+- `num`: Number of individual objects to draw
+- `func`: Callback function for object drawing processing. It is called for the number of times to draw.
+  The callback function can return the reference time offset, in seconds, for the individual object.
 
-※使い方はオブジェクトを個別オブジェクトとして複数描画させる例を参照してください
+※ For usage, see the example for drawing multiple copies of an object as individual objects.
 
 ### obj.module(name)
 
-スクリプトモジュール（.mod2）の関数を取得します。
+Gets functions from a script module (`.mod2`).
 
-- `name`：モジュール名（スクリプトモジュールのファイル名本体）
-- 戻り値：スクリプトモジュールの関数テーブル
+- `name`: Module name, the base filename of the script module
+- Return value: Function table from the script module
 
-例：
+Example:
 
 ```aulua
 local func = obj.module("ScriptModule")
@@ -1525,11 +1521,10 @@ local total = func.sum(1, 2, 3)
 
 ### obj.interpolation(time,x0,y0,z0,x1,y1,z1,x2,y2,z2,x3,y3,z3)
 
-連続した点p0(x0,y0,z0),p1(x1,y1,z1),p2(x2,y2,z2),p3(x3,y3,z3)から
-時間time(0～1)に応じたp1,p2間の座標を計算します。
-※y,z座標は省略することが出来ます。
+Calculates coordinates between p1 and p2 according to `time` (0 to 1), from the consecutive points p0 (x0, y0, z0), p1 (x1, y1, z1), p2 (x2, y2, z2), and p3 (x3, y3, z3).
+※ The Y and Z coordinates can be omitted.
 
-例：
+Example:
 
 ```aulua
 x, y, z = obj.interpolation(time, x0, y0, z0, x1, y1, z1, x2, y2, z2, x3, y3, z3)
@@ -1538,10 +1533,10 @@ x, y = obj.interpolation(time, x0, y0, x1, y1, x2, y2, x3, y3)
 
 ### RGB(r,g,b)
 
-色情報（0x000000～0xffffff）と赤（0～255）,緑（0～255）,青（0～255）各要素の相互変換をします。
-r,g,bを2つ指定した場合はオブジェクトの時間経過に応じて色を変化させます。
+Converts between color information (0x000000 to 0xffffff) and each red (0 to 255), green (0 to 255), and blue (0 to 255) component.
+If two sets of `r,g,b` are specified, the color changes according to the object's elapsed time.
 
-例：
+Example:
 
 ```aulua
 col = RGB(r, g, b)
@@ -1551,10 +1546,10 @@ col = RGB(r1, g1, b1, r2, g2, b2)
 
 ### HSV(h,s,v)
 
-色情報（0x000000～0xffffff）と色相（0～360）,彩度（0～100）,明度（0～100）各要素の相互変換をします。
-h,s,vを2つ指定した場合はオブジェクトの時間経過に応じて色を変化させます。
+Converts between color information (0x000000 to 0xffffff) and each hue (0 to 360), saturation (0 to 100), and value (0 to 100) component.
+If two sets of `h,s,v` are specified, the color changes according to the object's elapsed time.
 
-例：
+Example:
 
 ```aulua
 col = HSV(h, s, v)
@@ -1564,9 +1559,9 @@ col = HSV(h1, s1, v1, h2, s2, v2)
 
 ### OR(a,b) / AND(a,b) / XOR(a,b)
 
-OR,AND,XORのビット演算をします。
+Performs OR, AND, and XOR bit operations.
 
-例：
+Example:
 
 ```aulua
 c = OR(a, b)
@@ -1574,9 +1569,9 @@ c = OR(a, b)
 
 ### SHIFT(a,shift)
 
-算術シフトをします。shiftが正の数だと左シフト、負の数だと右シフトになります。
+Performs an arithmetic shift. If `shift` is positive, it shifts left; if negative, it shifts right.
 
-例：
+Example:
 
 ```aulua
 b = SHIFT(a, 1)
@@ -1584,47 +1579,46 @@ b = SHIFT(a, 1)
 
 ### rotation(x0,y0,x1,y1,x2,y2,x3,y3,zoom,r)
 
-原点（0,0）を中心に指定の座標を拡大縮小回転します。
+Scales and rotates the specified coordinates around the origin (0,0).
 
-- `x0,y0`：頂点0の座標
-- `x1,y1`：頂点1の座標
-- `x2,y2`：頂点2の座標
-- `x3,y3`：頂点3の座標
-- `zoom`：拡大率（1.0=等倍）
-- `r`：回転角度（360.0で一回転）
+- `x0,y0`: Coordinates of vertex 0
+- `x1,y1`: Coordinates of vertex 1
+- `x2,y2`: Coordinates of vertex 2
+- `x3,y3`: Coordinates of vertex 3
+- `zoom`: Scale (1.0 = original size)
+- `r`: Rotation angle (360.0 is one full rotation)
 
-例：
+Example:
 
 ```aulua
 x0, y0, x1, y1, x2, y2, x3, y3 = rotation(x0, y0, x1, y1, x2, y2, x3, y3, zoom, r)
 ```
 
-### print(text[,...])、debug_print(text)
+### print(text[,...]), debug_print(text)
 
-指定の文字列をログに出力します。
-引数が複数の場合は連結して出力します。
-第1引数にログレベルを指定することが出来ます。
-※引数が関数やユーザーデータの場合は空文字が出力されます。
-※ログの設定からOutputDebugString等にも出力されるように設定を変更出来ます。
+Outputs the specified string to the log.
+If multiple arguments are specified, they are concatenated and output.
+A log level can be specified as the first argument.
+※ If an argument is a function or userdata, an empty string is output.
+※ Settings can be changed from the log settings so output is also sent to OutputDebugString and similar destinations.
 
-- `text`：ログ文字列
-  ログレベルの指定("@info","@warn","@error","@verbose") ※第1引数の場合のみ
+- `text`: Log string
+  Log level specification (`"@info"`, `"@warn"`, `"@error"`, `"@verbose"`). ※ Only when this is the first argument.
 
-例：
+Example:
 
 ```aulua
-print("ログ表示")
-print("@error", "エラー表示")
+print("Log display")
+print("@error", "Error display")
 ```
 
-## Lua/LuaJITのバイナリについて
+## About Lua/LuaJIT Binaries
 
-付属のlua.dllはLuaのサイトにあるバージョン5.1.4に
-5.1.4-2のパッチを当ててビルドしたものです。
+The included `lua.dll` is built from version 5.1.4 from the Lua website with the 5.1.4-2 patch applied.
 
-付属のluaJIT.dllはLuaJITのサイトにあるバージョン2.1をビルドしたものです。
+The included `luaJIT.dll` is built from version 2.1 from the LuaJIT website.
 
-- Luaのサイト
+- Lua website
   <http://www.lua.org/>
-- LuaJITのサイト
+- LuaJIT website
   <https://luajit.org/>

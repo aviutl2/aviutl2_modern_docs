@@ -1,11 +1,11 @@
 ---
-title: "ライセンス等"
-description: "AviUtl ExEdit2で使用しているライブラリのライセンス等について説明しています。"
+title: "Licenses"
+description: "This page explains licenses for libraries used by AviUtl ExEdit2."
 ---
 
-# ライセンス等
+# Licenses
 
-## Luaのライセンス
+## Lua License
 
 ```
 Lua License
@@ -42,7 +42,7 @@ THE SOFTWARE.
 ===============================================================================
 ```
 
-## LuaJITのライセンス
+## LuaJIT License
 
 ```
 ===============================================================================
@@ -103,7 +103,7 @@ https://creativecommons.org/licenses/publicdomain
 ===============================================================================
 ```
 
-## DirectXMathのライセンス
+## DirectXMath License
 
 ```
 MIT License

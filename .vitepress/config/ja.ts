@@ -5,7 +5,6 @@ import { jaModel, Parser } from "budoux";
 export default defineAdditionalConfig({
   lang: "ja",
   themeConfig: {
-    nav: [{ text: "ホーム", link: "/" }],
     search: {
       provider: "local",
       options: {
@@ -81,13 +80,6 @@ export default defineAdditionalConfig({
         items: [{ text: "ライセンス等", link: "/" }],
       },
       { text: "このサイトについて", link: "/about" },
-    ],
-
-    socialLinks: [
-      {
-        icon: "github",
-        link: "https://github.com/aviutl2/aviutl2_modern_docs",
-      },
     ],
 
     skipToContentLabel: "内容にジャンプ",
