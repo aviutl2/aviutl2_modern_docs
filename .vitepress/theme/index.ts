@@ -5,12 +5,13 @@ import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme-without-fonts";
 import "./style.css";
 import "./custom.scss";
+import TranslatedWarningContainer from "./TranslatedWarningContainer.vue";
 
 export default {
   extends: DefaultTheme,
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
+      "layout-top": () => h(TranslatedWarningContainer),
     });
   },
   enhanceApp() {
