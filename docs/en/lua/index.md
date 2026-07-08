@@ -3,6 +3,10 @@ title: Lua Script
 description: This page explains Lua scripts in AviUtl ExEdit2.
 ---
 
+<script setup>
+import EnUiText from "../../components/EnUiText.vue";
+</script>
+
 # Lua Script
 
 ## About Lua Scripts
@@ -531,25 +535,25 @@ Setting `speed` and `time` can change the number of characters displayed.
 - `time`: Elapsed time for the `speed` parameter
 - `align`: Text alignment type. ※ If a text alignment type is specified, center coordinates are set.
   - Horizontal writing:
-    - `0`: left [top]
-    - `1`: center [top]
-    - `2`: right [top]
-    - `3`: left [middle]
-    - `4`: center [middle]
-    - `5`: right [middle]
-    - `6`: left [bottom]
-    - `7`: center [bottom]
-    - `8`: right [bottom]
+    - `0`: <EnUiText scope="Effect" text="左寄せ[上]" />
+    - `1`: <EnUiText scope="Effect" text="中央揃え[上]" />
+    - `2`: <EnUiText scope="Effect" text="右寄せ[上]" />
+    - `3`: <EnUiText scope="Effect" text="左寄せ[中]" />
+    - `4`: <EnUiText scope="Effect" text="中央揃え[中]" />
+    - `5`: <EnUiText scope="Effect" text="右寄せ[中]" />
+    - `6`: <EnUiText scope="Effect" text="左寄せ[下]" />
+    - `7`: <EnUiText scope="Effect" text="中央揃え[下]" />
+    - `8`: <EnUiText scope="Effect" text="右寄せ[下]" />
   - Vertical writing:
-    - `9`: top row [right]
-    - `10`: middle row [right]
-    - `11`: bottom row [right]
-    - `12`: top row [center]
-    - `13`: middle row [center]
-    - `14`: bottom row [center]
-    - `15`: top row [left]
-    - `16`: middle row [left]
-    - `17`: bottom row [left]
+    - `9`: <EnUiText scope="Effect" text="縦書 上寄[右]" />
+    - `10`: <EnUiText scope="Effect" text="縦書 中央[右]" />
+    - `11`: <EnUiText scope="Effect" text="縦書 下寄[右]" />
+    - `12`: <EnUiText scope="Effect" text="縦書 上寄[中]" />
+    - `13`: <EnUiText scope="Effect" text="縦書 中央[中]" />
+    - `14`: <EnUiText scope="Effect" text="縦書 下寄[中]" />
+    - `15`: <EnUiText scope="Effect" text="縦書 上寄[左]" />
+    - `16`: <EnUiText scope="Effect" text="縦書 中央[左]" />
+    - `17`: <EnUiText scope="Effect" text="縦書 下寄[左]" />
 - Return value: `true` = success / `false` = load failure
 
 Example:

@@ -26,15 +26,23 @@ onMounted(() => {
       }));
     });
 });
+
+const props = defineProps<{
+  version: string;
+  releasedAt: string;
+  download: string;
+  installer: string;
+  portable: string;
+}>();
 </script>
 <template>
   <div v-if="versions.length === 0">Loading...</div>
   <table tabindex="0" v-else>
     <thead>
       <tr>
-        <th>バージョン</th>
-        <th>リリース日</th>
-        <th>ダウンロード</th>
+        <th>{{ props.version }}</th>
+        <th>{{ props.releasedAt }}</th>
+        <th colspan="2">{{ props.download }}</th>
       </tr>
     </thead>
     <tbody>
@@ -42,8 +50,14 @@ onMounted(() => {
         <td>{{ version.version }}</td>
         <td>{{ version.releasedAt }}</td>
         <td>
-          <a :href="version.downloads.exe" target="_blank">exe</a> |
-          <a :href="version.downloads.zip" target="_blank">zip</a>
+          <a :href="version.downloads.exe" target="_blank">{{
+            props.installer
+          }}</a>
+        </td>
+        <td>
+          <a :href="version.downloads.zip" target="_blank">{{
+            props.portable
+          }}</a>
         </td>
       </tr>
     </tbody>

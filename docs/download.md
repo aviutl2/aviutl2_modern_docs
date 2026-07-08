@@ -15,4 +15,4 @@ description: AviUtl ExEdit2のダウンロードリンクをまとめていま�
 import DownloadTable from "./components/DownloadTable.vue";
 </script>
 
-<DownloadTable />
+<DownloadTable version="バージョン" releasedAt="リリース日" download="ダウンロード" installer="インストーラー版" portable="ポータブル版" />

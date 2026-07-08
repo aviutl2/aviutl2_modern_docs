@@ -80,6 +80,7 @@ export default defineAdditionalConfig({
         items: [{ text: "ライセンス等", link: "/" }],
       },
       { text: "このサイトについて", link: "/about" },
+      { text: "ダウンロード", link: "/download" },
     ],
 
     skipToContentLabel: "内容にジャンプ",

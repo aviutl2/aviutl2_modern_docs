@@ -5,7 +5,7 @@ description: aviutl2_modern_docsについて説明しています。
 
 # このサイトについて
 
-このサイトは<span style="color: #48b0d5">[名無し。](https://sevenc7c.com)</span>が作成した、[AviUtl2](https://spring-fragrance.mints.ne.jp/aviutl/)の非公式ドキュメントです。
+このサイトは<a style="color: #48b0d5 !important" href="https://sevenc7c.com" target="_blank">名無し。</a>が作成した、[AviUtl2](https://spring-fragrance.mints.ne.jp/aviutl/)の非公式ドキュメントです。
 AviUtl2の`aviutl2.txt`と`lua.txt`の内容を変換・加工して配信しています。
 
 [GitHub](https://github.com/aviutl2/aviutl2_modern_docs)にてソースコードを公開しています。

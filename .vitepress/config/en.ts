@@ -29,6 +29,7 @@ export default defineAdditionalConfig({
         items: [{ text: "Licenses", link: "/" }],
       },
       { text: "About This Site", link: "/en/about" },
+      { text: "Download", link: "/en/download" },
     ],
   },
 });
