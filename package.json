@@ -1,4 +1,6 @@
 {
+  "name": "aviutl2_modern_docs",
+  "type": "module",
   "dependencies": {
     "budoux": "^0.8.4"
   },
