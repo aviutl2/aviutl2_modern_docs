@@ -154,6 +154,7 @@ export default defineConfig({
     },
     container: {
       noteLabel: "補注",
+      warningLabel: "注意",
     },
     codeCopyButtonTitle: "コピー",
     shikiSetup: async (shiki) => {
@@ -239,6 +240,7 @@ export default defineConfig({
         items: [{ text: "ライセンス等", link: "/" }],
       },
       { text: "このサイトについて", link: "/about" },
+      { text: "ダウンロード", link: "/download" },
     ],
 
     socialLinks: [
