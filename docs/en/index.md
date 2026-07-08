@@ -1,0 +1,59 @@
+---
+title: Overview
+description: This page provides an overview of AviUtl ExEdit2.
+---
+
+# AviUtl ExEdit2 version 2.0.54 by ＫＥＮくん
+
+## Introduction
+
+This tool allows you to display and process multiple videos, images, and text in arbitrary locations and output them to files.
+I hope this tool will be helpful for your video creation.
+
+## 動作環境
+
+- Windows10（64bit）以降に対応しています。
+- AVX2に対応したCPUが必要です。
+- DirectX11.3以上が必要です。
+- ROVに対応したGPUが必要です。
+  ※動作確認はWin10+GTX1650な環境で確認しています。
+
+## 使用上の注意
+
+本プログラムはフリーソフトです。
+本プログラムの使用によって何らかの障害が発生した場合でも、作者は一切の責任を負わないものとします。
+
+プラグインやスクリプト等の外部ファイルも自己責任で使用してください。
+※外部プログラムにはマルウェア等が含まれるリスクがあるので注意が必要です。
+
+本プログラムは商用を目的とした業務でも使用できます。
+本プログラム以外（素材・拡張機能等）はそちらの利用規約を確認ください。
+プログラムファイルの不特定多数への再配布はご遠慮ください。
+
+本プログラムで使用しているライブラリのライセンス等は、付属の[credits.txt](./credits/index.md)に纏めて記載しています。
+
+## 互換性
+
+- 内部フォーマットはRGBA16bitFloat（乗算済みα）、PCM32bitFloatになります。
+- 以前のAviUtlや拡張編集から内部設計が変わっているので動作が異なる場合があります。
+- 以前の32bitDLLのプラグインやDLLを同梱しているスクリプトは基本的に利用できません。
+- 以前の拡張編集のスクリプトに互換対応していますが、一部機能に対応していません。
+- 以前の上のオブジェクトでクリッピングが無くなり、代わりにクリッピングオブジェクトで下位オブジェクトをマスク処理をする形になります。
+
+## 注意点
+
+- 標準のファイル入力はAVI、WAV、BMP、PNG、JPG、GIFファイルに対応しています。
+- 標準のファイル出力は非圧縮AVI、PNG、JPGに対応しています。
+- WindowのImagingComponent（WIC）が対応している画像ファイルを読み込めますが拡張子の設定が必要です。
+- シーンの追加削除等の操作は現状ではUndoに対応していません。
+- 画像の最大サイズはDirectX11のTexture2Dの最大サイズ（16384x16384）になります。
+
+## ファイル配置
+
+- インストーラを利用しない場合の本体及び付属のファイルは任意のフォルダに配置してください。
+- `ProgramData\aviutl2`フォルダに環境設定等のファイルを保存します。※通常は`C:\ProgramData\aviutl2`
+- プラグインのフォルダは`ProgramData\aviutl2\Plugin`になります。※一つ下のフォルダも対象になります
+- スクリプトのフォルダは`ProgramData\aviutl2\Script`になります。※一つ下のフォルダも対象になります
+- フォントファイル（`*.ttf`、`*.ttc`、`*.otf`、`*.otc`）を`ProgramData\aviutl2\Font`に配置しておくとフォントの種類に追加されます。※一つ下のフォルダも対象になります
+- 絵文字用の画像ファイル（`*.svg`、`*.png`、`*.bmp`）を`ProgramData\aviutl2\Font`に配置しておくと制御文字から利用出来る絵文字の種類に追加されます。※ファイル名のベース部分が同じファイルは一つのみ絵文字として登録されます。
+- 本体ファイル等を配置したフォルダに`data`フォルダを作成すると`data`フォルダ内に環境設定等のファイルを保存するようになります。
