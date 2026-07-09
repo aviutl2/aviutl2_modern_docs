@@ -71,7 +71,6 @@ export default defineAdditionalConfig({
           { text: "Luaスクリプト", link: "/" },
           { text: "使用例", link: "/examples" },
           { text: "更新履歴", link: "/changelog" },
-          { text: "バイナリについて", link: "/binaries" },
         ],
       },
       {
