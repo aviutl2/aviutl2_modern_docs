@@ -5,6 +5,12 @@ description: This page explains the changelog for Lua scripts in AviUtl ExEdit2.
 
 # Changelog
 
+## 2.1.0 <Badge text='2026/7/12' />
+
+- Changed `obj.getoption("camera_param")` and `obj.getoption("camera_focus")` to return default values when the object is not subject to camera control.
+- Changed `obj.setoption("camera_param")` and `obj.setoption("camera_focus")` not to produce an error when the object is not subject to camera control.
+- Changed the return value of `obj.getoption("camera_mode")` to a numeric type.
+
 ## 2.00 beta53a <Badge text='2026/7/5' />
 
 - Changed the return value of `obj.getinfo("bpm_list")`

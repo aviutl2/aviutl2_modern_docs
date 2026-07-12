@@ -792,7 +792,7 @@ This is not applied when the camera is in edit mode.
   - `cam.ux`: Camera upward unit vector X
   - `cam.uy`: Camera upward unit vector Y
   - `cam.uz`: Camera upward unit vector Z
-  - `cam.d`: Distance from the camera to the screen (focal length)
+  - `cam.d`: Distance from the camera to the screen
 
 Example:
 

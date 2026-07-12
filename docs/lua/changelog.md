@@ -5,6 +5,12 @@ description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説�
 
 # 更新履歴
 
+## 2.1.0 <Badge text='2026/7/12' />
+
+- `obj.getoption("camera_param")`、`obj.getoption("camera_focus")`でカメラ制御対象外の場合は既定値を返却するように修正
+- `obj.setoption("camera_param")`、`obj.setoption("camera_focus")`でカメラ制御対象外の場合にエラーとならないように修正
+- `obj.getoption("camera_mode")`の戻り値を数値型となるように修正
+
 ## 2.00 beta53a <Badge text='2026/7/5' />
 
 - `obj.getinfo("bpm_list")`の戻り値を変更

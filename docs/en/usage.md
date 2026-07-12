@@ -212,7 +212,9 @@ If the trackbar movement method in <EnUiText scope="Menu" text="オブジェク�
 
 Time control can adjust the time axis from the start to the end of an object.  
 The horizontal axis is the value axis from the start value to the end value, and the vertical axis is the time axis from the start time to the end time.  
-※ For <EnUiText scope="Effect" text="直線移動(時間制御)" /> and <EnUiText scope="Effect" text="補間移動(時間制御)" />, intermediate point times are ignored and the times from the time control settings are applied.
+For <EnUiText scope="Effect" text="直線移動(時間制御)" /> and <EnUiText scope="Effect" text="補間移動(時間制御)" />, intermediate point times are ignored and the times from the time control settings are applied.  
+When the setting to link intermediate points and control points is enabled, they are automatically arranged so that their times are synchronized.  
+※ When linked, control points cannot be added, and the horizontal and vertical axes cannot be moved.
 
 The list icon at the top can load and create presets.  
 Various operations are available from the right-click menu.  

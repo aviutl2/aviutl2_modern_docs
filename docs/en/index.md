@@ -3,7 +3,7 @@ title: Overview
 description: This page provides an overview of AviUtl ExEdit2.
 ---
 
-# AviUtl ExEdit2 version 2.0.54 by ＫＥＮくん
+# AviUtl ExEdit2 version 2.1.0 by ＫＥＮくん
 
 ## Introduction
 

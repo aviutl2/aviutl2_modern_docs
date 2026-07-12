@@ -5,6 +5,12 @@ description: Explains the AviUtl ExEdit2 changelog.
 
 # Changelog
 
+## v2.1.0 <Badge text='2026/7/12' />
+
+- Fixed an issue where the same item could be displayed multiple times in language file information.
+- Added a setting to link intermediate points and control points for linear movement (time control) and interpolation movement (time control).
+- Added provisional support for requests to reconvert text in text editing items.
+
 ## v2.0.54 <Badge text='2026/7/7' />
 
 - Fixed a crash that could occur when changing a trackbar movement method while time control editing was shown.
