@@ -1,6 +1,7 @@
 ---
 title: Lua Script
 description: This page explains Lua scripts in AviUtl ExEdit2.
+lang: en
 ---
 
 <script setup>
@@ -888,9 +889,6 @@ if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 `obj.getoption("camera_mode")`
 
 - Return value: 0 = not a camera control target / nonzero = camera control target
-
-> [!NOTE]
-> In practice, this is returned as `true`/`false`.
 
 #### Get Camera Parameters
 

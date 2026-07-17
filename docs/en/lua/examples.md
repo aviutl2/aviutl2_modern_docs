@@ -1,6 +1,7 @@
 ---
 title: "Lua Script: Examples"
 description: This page provides examples of Lua scripts in AviUtl ExEdit2.
+lang: en
 ---
 
 # Examples

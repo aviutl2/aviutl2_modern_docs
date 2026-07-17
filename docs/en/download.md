@@ -1,6 +1,7 @@
 ---
 title: Download
 description: Download links for AviUtl ExEdit2.
+lang: en
 ---
 
 # Download

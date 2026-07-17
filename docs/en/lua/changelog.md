@@ -1,6 +1,7 @@
 ---
 title: "Lua Script: Changelog"
 description: This page explains the changelog for Lua scripts in AviUtl ExEdit2.
+lang: en
 ---
 
 # Changelog

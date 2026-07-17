@@ -1,6 +1,7 @@
 ---
 title: "ライセンス等"
 description: "AviUtl ExEdit2で使用しているライブラリのライセンス等について説明しています。"
+lang: ja
 ---
 
 # ライセンス等

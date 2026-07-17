@@ -20,8 +20,11 @@ kbd {
   color: var(--vp-c-text-2);
 
   .asterisk-mark {
-    font-family: "Asterisk" !important;
     margin-right: 0.1em;
+  }
+
+  .asterisk-mark-ja {
+    font-family: "Asterisk" !important;
   }
 }
 
@@ -32,14 +35,6 @@ kbd {
 }
 :root[lang="en"] {
   --vp-font-family-base: "Inter", "Yu Gothic UI", "Yu Gothic", sans-serif;
-
-  .asterisk-mark {
-    font-size: 0;
-    &::after {
-      content: "* ";
-      font-size: 1rem;
-    }
-  }
 }
 :root[lang="ja"] {
   --vp-font-family-base: "Yu Gothic UI", "Yu Gothic", sans-serif;

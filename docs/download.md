@@ -1,6 +1,7 @@
 ---
 title: ダウンロード
 description: AviUtl ExEdit2のダウンロードリンクをまとめています。
+lang: ja
 ---
 
 # ダウンロード

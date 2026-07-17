@@ -1,6 +1,7 @@
 ---
 title: "Licenses"
 description: "This page explains licenses for libraries used by AviUtl ExEdit2."
+lang: en
 ---
 
 # Licenses

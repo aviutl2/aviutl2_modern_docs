@@ -1,6 +1,7 @@
 ---
 title: ホーム
 description: AviUtl ExEdit2の動作環境や使用上の注意、互換性などについて説明しています。
+lang: ja
 ---
 
 # AviUtl ExEdit2 version 2.1.0 by ＫＥＮくん

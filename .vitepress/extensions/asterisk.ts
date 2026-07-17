@@ -29,7 +29,21 @@ function text(state: StateInline, silent: boolean) {
 
 type MyEnv = {
   asteriskOpen: number;
+  frontmatter: {
+    lang?: unknown;
+  };
 };
+
+function getAsteriskMark(env: MyEnv): { className: string; mark: string } {
+  const lang = env.frontmatter.lang;
+  if (lang !== "ja" && lang !== "en") {
+    throw new Error(`Unsupported Markdown language: ${String(lang)}`);
+  }
+
+  return lang === "en"
+    ? { className: "asterisk-mark-en", mark: "*" }
+    : { className: "asterisk-mark-ja", mark: "※" };
+}
 
 export function asterisk(md: MarkdownRenderer) {
   md.inline.ruler.at("text", text);
@@ -46,7 +60,10 @@ export function asterisk(md: MarkdownRenderer) {
     const myEnv = env as MyEnv;
     myEnv.asteriskOpen ??= 0;
     myEnv.asteriskOpen += 1;
-    return debug ? "AST_OPEN" : "<span class='asterisk-text'><span class='asterisk-mark'>※</span>";
+    const { className, mark } = getAsteriskMark(myEnv);
+    return debug
+      ? "AST_OPEN"
+      : `<span class='asterisk-text'><span class='asterisk-mark ${className}'>${mark}</span>`;
   };
 
   eolHook(md, "hardbreak");

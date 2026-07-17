@@ -1,6 +1,7 @@
 ---
 title: Luaスクリプト：更新履歴
 description: AviUtl ExEdit2のLuaスクリプトの更新履歴について説明しています。
+lang: ja
 ---
 
 # 更新履歴

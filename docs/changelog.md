@@ -1,6 +1,7 @@
 ---
 title: 更新履歴
 description: AviUtl ExEdit2の更新履歴について説明しています。
+lang: ja
 ---
 
 # 更新履歴

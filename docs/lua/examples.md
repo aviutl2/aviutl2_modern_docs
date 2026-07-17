@@ -1,6 +1,7 @@
 ---
 title: Luaスクリプト：使用例
 description: AviUtl ExEdit2のLuaスクリプトの使用例について説明しています。
+lang: ja
 ---
 
 # 使用例

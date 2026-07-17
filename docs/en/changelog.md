@@ -1,6 +1,7 @@
 ---
 title: Changelog
 description: Explains the AviUtl ExEdit2 changelog.
+lang: en
 ---
 
 # Changelog

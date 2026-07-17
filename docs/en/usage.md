@@ -1,6 +1,7 @@
 ---
 title: Quick Guide
 description: A quick guide to various AviUtl ExEdit2 operations.
+lang: en
 ---
 
 <script setup>

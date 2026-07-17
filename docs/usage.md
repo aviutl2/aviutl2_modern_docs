@@ -1,6 +1,7 @@
 ---
 title: 簡易説明
 description: AviUtl ExEdit2の各種操作方法についての簡易説明です。
+lang: ja
 ---
 
 # 簡易説明

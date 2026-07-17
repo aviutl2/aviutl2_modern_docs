@@ -1,6 +1,7 @@
 ---
 title: Luaスクリプト
 description: AviUtl ExEdit2のLuaスクリプトについて説明しています。
+lang: ja
 ---
 
 # Luaスクリプト
@@ -888,9 +889,6 @@ if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 `obj.getoption("camera_mode")`
 
 - 戻り値：0=カメラ制御対象外 / 0以外=カメラ制御対象
-
-> [!NOTE]
-> 実際には`true`/`false`で返されます。
 
 #### カメラのパラメータを取得する
 

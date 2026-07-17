@@ -1,6 +1,7 @@
 ---
 title: このサイトについて
 description: aviutl2_modern_docsについて説明しています。
+lang: ja
 ---
 
 # このサイトについて

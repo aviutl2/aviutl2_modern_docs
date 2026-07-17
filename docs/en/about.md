@@ -1,6 +1,7 @@
 ---
 title: About This Site
 description: This page explains aviutl2_modern_docs.
+lang: en
 ---
 
 # About This Site
