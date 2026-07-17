@@ -136,6 +136,7 @@ Specifying something like `--string@variable name:item name,default value` defin
 
 ```aulua
 --text@txt:Text,Default text\nNext line
+--string@str:String,Default text
 obj.load("text", txt)
 ```
 
@@ -1064,6 +1065,9 @@ Changing the call order or number of calls may prevent correct reflection.
   - `"xyz"`: Controls anchor points with 3D coordinates. ※ The default is 2D coordinates.
   - `"screen"`: Controls anchor points with screen coordinates. ※ The default is object coordinates.
     ※ When used with camera control + shadow, the shadow area may shift slightly in the preview.
+  - `"small"`: Displays small anchor points.
+  - `{coordinate table}`: If the number of coordinates specified by `name` is incorrect, sets anchors using the specified coordinate table.
+    ※ Items defined by `name` are updated when an anchor is moved.
 - Return value: Number of anchor points obtained
 
 Example:
