@@ -38,7 +38,7 @@ For the step size, the minimum unit of the setting value can be specified as `1`
 ※ Values down to 0.000000001 can be specified, but they are adjusted according to the minimum and maximum value range. Internally, values are stored as 32-bit integers.
 The zero value label specifies the string displayed on the trackbar when the setting value is 0.
 The operation multiplier specifies the multiplier of the trackbar operation range relative to the setting value range, and can be 1.0 or less.
-※ The legacy script file format `--track0:item name,minimum value,maximum value,default value,step size` can also be used.
+※ The legacy script file format `--track0:item name,minimum value,maximum value,default value,step size` can also be used. ※ For compatibility
 
 ```aulua
 --track@vx:X Speed,-10,10,0
@@ -63,7 +63,7 @@ List two or three previously defined trackbar item variable names.
 Specifying something like `--check@variable name:item name,default value (0 or 1, or true or false)` at the beginning of a script file enables a checkbox.
 If the default value is `0` or `1`, the variable becomes the number type (`0`/`1`).
 If the default value is `true` or `false`, the variable becomes the boolean type (`true`/`false`).
-※ The legacy script file format `--check0:item name,default value (0 or 1)` can also be used. In that case, the variable is the boolean type.
+※ The legacy script file format `--check0:item name,default value (0 or 1)` can also be used. In that case, the variable is the boolean type. ※ For compatibility
 Specifying something like `--checksection@variable name:item name,default value (true or false),initial value for per-section setting (true or false)` at the beginning of a script file enables a per-section checkbox.
 
 ```aulua noformat
@@ -77,7 +77,7 @@ if speed then ...
 
 Specifying something like `--color@variable name:item name,default value` at the beginning of a script file enables a color setting item.
 Specifying `nil` as the default value makes transparent color selectable.
-※ The legacy script file format `--color:default value` can also be used.
+※ The legacy script file format `--color:default value` can also be used. ※ For compatibility
 
 ```aulua
 --color@col:Figure Color,0xffffff
@@ -87,7 +87,7 @@ obj.load("figure", "四角形", col, 100)
 ### Define a File Selection Item
 
 Specifying something like `--file@variable name:item name` at the beginning of a script file enables a file selection item.
-※ The legacy script file format `--file:` can also be used.
+※ The legacy script file format `--file:` can also be used. ※ For compatibility
 
 ```aulua
 --file@path:Image File
@@ -272,7 +272,7 @@ At the beginning of a script file, a compute shader can be written in HLSL insid
 
 ### Other
 
-※ The legacy script file format `--dialog` and `--param` can also be used. Individual setting items are created.
+※ The legacy script file format `--dialog` and `--param` can also be used. Individual setting items are created. ※ For compatibility
 
 ## Variables
 

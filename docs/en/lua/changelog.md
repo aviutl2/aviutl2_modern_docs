@@ -6,6 +6,12 @@ lang: en
 
 # Changelog
 
+## 2.1.1 <Badge text='2026/7/18' />
+
+- Fixed a crash when `print()` outputs a table containing a circular reference.
+- Fixed color specifications in `--dialog` not being applied correctly when the initial value is `nil`. ※ For compatibility
+- Changed `--dialog` item names to be adjusted when they duplicate a previously defined item name. ※ For compatibility
+
 ## 2.1.0 <Badge text='2026/7/12' />
 
 - Changed `obj.getoption("camera_param")` and `obj.getoption("camera_focus")` to return default values when the object is not subject to camera control.

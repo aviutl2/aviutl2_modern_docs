@@ -95,6 +95,7 @@ The control bar at the bottom can change the displayed frame, play the preview, 
 
 Previewed objects can be moved by dragging with the mouse.
 Scale anchors at the object's vertices can change the scale by dragging with the mouse.
+The center coordinates can be moved by <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+dragging the object itself.
 The scale can also be changed by <kbd>Alt</kbd>+dragging the object itself.
 ※ If the input settings contain a <EnUiText scope="Effect" text="サイズ" /> item and it is set to <EnUiText scope="Effect" text="移動無し" />, the size is adjusted instead of the scale.
 Scale anchors can also change the Z-axis rotation setting with <kbd>Alt</kbd>+drag.
@@ -215,11 +216,16 @@ Time control can adjust the time axis from the start to the end of an object.
 The horizontal axis is the value axis from the start value to the end value, and the vertical axis is the time axis from the start time to the end time.  
 For <EnUiText scope="Effect" text="直線移動(時間制御)" /> and <EnUiText scope="Effect" text="補間移動(時間制御)" />, intermediate point times are ignored and the times from the time control settings are applied.  
 When the setting to link intermediate points and control points is enabled, they are automatically arranged so that their times are synchronized.  
-※ When linked, control points cannot be added, and the horizontal and vertical axes cannot be moved.
+※ When linked, operations to move, add, or delete points apply to intermediate points instead of control points.  
+※ When linked, moving an intermediate point while holding <kbd>Shift</kbd> moves the points before or after the selected point.
 
-The list icon at the top can load and create presets.  
-Various operations are available from the right-click menu.  
-Copy and paste operations target the entire time control setting.
+Use <kbd>Ctrl</kbd>+mouse wheel to change the editing screen zoom level.  
+※ You can configure whether to zoom only horizontally.  
+Drag with the right mouse button to scroll the editing screen.  
+Various operations are available from the right-click menu.
+
+Copy and paste operations target the entire time control setting.  
+The list icon at the top can load and create presets.
 
 ## <EnUiText scope="Menu" text="テキスト編集" />
 
@@ -312,14 +318,22 @@ Various cache size settings can be changed from <EnUiText scope="Menu" text="設
 The VRAM data cache only caches still images.
 ※ If set to 0, the VRAM data cache is disabled.
 
+## Codec Settings
+
+The codec YUV compression and decompression settings used by the standard AVI file input and output can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="コーデックの設定" /> in the window menu.
+
+## File Output Settings
+
+The sound played when file output finishes and YUV output conversion settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="ファイル出力の設定" /> in the window menu.
+
 ## Common Operation Settings
 
 Overall common operation settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="共通操作の設定" /> in the window menu.
 
-## Screen and Color Settings
+## Screen Settings
 
-High-DPI display and YUV input/output conversion settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="画面の設定" /> in the window menu.  
-※ DPI changes while the application is running are not reflected.  
+High-DPI display settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="画面の設定" /> in the window menu.  
+※ Changes are applied after restarting the application.  
 ※ In high-DPI environments, enlarged size display may be difficult to see.
 
 ## Language Settings
@@ -344,6 +358,11 @@ Filter objects can apply filters to the current drawing buffer.
 Loads the specified video file. AVI files can be loaded by default.
 If the playback position is <EnUiText scope="Effect" text="移動無し" /> or <EnUiText scope="Effect" text="再生範囲" /> and loop playback is not used, the playback position is adjusted when changing or splitting the object's start and end positions.
 ※ Depending on the playback speed setting, adjustment may not be possible.
+
+If the input is in YUV format, you can configure its YUV color space.  
+If the input contains audio, you can use a setting that adjusts the frame rate to the audio length.  
+If the input supports variable frame rates, you can use a setting that forces the frame rate to be fixed.  
+※ Depending on the file contents, frames may not appear at the expected positions.
 
 ## <EnUiText text="画像ファイル" />
 

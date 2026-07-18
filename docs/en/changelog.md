@@ -6,6 +6,21 @@ lang: en
 
 # Changelog
 
+## v2.1.1 <Badge text='2026/7/18' />
+
+- Changed missing tooltip items in language files to display the Default text.
+- Fixed text emoji images not displaying correctly when loaded through a plugin.
+- Changed tooltips to be hidden when the application becomes inactive.
+- Fixed a crash in the right-click menu when there is no target for time control editing.
+- Added support for changing the editing screen zoom level in time control editing.
+- Changed time control editing to operate intermediate points when intermediate points and control points are linked.
+- Changed selection of an adjacent object to also select adjacent objects in its group.
+- Added support for manipulating object center coordinates by <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+dragging in preview editing.
+- Added an option to include the main window position when saving layouts.
+- Added an option to group the slider increment and decrement buttons in object settings.
+- Added options to adjust the frame rate in video file settings.
+- Improved audio retrieval for AVI file input.
+
 ## v2.1.0 <Badge text='2026/7/12' />
 
 - Fixed an issue where the same item could be displayed multiple times in language file information.
