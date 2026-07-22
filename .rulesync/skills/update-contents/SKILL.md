@@ -26,7 +26,8 @@ targets: ["*"]
 
 `./docs/en/`下の英語版も更新してください。
 なお、`<EnUiText />`コンポーネントを用いるとエディタの翻訳を流用できます。
-`docs/components/ui/en_editor.yml`、`docs/components/ui/en_effects.yml`を参照してください。
+`docs/components/ui/en.json`を参照してください。
+また、`※`はそのまま`※`にしてください（Markdown側でスタイルが適用され、また同時に`*`に置換されるため）。
 
 ## 4. 更新内容をコミットする
 

@@ -9,6 +9,7 @@ import { asterisk } from "../extensions/asterisk.ts";
 import jaConfig from "./ja.ts";
 import enConfig from "./en.ts";
 import yaml from "@rollup/plugin-yaml";
+import { jaModel, Parser } from "budoux";
 
 const logoPngUrl = "/aviutl2.png";
 const description = "AviUtl2のドキュメントを見やすくした非公式サイト";
@@ -152,6 +153,34 @@ export default defineConfig({
     );
   },
   themeConfig: {
+    search: {
+      provider: "local",
+      options: {
+        miniSearch: {
+          options: {
+            tokenize: (term) => {
+              const patchedGlobal = globalThis as unknown as {
+                __au2dm_budouxParser?: Parser;
+              };
+              if (!patchedGlobal.__au2dm_budouxParser) {
+                if (typeof process !== "undefined") {
+                  // Node環境（SSR）ではParserをここで初期化する
+                  patchedGlobal.__au2dm_budouxParser = new Parser(jaModel);
+                } else {
+                  throw new Error(
+                    "Unreachable: budoux parser is not initialized",
+                  );
+                }
+              }
+
+              return term
+                .split(/[\s-、。.,・]+/)
+                .flatMap((t) => patchedGlobal.__au2dm_budouxParser!.parse(t));
+            },
+          },
+        },
+      },
+    },
     outline: {
       level: [2, 3],
     },
