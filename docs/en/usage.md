@@ -115,7 +115,7 @@ Use <kbd>Ctrl</kbd>+mouse wheel to change the preview screen zoom level around t
 Drag with the wheel button to scroll the preview screen.
 Various operations are available from the right-click menu.
 
-## Scene Playback
+## <EnUiText scope="Menu" text="シーン再生" />
 
 Displays a preview of the displayed frame for the specified scene.
 The control bar at the bottom can change the displayed frame, play the preview, and perform other operations.

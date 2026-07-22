@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import UiText from "./UiText.vue";
-import enEditor from "./ui/en_editor.yml";
-import enEffects from "./ui/en_effects.yml";
-
-const lang = {
-  ...enEditor,
-  ...enEffects,
-};
+import lang from "./ui/en.json"
 
 const props = defineProps<{
   scope?: string;

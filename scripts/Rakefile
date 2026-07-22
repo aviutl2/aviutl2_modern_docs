@@ -134,24 +134,24 @@ end
 
 task :update_i18n do
   require "open-uri"
-  editor = URI.open("https://raw.githubusercontent.com/aviutl2/aviutl2_community_translation/refs/heads/main/translations/en/editor.yml").read
-  File.write("../docs/components/ui/en_editor.yml", editor)
-  effects = URI.open("https://raw.githubusercontent.com/aviutl2/aviutl2_community_translation/refs/heads/main/translations/en/effects.yml").read
-  File.write("../docs/components/ui/en_effects.yml", effects)
-end
+  require "json"
+  english_aul2 = URI.open("https://raw.githubusercontent.com/aviutl2/aviutl2_community_translation/refs/heads/main/locales/community_en.aul2").read
+  translations = {}
+  current_section = nil
+  english_aul2.each_line do |line|
+    line.strip!
+    next if line.empty? || line.start_with?(";")
 
-task :update do
-  # 一瞬でレートリミットになるので一時的に無効化
-  latest = File.read("./latest.txt").strip
-  current = File.read("./tmp/aviutl2_version.txt").strip
-
-  if latest == current
-    puts "No new version detected. Current version: #{current}"
-    next
+    if line.start_with?("[") && line.end_with?("]")
+      current_section = line[1..-2]
+      translations[current_section] ||= {}
+    elsif current_section
+      key, value = line.split("=", 2)
+      translations[current_section][key.strip] = value.strip if key && value
+    end
   end
 
-  puts "New version detected! Updating from #{latest} to #{current}"
-  sh "./node_modules/.bin/gemini -yp 'Follow scripts/prompt.md' -m gemini-2.5-flash",
-     chdir: "..",
-     verbose: true
+  File.open("../docs/components/ui/en.json", "w") do |f|
+    f.write(JSON.pretty_generate(translations))
+  end
 end
