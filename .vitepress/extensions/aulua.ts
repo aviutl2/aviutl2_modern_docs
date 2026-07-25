@@ -46,7 +46,11 @@ const auluaPatterns: LanguageRegistration["patterns"] = [
             include: "#numeric",
           },
           {
-            match: ",",
+            match: "(?<=/)([a-z]+)(?=[/,]|$)",
+            name: "keyword.control.aulua",
+          },
+          {
+            match: "[,/]",
             name: "punctuation.separator.arguments.aulua",
           },
           {
@@ -54,7 +58,7 @@ const auluaPatterns: LanguageRegistration["patterns"] = [
             name: "keyword.operator.arithmetic.aulua",
           },
           {
-            match: "([^,=]+)(=)([^,]+)",
+            match: "([^,=/]+)(=)([^/,]+)",
             captures: {
               "1": { name: "string.unquoted.aulua" },
               "2": { name: "keyword.operator.assignment.aulua" },
@@ -67,7 +71,7 @@ const auluaPatterns: LanguageRegistration["patterns"] = [
             begin: "(?=[^\\{][^,]*)",
             name: "string.unquoted.aulua",
             patterns: [{ include: "#escaped_char" }],
-            end: "(?=,|$)",
+            end: "(?=[/,]|$)",
           },
         ],
       },
