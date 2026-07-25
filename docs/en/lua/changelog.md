@@ -6,6 +6,12 @@ lang: en
 
 # Changelog
 
+## 2.1.2 <Badge text='2026/7/25' />
+
+- Changed duplicate checks for `--dialog` item names to adjust them regardless of their definition positions.
+- Added support for creating checkbox and list selection items with `--param` in trackbar movement scripts.
+- Added an aspect ratio argument to `obj.load("figure")`.
+
 ## 2.1.1 <Badge text='2026/7/18' />
 
 - Fixed a crash when `print()` outputs a table containing a circular reference.

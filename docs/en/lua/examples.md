@@ -145,9 +145,12 @@ The following script moves a trackbar value from the start point to the end poin
 Normal object-related variables and functions cannot be used in trackbar movement scripts.
 Specifying `--twopoint` at the beginning of a script file (`*.tra2`) ignores intermediate points.
 Specifying something like `--speed:initial acceleration value (0/1),initial deceleration value (0/1)` enables acceleration and deceleration settings.
-Specifying `--param:initial value` enables trackbar setting values.
+Specifying `--param:initial value` enables numeric trackbar setting values.
 Specifying `--param:item name,initial value` sets an item name for the settings dialog.
+Specifying `--param:item name/check,initial value` creates a checkbox item. Its value is 0 or 1.
+Specifying `--param:item name/select/choice=value/choice=value,initial value` creates a list selection item.
 Specifying multiple `--param` lines allows multiple setting values.
+※ Changing the order of the specifications prevents saved setting values from being retrieved correctly.
 Specifying `--timecontrol` enables time control editing for the trackbar.
 
 ```aulua
@@ -161,6 +164,13 @@ return st + (ed - st) * ratio
 
 ```aulua
 param1, param2 = obj.getpoint("param")
+```
+
+### Creating Checkbox or List Selection Items in the Settings Dialog
+
+```aulua
+--param:Acceleration/check,0
+--param:Type/select/Linear=1/Curve=2,1
 ```
 
 ## Example: Use a Pixel Shader

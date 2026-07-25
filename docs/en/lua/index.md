@@ -29,6 +29,7 @@ Several variables and functions are also extended.
 
 Setting items can be added by specifying the following at the beginning of a script file.
 ※ If an item name is specified as `yyy::xxx`, only the part after the final `::`, `xxx`, can be displayed on the settings screen.
+※ Item names must be unique within each script. This applies only to items whose setting values are saved.
 
 ### Define a Trackbar Item
 
@@ -154,7 +155,7 @@ A variable item becomes a text input item and can define numbers, strings, and a
 
 ### Define a Generic Data Area
 
-Specifying something like `--data@registered name:size (1024 bytes or less)` at the beginning of a script file enables a generic data area. ※ This is intended for script modules and DLLs.
+Specifying something like `--data@registered name:size (16 KB or less)` at the beginning of a script file enables a generic data area. ※ This is intended for script modules and DLLs.
 `obj.data("registered name")` gets a pointer to the generic data area (userdata).
 The default value is the userdata area cleared to 0.
 ※ If the saved generic data has a different size, it is initialized to the default value.
@@ -586,13 +587,14 @@ w, h, cx, cy = obj.load("text.layout", "With center coordinates", 0, 0, 0)
 #### Figure
 
 Loads a figure.
-`obj.load("figure",name[,color,size,line,round])`
+`obj.load("figure",name[,color,size,line,round,aspect])`
 
 - `name`: Figure name or SVG filename
 - `color`: Color (0x000000 to 0xffffff)
 - `size`: Figure size
 - `line`: Figure line width
 - `round`: Whether to round corners (`true`: yes / `false` &lt;default&gt;: no)
+- `aspect`: Aspect ratio (-1.0 to 1.0 / positive = horizontal compression / negative = vertical compression)
 - Return value: `true` = success / `false` = load failure
 
 Example:

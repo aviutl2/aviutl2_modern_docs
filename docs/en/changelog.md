@@ -6,6 +6,17 @@ lang: en
 
 # Changelog
 
+## v2.1.2 <Badge text='2026/7/25' />
+
+- Fixed audio retrieval for AVI file input.
+- Fixed an issue where cutting and closing a selected range could fail to close the gap correctly.
+- Changed the scene list to scroll to the selected scene when switching scenes.
+- Changed trackbar setting values to be preserved when switching between movement types that support time control.
+- Added an option to link intermediate points and control points when changing a trackbar movement type to time control.
+- Added operations to several menus for toggling clipping objects and camera control targets.
+- Added an option to layer editing to stop preview playback with a click.
+- Improved dialog display processing.
+
 ## v2.1.1 <Badge text='2026/7/18' />
 
 - Changed missing tooltip items in language files to display the Default text.

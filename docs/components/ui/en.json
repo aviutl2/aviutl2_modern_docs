@@ -1233,7 +1233,13 @@
     "フレームレート": "Frame Rate",
     "標準": "Normal",
     "オーディオの長さに合わせて調整": "Adjust To Audio Duration",
-    "強制フレームレート固定": "Force Constant Frame Rate"
+    "強制フレームレート固定": "Force Constant Frame Rate",
+    "時間制御へ変更した時に中間点と制御点のリンクを有効にする": "Enable Object Point And Control Point Link When Change To Time Control",
+    "クリッピングオブジェクト": "Clipping Object",
+    "カメラ制御の対象": "Camera Target Object",
+    "クリッピングオブジェクトの有効・無効": "Enable Clipping Object",
+    "カメラ制御の対象オブジェクトの有効・無効": "Enable Camera Target Object",
+    "プレビュー再生をクリックで停止": "Click To Stop Preview"
   },
   "Message": {
     "ファイル出力中": "Exporting File",
