@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## v2.1.3a <Badge text='2026/8/2' />
+
+- Fixed an issue where some symbols in mark notes were not saved correctly.
+- Adjusted the order of items in the mark list's right-click menu.
+
 ## v2.1.3 <Badge text='2026/8/2' />
 
 - Fixed DPI settings not being reflected in the display size of control points in time control editing.
