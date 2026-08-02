@@ -6,6 +6,13 @@ lang: en
 
 # Changelog
 
+## 2.1.3 <Badge text='2026/8/2' />
+
+- Enabled UTF-8 strings in arguments to `require()`.
+- Added `obj.frame_s`, `obj.frame_e`, and `obj.effect_layer`.
+- Added `"offset"` and `"offset.xyz"` options to `obj.setanchor()`.
+- Added the size to the return values of `obj.data()`.
+
 ## 2.1.2 <Badge text='2026/7/25' />
 
 - Changed duplicate checks for `--dialog` item names to adjust them regardless of their definition positions.

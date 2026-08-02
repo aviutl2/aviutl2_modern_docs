@@ -196,6 +196,15 @@ Displays a list of objects on the current frame.
 Drag with the right mouse button to scroll the list screen.  
 Various operations are available from the right-click menu.
 
+## <EnUiText scope="Menu" text="マークリスト" />
+
+Displays a list of marked frames.  
+Marked frames are displayed in the layer editing window.  
+From the right-click menu at the top of the layer editing window, you can mark frames, change memos, and move the configured frame by dragging it.
+
+Drag with the right mouse button to scroll the list screen.  
+Various operations are available from the right-click menu.
+
 ## <EnUiText scope="Menu" text="色設定" />
 
 Sets the color of the selected object.  

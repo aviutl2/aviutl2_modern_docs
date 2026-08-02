@@ -6,6 +6,13 @@ lang: ja
 
 # 更新履歴
 
+## 2.1.3 <Badge text='2026/8/2' />
+
+- `require()`の引数にUTF-8文字列を利用出来るようにした
+- `obj.frame_s`、`obj.frame_e`、`obj.effect_layer`を追加
+- `obj.setanchor()`のオプションに`"offset"`、`"offset.xyz"`の指定を追加
+- `obj.data()`の戻り値にサイズを追加
+
 ## 2.1.2 <Badge text='2026/7/25' />
 
 - `--dialog`の項目名の重複チェックを定義位置によらず調整するように修正

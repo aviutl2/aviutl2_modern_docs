@@ -4,7 +4,7 @@ description: AviUtl ExEdit2の動作環境や使用上の注意、互換性な�
 lang: ja
 ---
 
-# AviUtl ExEdit2 version 2.1.2 by ＫＥＮくん
+# AviUtl ExEdit2 version 2.1.3 by ＫＥＮくん
 
 ## はじめに
 
@@ -46,7 +46,7 @@ lang: ja
 - 標準のファイル入力はAVI、WAV、BMP、PNG、JPG、GIFファイルに対応しています。
 - 標準のファイル出力は非圧縮AVI、PNG、JPGに対応しています。
 - WindowのImagingComponent（WIC）が対応している画像ファイルを読み込めますが拡張子の設定が必要です。
-- シーンの追加削除等の操作は現状ではUndoに対応していません。
+- シーン関連（追加削除やグリッド、マーク等）の操作は現状ではUndoに対応していません。
 - 画像の最大サイズはDirectX11のTexture2Dの最大サイズ（16384x16384）になります。
 
 ## ファイル配置

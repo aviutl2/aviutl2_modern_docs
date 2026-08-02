@@ -313,6 +313,9 @@ Information about the target object is stored in the following variables.
 | `obj.num`<sup>5</sup>       | Count for multiple objects (1 = single object / 0 = undefined); ※ for individual objects                                                                 | Yes      |
 | `obj.id`                    | Object ID; ※ a unique ID for each application launch; ※ the unique ID of the drawing target object                                                       | Yes      |
 | `obj.effect_id`             | ID of the target effect within the object; ※ a unique ID for each application launch; ※ the unique ID of the target filter effect or object input/output | Yes      |
+| `obj.frame_s`               | Object start frame relative to the whole scene (integer starting from 0)                                                                                 |          |
+| `obj.frame_e`               | Object end frame relative to the whole scene (integer starting from 0)                                                                                   |          |
+| `obj.effect_layer`          | Layer containing the target effect; ※ the layer position of the object's own effect                                                                      | Yes      |
 | `global.xxx`                | Table variable shared by scripts (`xxx` is any key name); ※ values are stored as binary-safe strings                                                     |          |
 
 1. These are the current object setting values. They are separate from output item setting values such as standard drawing.
@@ -1065,6 +1068,8 @@ Changing the call order or number of calls may prevent correct reflection.
   - `"rgba",color`: Changes the line color (RGBA) for the above options. Specify a color including alpha (0x00000000 to 0xffffffff) in the following argument.
   - `"inout"`: Displays the above option lines as two sets, IN and OUT. The anchor count is split evenly.
   - `"xyz"`: Controls anchor points with 3D coordinates. ※ The default is 2D coordinates.
+  - `"offset",X,Y`: Sets the display offset for anchor points. Specify offset values in the following arguments.
+  - `"offset.xyz",X,Y,Z`: Sets the display offset for anchor points in 3D coordinates. Specify offset values in the following arguments.
   - `"screen"`: Controls anchor points with screen coordinates. ※ The default is object coordinates.
     ※ When used with camera control + shadow, the shadow area may shift slightly in the preview.
   - `"small"`: Displays small anchor points.
@@ -1501,7 +1506,13 @@ Gets a generic data area.
 ※ This is intended for script modules and DLLs.
 
 - `name`: Registered name of the generic data area
-- Return value: Pointer to the generic data area (userdata)
+- Return values: Pointer to the generic data area (userdata), size
+
+Example:
+
+```aulua
+local data, size = obj.data("pos")
+```
 
 ### obj.multiobject(num,func)
 
@@ -1601,6 +1612,11 @@ Example:
 ```aulua
 x0, y0, x1, y1, x2, y2, x3, y3 = rotation(x0, y0, x1, y1, x2, y2, x3, y3, zoom, r)
 ```
+
+### require(modname)
+
+The standard Lua `require()` function is hooked so its argument can use a UTF-8 string.  
+※ Because Lua internally handles strings as Shift_JIS, paths related to `package.xxx` are stored in Shift_JIS.
 
 ### print(text[,...]), debug_print(text)
 

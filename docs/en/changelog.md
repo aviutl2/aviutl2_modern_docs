@@ -6,6 +6,18 @@ lang: en
 
 # Changelog
 
+## v2.1.3 <Badge text='2026/8/2' />
+
+- Fixed DPI settings not being reflected in the display size of control points in time control editing.
+- Fixed the unsaved indicator not appearing in the window title when no filename is specified.
+- Fixed grid (BPM) visibility determination based on the layer editing zoom level.
+- Adjusted playback position display by frame number to account for the configured time precision.
+- Adjusted the frame position used to display the grid (BPM) start position.
+- Made the grid (BPM) start position movable by dragging.
+- Preserved some initial directories in file selection dialogs.
+- Added an audio output toggle icon to the file output dialog.
+- Added a feature for marking frames in layer editing.
+
 ## v2.1.2 <Badge text='2026/7/25' />
 
 - Fixed audio retrieval for AVI file input.

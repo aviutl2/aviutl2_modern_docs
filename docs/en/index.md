@@ -4,7 +4,7 @@ description: This page provides an overview of AviUtl ExEdit2.
 lang: en
 ---
 
-# AviUtl ExEdit2 version 2.1.2 by ＫＥＮくん
+# AviUtl ExEdit2 version 2.1.3 by ＫＥＮくん
 
 ## Introduction
 
@@ -46,7 +46,7 @@ Licenses for the libraries used by this program are listed in the included [cred
 - Standard file input supports AVI, WAV, BMP, PNG, JPG, and GIF files.
 - Standard file output supports uncompressed AVI, PNG, and JPG.
 - Image files supported by Windows Imaging Component (WIC) can be loaded, but their extensions must be configured.
-- Operations such as adding or deleting scenes currently do not support Undo.
+- Scene-related operations, such as adding or deleting scenes, grids, and marks, currently do not support Undo.
 - The maximum image size is the DirectX 11 Texture2D maximum size (16384x16384).
 
 ## File Placement
