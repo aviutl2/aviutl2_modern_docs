@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## 2.1.4 <Badge text='2026/8/8' />
+
+- Fixed `--require` definitions not being applied in trackbar movement scripts.
+
 ## 2.1.3 <Badge text='2026/8/2' />
 
 - Enabled UTF-8 strings in arguments to `require()`.

@@ -6,6 +6,19 @@ lang: en
 
 # Changelog
 
+## v2.1.4 <Badge text='2026/8/8' />
+
+- Fixed calculations for Lens Blur and Blur (Light Intensity).
+- Adjusted the precision of the Grid (BPM) start position setting.
+- Fixed Change Object Length not allowing an object to be changed to one frame.
+- Added an option to Object Settings to display its window when an object is focused.
+- Added an option to Layer Editing to select a layer when an object is clicked.
+- Changed several operations to bring individual windows to the front.
+- Added several display items to System Information.
+- Improved resource management in rendering.
+- Improved GUI drawing event management.
+- Fixed several typos.
+
 ## v2.1.3a <Badge text='2026/8/2' />
 
 - Fixed an issue where some symbols in mark notes were not saved correctly.

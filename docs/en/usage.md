@@ -324,8 +324,9 @@ The backup save folder is `ProgramData\aviutl2\Backup`.
 ## Cache Size
 
 Various cache size settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="キャッシュサイズの設定" /> in the window menu.
-The VRAM data cache only caches still images.
-※ If set to 0, the VRAM data cache is disabled.
+The VRAM resource cache reuses resource areas. (Setting it to 0 disables it.)
+※ Configure the cache sizes appropriately for the amount of resources used per frame and the available GPU memory.
+The VRAM data cache only caches still images. (Setting it to 0 disables it.)
 
 ## Codec Settings
 

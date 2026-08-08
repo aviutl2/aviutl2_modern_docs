@@ -4,7 +4,7 @@ description: AviUtl ExEdit2の動作環境や使用上の注意、互換性な�
 lang: ja
 ---
 
-# AviUtl ExEdit2 version 2.1.3a by ＫＥＮくん
+# AviUtl ExEdit2 version 2.1.4 by ＫＥＮくん
 
 ## はじめに
 
