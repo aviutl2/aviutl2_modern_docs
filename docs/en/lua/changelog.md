@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## 2.1.5 <Badge text='2026/8/16' />
+
+- Added `obj.originframe`.
+- Added the `--hide` definition.
+
 ## 2.1.4 <Badge text='2026/8/8' />
 
 - Fixed `--require` definitions not being applied in trackbar movement scripts.

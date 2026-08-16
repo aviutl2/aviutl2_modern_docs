@@ -4,7 +4,7 @@ description: This page provides an overview of AviUtl ExEdit2.
 lang: en
 ---
 
-# AviUtl ExEdit2 version 2.1.4 by ＫＥＮくん
+# AviUtl ExEdit2 version 2.1.5 by ＫＥＮくん
 
 ## Introduction
 
@@ -39,7 +39,6 @@ Licenses for the libraries used by this program are listed in the included [cred
 - Because the internal design differs from previous AviUtl and ExEdit versions, behavior may differ.
 - Plugins using older 32-bit DLLs and scripts that bundle DLLs generally cannot be used.
 - Compatibility with previous ExEdit scripts is supported, but some features are not supported.
-- The previous clipping by the object above has been removed. Instead, clipping objects mask lower-level objects.
 
 ## Notes
 

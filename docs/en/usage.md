@@ -326,6 +326,7 @@ The backup save folder is `ProgramData\aviutl2\Backup`.
 Various cache size settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="キャッシュサイズの設定" /> in the window menu.
 The VRAM resource cache reuses resource areas. (Setting it to 0 disables it.)
 ※ Configure the cache sizes appropriately for the amount of resources used per frame and the available GPU memory.
+※ Unlike data caches, the VRAM resource cache is not affected by cache-clearing operations.
 The VRAM data cache only caches still images. (Setting it to 0 disables it.)
 
 ## Codec Settings
@@ -617,6 +618,12 @@ When a media object is set as a clipping object, target objects on lower layers 
 If the target object is group control or camera control, all objects targeted by that group control or camera control become clipping targets.
 
 If multiple clipping objects are placed on layers above the target object, the clipping objects are composited and used for clipping.
+
+## Clip by Object Above
+
+Clips the object using a media object on an upper layer before drawing it.
+※ Unlike clipping objects, this feature cannot composite masks or clip group control or camera control.
+※ It may not be applied depending on the object type or state.
 
 ## Reference Expressions
 

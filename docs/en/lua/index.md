@@ -165,6 +165,29 @@ The default value is the userdata area cleared to 0.
 local pos = obj.data("pos")
 ```
 
+### Define Conditions for Hiding Setting Items
+
+Specifying something like `--hide@variable name:condition` at the beginning of a script file hides the variable's setting item when the condition is met.
+Specify the condition in the form `(variable name)(comparison operator)(number)`.
+
+Setting item types that can be hidden:
+
+- Trackbar items
+- Checkbox items (including per-section items)
+
+Setting item types that can be used in conditions:
+
+- Checkbox items (excluding per-section items)
+- List selection items
+
+Comparison operators available in conditions: `==`, `~=`, `>`, `<`
+
+```aulua
+--track@pos:Position,-100000,100000,0
+--check@chk:Use Position,0
+--hide@pos:chk==0
+```
+
 ### Define a Setting Group
 
 Specifying something like `--group:group name,default display state (true/false)` at the beginning of a script file groups the following setting items. The default display state can be omitted.
@@ -313,9 +336,10 @@ Information about the target object is stored in the following variables.
 | `obj.num`<sup>5</sup>       | Count for multiple objects (1 = single object / 0 = undefined); ※ for individual objects                                                                 | Yes      |
 | `obj.id`                    | Object ID; ※ a unique ID for each application launch; ※ the unique ID of the drawing target object                                                       | Yes      |
 | `obj.effect_id`             | ID of the target effect within the object; ※ a unique ID for each application launch; ※ the unique ID of the target filter effect or object input/output | Yes      |
-| `obj.frame_s`               | Object start frame relative to the whole scene (integer starting from 0)                                                                                 |          |
-| `obj.frame_e`               | Object end frame relative to the whole scene (integer starting from 0)                                                                                   |          |
+| `obj.frame_s`               | Object start frame relative to the whole scene (integer starting from 0)                                                                                 | Yes      |
+| `obj.frame_e`               | Object end frame relative to the whole scene (integer starting from 0)                                                                                   | Yes      |
 | `obj.effect_layer`          | Layer containing the target effect; ※ the layer position of the object's own effect                                                                      | Yes      |
+| `obj.originframe`           | Rendering origin frame relative to the whole scene (integer starting from 0)                                                                             | Yes      |
 | `global.xxx`                | Table variable shared by scripts (`xxx` is any key name); ※ values are stored as binary-safe strings                                                     |          |
 
 1. These are the current object setting values. They are separate from output item setting values such as standard drawing.

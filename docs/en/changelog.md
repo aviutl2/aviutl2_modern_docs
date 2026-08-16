@@ -6,6 +6,26 @@ lang: en
 
 # Changelog
 
+## v2.1.5 <Badge text='2026/8/16' />
+
+- Changed the application to prioritize the high-performance GPU when its GPU setting is automatic.
+- Adjusted slider movement when the display range differs from the maximum range in Object Settings.
+- Made double-clicking the start position of a mark or Grid (BPM) in Layer Editing display its settings dialog.
+- Changed the Object Settings option for displaying subgroup items to apply to items other than explicit group items.
+- Changed Object Settings to preserve the scroll position for each object.
+- Changed the time and frame-count setting dialogs to preserve their input state.
+- Changed preview playback to bring the window to the front during playback.
+- Added operations for adding object and filter effects and applying presets under Edit in the window menu.
+- Added operations for adding filter effects and applying presets to the Layer Editing menu.
+- Added clipping by the object above to media objects.
+- Adjusted the output-frequency upper limit and slider display range for Particle Output.
+- Enabled color code display and input in Color Settings.
+- Adjusted the display and input character limits for color setting items in Object Settings.
+- Adjusted the slider display range for the hue setting in Color Correction.
+- Adjusted the saturation calculation in Color Correction when luminance is low.
+- Added a Gamma setting to Color Correction.
+- Provisionally added Advanced Color Correction.
+
 ## v2.1.4 <Badge text='2026/8/8' />
 
 - Fixed calculations for Lens Blur and Blur (Light Intensity).
