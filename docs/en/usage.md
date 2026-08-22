@@ -126,6 +126,7 @@ Referenced scene synchronization works when a scene object or a filter such as a
 ※ The playback speed must be set to <EnUiText scope="Effect" text="移動無し" /> in the forward direction, and the playback position must be set to <EnUiText scope="Effect" text="再生範囲" />.
 
 Click the preview screen to play, or drag with the mouse to move the displayed frame.
+Hold <kbd>Alt</kbd> and double-click to move Layer Editing to the same scene as Scene Playback.
 Use <kbd>Ctrl</kbd>+mouse wheel to change the preview screen zoom level around the mouse position.
 Drag with the right mouse button to scroll the preview screen.
 Various operations are available from the right-click menu.
@@ -600,7 +601,7 @@ Placing monochrome PNG files that define wipe effects in `ProgramData\aviutl2\Tr
 
 Blurs the image along the time axis.
 Depending on the combination of objects and filter effects, processing may not work correctly.
-※ If display starts from the middle of an object because of seeking or dropped frames during playback, it will not display correctly.
+※ If an object is not displayed continuously because of seeking, dropped frames during playback, scene references, or other reasons, it will not display correctly.
 ※ If motion blur is inside a camera-control target range, the blurred part is drawn first.
 ※ Motion blur is disabled for camera-control target ranges in the editing viewpoint.
 
@@ -609,6 +610,19 @@ Depending on the combination of objects and filter effects, processing may not w
 Applies filter effects added to the partial filter only to part of the screen.
 ※ Some filters may not process correctly.
 ※ If a partial filter is inside a camera-control target range, the partial-filter target area is drawn first.
+
+## Color Correction and Advanced Color Correction
+
+Adjusts brightness, hue, and other color properties.
+Enabling Saturate constrains the corrected RGB values to the standard range.
+The Color Space setting specifies the color space used for luminance, saturation, and hue adjustments.
+
+## Gradient and Gradient Map
+
+Applies a gradient to the image.
+When colors are specified, the Color Interpolation setting specifies the color space used to interpolate between them.
+When a pattern image is specified, the image is used as the gradient colors (color bar).
+※ A color bar containing multiple colors can be created in a scene or elsewhere and referenced as a pattern image.
 
 ## Clipping Object
 

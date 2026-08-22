@@ -6,6 +6,20 @@ lang: en
 
 # Changelog
 
+## v2.1.6 <Badge text='2026/8/22' />
+
+- Fixed a crash that could occur under certain conditions when moving between scenes.
+- Fixed an issue where group items could appear twice in Object Settings.
+- Fixed the Size item not being restored by Undo after resizing with <kbd>Alt</kbd>+drag in Preview Editing.
+- Fixed language settings not being applied correctly to some items in the Trackbar Movement Method settings dialog.
+- Changed missing tooltip items in a language file to also be looked up in the Default language difference file.
+- Changed updates to the `aviutl2.ini` settings file to create a temporary file and replace the original.
+- Changed the initial IME state of the parent window to disabled when a window is detached.
+- Added an operation in Scene Playback to move the scene open in Layer Editing to the same scene as Scene Playback.
+- Enabled changing the color space used for luminance, saturation, and hue adjustments in Color Correction and Advanced Color Correction.
+- Added Color Interpolation and Pattern Image settings to the Gradient filter.
+- Provisionally added Gradient Map.
+
 ## v2.1.5 <Badge text='2026/8/16' />
 
 - Changed the application to prioritize the high-performance GPU when its GPU setting is automatic.

@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## 2.1.6 <Badge text='2026/8/22' />
+
+- Changed the condition for initializing saved data in generic data areas.
+- Added setting items and a special condition that can be specified as `--hide` targets.
+
 ## 2.1.5 <Badge text='2026/8/16' />
 
 - Added `obj.originframe`.

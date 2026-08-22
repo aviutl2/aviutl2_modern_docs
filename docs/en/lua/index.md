@@ -158,7 +158,7 @@ A variable item becomes a text input item and can define numbers, strings, and a
 Specifying something like `--data@registered name:size (16 KB or less)` at the beginning of a script file enables a generic data area. ※ This is intended for script modules and DLLs.
 `obj.data("registered name")` gets a pointer to the generic data area (userdata).
 The default value is the userdata area cleared to 0.
-※ If the saved generic data has a different size, it is initialized to the default value.
+※ If the saved generic data is empty, it is initialized to the default value.
 
 ```aulua
 --data@pos:8
@@ -167,25 +167,28 @@ local pos = obj.data("pos")
 
 ### Define Conditions for Hiding Setting Items
 
-Specifying something like `--hide@variable name:condition` at the beginning of a script file hides the variable's setting item when the condition is met.
+Specifying something like `--hide@variable name:condition` at the beginning of a script file hides the variable's setting item when the condition is met. ※ If the condition is omitted, the item is always hidden.
 Specify the condition in the form `(variable name)(comparison operator)(number)`.
 
 Setting item types that can be hidden:
 
-- Trackbar items
-- Checkbox items (including per-section items)
+- Items with setting values, such as trackbar and checkbox items
 
-Setting item types that can be used in conditions:
+Setting item types or special conditions that can be used in conditions:
 
 - Checkbox items (excluding per-section items)
 - List selection items
+- `filter`: Whether this is a filter object (`0`/`1`)
 
 Comparison operators available in conditions: `==`, `~=`, `>`, `<`
 
 ```aulua
 --track@pos:Position,-100000,100000,0
 --check@chk:Use Position,0
+--value@poslist:Coordinates,{}
 --hide@pos:chk==0
+--hide@pos:filter==1
+--hide@poslist
 ```
 
 ### Define a Setting Group
