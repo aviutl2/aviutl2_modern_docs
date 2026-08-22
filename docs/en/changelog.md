@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## v2.1.6a <Badge text='2026/8/22' />
+
+- Fixed a crash when specifying a nonexistent virtual buffer as the pattern image in Gradient or Gradient Map.
+
 ## v2.1.6 <Badge text='2026/8/22' />
 
 - Fixed a crash that could occur under certain conditions when moving between scenes.
