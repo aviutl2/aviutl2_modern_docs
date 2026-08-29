@@ -178,7 +178,11 @@ Setting item types or special conditions that can be used in conditions:
 
 - Checkbox items (excluding per-section items)
 - List selection items
+- File selection items
+- Folder selection items
 - `filter`: Whether this is a filter object (`0`/`1`)
+
+※ File and folder selection items return `0` or `1` to indicate whether a file or folder is selected.
 
 Comparison operators available in conditions: `==`, `~=`, `>`, `<`
 

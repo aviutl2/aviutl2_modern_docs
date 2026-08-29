@@ -6,6 +6,15 @@ lang: en
 
 # Changelog
 
+## v2.1.7 <Badge text='2026/8/29' />
+
+- Changed Clipping Object so that when it targets Group Control, the ranges of nested Group Controls are included as well.
+- Adjusted how setting values are consolidated when changing the trackbar movement method.
+- Added a Label item to scene settings.
+- Added a feature to select the target label for scenes displayed in the Scene List.
+- Added support for creating scene presets.
+- Adjusted some wording.
+
 ## v2.1.6a <Badge text='2026/8/22' />
 
 - Fixed a crash when specifying a nonexistent virtual buffer as the pattern image in Gradient or Gradient Map.

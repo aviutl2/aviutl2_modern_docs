@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## 2.1.7 <Badge text='2026/8/29' />
+
+- Added target items for `--hide` conditions.
+
 ## 2.1.6 <Badge text='2026/8/22' />
 
 - Changed the condition for initializing saved data in generic data areas.

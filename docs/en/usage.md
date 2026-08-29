@@ -191,6 +191,12 @@ Drag with the right mouse button to scroll the list screen.
 Various operations are available from the right-click menu.
 ※ Scene copies are reference copies.
 
+Labels can be set in Scene Settings or when renaming a scene.
+※ Specify text separated by `\` in the label name to create multiple hierarchy levels.
+
+The target label for scenes displayed in the list can be selected from the title bar at the top.
+Use the icons at the top to add a scene or delete the current scene.
+
 ## <EnUiText scope="Menu" text="オブジェクトリスト" />
 
 Displays a list of objects on the current frame.  
@@ -212,6 +218,7 @@ Sets the color of the selected object.
 Click the settings icon for a color setting item in <EnUiText scope="Menu" text="オブジェクト設定" /> to display settings for that target item.
 If multiple objects are selected when the settings icon is clicked, multiple objects can be changed.
 
+The target color selection item can be selected from the title bar at the top.
 The switch icon at the top can create and change palettes.  
 Preset names can be set for palette colors.  
 Preset names are added to the selection list for color setting items in <EnUiText scope="Menu" text="オブジェクト設定" />.  
@@ -235,6 +242,7 @@ Drag with the right mouse button to scroll the editing screen.
 Various operations are available from the right-click menu.
 
 Copy and paste operations target the entire time control setting.  
+The target setting item can be selected from the title bar at the top.
 The list icon at the top can load and create presets.
 
 ## <EnUiText scope="Menu" text="テキスト編集" />
