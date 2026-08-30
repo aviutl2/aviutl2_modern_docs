@@ -751,7 +751,7 @@ Sets various options for the current object.
 
 `obj.setoption("billboard",value)`
 
-- `value`: 0 = do not face / 1 = horizontal only / 2 = vertical only / 3 = face
+- `value`: 0 = do not face / 1 = horizontal only / 2 = horizontal/vertical only / 3 = face
 
 #### Blend Mode
 

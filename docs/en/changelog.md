@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## v2.1.7a <Badge text='2026/8/31' />
+
+- Fixed plugin function behavior.
+
 ## v2.1.7 <Badge text='2026/8/29' />
 
 - Changed Clipping Object so that when it targets Group Control, the ranges of nested Group Controls are included as well.
