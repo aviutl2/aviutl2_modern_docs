@@ -176,12 +176,13 @@ Setting item types that can be hidden:
 
 Setting item types or special conditions that can be used in conditions:
 
-- Checkbox items (excluding per-section items)
+- Checkbox items
 - List selection items
 - File selection items
 - Folder selection items
 - `filter`: Whether this is a filter object (`0`/`1`)
 
+※ Per-section checkboxes return `2` when the per-section setting is enabled (`0`/`1`/`2`).
 ※ File and folder selection items return `0` or `1` to indicate whether a file or folder is selected.
 
 Comparison operators available in conditions: `==`, `~=`, `>`, `<`
@@ -980,7 +981,7 @@ focus = obj.getoption("camera_focus")
 
 `obj.getoption("billboard")`
 
-- Return value: 0 = do not face / 1 = horizontal only / 2 = vertical only / 3 = face
+- Return value: 0 = do not face / 1 = horizontal only / 2 = horizontal/vertical only / 3 = face
 
 #### Get Drawing Target Information
 

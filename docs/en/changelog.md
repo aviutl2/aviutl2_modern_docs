@@ -6,6 +6,16 @@ lang: en
 
 # Changelog
 
+## v2.1.8 <Badge text='2026/9/5' />
+
+- Changed the project to preserve information about the target label displayed in the Scene List.
+- Added drag-and-drop support when scripts or similar items in the settings window have multiple file setting items.
+- Added the target color setting item's icon to the Color Settings title bar.
+- Added an Arrangement setting to the Image Composite filter effect.
+- Fixed Particle Output behavior when the output direction or rotation angle is based on the movement direction.
+- Changed Particle Output to adjust the timing of fading and shrinking according to particle lifetime.
+- Provisionally added Particle Output (Camera Control).
+
 ## v2.1.7a <Badge text='2026/8/31' />
 
 - Fixed plugin function behavior.
