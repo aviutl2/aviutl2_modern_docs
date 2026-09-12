@@ -6,6 +6,13 @@ lang: en
 
 # Changelog
 
+## 2.1.9 <Badge text='2026/9/12' />
+
+- Fixed the precision of the `seed` argument in `obj.rand()` and `obj.rand1()`.
+- Added a return value for the editing viewpoint to `obj.getoption("camera_mode")`.
+- Added the `"force"` option to `obj.setoption("blend")`.
+- Added `obj.getoption("group_info")`.
+
 ## 2.1.8 <Badge text='2026/9/5' />
 
 - Added target items for `--hide` conditions.

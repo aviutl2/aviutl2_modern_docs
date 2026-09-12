@@ -248,7 +248,7 @@ The list icon at the top can load and create presets.
 ## <EnUiText scope="Menu" text="テキスト編集" />
 
 Edits the text of the selected object.  
-Editing is available when the object's input item contains text.
+Editing is available when the object contains text items.
 
 In text editing, <kbd>Ctrl</kbd>+<kbd>Space</kbd> can use input assistance.  
 In the font-name control character section, candidates for configured fonts are displayed.  
@@ -651,6 +651,7 @@ Clips the object using a media object on an upper layer before drawing it.
 
 Reference expressions can be set from the click menu for numeric item names in <EnUiText scope="Menu" text="オブジェクト設定" />.  
 When a reference expression is set, the final value can be calculated by referencing values from the current item or other items.
+※ Reference expressions may not be applied to some items, such as those that calculate their own values from the settings.
 
 ### Example: Reference Another Item in the Same Effect
 

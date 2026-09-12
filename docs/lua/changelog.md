@@ -6,6 +6,13 @@ lang: ja
 
 # 更新履歴
 
+## 2.1.9 <Badge text='2026/9/12' />
+
+- `obj.rand()`、`obj.rand1()`の`seed`値の引数の精度を修正
+- `obj.getoption("camera_mode")`に編集用視点の場合の返却を追加
+- `obj.setoption("blend")`に`"force"`のオプションを追加
+- `obj.getoption("group_info")`を追加
+
 ## 2.1.8 <Badge text='2026/9/5' />
 
 - `--hide`の非表示条件の対象項目を追加

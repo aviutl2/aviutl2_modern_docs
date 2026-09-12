@@ -6,6 +6,17 @@ lang: en
 
 # Changelog
 
+## v2.1.9 <Badge text='2026/9/12' />
+
+- Fixed unnecessary grid lines appearing when an offset is set in Grid (BPM) settings.
+- Fixed boundary correction processing in Chroma Key, Color Key, and Specific Color Range Conversion.
+- Changed Text Editing to target all text items in an object.
+- Added a setting to Displacement Map to use the edge color outside the area.
+- Added blend mode options to the Noise filter.
+- Added the Noise (Temporal Buffer) filter effect.
+- Slightly changed the display of project loading errors.
+- Changed the default particle label.
+
 ## v2.1.8 <Badge text='2026/9/5' />
 
 - Changed the project to preserve information about the target label displayed in the Scene List.

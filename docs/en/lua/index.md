@@ -782,6 +782,11 @@ Sets various options for the current object.
 ※ Numeric specifications from the legacy script file format can also be used.
 ※ Using blend modes makes drawing processing heavier.
 
+- `option`: `"force"` = force mode
+
+※ The blend mode for drawing to the frame buffer is applied only when the original blend mode is normal.
+※ Specify the `"force"` option to apply it when the original blend mode is not normal.
+
 #### Change the Drawing Target to the Temporal Buffer
 
 `obj.setoption("drawtarget","tempbuffer"[,w,h])`
@@ -922,11 +927,19 @@ if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 
 ※ It is hidden during video output.
 
+#### Get Group Control Information
+
+`obj.getoption("group_info")`
+
+※ Only the group control immediately preceding the current object can be retrieved.
+
+- Return value: 0 = not a group control target / 1 or greater = group control layer number
+
 #### Get Camera Control State
 
 `obj.getoption("camera_mode")`
 
-- Return value: 0 = not a camera control target / nonzero = camera control target
+- Return value: 0 = not a camera control target / 1 = camera control target / 2 = camera control target (editing viewpoint)
 
 #### Get Camera Parameters
 
