@@ -6,6 +6,16 @@ lang: en
 
 # Changelog
 
+## v2.1.10 <Badge text='2026/9/19' />
+
+- Changed several scene selection menus to display the label hierarchy.
+- Fixed project file output settings not being applied during batch output.
+- Added a setting to Screen Settings to prefer a high-performance GPU.
+- Added a Vorticity setting to the Noise filter.
+- Added noise types to the Noise filter.
+- Improved noise generation in the Noise filter.
+- Added a script for the Fluctuation filter.
+
 ## v2.1.9 <Badge text='2026/9/12' />
 
 - Fixed unnecessary grid lines appearing when an offset is set in Grid (BPM) settings.

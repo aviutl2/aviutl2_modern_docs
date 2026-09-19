@@ -262,6 +262,10 @@ local pos = obj.data("pos")
 --require:2003500
 ```
 
+### オブジェクト追加メニューの非表示指定
+
+スクリプトファイルの先頭で`--hidemenu`のように指定するとオブジェクトやフィルタ効果の追加メニューリストに表示されなくなります。
+
 ### ピクセルシェーダーを定義
 
 スクリプトファイルの先頭で`--[[pixelshader@登録名:`のような複数行コメントにピクセルシェーダーをHLSLで記述できます。
@@ -929,10 +933,9 @@ if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 
 #### グループ制御情報を取得する
 
-`obj.getoption("group_info")`
+`obj.getoption("group_info"[,index])`
 
-※現在のオブジェクトの直前のグループ制御のみ取得出来ます。
-
+- `index`：上位の影響しているグループ制御のインデックス（0は直前のグループ制御）
 - 戻り値：0=グループ制御対象外 / 1以上=グループ制御のレイヤー番号
 
 #### カメラ制御状態を取得する
@@ -1007,6 +1010,30 @@ focus = obj.getoption("camera_focus")
 `obj.getoption("draw_state")`
 
 - 戻り値：`true`：描画済み / `false`：未描画
+
+#### グループ制御対象を有効にしているかを取得する
+
+`obj.getoption("enable_group")`
+
+- 戻り値：`true`：有効 / `false`：無効
+
+#### カメラ制御対象を有効にしているかを取得する
+
+`obj.getoption("enable_camera")`
+
+- 戻り値：`true`：有効 / `false`：無効
+
+#### クリッピングオブジェクトを有効にしているかを取得する
+
+`obj.getoption("clipping_object")`
+
+- 戻り値：`true`：有効 / `false`：無効
+
+#### 上のオブジェクトでクリッピングを有効にしているかを取得する
+
+`obj.getoption("clipping_upper_object")`
+
+- 戻り値：`true`：有効 / `false`：無効
 
 ### obj.getvalue(target[,time,section])
 

@@ -6,6 +6,12 @@ lang: en
 
 # Changelog
 
+## 2.1.10 <Badge text='2026/9/19' />
+
+- Added `"enable_group"`, `"enable_camera"`, `"clipping_object"`, and `"clipping_upper_object"` to `obj.getoption()`.
+- Added the `index` argument to `obj.getoption("group_info")`.
+- Added the `--hidemenu` definition.
+
 ## 2.1.9 <Badge text='2026/9/12' />
 
 - Fixed the precision of the `seed` argument in `obj.rand()` and `obj.rand1()`.

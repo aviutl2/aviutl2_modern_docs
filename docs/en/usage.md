@@ -352,9 +352,10 @@ Overall common operation settings can be changed from <EnUiText scope="Menu" tex
 
 ## Screen Settings
 
-High-DPI display settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="画面の設定" /> in the window menu.  
+High-DPI display settings and the preference for a high-performance GPU can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="画面の設定" /> in the window menu.  
 ※ Changes are applied after restarting the application.  
-※ In high-DPI environments, enlarged size display may be difficult to see.
+※ In high-DPI environments, enlarged size display may be difficult to see.  
+※ If a high-performance GPU is not preferred, the system default GPU is used.
 
 ## Language Settings
 

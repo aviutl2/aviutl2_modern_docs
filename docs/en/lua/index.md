@@ -263,6 +263,10 @@ Specifying something like `--require:required main program version number` at th
 --require:2003500
 ```
 
+### Hide from Object Add Menus
+
+Specifying `--hidemenu` at the beginning of a script file hides it from the menus for adding objects and filter effects.
+
 ### Define a Pixel Shader
 
 At the beginning of a script file, a pixel shader can be written in HLSL inside a multiline comment such as `--[[pixelshader@registered name:`.
@@ -929,10 +933,9 @@ if obj.getoption("script_name") == obj.getoption("script_name", -1) then
 
 #### Get Group Control Information
 
-`obj.getoption("group_info")`
+`obj.getoption("group_info"[,index])`
 
-※ Only the group control immediately preceding the current object can be retrieved.
-
+- `index`: Index of an enclosing group control affecting the object (0 is the immediately preceding group control)
 - Return value: 0 = not a group control target / 1 or greater = group control layer number
 
 #### Get Camera Control State
@@ -1007,6 +1010,30 @@ focus = obj.getoption("camera_focus")
 `obj.getoption("draw_state")`
 
 - Return value: `true` = drawn / `false` = not drawn
+
+#### Get Whether Group Control Target Is Enabled
+
+`obj.getoption("enable_group")`
+
+- Return value: `true` = enabled / `false` = disabled
+
+#### Get Whether Camera Control Target Is Enabled
+
+`obj.getoption("enable_camera")`
+
+- Return value: `true` = enabled / `false` = disabled
+
+#### Get Whether Clipping Object Is Enabled
+
+`obj.getoption("clipping_object")`
+
+- Return value: `true` = enabled / `false` = disabled
+
+#### Get Whether Clipping with the Object Above Is Enabled
+
+`obj.getoption("clipping_upper_object")`
+
+- Return value: `true` = enabled / `false` = disabled
 
 ### obj.getvalue(target[,time,section])
 

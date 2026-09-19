@@ -6,6 +6,12 @@ lang: ja
 
 # 更新履歴
 
+## 2.1.10 <Badge text='2026/9/19' />
+
+- `obj.getoption()`に`"enable_group"`、`"enable_camera"`、`"clipping_object"`、`"clipping_upper_object"`を追加
+- `obj.getoption("group_info")`に`index`の引数を追加
+- `--hidemenu`の定義を追加
+
 ## 2.1.9 <Badge text='2026/9/12' />
 
 - `obj.rand()`、`obj.rand1()`の`seed`値の引数の精度を修正
