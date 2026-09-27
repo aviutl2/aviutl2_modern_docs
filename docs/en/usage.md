@@ -574,6 +574,7 @@ Use this when applying a filter to the entire screen.
 
 Composites image-composition target objects on lower layers into a single image.
 ※ The lower layer range can be specified with the number of target layers.
+※ If another image composition object is on a lower layer, the target range ends immediately before that layer.
 ※ The image composition object is drawn at the bottom of the target layers.
 ※ Target objects are not targets of group control or camera control. The image composition object becomes the target instead.
 ※ Depending on the filter combinations of the target objects, the result may not behave as intended.
@@ -589,6 +590,7 @@ Adding filter effects can apply filter effects to all target media objects.
 
 Draws camera-control target objects on lower layers according to the camera coordinates and the direction of the target point.
 ※ The lower layer range can be specified with the number of target layers.
+※ If another camera control object is on a lower layer, the target range ends immediately before that layer.
 ※ Target objects are drawn together at the bottom of the target layers.
 ※ During preview, the grid display for camera control is drawn to the frame buffer.
 ※ If a light source is set when no ambient light setting exists, ambient light is set automatically.

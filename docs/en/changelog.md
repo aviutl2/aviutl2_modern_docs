@@ -6,6 +6,15 @@ lang: en
 
 # Changelog
 
+## v2.1.11 <Badge text='2026/9/27' />
+
+- Fixed objects in Layer Editing sometimes being impossible to drag under certain conditions.
+- Fixed slider display ranges in Object Settings sometimes not being adjusted correctly under certain conditions.
+- Fixed the color setting item icon not appearing when opening Color Settings from Object Settings.
+- Added a way to stop preview playback in Layer Editing by clicking.
+- Slightly improved processing in the Border filter.
+- Slightly improved noise generation in the Noise filter.
+
 ## v2.1.10 <Badge text='2026/9/19' />
 
 - Changed several scene selection menus to display the label hierarchy.

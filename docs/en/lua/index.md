@@ -352,6 +352,7 @@ Information about the target object is stored in the following variables.
 | `obj.frame_e`               | Object end frame relative to the whole scene (integer starting from 0)                                                                                   | Yes      |
 | `obj.effect_layer`          | Layer containing the target effect; ※ the layer position of the object's own effect                                                                      | Yes      |
 | `obj.originframe`           | Rendering origin frame relative to the whole scene (integer starting from 0)                                                                             | Yes      |
+| `obj.scene_id`              | Scene ID                                                                                                                                                 | Yes      |
 | `global.xxx`                | Table variable shared by scripts (`xxx` is any key name); ※ values are stored as binary-safe strings                                                     |          |
 
 1. These are the current object setting values. They are separate from output item setting values such as standard drawing.

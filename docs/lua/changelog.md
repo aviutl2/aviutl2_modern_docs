@@ -6,6 +6,11 @@ lang: ja
 
 # 更新履歴
 
+## 2.1.11 <Badge text='2026/9/27' />
+
+- トラックバー移動スクリプトで`--hidemenu`の定義が反映されないのを修正
+- `obj.scene_id`を追加
+
 ## 2.1.10 <Badge text='2026/9/19' />
 
 - `obj.getoption()`に`"enable_group"`、`"enable_camera"`、`"clipping_object"`、`"clipping_upper_object"`を追加

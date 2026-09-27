@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## 2.1.11 <Badge text='2026/9/27' />
+
+- Fixed the `--hidemenu` definition not being applied in trackbar movement scripts.
+- Added `obj.scene_id`.
+
 ## 2.1.10 <Badge text='2026/9/19' />
 
 - Added `"enable_group"`, `"enable_camera"`, `"clipping_object"`, and `"clipping_upper_object"` to `obj.getoption()`.
