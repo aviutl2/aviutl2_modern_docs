@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## v2.1.11a <Badge text='2026/9/30' />
+
+- Fixed operations on the ruler at the top of Layer Editing sometimes not working correctly.
+- Fixed crashes occurring with certain Border filter settings.
+
 ## v2.1.11 <Badge text='2026/9/27' />
 
 - Fixed objects in Layer Editing sometimes being impossible to drag under certain conditions.

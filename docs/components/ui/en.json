@@ -1298,7 +1298,8 @@
     "全て表示": "Show All",
     "ラベルなし": "Unlabeled",
     "シーンをプリセットから追加": "Add Scene From Preset",
-    "シーンのプリセットを作成": "Create Scene Preset"
+    "シーンのプリセットを作成": "Create Scene Preset",
+    "クリックした位置へ移動": "Move To Click Position"
   },
   "Message": {
     "ファイル出力中": "Exporting File",
