@@ -325,6 +325,10 @@ When loading media files, plugins with configured supported extensions are used.
 Drag the target plugin field with the mouse to change its priority order.  
 The right-click menu can perform operations such as configuring the target plugin.
 
+## Output Plugin Settings
+
+The display order of output plugins in the file output menu can be changed from <EnUiText scope="Menu" text="設定" /> -> "Output Plugin Settings" in the window menu.
+
 ## Backup History
 
 Automatic backups, edit resume, and history list settings can be configured from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="バックアップ履歴の設定" /> in the window menu.  

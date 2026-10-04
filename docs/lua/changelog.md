@@ -6,6 +6,10 @@ lang: ja
 
 # 更新履歴
 
+## 2.1.12 <Badge text='2026/10/4' />
+
+- `obj.getpoint()`に`"multi_object"`の指定を追加
+
 ## 2.1.11 <Badge text='2026/9/27' />
 
 - トラックバー移動スクリプトで`--hidemenu`の定義が反映されないのを修正

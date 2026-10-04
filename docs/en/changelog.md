@@ -6,6 +6,15 @@ lang: en
 
 # Changelog
 
+## v2.1.12 <Badge text='2026/10/4' />
+
+- Fixed default extensions not being set correctly in file selection dialogs.
+- Added support for changing file settings for multiple selected objects at once.
+- Changed search fields in dialog list views to ignore differences such as letter case and full-width/half-width characters.
+- Added a setting in the window menu to change the display order of output plugin menu items.
+- Added map inversion and map types to Displacement Map.
+- Added types to the Color Shift filter.
+
 ## v2.1.11a <Badge text='2026/9/30' />
 
 - Fixed operations on the ruler at the top of Layer Editing sometimes not working correctly.

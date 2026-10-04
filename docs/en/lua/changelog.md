@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## 2.1.12 <Badge text='2026/10/4' />
+
+- Added the `"multi_object"` target to `obj.getpoint()`.
+
 ## 2.1.11 <Badge text='2026/9/27' />
 
 - Fixed the `--hidemenu` definition not being applied in trackbar movement scripts.

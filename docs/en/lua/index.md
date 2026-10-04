@@ -1467,6 +1467,10 @@ This can be used only in trackbar movement scripts.
   - `"frame_s"`: Gets the current object's start frame relative to the whole scene (integer starting from 0)
   - `"frame_e"`: Gets the current object's end frame relative to the whole scene (integer starting from 0)
   - `"framerate"`: Gets the frame rate.
+  - `"multi_object"`: Gets information for individual objects (information about the object currently being processed).
+    - `option`: Type of value to get
+      - `"index"`: Gets the number for multiple objects
+      - `"num"`: Gets the count for multiple objects (1 = single object / 0 = undefined)
   - `"default"`: Gets the default trackbar value. ※ For compatibility.
     `option` can specify the movement mode for the trackbar value to get. Specify the name.
     ※ This cannot be used if time control or setting value information is insufficient. The default value is returned.
