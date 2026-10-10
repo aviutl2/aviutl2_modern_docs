@@ -1497,6 +1497,14 @@ obj.getinfo("filter")
 
 - 戻り値：`true`：フィルタオブジェクトの処理中
 
+#### 描画処理の起点のシーン番号を取得する
+
+```aulua
+obj.getinfo("origin_scene_id")
+```
+
+- 戻り値：起点のシーン番号
+
 #### 動画の出力中かを調べる
 
 ```aulua

@@ -6,6 +6,14 @@ lang: en
 
 # Changelog
 
+## v2.1.13 <Badge text='2026/10/10' />
+
+- Fixed crashes occurring under certain conditions when redoing an operation while editing a text field.
+- Changed stopping preview playback and returning to the original frame to also restore the scroll position in Layer Editing.
+- Added support for setting the layer name and background color in Layer Settings.
+- Added provisional support for animated images in WICImageFileReader.
+- Added a One Way Only setting to Directional Blur.
+
 ## v2.1.12 <Badge text='2026/10/4' />
 
 - Fixed default extensions not being set correctly in file selection dialogs.

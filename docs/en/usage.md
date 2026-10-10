@@ -87,6 +87,8 @@ Object alignment operations use the selected object at the right-click position 
 Displays settings for the selected layer.
 Coordinates and volume can be adjusted for all media objects on the layer.
 ※ This does not affect target objects for camera control.
+The layer name and background color in Layer Editing can also be changed.
+※ When a background color is specified, colors for states such as mouse hover are calculated from the differences between the default colors.
 
 ## <EnUiText scope="Menu" text="プレビュー編集" />
 
@@ -393,6 +395,7 @@ If the input supports variable frame rates, you can use a setting that forces th
 
 Loads the specified image file. BMP, PNG, JPG, and GIF files can be loaded by default.
 Image files supported by Windows Imaging Component (WIC) can be loaded, but their extensions must be registered for WICImageFileReader from the input plugin settings.
+※ Animated image files are supported only if they do not use frame difference data.
 
 ## <EnUiText text="音声ファイル" />
 

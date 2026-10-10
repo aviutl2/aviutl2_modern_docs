@@ -6,6 +6,11 @@ lang: ja
 
 # 更新履歴
 
+## 2.1.13 <Badge text='2026/10/10' />
+
+- `--select`の項目名に`"="`が含まれている場合に正しく反映されないのを修正
+- `obj.getinfo("origin_scene_id")`を追加
+
 ## 2.1.12 <Badge text='2026/10/4' />
 
 - `obj.getpoint()`に`"multi_object"`の指定を追加

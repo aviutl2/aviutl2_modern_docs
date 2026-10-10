@@ -1497,6 +1497,14 @@ obj.getinfo("filter")
 
 - Return value: `true` = processing a filter object
 
+#### Get the Scene Number Where Rendering Originates
+
+```aulua
+obj.getinfo("origin_scene_id")
+```
+
+- Return value: Scene number where rendering originates
+
 #### Check Whether Video Is Being Output
 
 ```aulua

@@ -4,7 +4,7 @@ description: This page provides an overview of AviUtl ExEdit2.
 lang: en
 ---
 
-# AviUtl ExEdit2 version 2.1.12 by ＫＥＮくん
+# AviUtl ExEdit2 version 2.1.13 by ＫＥＮくん
 
 ## Introduction
 

@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## 2.1.13 <Badge text='2026/10/10' />
+
+- Fixed `--select` items not being applied correctly when their names contain `"="`.
+- Added `obj.getinfo("origin_scene_id")`.
+
 ## 2.1.12 <Badge text='2026/10/4' />
 
 - Added the `"multi_object"` target to `obj.getpoint()`.
