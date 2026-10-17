@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## v2.1.14 <Badge text='2026/10/17' />
+
+- Added a version item to the footer definition in `style.conf`.
+- Updated LuaJIT.
+
 ## v2.1.13 <Badge text='2026/10/10' />
 
 - Fixed crashes occurring under certain conditions when redoing an operation while editing a text field.

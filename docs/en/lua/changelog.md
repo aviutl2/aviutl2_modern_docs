@@ -6,6 +6,12 @@ lang: en
 
 # Changelog
 
+## 2.1.14 <Badge text='2026/10/17' />
+
+- Fixed list selection items in `--param` not being applied correctly in trackbar movement scripts when their names contain `"="`.
+- Changed some definitions such as `--xxxx@yyyy` to skip whitespace between `xxxx` and `@`.
+- Added `obj.getinfo("reference_frame")` and `obj.getinfo("rendering_id")`.
+
 ## 2.1.13 <Badge text='2026/10/10' />
 
 - Fixed `--select` items not being applied correctly when their names contain `"="`.

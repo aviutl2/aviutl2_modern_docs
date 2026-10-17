@@ -1505,6 +1505,24 @@ obj.getinfo("origin_scene_id")
 
 - Return value: Scene number where rendering originates
 
+#### Check Whether a Reference Frame for a Scene Change or Motion Blur Is Being Processed
+
+```aulua
+obj.getinfo("reference_frame")
+```
+
+- Return value: `true` = processing a reference frame
+
+#### Get the ID for Each Scene Rendering Pass
+
+※ Operations that reference other scenes and similar operations each have their own ID.
+
+```aulua
+obj.getinfo("rendering_id")
+```
+
+- Return value: Rendering ID of the rendering pass
+
 #### Check Whether Video Is Being Output
 
 ```aulua

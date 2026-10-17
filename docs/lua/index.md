@@ -1505,6 +1505,24 @@ obj.getinfo("origin_scene_id")
 
 - 戻り値：起点のシーン番号
 
+#### シーンチェンジ、モーションブラーの参照フレーム処理かを調べる
+
+```aulua
+obj.getinfo("reference_frame")
+```
+
+- 戻り値：`true`：参照フレームの処理中
+
+#### シーンの描画処理毎のIDを取得する
+
+※別のシーン等を参照する処理は個々のIDとなります。
+
+```aulua
+obj.getinfo("rendering_id")
+```
+
+- 戻り値：描画処理のレンダリングID
+
 #### 動画の出力中かを調べる
 
 ```aulua
