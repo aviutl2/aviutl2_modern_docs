@@ -6,6 +6,15 @@ lang: en
 
 # Changelog
 
+## v2.1.15 <Badge text='2026/10/24' />
+
+- Changed Directional Blur to use the edge color outside the area when used as a filter object.
+- Changed several filters to hide settings that do not apply when used as filter objects.
+- Added support for creating multiple window groups within each display area.
+- Changed grouped windows to be ungrouped when their display area is changed.
+- Added a display format for the top of Object Settings to `style.conf`.
+- Added a setting to Directional Blur to use the edge color outside the area.
+
 ## v2.1.14 <Badge text='2026/10/17' />
 
 - Added a version item to the footer definition in `style.conf`.
