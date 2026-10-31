@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## 2.1.16 <Badge text='2026/10/31' />
+
+- Fixed `obj.getvalue()` sometimes throwing an exception in scene change scripts.
+- Added target items for `--hide` conditions.
+
 ## 2.1.14 <Badge text='2026/10/17' />
 
 - Fixed list selection items in `--param` not being applied correctly in trackbar movement scripts when their names contain `"="`.

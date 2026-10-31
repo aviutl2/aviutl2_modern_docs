@@ -6,6 +6,19 @@ lang: en
 
 # Changelog
 
+## v2.1.16 <Badge text='2026/10/31' />
+
+- Fixed `"{xxxx?}"` in display formats in `style.conf` not being applied correctly.
+- Added an option to display the ruler at the top of Layer Editing in frames.
+- Added a command to move to a specified time to the right-click menu at the top of Layer Editing.
+- Added frame rate conversion settings for file output to Scene Settings.
+- Added a setting to Common Operation Settings to use wheel clicks for right-click operations.
+- Added an option to show the center point of selected objects in Preview Editing.
+- Changed editing resume and command-line processing to run through the message loop.
+- Adjusted how dialogs are created during application initialization.
+- Changed text rendering to apply Unicode normalization first.
+- Adjusted processing when opening dropdown lists.
+
 ## v2.1.15 <Badge text='2026/10/24' />
 
 - Changed Directional Blur to use the edge color outside the area when used as a filter object.

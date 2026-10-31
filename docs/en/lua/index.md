@@ -173,6 +173,8 @@ Specify the condition in the form `(variable name)(comparison operator)(number)`
 Setting item types that can be hidden:
 
 - Items with setting values, such as trackbar and checkbox items
+- Setting group items
+- Separator items
 
 Setting item types or special conditions that can be used in conditions:
 
@@ -200,6 +202,8 @@ Comparison operators available in conditions: `==`, `~=`, `>`, `<`
 
 Specifying something like `--group:group name,default display state (true/false)` at the beginning of a script file groups the following setting items. The default display state can be omitted.
 ※ Specifying `--group` without a group name defines the end of the group.
+※ To define a hiding condition, use a definition such as `--group@variable name:group name`.
+※ When hidden by a hiding condition, the item acts as the end of the group.
 
 ```aulua
 --group:Coordinates
@@ -208,6 +212,7 @@ Specifying something like `--group:group name,default display state (true/false)
 ### Define a Separator
 
 Specifying something like `--separator:separator name` at the beginning of a script file adds a separator.
+※ To define a hiding condition, use a definition such as `--separator@variable name:separator name`.
 
 ```aulua
 --separator:Center Coordinates

@@ -80,7 +80,7 @@ Object alignment operations use the selected object at the right-click position 
 ※ If there is no object at the right-click position, the last selected object is used as the reference.
 ※ Alignment operations may be restricted by intermediate points or the positions of other objects.
 ※ Unselected objects between selected objects may also be moved together.
-※ <kbd>Alt</kbd>+click operations may be unavailable depending on the right-click drag operation settings in the common operation settings.
+※ <kbd>Alt</kbd>+click operations may be unavailable depending on the right-click operation settings in the common operation settings.
 
 ## Layer Settings
 
@@ -310,9 +310,8 @@ Various operations are available from the right-click menu.
 
 ## Font Menu
 
-The display order, hierarchy, and visibility of the font menu can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="フォントメニューの設定" /> in the window menu.
-※ All fonts are displayed in the dropdown list.
-An option is available to apply the settings to list boxes as well.
+The display order, hierarchy, and visibility of the font selection menu can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="フォントメニューの設定" /> in the window menu.
+※ You can choose whether to apply these settings to the font dropdown list as well.
 
 Drag the target item field with the mouse to change the display order.  
 Click the target label field to select or edit the display hierarchy name.  
@@ -355,6 +354,10 @@ The sound played when file output finishes and YUV output conversion settings ca
 ## Common Operation Settings
 
 Overall common operation settings can be changed from <EnUiText scope="Menu" text="設定" /> -> <EnUiText scope="Menu" text="共通操作の設定" /> in the window menu.
+
+Enabling <EnUiText scope="Dialog" text="ホイールクリックで右クリック操作" /> allows wheel dragging to perform operations such as drag scrolling throughout the application.
+※ In windows with predefined wheel-drag operations (such as Layer Editing), the original behavior takes priority.
+Enabling <EnUiText scope="Dialog" text="Alt+左クリックで右クリック操作" /> makes operations similar to those in older versions.
 
 ## Screen Settings
 
