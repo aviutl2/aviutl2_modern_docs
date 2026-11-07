@@ -6,6 +6,17 @@ lang: en
 
 # Changelog
 
+## v2.1.17 <Badge text='2026/11/7' />
+
+- Fixed Image Compositing (Object) sometimes crashing depending on the target object.
+- Fixed language files to reference differences in the Default language when Default is specified as a sublanguage.
+- Added support for moving between layers with the cursor keys while dragging objects in Layer Editing.
+- Added support for locking the movement of marks and the start position of the grid (BPM) in Layer Editing.
+- Added control character input assistance to the right-click menu in Text Editing.
+- Added a button at the top of Text Editing to apply text presets.
+- Changed text in setting items to display characters in color when supported by a color font.
+- Changed text objects to render characters unsupported by the selected font using a fallback font.
+
 ## v2.1.16 <Badge text='2026/10/31' />
 
 - Fixed `"{xxxx?}"` in display formats in `style.conf` not being applied correctly.

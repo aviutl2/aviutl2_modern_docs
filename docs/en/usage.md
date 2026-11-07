@@ -253,6 +253,7 @@ Edits the text of the selected object.
 Editing is available when the object contains text items.
 
 In text editing, <kbd>Ctrl</kbd>+<kbd>Space</kbd> can use input assistance.  
+※ Input assistance is also available from the right-click menu.  
 In the font-name control character section, candidates for configured fonts are displayed.  
 In the color-code control character section, candidates for configured preset colors are displayed.  
 In the emoji control character section, candidates for registered emojis are displayed.  

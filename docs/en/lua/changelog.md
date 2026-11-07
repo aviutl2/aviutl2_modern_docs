@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## 2.1.17 <Badge text='2026/11/7' />
+
+- Added condition items for `--hide`.
+
 ## 2.1.16 <Badge text='2026/10/31' />
 
 - Fixed `obj.getvalue()` sometimes throwing an exception in scene change scripts.

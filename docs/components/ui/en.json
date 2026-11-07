@@ -1321,7 +1321,14 @@
     "目盛りの表示形式": "Ruler Display Format",
     "時間単位": "Time Based",
     "フレーム単位": "Frame Based",
-    "オブジェクトの中心点を表示": "Display Object Center Point"
+    "オブジェクトの中心点を表示": "Display Object Center Point",
+    "マークをロック": "Lock Mark",
+    "グリッド(BPM)区間をロック": "Lock Grid(BPM)Section",
+    "テキスト編集を表示": "Show Text Editor",
+    "制御文字": "Control Code",
+    "色": "Color",
+    "フォント": "Font",
+    "絵文字": "Emoji"
   },
   "Message": {
     "ファイル出力中": "Exporting File",
@@ -1444,7 +1451,8 @@
     "現在のフレームをマーク": "Mark the current frame",
     "音声出力を切替": "Switch Audio Output",
     "{file}を設定": "Set {file}",
-    "テキストの設定対象項目がありません": "No text setting target items"
+    "テキストの設定対象項目がありません": "No text setting target items",
+    "移動操作をロック": "lock move"
   },
   "Name": {
     "最小": "Minimum",

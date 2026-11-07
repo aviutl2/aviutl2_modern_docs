@@ -183,6 +183,8 @@ Setting item types or special conditions that can be used in conditions:
 - File selection items
 - Folder selection items
 - `filter`: Whether this is a filter object (`0`/`1`)
+- `input`: Object input item type (`0` = not applicable / `1` = image / `2` = audio / `3` = image and audio)
+- `output`: Object output item type (`0` = not applicable / `1` = image / `2` = audio / `3` = image and audio)
 
 ※ Per-section checkboxes return `2` when the per-section setting is enabled (`0`/`1`/`2`).
 ※ File and folder selection items return `0` or `1` to indicate whether a file or folder is selected.
