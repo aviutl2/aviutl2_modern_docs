@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## v2.1.18a <Badge text='2026/11/14' />
+
+- Fixed lists of recent and backed-up projects not displaying correctly.
+
 ## v2.1.18 <Badge text='2026/11/14' />
 
 - Fixed scene changes not being included in Script Information.
