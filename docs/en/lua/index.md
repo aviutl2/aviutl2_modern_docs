@@ -137,7 +137,7 @@ Specifying something like `--string@variable name:item name,default value` defin
 
 ```aulua
 --text@txt:Text,Default text\nNext line
---string@str:String,Default text
+--string@str:String,Default text\tTab character
 obj.load("text", txt)
 ```
 

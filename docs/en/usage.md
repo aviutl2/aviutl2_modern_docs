@@ -68,7 +68,7 @@ Hold <kbd>Shift</kbd> while moving the displayed frame to enter frame range sele
 
 Media files and alias files (`.object`) can be loaded by drag and drop.  
 Click a layer name to toggle the layer's visibility.  
-※ Shortcut key operations for delete or rename while a layer is selected by clicking apply to that layer.
+※ Shortcut key operations for delete, rename, or lock while a layer is selected by clicking apply to that layer.
 Drag a layer name to change the layer position.  
 Hold <kbd>Alt</kbd> and click a layer name to toggle the visibility of other layers.  
 Drag with the right mouse button to scroll layers.  

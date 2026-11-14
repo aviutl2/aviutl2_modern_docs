@@ -6,6 +6,17 @@ lang: en
 
 # Changelog
 
+## v2.1.18 <Badge text='2026/11/14' />
+
+- Fixed scene changes not being included in Script Information.
+- Enabled the lock shortcut for layers, marks, and the grid (BPM) selected by clicking in Layer Editing.
+- Added support for specifying multiple colors when configuring Gradient and Gradient Map using color settings.
+- Added phase, period, and loop settings to Gradient Map.
+- Added a conical shape to the Gradient filter.
+- Changed the pointer appearance when picking colors.
+- Slightly improved shortcut key handling.
+- Slightly improved language setting processing.
+
 ## v2.1.17 <Badge text='2026/11/7' />
 
 - Fixed Image Compositing (Object) sometimes crashing depending on the target object.

@@ -134,7 +134,7 @@ obj.setfont(font, obj.track2, deco, col1, col2)
 
 ```aulua
 --text@txt:テキスト,デフォルト文字\n次の行
---string@str:文字列,デフォルト文字
+--string@str:文字列,デフォルト文字\tタブ文字
 obj.load("text", txt)
 ```
 

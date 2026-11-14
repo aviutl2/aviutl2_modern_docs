@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## 2.1.18 <Badge text='2026/11/14' />
+
+- Added support for leading and trailing whitespace and tab characters (`\t`) in the default text for `--text` and `--string`.
+
 ## 2.1.17 <Badge text='2026/11/7' />
 
 - Added condition items for `--hide`.
