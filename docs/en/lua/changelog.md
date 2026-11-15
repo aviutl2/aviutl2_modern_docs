@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## 2.1.18b <Badge text='2026/11/15' />
+
+- Changed tab characters in the default text for `--text` and `--string` from `\t` to literal tab characters.
+- Added support for enclosing the default text for `--text` and `--string` in double quotes.
+
 ## 2.1.18 <Badge text='2026/11/14' />
 
 - Added support for leading and trailing whitespace and tab characters (`\t`) in the default text for `--text` and `--string`.

@@ -6,6 +6,11 @@ lang: en
 
 # Changelog
 
+## v2.1.18b <Badge text='2026/11/15' />
+
+- Fixed the color picker icon overlapping the title text in the Color Settings title bar.
+- Added a confirmation dialog when restarting the application from the Window menu with unsaved changes.
+
 ## v2.1.18a <Badge text='2026/11/14' />
 
 - Fixed lists of recent and backed-up projects not displaying correctly.

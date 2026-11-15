@@ -134,10 +134,12 @@ obj.setfont(font, obj.track2, deco, col1, col2)
 
 Specifying something like `--text@variable name:item name,default value` at the beginning of a script file enables a text setting item.
 Specifying something like `--string@variable name:item name,default value` defines a single-line text setting item.
+In the default string, `\n` is treated as a line break.
+Enclosing the default value in double quotes enables the escape sequences `\n`, `\t`, `\"`, and `\\`.
 
 ```aulua
 --text@txt:Text,Default text\nNext line
---string@str:String,Default text\tTab character
+--string@str:String,"Default text\t is a tab character; \\n is not a line break"
 obj.load("text", txt)
 ```
 
