@@ -6,6 +6,14 @@ lang: en
 
 # Changelog
 
+## v2.1.19 <Badge text='2026/11/21' />
+
+- Fixed the icon display not reflecting changes to audio output made through Scene Settings in the File Output dialog.
+- Fixed the current frame sometimes falling outside the visible area when stopping preview playback and returning to the original frame.
+- Fixed the random amplitude calculation in the Raster filter.
+- Added a bias setting to the Raster filter.
+- Improved color settings processing.
+
 ## v2.1.18b <Badge text='2026/11/15' />
 
 - Fixed the color picker icon overlapping the title text in the Color Settings title bar.

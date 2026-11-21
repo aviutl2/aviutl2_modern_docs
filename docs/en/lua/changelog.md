@@ -6,6 +6,10 @@ lang: en
 
 # Changelog
 
+## 2.1.19 <Badge text='2026/11/21' />
+
+- Added the `--colorlist` definition.
+
 ## 2.1.18b <Badge text='2026/11/15' />
 
 - Changed tab characters in the default text for `--text` and `--string` from `\t` to literal tab characters.

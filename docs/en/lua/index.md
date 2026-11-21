@@ -85,6 +85,27 @@ Specifying `nil` as the default value makes transparent color selectable.
 obj.load("figure", "四角形", col, 100)
 ```
 
+### Define a Color List Item
+
+Specifying something like `--colorlist@variable name:item name,default value,maximum number of colors,options` at the beginning of a script file enables a color list item.
+※ This is an array containing between one and the maximum number of colors.
+Separate item names with `"|"` to specify names for the second and subsequent items. If fewer names are specified than the maximum number of colors, the last name is reused.
+Separate default values with `"|"` to specify two or more default values.
+The following options can be listed, separated by `"|"`.
+
+- `undefined`: Allow unspecified colors. An unspecified color is undefined (`nil`).
+- `position`: Use color positions. If this option is not used, standard positions are set.
+- `fixed`: Fix the number of colors to the number of default values.
+- `alpha`: Use alpha values. Colors include an alpha value (`0x00000000`–`0xffffffff`).
+
+```aulua
+--colorlist@list:Base Color|Mid Color,0xffffff|0x888888,4,undefined|position
+--colorlist@list2:Figure Color,0xffffffff,1,alpha|fixed
+local num = #list
+local col = list[1].col
+local pos = list[1].pos
+```
+
 ### Define a File Selection Item
 
 Specifying something like `--file@variable name:item name` at the beginning of a script file enables a file selection item.

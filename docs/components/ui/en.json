@@ -874,7 +874,9 @@
     "片方向のみ": "One-way only",
     "中間色": "Mid Color",
     "位相": "Phase",
-    "マップのループ": "Loop Map"
+    "マップのループ": "Loop Map",
+    "円錐形": "Cone",
+    "偏り": "Bias"
   },
   "Menu": {
     "ファイル": "File",
